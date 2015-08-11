@@ -45,15 +45,15 @@ public class Multiples {
 	 * @return temp
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
-	public boolean ifexists(int a){
-		boolean temp=false;
+	public boolean ifexists(int number){
+		boolean isMultiple=false;
 		for(int k=0;k<index;k++){
-			if(a == multiple[k]){
-				temp=true;
+			if(number == multiple[k]){
+				isMultiple=true;
 				break;
 			}
 		}
-		return temp;
+		return isMultiple;
 	}
 	/**
 	 * <p>This method calculates the sum of all multiples</p>
