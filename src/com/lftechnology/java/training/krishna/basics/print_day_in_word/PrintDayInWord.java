@@ -1,5 +1,11 @@
 package com.lftechnology.java.training.krishna.basics.print_day_in_word;
 
+/**
+ * The PrintDayInWord program implements an application that simply display the day
+ * 
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class PrintDayInWord {
 	/**
 	 * <p>
@@ -8,7 +14,7 @@ public class PrintDayInWord {
 	 * 
 	 * @param int day
 	 * @return String dayName name of day
-	 * @author<krishnatimilsina@lftechnology.com>
+	 * @author Krishna Timilsina<krishnatimilsina@lftechnology.com>
 	 */
 	public String switchDay(int day) {
 		String dayName = null;
