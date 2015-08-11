@@ -12,20 +12,32 @@ import java.util.logging.Logger;
  */
 public class SumOfMultiples {
 
-	final static Logger logger = Logger.getLogger(SumOfMultiples.class.getName());
+	final static Logger LOGGER = Logger.getLogger(SumOfMultiples.class.getName());
 
 	public static void main(String[] args) {
 		try {
-			int totalSum = 0;
-			for (int i = 0; i < 1000; i++) {
-				if (i % 3 == 0 || i % 5 == 0) {
-					totalSum += i;
-				}
-			}
-			logger.info("Sum of multiples of 3 & 5 is : " + totalSum);
+			SumOfMultiples sum = new SumOfMultiples();
+			sum.getTotalSum();
+			LOGGER.info("Sum of multiples of 3 & 5 is : " + sum.getTotalSum());
 		} catch (ArithmeticException ex) {
-			logger.warning("Exception : " + ex.getMessage());
+			LOGGER.warning("Exception : " + ex.getMessage());
 		}
+	}
+	
+	/**
+	 * Function used to get the sum of multiples i.e 3 or 5
+	 * 
+	 * @return int totalSum Sum of multiples
+	 * @author Alina Shakya<alinashakya@lftechnology.com>
+	 */
+	public int getTotalSum(){
+		int totalSum = 0;
+		for (int i = 0; i < 1000; i++) {
+			if (i % 3 == 0 || i % 5 == 0) {
+				totalSum += i;
+			}
+		}
+		return totalSum;
 	}
 
 }
