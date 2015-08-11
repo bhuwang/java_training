@@ -10,8 +10,8 @@ public class Palindrome {
 	/**
 	 * Calculate and return largest palindrome number made from the product of two provided digit numbers
 	 * 
-	 * @param int digitLength digit length of two product from which have find largest palindrome number
-	 * @return int largest palindrome number
+	 * @param digitLength digit length of two product from which have find largest palindrome number
+	 * @return largest palindrome number
 	 * @throws Exception Digit length greater than 4 not supported
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
@@ -39,8 +39,8 @@ public class Palindrome {
 	/**
 	 * Check is supplied number is palindrom number or not
 	 * 
-	 * @param int number number that have to check is palindrom number
-	 * @return boolean true if supplied number is palindrom else false
+	 * @param number number that have to check is palindrom number
+	 * @return true if supplied number is palindrom else false
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static boolean isPalindromNum(int number) {
