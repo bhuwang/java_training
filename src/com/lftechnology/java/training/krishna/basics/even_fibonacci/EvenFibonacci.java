@@ -37,10 +37,10 @@ public class EvenFibonacci {
 	 * Function is used to generate even fibonacci with sum upto 4 million
 	 * </p>
 	 * 
-	 * @return long sum sum even number
+	 * @return int sum sum of even number
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	public long sumEvenFibonacci() {
+	public int sumEvenFibonacci() {
 
 		int sum = 0;
 		while (sum < MAX_LIMIT) {
