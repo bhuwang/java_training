@@ -13,7 +13,7 @@ public class Multiples {
 	private final static Logger LOGGER = Logger.getLogger(Multiples.class.getName());
 	int multiple[];
 	int index=0;
-	int range;	
+	int range;		
 	Multiples(int a){
 		range=a;
 		multiple=new int[range];	
