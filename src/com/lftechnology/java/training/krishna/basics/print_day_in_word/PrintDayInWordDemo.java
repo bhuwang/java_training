@@ -6,8 +6,8 @@ public class PrintDayInWordDemo {
 	private final static Logger LOGGER = Logger.getLogger(PrintDayInWord.class.getName());
 	public static void main(String[] args) {
 		int day = 5;
-		PrintDayInWord printdayinword = new PrintDayInWord();
-		String dayName = printdayinword.switchDay(day);
+		PrintDayInWord printDayInWord = new PrintDayInWord();
+		String dayName = printDayInWord.switchDay(day);
 		LOGGER.info("Day: " + dayName);
 
 	}
