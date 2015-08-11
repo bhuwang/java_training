@@ -17,7 +17,6 @@ public class SumOfMultiples {
 	public static void main(String[] args) {
 		try {
 			SumOfMultiples sum = new SumOfMultiples();
-			sum.getTotalSum();
 			LOGGER.info("Sum of multiples of 3 & 5 is : " + sum.getTotalSum());
 		} catch (ArithmeticException ex) {
 			LOGGER.warning("Exception : " + ex.getMessage());
