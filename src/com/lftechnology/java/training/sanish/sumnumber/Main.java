@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String args[]) {
 		final Logger LOGGER = Logger.getLogger(Main.class.getName());
 		try {
-			System.out.println("Sum sum multiples of 3 or 5 below 1000 : "
+			LOGGER.info("Sum sum multiples of 3 or 5 below 1000 : "
 					+ (SumMultiples.getMultiples(3, 999) + SumMultiples.getMultiples(5, 999)));
 		} catch (ArithmeticException e) {
 			LOGGER.warning("Exception : " + e.getMessage());
