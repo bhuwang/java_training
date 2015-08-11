@@ -12,23 +12,22 @@ import java.util.logging.Logger;
 
 public class Multiples {
 	private final static Logger LOGGER = Logger.getLogger(Multiples.class.getName());
-	int multiple[];	
-	int index=0;
-	int range;		
-	Multiples(int a){
-		range=a;
+	private int multiple[];	
+	private int index=0;
+	private int range;		
+	Multiples(int range){
+		this.range=range;
 		multiple=new int[range];	
 	}
 	
 	/**
 	 * <p>This method check all the multiples of the user defined numbers that are taken as input within the user
 	 * defined range </p>
-	 * @param  array a[]
-	 * @return 
-	 * @author <dipakthapa@lftechnology.com>
+	 * @param  a[] 
+	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	
-	void getMultiples(int a[]){
+	public void getMultiples(int a[]){
 		for(int i=0;i<a.length;i++){
 			for(int j=0;j<range;j++){		//Change according to the range
 				if((j % a[i]) == 0 ){
@@ -44,9 +43,9 @@ public class Multiples {
 	 * <p>This method checks whether the given number is a multiple of the user defined numbers or not. It returns a boolean value </p>
 	 * @param  a
 	 * @return temp
-	 * @author <dipakthapa@lftechnology.com>
+	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
-	boolean ifexists(int a){
+	public boolean ifexists(int a){
 		boolean temp=false;
 		for(int k=0;k<index;k++){
 			if(a == multiple[k]){
@@ -60,9 +59,9 @@ public class Multiples {
 	 * <p>This method calculates the sum of all multiples</p>
 	 * @param  
 	 * @return sum
-	 * @author <dipakthapa@lftechnology.com>
+	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
-	int sum(){
+	public int sum(){
 		int sum=0;
 		for(int i=0;i<multiple.length;i++){
 			sum+=multiple[i];
@@ -95,7 +94,7 @@ public class Multiples {
 				break;
 			}catch(NumberFormatException nfe){
 				LOGGER.info("Characters or negative numbers entered.Re-enter the values.");
-			}			
+			}
 			
 		}			
 	
