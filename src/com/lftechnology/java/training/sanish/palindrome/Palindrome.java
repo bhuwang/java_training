@@ -40,7 +40,7 @@ public class Palindrome {
 	 * Check is supplied number is palindrom number or not
 	 * 
 	 * @param int number number that have to check is palindrom number
-	 * @return boolean ture if supplied number is palindrom else false
+	 * @return boolean true if supplied number is palindrom else false
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static boolean isPalindromNum(int number) {
