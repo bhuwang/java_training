@@ -21,7 +21,7 @@ public class SalutationAndName {
 		String name="";
 		
 		for(int i=1;i<text.length;i++){			
-			if(!(text[i].length()==0)){
+			if((text[i].length()!=0)){
 				name=name+text[i]+" ";
 			}			
 			
