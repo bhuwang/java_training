@@ -16,7 +16,7 @@ public class Multiples {
 	private int index=0;
 	private int range;		
 	Multiples(int range){
-		this.range=range;
+		this.range=range;		
 		multiple=new int[range];	
 	}
 	
