@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class Multiples {
 	private final static Logger LOGGER = Logger.getLogger(Multiples.class.getName());
-	int multiple[];
+	int multiple[];	
 	int index=0;
 	int range;		
 	Multiples(int a){
