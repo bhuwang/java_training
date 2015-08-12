@@ -12,9 +12,9 @@ public class MultiplierNumber {
 	 * @return int smaller multiple number
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public static int getSmallerMultipleNum(int form, int to) {
-		int smallerMultipleNum = form;
-		for (int i = form; i <= to; i++) {
+	public static int getSmallerMultipleNum(int from, int to) {
+		int smallerMultipleNum = from;
+		for (int i = from; i <= to; i++) {
 			int sumNumber = smallerMultipleNum;
 			while (sumNumber % i != 0) {
 				sumNumber += smallerMultipleNum;
