@@ -9,9 +9,9 @@ public class SumMultiples {
 	/**
 	 * Return sum of multiples of number within given limit
 	 * 
-	 * @param int num number 
-	 * @param int limit below which have to found sum of multiples of number
-	 * @return int sum of multiples
+	 * @param num {@link Integer}}number 
+	 * @param limit {@link Integer} below which have to found sum of multiples of number
+	 * @return sum {@link Integer} of multiples
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static int getMultiples(int num, int limit) {
