@@ -1,6 +1,8 @@
-package com.lftechnology.java.training.krishna.basics.even_fibonacci;
+package com.lftechnology.java.training.krishna.basics.evenfibonacci;
 
 /**
+ * EvenFibonacci.java
+ * 
  * The EvenFibonacci program implements an application that simply sum of the even-valued terms
  * 
  * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
