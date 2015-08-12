@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.krishna.basics.smallest_multiple;
+package com.lftechnology.java.training.krishna.basics.smallestmultiple;
 
 import java.util.logging.Logger;
 
