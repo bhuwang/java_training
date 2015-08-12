@@ -3,7 +3,7 @@ package com.lftechnology.java.training.krishna.basics.smallest_multiple;
 import java.util.logging.Logger;
 
 public class SmallestMultipleDemo {
-	private final static Logger LOGGER = Logger.getLogger(SmallestMultiple.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(SmallestMultipleDemo.class.getName());
 
 	public static void main(String[] args) {
 		int number = 2520;
