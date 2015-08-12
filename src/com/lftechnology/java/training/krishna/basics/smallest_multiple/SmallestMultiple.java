@@ -18,12 +18,11 @@ public class SmallestMultiple {
 	 * <p>
 	 * Function is used to generate smallest positive number
 	 * </p>
-	 * 
-	 * @return long number Number
+	 * @param int number Number
+	 * @return long number Positive Number
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	public long smallestPositiveNumber() {
-		long number = 2520;
+	public long smallestPositiveNumber(int number) {
 		boolean found = false;
 
 		while (!found) {
