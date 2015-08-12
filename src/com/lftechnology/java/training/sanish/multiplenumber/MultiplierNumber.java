@@ -7,9 +7,9 @@ package com.lftechnology.java.training.sanish.multiplenumber;
 public class MultiplierNumber {
 	/**
 	 * Return smaller multiple number form given range
-	 * @param int form first number that have to find multiple
-	 * @param int to last number that have to find multiple
-	 * @return int smaller multiple number
+	 * @param from {@link Integer}first number that have to find multiple
+	 * @param to {@link Integer} last number that have to find multiple
+	 * @return smaller {@link Integer} multiple number
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static int getSmallerMultipleNum(int from, int to) {
