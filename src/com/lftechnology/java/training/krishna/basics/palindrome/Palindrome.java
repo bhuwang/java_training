@@ -1,9 +1,20 @@
 package com.lftechnology.java.training.krishna.basics.palindrome;
 
+/**
+ * Palindrome.java
+ * 
+ * A palindromic number reads the same both ways. The largest palindrome made
+ * from the product of two 2-digit numbers is 9009 = 91 * 99. Find the largest
+ * palindrome made from the product of two 3-digit numbers.
+ * 
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class Palindrome {
 
 	/**
-	 * Function is used to largest palindrome that is a multiple of two 3 digit numbers
+	 * Function is used to largest palindrome that is a multiple of two 3 digit
+	 * numbers
 	 * 
 	 * @return long 0|number largest palindrome number
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
