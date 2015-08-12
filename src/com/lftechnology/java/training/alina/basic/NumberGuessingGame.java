@@ -18,36 +18,48 @@ public class NumberGuessingGame {
 
 	public static void main(String[] args) {
 		int randomNumber;
-		int guessNumber;
-		int numberOfAttempts = 0;
 		Scanner scanner = null;
 		try {
 			NumberGuessingGame number = new NumberGuessingGame();
 			randomNumber = number.generateRandomNumber();
 			scanner = new Scanner(System.in);
-			do {
-				LOGGER.info("Enter a guess number (1-20): ");
-				guessNumber = scanner.nextInt();
-				if (guessNumber != randomNumber) {
-					numberOfAttempts++;
-				}
-				if (guessNumber == randomNumber) {
-					LOGGER.info("Your Guess is Correct. Congratulations!");
-					LOGGER.info("Random generated value is : " + randomNumber);
-					LOGGER.info("Guessed value is : " + guessNumber);
-					LOGGER.info("Number of attempts : " + numberOfAttempts);
-				} else if (guessNumber < randomNumber) {
-					LOGGER.info("Your Guess is incorrect. It should be greater.");
-				} else {
-					LOGGER.info("Your Guess is incorrect. It should be smaller.");
-				}
-			} while (guessNumber != randomNumber);
+			number.checkForGuessNumber(scanner,randomNumber);
 		} catch (Exception e) {
 			LOGGER.warning("Exception Message : " + e.getMessage());
 		} finally {
 			if (scanner != null)
 				scanner.close();
 		}
+	}
+
+	/**
+	 * Function to check for guessed and random number
+	 * Displays the output when guess is matched
+	 * 
+	 * @param scanner
+	 * @param randomNumber
+	 * @author Alina Shakya <alinashakya@lftechnology.com>
+	 */
+	private void checkForGuessNumber(Scanner scanner, int randomNumber) {
+		int guessNumber;
+		int numberOfAttempts = 0;
+		do {
+			LOGGER.info("Enter a guess number (1-20): ");
+			guessNumber = scanner.nextInt();
+			if (guessNumber != randomNumber) {
+				numberOfAttempts++;
+			}
+			if (guessNumber == randomNumber) {
+				LOGGER.info("Your Guess is Correct. Congratulations!");
+				LOGGER.info("Random generated value is : " + randomNumber);
+				LOGGER.info("Guessed value is : " + guessNumber);
+				LOGGER.info("Number of attempts : " + numberOfAttempts);
+			} else if (guessNumber < randomNumber) {
+				LOGGER.info("Your Guess is incorrect. It should be greater.");
+			} else {
+				LOGGER.info("Your Guess is incorrect. It should be smaller.");
+			}
+		} while (guessNumber != randomNumber);
 	}
 
 	/**
