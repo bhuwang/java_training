@@ -3,6 +3,8 @@ package com.lftechnology.java.training.krishna.basics.palindrome;
 import java.util.logging.Logger;
 
 /**
+ * PalindromeDemo.java
+ * 
  * Log the output on the console.
  * 
  * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
@@ -10,8 +12,7 @@ import java.util.logging.Logger;
  */
 
 public class PalindromeDemo {
-	private final static Logger LOGGER = Logger.getLogger(PalindromeDemo.class
-			.getName());
+	private final static Logger LOGGER = Logger.getLogger(PalindromeDemo.class.getName());
 
 	/**
 	 * This is the main method which makes use of findLargestPalindrome() method.
