@@ -1,7 +1,6 @@
 package com.lftechnology.java.training.sanish.palindrome;
 
 import java.util.logging.Logger;
-
 /**
  * Class Main
  * 
