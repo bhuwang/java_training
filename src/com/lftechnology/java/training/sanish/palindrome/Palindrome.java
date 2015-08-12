@@ -4,33 +4,35 @@ import java.util.logging.Logger;
 
 /**
  * Provide palindrome calculation functions
+ * 
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Palindrome {
 	/**
-	 * Calculate and return largest palindrome number made from the product of two provided digit numbers
+	 * Calculate and return largest palindrome number made from the product of
+	 * two provided digit numbers
 	 * 
-	 * @param digitLength digit length of two product from which have find largest palindrome number
-	 * @return largest palindrome number
-	 * @throws Exception Digit length greater than 4 not supported
+	 * @param digitLength
+	 *            {@link Integer} digit length of two product from which have
+	 *            find largest palindrome number
+	 * @return {@link Integer} largest palindrome number
+	 * @throws Exception
+	 *             Digit length greater than 4 not supported
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public static int getLargestPalindrome(int digitLength) throws Exception {
+	public static long getLargestPalindrome(int digitLength) throws Exception {
 		final Logger LOGGER = Logger.getLogger(Main.class.getName());
 		int maxNum = (int) Math.pow(10, digitLength) - 1;
 		int minNum = (int) Math.pow(10, digitLength - 1);
-		if (digitLength <= 4) {
-			for (int i = maxNum; i > minNum; i--) {
-				for (int j = maxNum; j > minNum; j--) {
-					int multipleNum = j * i;
-					if (isPalindromNum(multipleNum)) {
-						LOGGER.info(i + " * " + j + " = " + multipleNum);
-						return multipleNum;
-					}
+		long multipleNum;
+		for (long i = maxNum; i > minNum; i--) {
+			for (long j = maxNum; j > minNum; j--) {
+				multipleNum = (long) j * i;
+				if (isPalindromNum(multipleNum)) {
+					LOGGER.info(i + " * " + j + " = " + multipleNum);
+					return multipleNum;
 				}
 			}
-		} else {
-			throw new Exception("Digit length greater than 4 not supported.");
 		}
 
 		return 0;
@@ -39,13 +41,14 @@ public class Palindrome {
 	/**
 	 * Check is supplied number is palindrom number or not
 	 * 
-	 * @param number number that have to check is palindrom number
-	 * @return true if supplied number is palindrom else false
+	 * @param number
+	 *            {@link Integer} number that have to check is palindrom number
+	 * @return {@link Boolean} true if supplied number is palindrom else false
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public static boolean isPalindromNum(int number) {
-		int preNumber = number;
-		int reverse = 0;
+	public static boolean isPalindromNum(long number) {
+		long preNumber = number;
+		long reverse = 0;
 		while (number != 0) {
 			reverse = reverse * 10;
 			reverse = reverse + number % 10;
