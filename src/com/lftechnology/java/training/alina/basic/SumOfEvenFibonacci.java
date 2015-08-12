@@ -58,6 +58,7 @@ public class SumOfEvenFibonacci {
 	 * Function used to get sum of even fibonacci terms
 	 * 
 	 * @return int totalSum sum of even fibonacci
+	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	public int getSumOfEvenFibonacci() {
 		int totalEvenSum = 0;
