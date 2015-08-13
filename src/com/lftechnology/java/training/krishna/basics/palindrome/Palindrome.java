@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.krishna.basics.palindrome;
 
-import java.util.logging.Logger;
 
 /**
  * Palindrome.java
@@ -13,7 +12,7 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class Palindrome {
-	private final static Logger LOGGER = Logger.getLogger(Palindrome.class.getName());
+	
 	/**
 	 * Function is used to largest palindrome that is a multiple of two 3 digit
 	 * numbers

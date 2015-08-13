@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.krishna.basics.evenfibonacci;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -21,9 +22,8 @@ public class EvenFibonacciDemo {
 	 */
 	public static void main(String[] args) {
 		EvenFibonacci evenFibonacci = new EvenFibonacci(0, 1);
-		int sumFibonacci = evenFibonacci.sumEvenFibonacci();
-		LOGGER.info("sum of even fibonacci number : "  + sumFibonacci);
-
+		Integer sumFibonacci = evenFibonacci.sumEvenFibonacci();
+		LOGGER.log(Level.INFO, "Sum of even fibonacci number : {0}", new Object[]{sumFibonacci.toString()});
 	}
 
 }

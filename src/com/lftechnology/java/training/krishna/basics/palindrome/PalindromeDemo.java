@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.krishna.basics.palindrome;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -20,8 +21,8 @@ public class PalindromeDemo {
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static void main(String[] args) {
-		int largestPalindrome = Palindrome.findLargestPalindrome();
-		LOGGER.info("Largest Palindrome : " + largestPalindrome);
+		Integer largestPalindrome = Palindrome.findLargestPalindrome();
+		LOGGER.log(Level.INFO, "Largest Palindrome : {0}", new Object[]{largestPalindrome.toString()});
 	}
 
 }

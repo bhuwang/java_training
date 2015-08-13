@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.krishna.basics.smallest_multiple;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -21,8 +22,8 @@ public class SmallestMultipleDemo {
 	public static void main(String[] args) {
 		int number = 2520;
 		SmallestMultiple smallestMultiple = new SmallestMultiple();
-		long positiveNumber = smallestMultiple.smallestPositiveNumber(number);
-		LOGGER.info("smallest positive number : " + positiveNumber);
+		Long positiveNumber = smallestMultiple.smallestPositiveNumber(number);
+		LOGGER.log(Level.INFO, "Smallest positive number : {0}", positiveNumber.toString());
 	}
 
 }
