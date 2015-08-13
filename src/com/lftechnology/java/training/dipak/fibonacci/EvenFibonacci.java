@@ -25,16 +25,20 @@ public class EvenFibonacci {
 	 */
 	public void generateSeries(int range){
 		int num1=0;
-		int num2=1;
-		for(int sum=0;sum<range;){
-			sum=num1+num2;
-			if(sum>=range){
-				break;				
-			}
+		int num2=1;		
+		for(int sum=0;sum<range;){			
+			sum=num1+num2;			
 			series[index++]=sum;
 			num1=num2;
-			num2=sum;			
+			num2=sum;
 		}		
+	}
+	public boolean checkEven(int number){
+		if(number % 2 == 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	/**
 	 * <p>This method calculates the sum of all the even integers present in the array holding the fibonacci series</p>
@@ -44,9 +48,10 @@ public class EvenFibonacci {
 	public int getEvenNumberSum(){
 		int sum=0;
 		for(int i=0;i<index;i++){
-			if(series[i] % 2 == 0 ){
+			boolean isTrue=checkEven(series[i]);
+			if(isTrue){
 				sum+=series[i];
-			}
+			}			
 		}
 		return sum;
 	}
@@ -63,8 +68,8 @@ public class EvenFibonacci {
 				LOGGER.info("The sum of even numbers of fibonacci series whose values do not exceed "+range+" ="+sum);
 				scanner.close();
 				break;
-			}catch(NumberFormatException nfe){
-				LOGGER.info("Characters entered.Re-enter the values.");
+			}catch(NumberFormatException  nfe){
+				LOGGER.info("Characters entered or value out of integer out of bound.Re-enter the values.");
 			}			
 		}		
 
