@@ -46,6 +46,7 @@ public class Days {
 	 * @param dayIndex
 	 *            {@link Integer} Day index
 	 * @return {@link String}
+	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static String PrintDayInWord(int dayIndex) {
 		if (dayIndex < DAYS.length) {
