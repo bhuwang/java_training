@@ -7,8 +7,9 @@ import java.util.logging.Logger;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Main {
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+	
 	public static void main(String args[]){
-		final Logger LOGGER = Logger.getLogger(Main.class.getName());
 		try {
 			LOGGER.info("Largest palindrome made from the product of two 3-digit numbers: "+ Palindrome.getLargestPalindrome(6));
 		} catch (Exception e) {

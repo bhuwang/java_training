@@ -8,6 +8,7 @@ import java.util.logging.Logger;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Palindrome {
+	private static final Logger LOGGER = Logger.getLogger(Palindrome.class.getName());
 	/**
 	 * Calculate and return largest palindrome number made from the product of
 	 * two provided digit numbers
@@ -21,7 +22,6 @@ public class Palindrome {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static long getLargestPalindrome(int digitLength) throws Exception {
-		final Logger LOGGER = Logger.getLogger(Main.class.getName());
 		int maxNum = (int) Math.pow(10, digitLength) - 1;
 		int minNum = (int) Math.pow(10, digitLength - 1);
 		long multipleNum;
