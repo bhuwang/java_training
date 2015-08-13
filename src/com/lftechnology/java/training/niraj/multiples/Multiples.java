@@ -21,18 +21,24 @@ public class Multiples {
 	 */
 	public static void main(String[] args) {
 
-		int sumOfMultiples = getSumOfMultiples(3, 5, 1000);
+		int num1 = 3;
+		int num2 = 5;
+		int maxNum = 1000;
+		int sumOfMultiples = getSumOfMultiples(num1, num2, maxNum);
 		LOGGER.log(Level.INFO,
 				"The sum of multiples of {0} and {1} below {2} is {3} ",
-				new Object[] { 3, 5, 1000, sumOfMultiples });
+				new Object[] { num1, num2, maxNum, sumOfMultiples });
 	}
 
 	/**
 	 * Get the sum of multiples of two numbers
 	 * 
-	 * @param num1 {@link Integer}
-	 * @param num2 {@link Integer}
-	 * @param maxNum {@link Integer}
+	 * @param num1
+	 *            {@link Integer}
+	 * @param num2
+	 *            {@link Integer}
+	 * @param maxNum
+	 *            {@link Integer}
 	 * @return sum of multiples of two numbers
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
