@@ -18,18 +18,13 @@ public class NumberGuessingGame {
 
 	public static void main(String[] args) {
 		int randomNumber;
-		Scanner scanner = null;
-		try {
+		try(Scanner scanner = new Scanner(System.in)) {
 			NumberGuessingGame number = new NumberGuessingGame();
 			randomNumber = number.generateRandomNumber();
-			scanner = new Scanner(System.in);
 			number.checkForGuessNumber(scanner,randomNumber);
 		} catch (Exception e) {
 			LOGGER.warning("Exception Message : " + e.getMessage());
-		} finally {
-			if (scanner != null)
-				scanner.close();
-		}
+		} 
 	}
 
 	/**
