@@ -9,6 +9,6 @@ import java.util.logging.Logger;
 public class Fibonacci {
 	private static final Logger LOGGER = Logger.getLogger(Fibonacci.class.getName());
 	public static void main(String args[]){
-		LOGGER.info("The sum of the even-valued terms of Fibonacci number not exceed four million : " + FibonacciNumber.sumEventFibonacciNumber(1, 2, 40));
+		LOGGER.info("The sum of the even-valued terms of Fibonacci number not exceed four million : " + FibonacciNumber.sumEventFibonacciNumber(1, 2, 400000));
 	}
 }
