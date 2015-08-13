@@ -1,5 +1,7 @@
 package com.lftechnology.java.training.krishna.basics.palindrome;
 
+import java.util.logging.Logger;
+
 /**
  * Palindrome.java
  * 
@@ -11,7 +13,7 @@ package com.lftechnology.java.training.krishna.basics.palindrome;
  * @version 1.0
  */
 public class Palindrome {
-
+	private final static Logger LOGGER = Logger.getLogger(Palindrome.class.getName());
 	/**
 	 * Function is used to largest palindrome that is a multiple of two 3 digit
 	 * numbers
@@ -43,15 +45,9 @@ public class Palindrome {
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static boolean isPalindrome(int number) {
-		String s = String.valueOf(number);
-		StringBuilder reverseString = new StringBuilder();
-
-		// reverse the string
-		for (int i = s.length() - 1; i > -1; i--) {
-			reverseString.append(s.charAt(i));
-		}
-
-		return reverseString.toString().equals(s);
+		String originalString = String.valueOf(number);
+		StringBuilder reverseString = new StringBuilder(originalString);
+		return reverseString.reverse().toString().equals(originalString);
 	}
 
 }

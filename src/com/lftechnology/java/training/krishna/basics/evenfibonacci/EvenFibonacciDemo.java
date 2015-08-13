@@ -21,8 +21,8 @@ public class EvenFibonacciDemo {
 	 */
 	public static void main(String[] args) {
 		EvenFibonacci evenFibonacci = new EvenFibonacci(0, 1);
-		int fib = evenFibonacci.sumEvenFibonacci();
-		LOGGER.info("sum of even fibonacci number : "  + fib);
+		int sumFibonacci = evenFibonacci.sumEvenFibonacci();
+		LOGGER.info("sum of even fibonacci number : "  + sumFibonacci);
 
 	}
 

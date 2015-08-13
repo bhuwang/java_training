@@ -11,14 +11,13 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class SmallestMultipleDemo {
-	private final static Logger LOGGER = Logger.getLogger(SmallestMultiple.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(SmallestMultipleDemo.class.getName());
 	
 	/**
 	 * This is the main method which makes use of smallestPositiveNumber() method.
 	 * 
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-
 	public static void main(String[] args) {
 		int number = 2520;
 		SmallestMultiple smallestMultiple = new SmallestMultiple();
