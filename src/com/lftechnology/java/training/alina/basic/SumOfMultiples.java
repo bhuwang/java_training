@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.alina.basic;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -18,9 +19,9 @@ public class SumOfMultiples {
 		try {
 			SumOfMultiples sum = new SumOfMultiples();
 			sum.getTotalSum();
-			LOGGER.info("Sum of multiples of 3 & 5 is : " + sum.getTotalSum());
+			LOGGER.log(Level.INFO, "Sum of multiples of 3 & 5 is : {0}", new Object[] {sum.getTotalSum()});
 		} catch (ArithmeticException ex) {
-			LOGGER.warning("Exception : " + ex.getMessage());
+			LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] {ex.getMessage()});
 		}
 	}
 	

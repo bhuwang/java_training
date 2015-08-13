@@ -1,6 +1,7 @@
 package com.lftechnology.java.training.alina.basic;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -19,7 +20,7 @@ public class DayInWord {
 		try(Scanner scanner = new Scanner(System.in)) {
 			displayDayName(scanner);
 		} catch (Exception e) {
-			LOGGER.warning(e.getMessage());
+			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
 		} 
 	}
 
@@ -73,7 +74,7 @@ public class DayInWord {
 		number = scanner.nextInt();
 		DayInWord dayName = new DayInWord();
 		while (number >= 0) {
-			LOGGER.info("Day " + number + " is " + dayName.getDayName(number));
+			LOGGER.log(Level.INFO, "Day {0} is {1}", new Object[] {number,dayName.getDayName(number)});
 			LOGGER.info("Please enter another number > ");
 			number++;
 			number = scanner.nextInt();

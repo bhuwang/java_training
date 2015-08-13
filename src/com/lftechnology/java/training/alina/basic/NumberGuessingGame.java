@@ -1,6 +1,7 @@
 package com.lftechnology.java.training.alina.basic;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -18,18 +19,18 @@ public class NumberGuessingGame {
 
 	public static void main(String[] args) {
 		int randomNumber;
-		try(Scanner scanner = new Scanner(System.in)) {
+		try (Scanner scanner = new Scanner(System.in)) {
 			NumberGuessingGame number = new NumberGuessingGame();
 			randomNumber = number.generateRandomNumber();
-			number.checkForGuessNumber(scanner,randomNumber);
+			number.checkForGuessNumber(scanner, randomNumber);
 		} catch (Exception e) {
-			LOGGER.warning("Exception Message : " + e.getMessage());
-		} 
+			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
+		}
 	}
 
 	/**
-	 * Function to check for guessed and random number
-	 * Displays the output when guess is matched
+	 * Function to check for guessed and random number Displays the output when
+	 * guess is matched
 	 * 
 	 * @param scanner
 	 * @param randomNumber
@@ -46,9 +47,9 @@ public class NumberGuessingGame {
 			}
 			if (guessNumber == randomNumber) {
 				LOGGER.info("Your Guess is Correct. Congratulations!");
-				LOGGER.info("Random generated value is : " + randomNumber);
-				LOGGER.info("Guessed value is : " + guessNumber);
-				LOGGER.info("Number of attempts : " + numberOfAttempts);
+				LOGGER.log(Level.INFO, "Random generated value is : {0}", new Object[] { randomNumber });
+				LOGGER.log(Level.INFO, "Guessed value is : {0}", new Object[] { guessNumber });
+				LOGGER.log(Level.INFO, "Number of attempts : {0}", new Object[] { numberOfAttempts });
 			} else if (guessNumber < randomNumber) {
 				LOGGER.info("Your Guess is incorrect. It should be greater.");
 			} else {
