@@ -4,7 +4,7 @@ package com.lftechnology.java.training.sanish.multiplenumber;
  * 
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public class MultiplierNumber {
+public class Multiplier {
 	/**
 	 * Return smaller multiple number form given range
 	 * @param from {@link Integer}first number that have to find multiple
