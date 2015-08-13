@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class SumOfMultiples {
 
-	final static Logger LOGGER = Logger.getLogger(SumOfMultiples.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(SumOfMultiples.class.getName());
 
 	public static void main(String[] args) {
 		try {

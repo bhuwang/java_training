@@ -28,6 +28,7 @@ public class DayInWord {
 	 * 
 	 * @param int number input number
 	 * @return String day
+	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private String getDayName(int number) {
 		String day = null;
