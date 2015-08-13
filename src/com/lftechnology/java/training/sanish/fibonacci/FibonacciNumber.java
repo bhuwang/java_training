@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.sanish.fibonacci;
 
-import java.util.logging.Logger;
 /**
  * Provide functions to operate with fibonacci number
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
