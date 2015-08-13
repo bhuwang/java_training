@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.lftechnology.java.training.niraj;
+package com.lftechnology.java.training.niraj.stem_leaf;
 
 /**
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>

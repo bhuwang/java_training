@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.lftechnology.java.training.niraj;
+package com.lftechnology.java.training.niraj.stem_leaf;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -31,18 +31,20 @@ public class StemLeafPlot {
 				scanner.next();
 			}
 			int dataPointLength = scanner.nextInt();
+			LOGGER.info("No. of Data Points : " + dataPointLength);
 			int[] dataPoints = new int[dataPointLength];
 			for (int i = 0; i < dataPointLength; i++) {
-				System.out.println("datapoint[" + i +"] :");
+				System.out.println("datapoint[" + i + "] :");
 				while (!scanner.hasNextInt()) {
 					System.out.println("Please provide the integer value:");
 					scanner.next();
 				}
 				dataPoints[i] = scanner.nextInt();
 			}
-			
+			LOGGER.info("Data Points : " + Arrays.toString(dataPoints));
+
 		} catch (InputMismatchException e) {
-			LOGGER.info("Please provide an integer");
+			LOGGER.info("Invalid input is provided");
 		}
 
 	}
