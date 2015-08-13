@@ -30,8 +30,7 @@ public class GuessTheNumber{
 	/**
 	 * <p>This method generates the random number to be guessed.</p>
 	 * @param num
-	 * @return true
-	 * @return false
+	 * @return true if guessed number matches the random number else false
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	public boolean checkGuess(int num){
