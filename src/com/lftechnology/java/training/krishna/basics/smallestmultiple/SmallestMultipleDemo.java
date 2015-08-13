@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.krishna.basics.smallest_multiple;
+package com.lftechnology.java.training.krishna.basics.smallestmultiple;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  */
 public class SmallestMultipleDemo {
 	private final static Logger LOGGER = Logger.getLogger(SmallestMultipleDemo.class.getName());
+
 	
 	/**
 	 * This is the main method which makes use of smallestPositiveNumber() method.
