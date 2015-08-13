@@ -1,6 +1,7 @@
 package com.lftechnology.java.training.sanish.palindrome;
 
 import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * Provide palindrome calculation functions
@@ -29,7 +30,7 @@ public class Palindrome {
 			for (long j = maxNum; j > minNum; j--) {
 				multipleNum = (long) j * i;
 				if (isPalindromNum(multipleNum)) {
-					LOGGER.info(i + " * " + j + " = " + multipleNum);
+					LOGGER.log(Level.INFO, "{0}*{1}={2}", new Object[] {i,j, multipleNum});
 					return multipleNum;
 				}
 			}
