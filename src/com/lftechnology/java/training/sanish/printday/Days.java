@@ -32,7 +32,7 @@ public class Days {
 			LOGGER.log(Level.INFO, "Day at index {0}: {1}", new Object[] {
 					dayIndex, PrintDayInWord(dayIndex) });
 		} catch (Exception e) {
-			LOGGER.warning(e.getMessage());
+			LOGGER.log(Level.WARNING, "Exception : {1}", new Object[] {e.getMessage()});
 		} finally {
 			if (scanner != null)
 				scanner.close();
