@@ -17,8 +17,6 @@ public class EvenFibonacciDemo {
 	/**
 	 * This is the main method which makes use of sumEvenFibonacci() method.
 	 * 
-	 * @param args Unused.
-	 * @return Nothing.
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static void main(String[] args) {
