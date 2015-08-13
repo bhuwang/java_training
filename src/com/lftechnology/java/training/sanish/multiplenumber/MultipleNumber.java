@@ -17,7 +17,7 @@ public class MultipleNumber {
 		try {
 			LOGGER.log(Level.INFO, "The smallest positive number that is divisible by all of the numbers from {0} to {1} : {2}", new Object[] {FROM_NUM, TO_NUM, Multiplier.getSmallerMultipleNum(FROM_NUM, TO_NUM)});
 		} catch (ArithmeticException e) {
-			LOGGER.warning("Exception : " + e.getMessage());
+			LOGGER.log(Level.WARNING, "Exception : {1}", new Object[] {e.getMessage()});
 		}
 	}
 }
