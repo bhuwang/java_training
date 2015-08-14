@@ -2,6 +2,7 @@ package com.lftechnology.java.training.dipak.days;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
+
 /**
  * program called PrintDayInWord, which prints "Sunday", "Monday", ...
  * "Saturday" if the int variable "day" is 0, 1, ..., 6, respectively.
@@ -53,8 +54,8 @@ public class PrintDay {
 	}
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		try {
+
+		try (Scanner sc = new Scanner(System.in)) {
 			for (;;) {
 				LOGGER.info("Enter a number(1-7) or press any number (<=0) to terminate::");
 				int day;
@@ -71,12 +72,10 @@ public class PrintDay {
 				}
 				PrintDay pd1 = new PrintDay();
 				String displayText = pd1.getDay(day);
-				System.out.println(displayText);
+				LOGGER.info(displayText);
 			}
 		} catch (Exception e) {
 			LOGGER.info("Exception occurred");
-		} finally {
-			sc.close();
 		}
 
 	}
