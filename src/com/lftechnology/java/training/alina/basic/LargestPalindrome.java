@@ -30,7 +30,7 @@ public class LargestPalindrome {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private static void getLargestPalindrome() {
-		Integer highestPalindrome = 0;
+		int highestPalindrome = 0;
 		for (int left = 999; left > 2; left--) {
 			for (int right = 999; right > 2; right--) {
 				int total = left * right;
@@ -41,7 +41,7 @@ public class LargestPalindrome {
 				}
 			}
 		}
-		LOGGER.log(Level.INFO, "Highest palindrome is : {0}", new Object[] {highestPalindrome.toString()});
+		LOGGER.log(Level.INFO, "Highest palindrome is : {0}", new Object[] {highestPalindrome});
 	}
 
 	/**
