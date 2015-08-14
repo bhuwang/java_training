@@ -18,8 +18,8 @@ public class SumOfMultiples {
 	public static void main(String[] args) {
 		try {
 			SumOfMultiples sum = new SumOfMultiples();
-			Integer getTotalSum = sum.getTotalSum();
-			LOGGER.log(Level.INFO, "Sum of multiples of 3 & 5 is : {0}", new Object[] {getTotalSum.toString()});
+			int getTotalSum = sum.getTotalSum();
+			LOGGER.log(Level.INFO, "Sum of multiples of 3 & 5 is : {0}", new Object[] {getTotalSum});
 		} catch (ArithmeticException ex) {
 			LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] {ex.getMessage()});
 		}

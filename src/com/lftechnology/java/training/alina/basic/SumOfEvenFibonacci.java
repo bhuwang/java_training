@@ -64,6 +64,13 @@ public class SumOfEvenFibonacci {
 		int totalEvenSum = 0;
 		boolean exceed = false;
 
+		if(this.firstNumber % 2 == 0){
+			totalEvenSum +=firstNumber;
+		}
+		if(this.secondNumber % 2 == 0){
+			totalEvenSum +=secondNumber;
+		}
+		
 		while (!exceed) {
 			int newNumber = this.firstNumber + this.secondNumber;
 			this.firstNumber = this.secondNumber;

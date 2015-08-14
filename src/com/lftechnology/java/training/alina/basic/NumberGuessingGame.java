@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.alina.basic;
 
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,9 +20,10 @@ public class NumberGuessingGame {
 
 	public static void main(String[] args) {
 		int randomNumber;
+		int maxLimit = 20;
 		try (Scanner scanner = new Scanner(System.in)) {
 			NumberGuessingGame number = new NumberGuessingGame();
-			randomNumber = number.generateRandomNumber();
+			randomNumber = Randomize.generateRandomNumber(maxLimit);
 			number.checkForGuessNumber(scanner, randomNumber);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
@@ -58,14 +60,5 @@ public class NumberGuessingGame {
 		} while (guessNumber != randomNumber);
 	}
 
-	/**
-	 * Function that generates the random number
-	 * 
-	 * @return randomGeneratedNumber random number
-	 * @author Alina Shakya <alinashakya@lftechnology.com>
-	 */
-	public int generateRandomNumber() {
-		int randomGeneratedNumber = (int) (Math.random() * 20 + 1);
-		return randomGeneratedNumber;
-	}
+	
 }
