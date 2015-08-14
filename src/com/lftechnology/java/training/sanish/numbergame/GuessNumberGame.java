@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.numbergame;
 
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,7 +25,8 @@ public class GuessNumberGame {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public GuessNumberGame() {
-		int randNum = (int) (Math.random() * MAX_RANDOM_NUM) + MIN_RANDOM_NUM;
+		Random randomno = new Random();
+		int randNum = randomno.nextInt(MAX_RANDOM_NUM - MIN_RANDOM_NUM) + MIN_RANDOM_NUM;
 		setRandomNum(randNum);
 	}
 
