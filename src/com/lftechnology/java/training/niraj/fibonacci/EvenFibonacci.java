@@ -22,10 +22,10 @@ public class EvenFibonacci {
 		int limit = 10;
 		int num1 = 1;
 		int num2 = 2;
-		int sum = fibonacciHelper.getSum(num1, num2, limit, "even");
+		int sum = fibonacciHelper.getSum(num1, num2, limit, Constant.EVEN);
 		LOGGER.log(Level.INFO,
-				"The sum of even numbers in fibonacci series below {0} is {1}",
-				new Object[] { limit, sum });
+				"The sum of {0} numbers in fibonacci series below {1} is {2}",
+				new Object[] { Constant.EVEN, limit, sum });
 
 	}
 

@@ -56,7 +56,7 @@ public class Fibonacci {
 	 */
 	public int getSum(int num1, int num2, int limit, String numType) {
 		int sum = 0;
-		int remainder = (numType == "odd") ? 1 : 0;
+		int remainder = (numType == Constant.ODD) ? 1 : 0;
 		ArrayList<Integer> fibonacciSeries = getFibonacciSeries(num1, num2,
 				limit);
 		for (int num : fibonacciSeries) {
