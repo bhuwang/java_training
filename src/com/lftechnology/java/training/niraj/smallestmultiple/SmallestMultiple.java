@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 /**
  * 
  * Get the smallest positive number that is evenly divisible by all of the
- * numbers from 1 to 20?
+ * numbers from 1 to 20
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  */
