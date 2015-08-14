@@ -101,6 +101,7 @@ public class GuessNumberGame {
 	 */
 	public boolean isMatchGuessNum() {
 		if (this.guessNum == this.getRandomNum()) {
+			this.guessCount++;
 			return true;
 		} else {
 			this.guessCount++;
