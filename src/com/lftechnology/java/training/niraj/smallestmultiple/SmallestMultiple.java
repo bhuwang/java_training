@@ -20,7 +20,7 @@ public class SmallestMultiple {
 
 	public static void main(String[] args) {
 		int minNum = 1;
-		int maxNum = 10;
+		int maxNum = 20;
 		Multiples multiplesHelper = new Multiples(minNum, maxNum);
 		int smallestMultiple = multiplesHelper.smallestMultiple();
 		LOGGER.log(
