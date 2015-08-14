@@ -5,7 +5,6 @@ package com.lftechnology.java.training.alina.basic;
  * generates the sum of even fibonacci terms
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
- *
  */
 public class SumOfEvenFibonacci {
 	private final static int MAX_LIMIT = 4000000;

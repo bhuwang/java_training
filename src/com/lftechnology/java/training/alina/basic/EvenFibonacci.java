@@ -11,7 +11,6 @@ import java.util.logging.Logger;
  * terms.
  * 
  * @author Alina Shakya<alinashakya@lftechnology.com>
- *
  */
 public class EvenFibonacci {
 
