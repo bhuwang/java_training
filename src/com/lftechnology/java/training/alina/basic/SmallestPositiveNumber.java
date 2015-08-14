@@ -36,8 +36,8 @@ public class SmallestPositiveNumber {
 	 * Function used to display smallest positive number
 	 * 
 	 * @param scanner
-	 * @param rangeLimit
-	 * @return number
+	 * @param rangeLimit {@link Integer} maximum range
+	 * @return number {@link Long} smallest positive number
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private static Long displaySmallestNumber(Scanner scanner, int rangeLimit) {
