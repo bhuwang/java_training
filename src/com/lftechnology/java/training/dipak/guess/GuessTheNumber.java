@@ -4,19 +4,21 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**Guessing a number game application: 
-*application will generate a random no between 1 and 20. 
-*user guess the value by entering from the console
-*Check if the guess value matched with random number or not, if matched show the guessing value, random value and the no. of attempts.
-*@author Dipak Thapa <dipakathapa@lftechnology.com> 
+/**
+ * Guessing a number game application: application will generate a random no
+ * between 1 and 20. user guess the value by entering from the console Check if
+ * the guess value matched with random number or not, if matched show the
+ * guessing value, random value and the no. of attempts.
+ * 
+ * @author Dipak Thapa <dipakathapa@lftechnology.com>
  */
 
 public class GuessTheNumber {
 	private final static Logger LOGGER = Logger.getLogger(GuessTheNumber.class.getName());
-	private int theNumber;
+	private int theRandomNumber;
 	private int attempts = 0;
-	private int lowerBound=0;
-	private int upperBound=0;
+	private int lowerBound = 0;
+	private int upperBound = 0;
 
 	GuessTheNumber(int lowerBound, int upperBound) {
 		this.lowerBound = lowerBound;
@@ -31,7 +33,7 @@ public class GuessTheNumber {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	public void generateNumber() {
-		theNumber = (int) (Math.random() * upperBound + lowerBound);
+		theRandomNumber = (int) (Math.random() * upperBound + lowerBound);
 	}
 
 	/**
@@ -45,7 +47,7 @@ public class GuessTheNumber {
 	 */
 	public boolean checkGuess(int num) {
 		attempts++;
-		if (num == theNumber) {
+		if (num == theRandomNumber) {
 			return true;
 		} else {
 			return false;
@@ -58,40 +60,35 @@ public class GuessTheNumber {
 		int lowerBound = 1;
 		GuessTheNumber gtn1 = new GuessTheNumber(lowerBound, upperBound);
 		gtn1.generateNumber();
-		Scanner sc = new Scanner(System.in);
 		int guessedNumber;
-		try {
+		try (Scanner sc = new Scanner(System.in)) {
 			for (;;) {
-				for (;;) {
-					LOGGER.info("Make the guess(1-20) or Press 0 or any number(< 0) to quit::");
-					try {
-						guessedNumber = Integer.parseInt(sc.nextLine());
-						break ;
-					} catch (NumberFormatException nfe) {
-						gtn1.attempts++;
-						LOGGER.info("Characters entered.Re-enter the values.");
+				LOGGER.info("Make the guess(1-20) or Press 0 or any number(< 0) to quit::");
+				try {
+					guessedNumber = Integer.parseInt(sc.nextLine());
+					if (guessedNumber <= 0) {
+						LOGGER.log(Level.INFO, "So you quit...");
+						LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
+						LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
+						break;
 					}
+					boolean result = gtn1.checkGuess(guessedNumber);
+					if (result) {
+						LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
+						LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
+						break;
+					} else {
+						LOGGER.log(Level.INFO, "Oops... Missed. Try again");
+					}
+				} catch (NumberFormatException nfe) {
+					gtn1.attempts++;
+					LOGGER.info("Characters entered.Re-enter the values.");
+					continue;
 				}
-				if (guessedNumber <= 0) {
-					LOGGER.log(Level.INFO,"So you quit...");
-					LOGGER.log(Level.INFO,"The number was:: {0} ", gtn1.theNumber);
-					LOGGER.log(Level.INFO,"Number of Attempts made:: {0} ", gtn1.attempts);
-					break;
-				}
-				boolean result = gtn1.checkGuess(guessedNumber);
-				if (result) {
-					LOGGER.log(Level.INFO,"The number was:: {0} ", gtn1.theNumber);
-					LOGGER.log(Level.INFO,"Number of Attempts made:: {0} ", gtn1.attempts);
-					break;
-				}else{
-					LOGGER.log(Level.INFO,"Oops... Missed. Try again");
-				}
-
 			}
+
 		} catch (Exception e) {
 			LOGGER.info("Exception occurred");
-		} finally {
-			sc.close();
 		}
 
 	}
