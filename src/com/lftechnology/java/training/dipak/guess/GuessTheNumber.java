@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.dipak.guess;
 
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +34,8 @@ public class GuessTheNumber {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	public void generateNumber() {
-		theRandomNumber = (int) (Math.random() * upperBound + lowerBound);
+		Random random = new Random();
+		theRandomNumber=random.nextInt(upperBound)+lowerBound;
 	}
 
 	/**
