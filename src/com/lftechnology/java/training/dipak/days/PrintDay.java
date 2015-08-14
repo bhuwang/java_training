@@ -59,21 +59,21 @@ public class PrintDay {
 			for (;;) {
 				LOGGER.info("Enter a number(1-7) or press any number (<=0) to terminate::");
 				int day;
-				label1: for (;;) {
 					try {
 						day = (Integer.parseInt(sc.nextLine()));
-						break label1;
+						if (day <= 0) {
+							break;
+						}
+						PrintDay pd1 = new PrintDay();
+						String displayText = pd1.getDay(day);
+						LOGGER.info(displayText);
 					} catch (NumberFormatException nfe) {
 						LOGGER.info("Characters entered.Re-enter the values.");
+						continue;
 					}
 				}
-				if (day <= 0) {
-					break;
-				}
-				PrintDay pd1 = new PrintDay();
-				String displayText = pd1.getDay(day);
-				LOGGER.info(displayText);
-			}
+				
+			
 		} catch (Exception e) {
 			LOGGER.info("Exception occurred");
 		}
