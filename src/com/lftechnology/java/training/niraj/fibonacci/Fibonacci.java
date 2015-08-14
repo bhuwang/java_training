@@ -14,12 +14,15 @@ import java.util.ArrayList;
  */
 public class Fibonacci {
 
-
 	/**
 	 * Get Fibonacci series with certain limit
-	 * @param num1 {@link Integer}
-	 * @param num2 {@link Integer}
-	 * @param limit {@link Integer}
+	 * 
+	 * @param num1
+	 *            {@link Integer}
+	 * @param num2
+	 *            {@link Integer}
+	 * @param limit
+	 *            {@link Integer}
 	 * @return ArrayList containing numbers in a fibonacci Series
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
@@ -39,10 +42,15 @@ public class Fibonacci {
 
 	/**
 	 * Get sum of odd/even number in a fibonacci series under certain limit
-	 * @param num1 {@link Integer}
-	 * @param num2 {@link Integer}
-	 * @param limit {@link Integer}
-	 * @param numType {@link String}
+	 * 
+	 * @param num1
+	 *            {@link Integer}
+	 * @param num2
+	 *            {@link Integer}
+	 * @param limit
+	 *            {@link Integer}
+	 * @param numType
+	 *            {@link String}
 	 * @return Sum of odd/even number in the series
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
@@ -53,7 +61,7 @@ public class Fibonacci {
 				limit);
 		for (int num : fibonacciSeries) {
 			if (num % 2 == remainder) {
-				sum+=num;
+				sum += num;
 			}
 		}
 		return sum;
