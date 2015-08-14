@@ -9,15 +9,11 @@ public class NumberGame {
 			.getName());
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		try {
+		try (Scanner scanner = new Scanner(System.in)) {
 			startGuessNumber(scanner);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}",
 					new Object[] { e.getMessage() });
-		} finally {
-			if (scanner != null)
-				scanner.close();
 		}
 	}
 
