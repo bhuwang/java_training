@@ -55,8 +55,8 @@ public class Palindrome {
 	 * Get the largest palindrome number from the product of two digits between
 	 * min and max limit
 	 * 
-	 * @return{@link {@link Integer} largest palindrome number from product of
-	 *               two digits between min and max limit
+	 * @return{@link Integer} largest palindrome number from product of two
+	 *               digits between min and max limit
 	 * 
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
