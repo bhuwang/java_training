@@ -21,11 +21,11 @@ public class LargestPalindrome {
 		int minLimit = 100;
 		int maxLimit = 999;
 		Palindrome palindromeHelper = new Palindrome(minLimit, maxLimit);
-		int largestPalindrome = palindromeHelper.getLargestPalindrome();
-		LOGGER.log(Level.INFO,
-				"The largest palindrome for the product of two 3-digits number is "
-						+ largestPalindrome);
+		long largestPalindrome = palindromeHelper.getLargestPalindrome();
+		LOGGER.log(
+				Level.INFO,
+				"The largest palindrome for the product of two 3-digits number is {0}",
+				new Object[] { largestPalindrome });
 
 	}
-
 }
