@@ -8,9 +8,9 @@ import java.util.logging.Logger;
  * 
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public class Guess {
+public class GuessNumberGame {
 	private static final Logger LOGGER = Logger
-			.getLogger(Guess.class.getName());
+			.getLogger(GuessNumberGame.class.getName());
 	private static final int MIN_RANDOM_NUM = 1;
 	private static final int MAX_RANDOM_NUM = 20;
 
@@ -23,7 +23,7 @@ public class Guess {
 	 * 
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public Guess() {
+	public GuessNumberGame() {
 		int randNum = (int) (Math.random() * MAX_RANDOM_NUM) + MIN_RANDOM_NUM;
 		setRandomNum(randNum);
 	}

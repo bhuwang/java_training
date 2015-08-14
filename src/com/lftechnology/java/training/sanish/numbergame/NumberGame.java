@@ -29,19 +29,18 @@ public class NumberGame {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static void startGuessNumber(Scanner scanner) {
-		Guess guess = new Guess();
+		GuessNumberGame guessNumberGame = new GuessNumberGame();
 		int guessNumber;
 		LOGGER.log(Level.INFO, "Enter a guess number (1-20):");
 		for (;;) {
 			guessNumber = scanner.nextInt();
 			try {
-				guess.setGuessNum(guessNumber);
-				if (guess.isMatchGuessNum()) {
-					guess.showCorrectGuessMsg();
-					scanner.close();
+				guessNumberGame.setGuessNum(guessNumber);
+				if (guessNumberGame.isMatchGuessNum()) {
+					guessNumberGame.showCorrectGuessMsg();
 					break;
 				} else {
-					guess.showIncorrectGuessMsg();
+					guessNumberGame.showIncorrectGuessMsg();
 				}
 			} catch (Exception e) {
 				LOGGER.log(Level.WARNING, e.getMessage());
