@@ -21,9 +21,10 @@ public class NumberGuessingGame {
 	public static void main(String[] args) {
 		int randomNumber;
 		int maxLimit = 20;
+		int minLimit = 1;
 		try (Scanner scanner = new Scanner(System.in)) {
 			NumberGuessingGame number = new NumberGuessingGame();
-			randomNumber = Randomize.generateRandomNumber(maxLimit);
+			randomNumber = Randomize.generateRandomNumber(minLimit,maxLimit);
 			number.checkForGuessNumber(scanner, randomNumber);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
