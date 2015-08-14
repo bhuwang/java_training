@@ -25,8 +25,8 @@ public class GuessNumberGame {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public GuessNumberGame() {
-		Random randomno = new Random();
-		int randNum = randomno.nextInt(MAX_RANDOM_NUM - MIN_RANDOM_NUM) + MIN_RANDOM_NUM;
+		Random random = new Random();
+		int randNum = random.nextInt(MAX_RANDOM_NUM - MIN_RANDOM_NUM) + MIN_RANDOM_NUM;
 		setRandomNum(randNum);
 	}
 
