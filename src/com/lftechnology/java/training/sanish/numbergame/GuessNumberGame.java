@@ -98,6 +98,7 @@ public class GuessNumberGame {
 	 * Check is user guess number match with randomly generated number
 	 * 
 	 * @return {@link Boolean} true if match else false
+	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public boolean isMatchGuessNum() {
 		if (this.guessNum == this.getRandomNum()) {
@@ -111,6 +112,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Log correct user guess number message
+	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public void showCorrectGuessMsg() {
 		LOGGER.info("Your Guess is Correct. Congratulations!");
@@ -120,6 +122,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Log incorrect user guess number message
+	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public void showIncorrectGuessMsg() {
 		if (this.guessNum < this.randomNum) {
