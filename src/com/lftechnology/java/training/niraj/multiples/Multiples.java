@@ -16,9 +16,7 @@ public class Multiples {
 
 	static final Logger LOGGER = Logger.getLogger(Multiples.class.getName());
 
-	/**
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
 
 		int num1 = 3;
