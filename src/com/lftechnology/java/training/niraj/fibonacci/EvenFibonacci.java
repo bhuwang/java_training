@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 /**
  * find the sum of the even-valued terms in a fibonaci series under certain
  * limit
- *
+ * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com> 
  */
 public class EvenFibonacci {
 
