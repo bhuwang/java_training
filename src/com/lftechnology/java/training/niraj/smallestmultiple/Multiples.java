@@ -24,13 +24,13 @@ public class Multiples {
 	 */
 	public int smallestMultiple() {
 		int smallestMultiple = 0;
-		int i = maxNum;
+		int num = maxNum;
 		for (;;) {
-			if (isMultiple(i)) {
-				smallestMultiple = i;
+			if (isMultiple(num)) {
+				smallestMultiple = num;
 				break;
 			}
-			i++;
+			num++;
 		}
 		return smallestMultiple;
 	}
