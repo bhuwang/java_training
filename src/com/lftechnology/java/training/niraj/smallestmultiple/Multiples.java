@@ -44,12 +44,14 @@ public class Multiples {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public boolean isMultiple(int num) {
+		boolean isMultiple = true;
 		for (int i = minNum; i <= maxNum; i++) {
 			if (num % i != 0) {
-				return false;
+				isMultiple = false;
+				break;
 			}
 		}
-		return true;
+		return isMultiple;
 	}
 
 }
