@@ -12,17 +12,6 @@ import java.util.logging.Logger;
  */
 public class Days {
 	private static final Logger LOGGER = Logger.getLogger(Days.class.getName());
-	private static final String SUNDAY = "Sunday";
-	private static final String MONDAY = "Monday";
-	private static final String TUESDAY = "Tuesday";
-	private static final String WEDNESDAY = "Wednesday";
-	private static final String THURSDAY = "Thusday";
-	private static final String FRIDAY = "Friday";
-	private static final String SATURDAY = "Saturday";
-	private static final String INVALID_DAY = "Not a valid day";
-	private static final String[] DAYS = { SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-			THURSDAY, FRIDAY, SATURDAY };
-
 	public static void main(String args[]) {
 		Scanner scanner = null;
 		try {
@@ -30,7 +19,7 @@ public class Days {
 			LOGGER.log(Level.INFO, "Enter day index to find day :");
 			int dayIndex = scanner.nextInt();
 			LOGGER.log(Level.INFO, "Day at index {0}: {1}", new Object[] {
-					dayIndex, PrintDayInWord(dayIndex) });
+					dayIndex, printDayInWord(dayIndex) });
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Exception : {1}", new Object[] {e.getMessage()});
 		} finally {
@@ -48,11 +37,11 @@ public class Days {
 	 * @return {@link String}
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public static String PrintDayInWord(int dayIndex) {
-		if (dayIndex < DAYS.length) {
-			return DAYS[dayIndex];
+	public static String printDayInWord(int dayIndex) {
+		if (dayIndex < Constants.DAYS.length) {
+			return Constants.DAYS[dayIndex];
 		} else {
-			return INVALID_DAY;
+			return Constants.INVALID_DAY;
 		}
 	}
 }
