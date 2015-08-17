@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Guessing a number game application
+ * Game of guessing number
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  *
