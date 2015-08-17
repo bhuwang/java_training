@@ -1,5 +1,10 @@
 package com.lftechnology.java.training.sanish.student;
 
+/**
+ * Provide mark information
+ * 
+ * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+ */
 public class Mark {
 	private String subject;
 	private int markObtain;
@@ -23,6 +28,11 @@ public class Mark {
 
 	public void setMarkObtain(int maskObtain) {
 		this.markObtain = maskObtain;
+	}
+
+	@Override
+	public String toString() {
+		return "Mark [subject=" + subject + ", markObtain=" + markObtain + "]";
 	}
 
 }

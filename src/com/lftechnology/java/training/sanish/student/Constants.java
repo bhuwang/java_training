@@ -13,4 +13,6 @@ public class Constants {
 	public final static String SUBJECT_ENGLISH = "English";
 	public final static String SUBJECT_SCIENCE = "Science";
 	public final static String[] SUBJECT_LIST = {SUBJECT_NEPALI, SUBJECT_ENGLISH, SUBJECT_MATH, SUBJECT_SCIENCE};
+	public static final String ASCENDING = "asc";
+	public static final String DESCENDING = "desc";
 }

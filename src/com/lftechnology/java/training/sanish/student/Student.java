@@ -3,14 +3,15 @@ package com.lftechnology.java.training.sanish.student;
 import java.util.ArrayList;
 
 /**
- * Student Class
+ * Provide student information
  * 
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public class Student {
+public class Student implements Comparable<Student> {
 	private String name;
 	private int roll;
 	private ArrayList<Mark> marks = new ArrayList<Mark>();
+	private Result result = new Result();
 
 	public Student(String name, int roll) {
 		this.name = name;
@@ -32,13 +33,33 @@ public class Student {
 	public void setRoll(int roll) {
 		this.roll = roll;
 	}
-	
-	public void setMask(String subject, int maskObtain){
+
+	public void setMark(String subject, int maskObtain) {
 		Mark mark = new Mark(subject, maskObtain);
 		this.marks.add(mark);
 	}
-	
+
+	public ArrayList<Mark> getMarks() {
+		return marks;
+	}
+
+	public Result getResult() {
+		return result;
+	}
+
+	public void setResult(Result result) {
+		this.result = result;
+	}
+
+	@Override
+	public int compareTo(Student student) {
+		return (this.getResult().getTotalMarks() - student.getResult()
+				.getTotalMarks());
+	}
+
+	@Override
 	public String toString() {
-		return "Name : " + this.name + ", Class : " + this.roll;
+		return "Student [name=" + name + ", roll=" + roll + ", marks=" + marks
+				+ ", result=" + result + "]";
 	}
 }
