@@ -11,8 +11,7 @@ import java.util.logging.Logger;
  */
 public class MarksValidation {
 
-	private static final Logger LOGGER = Logger.getLogger(MarksValidation.class
-			.getName());
+	private static final Logger LOGGER = Logger.getLogger(MarksValidation.class.getName());
 
 	/**
 	 * Function used to validate the number
@@ -74,8 +73,7 @@ public class MarksValidation {
 		do {
 			LOGGER.log(Level.INFO, fieldLabel);
 			while (!input.hasNextInt()) {
-				LOGGER.log(Level.INFO,
-						"Please enter number within range (1-100) : ");
+				LOGGER.log(Level.INFO, "Please enter number within range (1-100) : ");
 				input.nextLine();
 			}
 			fieldValue = Float.parseFloat(input.nextLine());
@@ -98,8 +96,7 @@ public class MarksValidation {
 	private static boolean isValidMarks(float fieldValue, int minValue,
 			int maxValue) {
 		if (fieldValue < minValue || fieldValue > maxValue) {
-			LOGGER.log(Level.INFO,
-					"Please enter number within range (1-100) : ");
+			LOGGER.log(Level.INFO, "Please enter number within range (1-100) : ");
 			return false;
 		} else {
 			return true;
