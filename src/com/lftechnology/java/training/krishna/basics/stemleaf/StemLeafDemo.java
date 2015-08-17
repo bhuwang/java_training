@@ -22,29 +22,12 @@ public class StemLeafDemo {
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static void main(String[] args) {
-		int n = 17;
-		// declare an array of n size to store integral data points
-		int dataset[] = new int[n];
-		dataset[0] = 44;
-		dataset[1] = 46;
-		dataset[2] = 47;
-		dataset[3] = 49;
-		dataset[4] = 63;
-		dataset[5] = 64;
-		dataset[6] = 66;
-		dataset[7] = 68;
-		dataset[8] = 68;
-		dataset[9] = 72;
-		dataset[10] = 72;
-		dataset[11] = 75;
-		dataset[12] = 76;
-		dataset[13] = 81;
-		dataset[14] = 84;
-		dataset[15] = 88;
-		dataset[16] = 106;
-		int datasetSize = dataset.length;
 
-		displayStemLeafData(dataset, datasetSize);
+		// declare an array to store integral data points
+		int dataset[] = new int[] {44,46,47,49,63,64,66,68,68,72,72,75,76,81,84,88,106};
+		int datasetLength = dataset.length;
+
+		displayStemLeafData(dataset, datasetLength);
 	}
 
 	/**
@@ -52,21 +35,21 @@ public class StemLeafDemo {
 	 * 
 	 * @param dataset
 	 *            {@link array} array of dataset
-	 * @param datasetSize
-	 *            {@link int} size of dataset
+	 * @param datasetLength
+	 *            {@link int} length of dataset
 	 *            
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	public static void displayStemLeafData(int[] dataset, int datasetSize) {
+	public static void displayStemLeafData(int[] dataset, int datasetLength) {
 
-		int[][] mode = StemLeaf.getMode(dataset, datasetSize);
-		int[][] stemLeaf = StemLeaf.getStemLeaf(dataset, datasetSize);
+		int[][] mode = StemLeaf.getMode(dataset, datasetLength);
+		int[][] stemLeaf = StemLeaf.getStemLeaf(dataset, datasetLength);
 
 		LOGGER.log(Level.INFO, "Stem and Leaf Display:");
 
 		int c = 0;
 		int leaf = 0;
-		for (int i = 0; i < datasetSize; i++) {
+		for (int i = 0; i < datasetLength; i++) {
 			if (mode[i][1] != 0) {
 				leaf += mode[i][0];
 				List<Integer> numbers = new ArrayList<Integer>();
