@@ -14,11 +14,11 @@ public class Course {
 
 	public Course(float subject1, float subject2, float subject3,
 			float subject4, float subject5) {
-		this.setSubject1(subject1);
-		this.setSubject2(subject2);
-		this.setSubject3(subject3);
-		this.setSubject4(subject4);
-		this.setSubject5(subject5);
+		this.subject1 = subject1;
+		this.subject2 = subject2;
+		this.subject3 = subject3;
+		this.subject4 = subject4;
+		this.subject5 = subject5;
 	}
 
 	public float getSubject1() {
