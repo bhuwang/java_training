@@ -24,7 +24,7 @@ public class GuessingNumber {
 			GuessingGame game = new GuessingGame(minNum, maxNum);
 			game.startGame(scanner);
 		} catch (InputMismatchException e) {
-			LOGGER.log(Level.INFO, "Please provide a valid input");
+			LOGGER.log(Level.WARNING, "Please provide a valid input");
 		}
 
 	}
