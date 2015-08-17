@@ -24,7 +24,7 @@ public class StemLeafDemo {
 	public static void main(String[] args) {
 
 		// declare an array to store integral data points
-		int dataset[] = new int[] {44,46,47,49,63,64,66,68,68,72,72,75,76,81,84,88,106};
+		int dataset[] = new int[] {23,23,44,34,34,33,12,25,45,44,34,34};
 		int datasetLength = dataset.length;
 
 		displayStemLeafData(dataset, datasetLength);
@@ -63,7 +63,7 @@ public class StemLeafDemo {
 				for (int k = 0; k < numbers.size(); k++) {
 					commaSepLeaf.append(numbers.get(k));
 					if (k != numbers.size() - 1) {
-						commaSepLeaf.append(", ");
+						commaSepLeaf.append(" ");
 					}
 				}
 				LOGGER.log(Level.INFO, "Frequency: {0} Steam: {1} Leaf: {2}",
