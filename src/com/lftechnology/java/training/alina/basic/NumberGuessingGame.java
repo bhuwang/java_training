@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.alina.basic;
 
-import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,9 +44,7 @@ public class NumberGuessingGame {
 		do {
 			LOGGER.info("Enter a guess number (1-20): ");
 			guessNumber = scanner.nextInt();
-			if (guessNumber != randomNumber) {
-				numberOfAttempts++;
-			}
+			numberOfAttempts++;
 			if (guessNumber == randomNumber) {
 				LOGGER.info("Your Guess is Correct. Congratulations!");
 				LOGGER.log(Level.INFO, "Random generated value is : {0}", new Object[] { randomNumber });
