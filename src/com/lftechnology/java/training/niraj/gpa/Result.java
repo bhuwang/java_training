@@ -22,7 +22,7 @@ public class Result {
 		try (Scanner scanner = new Scanner(System.in)) {
 			LOGGER.log(Level.INFO, "No. of students : ");
 			while (!scanner.hasNextInt()) {
-				LOGGER.log(Level.WARNING, "Please provide an integer : ");
+				LOGGER.log(Level.WARNING, "Please provide an number : ");
 				scanner.next();
 			}
 			int noOfStudents = scanner.nextInt();

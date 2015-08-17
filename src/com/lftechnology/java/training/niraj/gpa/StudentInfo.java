@@ -113,14 +113,14 @@ public class StudentInfo implements Comparable<StudentInfo> {
 
 		LOGGER.log(Level.INFO, "Class: ");
 		while (!scanner.hasNextInt()) {
-			LOGGER.log(Level.INFO, "Please provide a number :");
+			LOGGER.log(Level.WARNING, "Please provide a number :");
 			scanner.next();
 		}
 		setStandard(scanner.nextInt());
 
 		LOGGER.log(Level.INFO, "Roll No: ");
 		while (!scanner.hasNextInt()) {
-			LOGGER.log(Level.INFO, "Please provide a number :");
+			LOGGER.log(Level.WARNING, "Please provide a number :");
 			scanner.next();
 		}
 		setRoll(scanner.nextInt());
