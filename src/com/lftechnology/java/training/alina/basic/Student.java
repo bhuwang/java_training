@@ -89,9 +89,9 @@ public class Student extends Course implements Comparable<Course> {
 	 * Function used to display all the student performance details
 	 * 
 	 * @param students
-	 *            {@link ArrayList}
+	 *            {@link ArrayList} arrays of student details
 	 * @param courses
-	 *            {@link ArrayList}
+	 *            {@link ArrayList} arrays of course details
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private static void displayStudentDetails(ArrayList<Student> students,
