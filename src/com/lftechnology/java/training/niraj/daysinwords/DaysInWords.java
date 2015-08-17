@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.lftechnology.java.training.niraj.daysinwords;
 
 import java.util.InputMismatchException;
