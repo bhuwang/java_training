@@ -18,7 +18,7 @@ public class Grade {
 			Constants.MATHS, Constants.ECONOMICS, Constants.COMPUTER,
 			Constants.ACCOUNTS };
 
-	public String[] getSubjects() {
+	public static String[] getSubjects() {
 		return subjects;
 	}
 
