@@ -19,6 +19,8 @@ public class StemLeaf {
 	 * @param datasetSize
 	 *            {@link int} size of dataset
 	 * @return mode - the mode of the dataset array
+	 * 
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static int[][] getMode(int[] dataset, int datasetSize) {
 
@@ -32,7 +34,6 @@ public class StemLeaf {
 				mode[i][j] = 0;
 			}
 		}
-
 		// calculate mode
 		mode[0][0] = 1;
 		int count = 1;
@@ -47,7 +48,6 @@ public class StemLeaf {
 			}
 		}
 		return mode;
-
 	}
 
 	/**
@@ -58,6 +58,8 @@ public class StemLeaf {
 	 * @param datasetSize
 	 *            {@link int} size of dataset
 	 * @return dataset - sorted version of the dataset array
+	 * 
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	private static int[] bubbleSort(int[] dataset, int datasetSize) {
 
@@ -85,6 +87,8 @@ public class StemLeaf {
 	 * @param datasetSize
 	 *            {@link int} size of dataset
 	 * @return - steam and leaf in 2D array
+	 * 
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static int[][] getStemLeaf(int[] dataset, int datasetSize) {
 

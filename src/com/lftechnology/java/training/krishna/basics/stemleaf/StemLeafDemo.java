@@ -54,7 +54,8 @@ public class StemLeafDemo {
 	 *            {@link array} array of dataset
 	 * @param datasetSize
 	 *            {@link int} size of dataset
-	 * 
+	 *            
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static void displayStemLeafData(int[] dataset, int datasetSize) {
 
