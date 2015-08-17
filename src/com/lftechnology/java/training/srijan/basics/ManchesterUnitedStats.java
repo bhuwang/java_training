@@ -1,7 +1,6 @@
 package com.lftechnology.java.training.srijan.basics;
 
 import java.util.logging.Logger;
-//import sun.util.logging.PlatformLogger.Level;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -56,13 +55,11 @@ import java.util.Scanner;
 public class ManchesterUnitedStats {
 	private static final Logger LOGGER = Logger.getLogger(ManchesterUnitedStats.class.getName());
 	private String[] fixtureWithScore;
-	// private static final Scanner inputScore = new Scanner(System.in);
 
 	public ManchesterUnitedStats(int numberOfGameWeeks) {
 		this.fixtureWithScore = new String[numberOfGameWeeks * 4];
 		for (int i = 0; i < fixtureWithScore.length; i++) {
 			fixtureWithScore[i] = "";
-			System.out.println(fixtureWithScore.length);
 		}
 	}
 
@@ -111,16 +108,16 @@ public class ManchesterUnitedStats {
 
 				LOGGER.info("GameWeek" + i);
 				LOGGER.info(gamesFixtures[team] + " vs " + gamesFixtures[team + 1]);
-				fixtureWithScore[arrayCounter] = gamesFixtures[team];
+				this.fixtureWithScore[arrayCounter] = gamesFixtures[team];
 				LOGGER.info(gamesFixtures[team] + " score: ");
 
 				if (inputScore.hasNext()) {
 					scores = inputScore.nextLine();
-					fixtureWithScore[++arrayCounter] = scores;
-					LOGGER.info(gamesFixtures[team + 1] + "score:");
-					fixtureWithScore[++arrayCounter] = gamesFixtures[team + 1];
+					this.fixtureWithScore[++arrayCounter] = scores;
+					LOGGER.info(gamesFixtures[team + 1] + " score: ");
+					this.fixtureWithScore[++arrayCounter] = gamesFixtures[team + 1];
 					scores = inputScore.nextLine();
-					fixtureWithScore[++arrayCounter] = scores;
+					this.fixtureWithScore[++arrayCounter] = scores;
 				}
 				team = team + 2;
 				arrayCounter++;
@@ -131,7 +128,7 @@ public class ManchesterUnitedStats {
 		} catch (ArrayIndexOutOfBoundsException exception) {
 			LOGGER.info("Exception Message:" + exception.getMessage());
 		} finally {
-			displayFixturesAndScores(fixtureWithScore, numberOfMatches);
+			displayFixturesAndScores(numberOfMatches);
 			inputScore.close();
 		}
 	}
@@ -147,17 +144,84 @@ public class ManchesterUnitedStats {
 	 *            {@link Integer}
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-	public void displayFixturesAndScores(String[] fixtureAndScores, int numberOfMatches) {
+	public void displayFixturesAndScores(int numberOfMatches) {
 		int counter = 0;
 		LOGGER.info("Fixtures And Scores");
 		for (int i = 0; i < numberOfMatches; i++) {
-			LOGGER.info(fixtureAndScores[counter] + " " + fixtureAndScores[counter + 1] + " "
-					+ fixtureAndScores[counter + 2] + " " + fixtureAndScores[counter + 3]);
-			// LOGGER.log(Level.INFO,
-			// "{0}{1}",fixtureAndScores[counter],fixtureAndScores[counter +
-			// 1]);
+			LOGGER.info(this.fixtureWithScore[counter] + " " + this.fixtureWithScore[counter + 1] + " "
+					+ this.fixtureWithScore[counter + 2] + " " + this.fixtureWithScore[counter + 3]);
 			counter = counter + 4;
 		}
+
+		checkForManUtdInString(numberOfMatches);
+	}
+
+	/**
+	 * <p>
+	 * Checks for Manchester United in an array
+	 * </p>
+	 * <p>
+	 * Calculates goal scored
+	 * </p>
+	 * 
+	 * @param numberOfMatches {@link Integer}
+	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
+	 */
+	public void checkForManUtdInString(int numberOfMatches) {
+		int positionHome = 0;
+		int positionAway = 2;
+		int scored = 0;
+		int against = 0;
+		int goalScored = 0;
+		int goalConceded = 0;
+		for (int i = 0; i < numberOfMatches; i++) {
+			if (fixtureWithScore[positionHome].equals("Manchester United")) {
+				scored = Integer.parseInt(fixtureWithScore[positionHome + 1]);	
+			}
+
+			else if (fixtureWithScore[positionAway].equals("Manchester United")) {
+				scored = Integer.parseInt(fixtureWithScore[positionAway + 1]);
+			}
+			goalScored = goalScored + scored;
+			against = calculateGoalsConceded(numberOfMatches, positionHome, positionAway);
+			goalConceded = goalConceded + against;
+			positionHome = positionHome + 4;
+			positionAway = positionAway + 4;
+		}
+		LOGGER.info("Goals Scored " + goalScored);
+		LOGGER.info("Goal Conceded " + goalConceded);
+		displayResults(numberOfMatches);
+		
+	}
+	
+	
+	
+	/**
+	 * <p>Calculates Number of Goals Conceded</p>
+	 * @param numberOfMatches {@link Integer}
+	 * @param positionHome {@link Integer}
+	 * @param PositionAway {@link Integer}
+	 * @return totalAgainst {@link Integer}
+	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
+	 */
+	public int calculateGoalsConceded(int numberOfMatches, int positionHome, int PositionAway) {
+		int totalAgainst = 0;
+		int against = 0;
+		if (!fixtureWithScore[positionHome].equals("Manchester United")) {
+			against = Integer.parseInt(fixtureWithScore[positionHome + 1]);
+
+		}
+		else if (!fixtureWithScore[PositionAway].equals("Manchester United")) {
+			against = Integer.parseInt(fixtureWithScore[PositionAway + 1]);
+
+		}
+		totalAgainst = totalAgainst + against;
+		return totalAgainst;
+	}
+	
+	public void displayResults(int numberOfMatches){
+		PointsStructure points = new PointsStructure();
+		points.getPoints(numberOfMatches, fixtureWithScore);
 	}
 
 }
