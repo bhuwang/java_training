@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class GuessingGame {
 	private static Logger LOGGER = Logger.getLogger(GuessingGame.class
 			.getName());
-	private static int guessedNumber = 0;
+	private static int guessedNumber;
 	private int noOfAttempts;
 
 	public GuessingGame(int minNum, int maxNum) {
