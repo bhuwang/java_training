@@ -58,6 +58,7 @@ public class GuessingGame {
 	 * Start the game by getting the users input and checks if it is correct
 	 * 
 	 * @param scanner
+	 *            {@link Scanner}
 	 * @throws InputMismatchException
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
@@ -77,7 +78,8 @@ public class GuessingGame {
 						"Your guess is not correct. Please try again: ");
 			}
 		}
-		LOGGER.log(Level.INFO,
+		LOGGER.log(
+				Level.INFO,
 				"Congratulations !!! You have guessed a correct number in : {0} attempts",
 				new Object[] { this.getNumberOfAttempts() });
 	}
