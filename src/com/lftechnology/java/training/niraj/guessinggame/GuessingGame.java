@@ -19,11 +19,21 @@ public class GuessingGame {
 	private int noOfAttempts;
 
 	public GuessingGame(int minNum, int maxNum) {
-		guessedNumber = getRandomNumber(minNum, maxNum);
+		int randomNumber = getRandomNumber(minNum, maxNum);
+		setGuessedNumber(randomNumber);
 	}
 
 	public int getNumberOfAttempts() {
 		return noOfAttempts;
+	}
+	
+
+	public int getGuessedNumber() {
+		return guessedNumber;
+	}
+
+	public void setGuessedNumber(int guessedNumber) {
+		this.guessedNumber = guessedNumber;
 	}
 
 	/**
