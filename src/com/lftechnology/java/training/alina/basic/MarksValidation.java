@@ -29,7 +29,7 @@ public class MarksValidation {
 		do {
 			LOGGER.log(Level.INFO, fieldLabel);
 			while (!input.hasNextInt()) {
-				LOGGER.log(Level.INFO, "Please enter valid number.");
+				LOGGER.log(Level.INFO, "Please enter valid number : ");
 				input.nextLine();
 			}
 			fieldValue = Integer.parseInt(input.nextLine());
@@ -47,7 +47,7 @@ public class MarksValidation {
 	 * @return {@link Boolean}
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	private static boolean isValidNumber(int fieldValue, int minValue) {
+	private boolean isValidNumber(int fieldValue, int minValue) {
 		if (fieldValue < minValue) {
 			LOGGER.log(Level.INFO, "Please enter number greater than 0 : ");
 			return false;
@@ -93,7 +93,7 @@ public class MarksValidation {
 	 * @return {@link Boolean}
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	private static boolean isValidMarks(float fieldValue, int minValue,
+	private boolean isValidMarks(float fieldValue, int minValue,
 			int maxValue) {
 		if (fieldValue < minValue || fieldValue > maxValue) {
 			LOGGER.log(Level.INFO, "Please enter number within range (1-100) : ");
