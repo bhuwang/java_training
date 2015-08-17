@@ -139,7 +139,7 @@ public class StudentInfo implements Comparable<StudentInfo> {
 	 */
 	public static ArrayList<StudentInfo> getSortedStudentInfoList(
 			ArrayList<StudentInfo> studentInfo, String order) {
-		
+
 		if (order.equals(Constants.ASCENDING)) {
 			Collections.sort(studentInfo);
 		} else {
