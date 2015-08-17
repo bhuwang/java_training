@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 /**
  * 
- * Get list of students as per their GPA
+ * Get list of students as per their result
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  *
@@ -40,7 +40,7 @@ public class Result {
 	}
 
 	/**
-	 * Get student information from the user
+	 * Get student's information from the user
 	 * 
 	 * @param noOfStudents
 	 *            {@link Integer}
