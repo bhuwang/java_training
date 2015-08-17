@@ -1,6 +1,6 @@
 package com.lftechnology.java.training.sanish.student;
 
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  * Student Class
@@ -8,10 +8,9 @@ import java.util.logging.Logger;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Student {
-	private static final Logger LOGGER = Logger.getLogger(Student.class
-			.getName());
 	private String name;
 	private int roll;
+	private ArrayList<Mark> marks = new ArrayList<Mark>();
 
 	public Student(String name, int roll) {
 		this.name = name;
@@ -33,7 +32,12 @@ public class Student {
 	public void setRoll(int roll) {
 		this.roll = roll;
 	}
-
+	
+	public void setMask(String subject, int maskObtain){
+		Mark mark = new Mark(subject, maskObtain);
+		this.marks.add(mark);
+	}
+	
 	public String toString() {
 		return "Name : " + this.name + ", Class : " + this.roll;
 	}
