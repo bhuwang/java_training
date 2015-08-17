@@ -43,7 +43,7 @@ public class SumOfMultiples {
 	 */
 	private int getTotalSum(int maxNum, int num1, int num2) {
 		int totalSum = 0;
-		for (int i = 0; i < maxNum; i++) {
+		for (int i = 1; i < maxNum; i++) {
 			if (i % num1 == 0 || i % num2 == 0) {
 				totalSum += i;
 			}
