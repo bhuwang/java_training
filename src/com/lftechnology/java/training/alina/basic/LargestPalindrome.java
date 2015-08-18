@@ -13,13 +13,15 @@ import java.util.logging.Logger;
  */
 public class LargestPalindrome {
 
-	private static final Logger LOGGER = Logger.getLogger(LargestPalindrome.class.getName());
+	private static final Logger LOGGER = Logger
+			.getLogger(LargestPalindrome.class.getName());
 
 	public static void main(String[] args) {
 		try {
 			getLargestPalindrome();
 		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e.getMessage() });
+			LOGGER.log(Level.WARNING, "Exception Message : {0}",
+					new Object[] { e.getMessage() });
 		}
 
 	}
@@ -34,14 +36,13 @@ public class LargestPalindrome {
 		for (int left = 999; left > 2; left--) {
 			for (int right = 999; right > 2; right--) {
 				int total = left * right;
-				if (isPalindrome(total)) {
-					if (total > highestPalindrome) {
-						highestPalindrome = total;
-					}
+				if (isPalindrome(total) && total > highestPalindrome) {
+					highestPalindrome = total;
 				}
 			}
 		}
-		LOGGER.log(Level.INFO, "Highest palindrome is : {0}", new Object[] {highestPalindrome});
+		LOGGER.log(Level.INFO, "Highest palindrome is : {0}",
+				new Object[] { highestPalindrome });
 	}
 
 	/**
@@ -53,7 +54,8 @@ public class LargestPalindrome {
 	 */
 	public static boolean isPalindrome(int palindrome) {
 		String palindromeString = "" + palindrome;
-		String reversed = new StringBuilder(palindromeString).reverse().toString();
+		String reversed = new StringBuilder(palindromeString).reverse()
+				.toString();
 		return palindromeString.equals(reversed);
 	}
 }
