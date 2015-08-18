@@ -5,6 +5,9 @@ import java.util.logging.Logger;
 
 public class Test {
 	private static final Logger LOGGER = Logger.getLogger(Test.class.getName());
+	private Test() {
+
+	}
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
