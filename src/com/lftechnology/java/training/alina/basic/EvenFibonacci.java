@@ -21,7 +21,7 @@ public class EvenFibonacci {
 			LOGGER.info("The sum of the even-valued fibonacci terms : "
 					+ fibonacci.getSumOfEvenFibonacci());
 		} catch (ArithmeticException ex) {
-			LOGGER.warning("Exception : " + ex.getMessage());
+			LOGGER.warning(ex.getMessage());
 		}
 	}
 
