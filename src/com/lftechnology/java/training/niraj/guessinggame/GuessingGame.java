@@ -60,7 +60,7 @@ public class GuessingGame {
 	 */
 	public boolean checkGuessedNumber(int num) {
 		noOfAttempts++;
-		return (guessedNumber == num);
+		return guessedNumber == num;
 	}
 
 	/**
