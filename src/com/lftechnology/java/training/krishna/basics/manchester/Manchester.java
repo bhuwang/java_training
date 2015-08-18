@@ -15,11 +15,16 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class Manchester {
-	private final static Logger LOGGER = Logger.getLogger(Manchester.class
+	private static final Logger LOGGER = Logger.getLogger(Manchester.class
 			.getName());
 	private static final int WIN = 3;
 	private static final int DRAW = 1;
 	private static final int LOSE = 0;
+
+	//constructor
+	private Manchester() {
+		
+	}
 
 	/**
 	 * This method computes the match information such as wins, draws, defeats,
