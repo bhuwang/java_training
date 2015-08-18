@@ -16,6 +16,11 @@ import java.util.logging.Logger;
 public class StemLeafDemo {
 	private static final Logger LOGGER = Logger.getLogger(StemLeafDemo.class.getName());
 
+	//constructor
+	private StemLeafDemo() {
+		
+	}
+
 	/**
 	 * This is the main method which makes use of displayStemLeafData() method.
 	 * 
