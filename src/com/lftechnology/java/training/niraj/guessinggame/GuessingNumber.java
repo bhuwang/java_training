@@ -29,6 +29,11 @@ public class GuessingNumber {
 			game.startGame(scanner);
 		} catch (InputMismatchException e) {
 			LOGGER.log(Level.WARNING, "Please provide a valid input");
+		} catch (Exception ex) {
+			LOGGER.log(Level.WARNING, "Error:{0}", ex.getMessage());
+			LOGGER.log(Level.SEVERE,
+					"Something went wrong. Sorry for the inconvenience");
+			
 		}
 
 	}
