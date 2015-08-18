@@ -37,7 +37,7 @@ public class GuessingNumber {
 			LOGGER.log(Level.SEVERE,
 					"Something went wrong. Sorry for the inconvenience");
 			LOGGER.log(Level.SEVERE, "error:{0}", e.getMessage());
-			throw new RuntimeException(e);
+			throw new RuntimeException(e.getMessage());
 
 		}
 
