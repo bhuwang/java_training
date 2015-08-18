@@ -10,6 +10,10 @@ import java.util.logging.Logger;
 public class SalutationAndName {
 	private static final Logger LOGGER = Logger.getLogger(SalutationAndName.class.getName());
 
+	private SalutationAndName() {
+
+	}
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		LOGGER.info("Enter your name with Salutation::");
