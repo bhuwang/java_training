@@ -25,7 +25,6 @@ public class SalutationAndName {
 			if (text[i].length() != 0) {
 				name = name + text[i] + " ";
 			}
-
 		}
 		LOGGER.info("Your name::" + name);
 		scanner.close();
