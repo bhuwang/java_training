@@ -3,8 +3,8 @@ package com.lftechnology.java.training.krishna.basics.stemleaf;
 import java.util.Arrays;
 
 /**
- *  StemLeaf.java
- *  
+ * StemLeaf.java
+ * 
  * This program calculates steam leaf and mode of values in an array of integers
  * where the size of the array and elements of the array are provided as dataset
  * by the user.
@@ -13,6 +13,12 @@ import java.util.Arrays;
  * @version 1.0
  */
 public class StemLeaf {
+
+	//constructor
+	private StemLeaf() {
+
+	}
+
 	/**
 	 * This method computes the mean of the values in the dataset array.
 	 * 

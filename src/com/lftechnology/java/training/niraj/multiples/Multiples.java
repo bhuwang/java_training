@@ -14,8 +14,12 @@ import java.util.logging.Logger;
  */
 public class Multiples {
 
-	static final Logger LOGGER = Logger.getLogger(Multiples.class.getName());
+	private Multiples() {
 
+	}
+
+	private static final Logger LOGGER = Logger.getLogger(Multiples.class
+			.getName());
 
 	public static void main(String[] args) {
 
