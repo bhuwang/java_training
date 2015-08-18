@@ -1,14 +1,14 @@
 package com.lftechnology.java.training.alina.basic;
 
 /**
- * Collected basic constants to be used
+ * Collected common constants to be used
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
  *
  */
-public final class BasicConstants {
+public class CommonConstants {
 
-	private BasicConstants() {
+	private CommonConstants() {
 		// TODO Auto-generated constructor stub
 	}
 

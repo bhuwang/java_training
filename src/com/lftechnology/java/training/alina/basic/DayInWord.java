@@ -1,6 +1,7 @@
 package com.lftechnology.java.training.alina.basic;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -11,23 +12,17 @@ import java.util.logging.Logger;
  * @author Alina Shakya <alinashakya@lftechnology.com>
  *
  */
-public class PrintDayInWord {
+public class DayInWord {
 
-	private static final Logger LOGGER = Logger.getLogger(PrintDayInWord.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(DayInWord.class.getName());
 
 	public static void main(String[] args) {
-		Scanner scanner = null;
-		try {
-			scanner = new Scanner(System.in);
+		try(Scanner scanner = new Scanner(System.in)) {
 			displayDayName(scanner);
 		} catch (Exception e) {
-			LOGGER.warning(e.getMessage());
+			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
 			throw new RuntimeException(e);
-		} finally {
-			if (scanner != null)
-				scanner.close();
 		}
-
 	}
 
 	/**
@@ -35,33 +30,34 @@ public class PrintDayInWord {
 	 * 
 	 * @param int number input number
 	 * @return String day
+	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private String getDayName(int number) {
 		String day = null;
 		switch (number) {
 		case 0:
-			day = BasicConstants.SUNDAY;
+			day = CommonConstants.SUNDAY;
 			break;
 		case 1:
-			day = BasicConstants.MONDAY;
+			day = CommonConstants.MONDAY;
 			break;
 		case 2:
-			day = BasicConstants.TUESDAY;
+			day = CommonConstants.TUESDAY;
 			break;
 		case 3:
-			day = BasicConstants.WEDNESDAY;
+			day = CommonConstants.WEDNESDAY;
 			break;
 		case 4:
-			day = BasicConstants.THURSDAY;
+			day = CommonConstants.THURSDAY;
 			break;
 		case 5:
-			day = BasicConstants.FRIDAY;
+			day = CommonConstants.FRIDAY;
 			break;
 		case 6:
-			day = BasicConstants.SATURDAY;
+			day = CommonConstants.SATURDAY;
 			break;
 		default:
-			day = BasicConstants.INVALID_DAY;
+			day = CommonConstants.INVALID_DAY;
 			break;
 		}
 		return day;
@@ -77,9 +73,9 @@ public class PrintDayInWord {
 		int number;
 		LOGGER.info("Enter a number > ");
 		number = scanner.nextInt();
-		PrintDayInWord dayName = new PrintDayInWord();
+		DayInWord dayName = new DayInWord();
 		while (number >= 0) {
-			LOGGER.info("Day " + number + " is " + dayName.getDayName(number));
+			LOGGER.log(Level.INFO, "Day {0} is {1}", new Object[] {number,dayName.getDayName(number)});
 			LOGGER.info("Please enter another number > ");
 			number++;
 			number = scanner.nextInt();

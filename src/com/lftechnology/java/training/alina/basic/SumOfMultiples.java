@@ -15,6 +15,7 @@ public class SumOfMultiples {
 	private final static Logger LOGGER = Logger.getLogger(SumOfMultiples.class
 			.getName());
 
+
 	public static void main(String[] args) {
 		int maxNum = 1000;
 		int num1 = 3;
