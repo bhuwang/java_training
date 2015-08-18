@@ -12,7 +12,9 @@ import java.util.logging.Logger;
  */
 public class Days {
 	private static final Logger LOGGER = Logger.getLogger(Days.class.getName());
-	public static void main(String args[]) {
+	private static final String[] DAYS = { Constants.SUNDAY, Constants.MONDAY, Constants.TUESDAY, Constants.WEDNESDAY,
+		Constants.THURSDAY, Constants.FRIDAY, Constants.SATURDAY };
+	public static void main(String[] args) {
 		Scanner scanner = null;
 		try {
 			scanner = new Scanner(System.in);
@@ -38,8 +40,8 @@ public class Days {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static String printDayInWord(int dayIndex) {
-		if (dayIndex < Constants.DAYS.length) {
-			return Constants.DAYS[dayIndex];
+		if (dayIndex < DAYS.length) {
+			return DAYS[dayIndex];
 		} else {
 			return Constants.INVALID_DAY;
 		}

@@ -11,7 +11,7 @@ public class Main {
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 	private static final int DIGIT_NUM = 3;
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		try {
 			LOGGER.log(Level.INFO, "Largest palindrome made from the product of two {0}-digit numbers: {1}", new Object[] {DIGIT_NUM, Palindrome.getLargestPalindrome(DIGIT_NUM)});
 		} catch (Exception e) {
