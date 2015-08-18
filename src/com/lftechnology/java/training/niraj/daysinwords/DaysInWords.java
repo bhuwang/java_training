@@ -35,6 +35,10 @@ public class DaysInWords {
 
 		} catch (InputMismatchException e) {
 			LOGGER.log(Level.WARNING, "Please provide a valid input.");
+		} catch (Exception ex) {
+			LOGGER.log(Level.SEVERE,
+					"Something went wrong. Sorry for the inconvenience");
+			LOGGER.log(Level.SEVERE, "error:{0}", ex.getMessage());
 		}
 
 	}
