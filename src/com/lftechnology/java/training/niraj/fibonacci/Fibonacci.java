@@ -4,6 +4,7 @@
 package com.lftechnology.java.training.niraj.fibonacci;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -23,11 +24,11 @@ public class Fibonacci {
 	 *            {@link Integer}
 	 * @param limit
 	 *            {@link Integer}
-	 * @return ArrayList containing numbers in a fibonacci Series
+	 * @return List {@link List} containing numbers in a fibonacci Series
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
-	public ArrayList<Integer> getFibonacciSeries(int num1, int num2, int limit) {
-		ArrayList<Integer> series = new ArrayList<Integer>();
+	public List<Integer> getFibonacciSeries(int num1, int num2, int limit) {
+		List<Integer> series = new ArrayList<Integer>();
 		int sum = 0;
 		series.add(num1);
 		series.add(num2);
@@ -57,7 +58,7 @@ public class Fibonacci {
 	public int getSum(int num1, int num2, int limit, String numType) {
 		int sum = 0;
 		int remainder = (numType == Constant.ODD) ? 1 : 0;
-		ArrayList<Integer> fibonacciSeries = getFibonacciSeries(num1, num2,
+		List<Integer> fibonacciSeries = getFibonacciSeries(num1, num2,
 				limit);
 		for (int num : fibonacciSeries) {
 			if (num % 2 == remainder) {
