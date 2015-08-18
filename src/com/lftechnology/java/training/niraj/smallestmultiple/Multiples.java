@@ -22,15 +22,15 @@ public class Multiples {
 	 *         certain range
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
-	public int smallestMultiple(){
+	public int smallestMultiple() {
 		int smallestMultiple = minNum;
-		int num; 
+		int num;
 		for (int i = minNum; i <= maxNum; i++) {
-		    num = smallestMultiple;
-		    while (num % i != 0) {
-		        num += smallestMultiple;
-		    }   
-		    smallestMultiple = num;
+			num = smallestMultiple;
+			while (num % i != 0) {
+				num += smallestMultiple;
+			}
+			smallestMultiple = num;
 		}
 		return smallestMultiple;
 	}
