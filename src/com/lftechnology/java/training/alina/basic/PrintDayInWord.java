@@ -22,6 +22,7 @@ public class PrintDayInWord {
 			displayDayName(scanner);
 		} catch (Exception e) {
 			LOGGER.warning(e.getMessage());
+			throw new RuntimeException(e);
 		} finally {
 			if (scanner != null)
 				scanner.close();
