@@ -12,8 +12,14 @@ import java.util.logging.Logger;
  */
 public class Days {
 	private static final Logger LOGGER = Logger.getLogger(Days.class.getName());
-	private static final String[] DAYS = { Constants.SUNDAY, Constants.MONDAY, Constants.TUESDAY, Constants.WEDNESDAY,
-		Constants.THURSDAY, Constants.FRIDAY, Constants.SATURDAY };
+	private static final String[] DAY_NAMES = { Constants.SUNDAY,
+			Constants.MONDAY, Constants.TUESDAY, Constants.WEDNESDAY,
+			Constants.THURSDAY, Constants.FRIDAY, Constants.SATURDAY };
+
+	private Days() {
+
+	}
+
 	public static void main(String[] args) {
 		Scanner scanner = null;
 		try {
@@ -23,7 +29,8 @@ public class Days {
 			LOGGER.log(Level.INFO, "Day at index {0}: {1}", new Object[] {
 					dayIndex, printDayInWord(dayIndex) });
 		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Exception : {1}", new Object[] {e.getMessage()});
+			LOGGER.log(Level.WARNING, "Exception : {1}",
+					new Object[] { e.getMessage() });
 		} finally {
 			if (scanner != null)
 				scanner.close();
@@ -40,8 +47,8 @@ public class Days {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static String printDayInWord(int dayIndex) {
-		if (dayIndex < DAYS.length) {
-			return DAYS[dayIndex];
+		if (dayIndex < DAY_NAMES.length) {
+			return DAY_NAMES[dayIndex];
 		} else {
 			return Constants.INVALID_DAY;
 		}

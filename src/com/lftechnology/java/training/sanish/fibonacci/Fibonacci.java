@@ -5,12 +5,16 @@ import java.util.logging.Level;
 
 /**
  * Get Even Fibonacci numbers sum
+ * 
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Fibonacci {
 	private static final Logger LOGGER = Logger.getLogger(Fibonacci.class
 			.getName());
 
+	private Fibonacci() {
+	}
+	
 	public static void main(String[] args) {
 		LOGGER.log(
 				Level.INFO,
@@ -18,8 +22,5 @@ public class Fibonacci {
 				new Object[] { FibonacciNumber.sumEventFibonacciNumber(
 						Constants.FIRST_NUM, Constants.SECOND_NUM,
 						Constants.MAX_NUM) });
-	}
-
-	private Fibonacci() {
 	}
 }
