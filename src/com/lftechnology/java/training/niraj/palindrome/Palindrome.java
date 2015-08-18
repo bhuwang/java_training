@@ -28,7 +28,7 @@ public class Palindrome {
 	 */
 	public boolean isPalindrome(long num) {
 		long reverse = reverseNumber(num);
-		return (num == reverse);
+		return num == reverse;
 	}
 
 	/**
@@ -63,8 +63,8 @@ public class Palindrome {
 	public long getLargestPalindrome() {
 		long largestPalindrome = 0;
 		long product;
-		for (int i = maxLimit; i >= minLimit; i--) {
-			for (int j = maxLimit; j >= minLimit; j--) {
+		for (long i = maxLimit; i >= minLimit; i--) {
+			for (long j = maxLimit; j >= minLimit; j--) {
 				product = i * j;
 				if (isPalindrome(product) && (product > largestPalindrome)) {
 					largestPalindrome = product;
