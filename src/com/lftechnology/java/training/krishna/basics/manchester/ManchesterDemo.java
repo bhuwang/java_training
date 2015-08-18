@@ -13,7 +13,13 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class ManchesterDemo {
-	private final static Logger LOGGER = Logger.getLogger(ManchesterDemo.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ManchesterDemo.class.getName());
+
+	//constructor
+	private ManchesterDemo() {
+		
+	}
+
 
 	/**
 	 * This is the main method which makes use of getMatchScore() method.
