@@ -1,17 +1,23 @@
 package com.lftechnology.java.training.niraj.daysinwords;
 
-
 /**
  * Helper class that has helper methods to functionality related to days
+ * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  *
  */
 public class Days {
 	private static final String NOT_VALID = "Not a valid day";
 
+	private Days() {
+
+	}
+
 	/**
 	 * Get day in words as per the day in number provided
-	 * @param day {@link Integer}
+	 * 
+	 * @param day
+	 *            {@link Integer}
 	 * @return dayInWords {@link String}
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
@@ -38,7 +44,7 @@ public class Days {
 			break;
 		case 6:
 			dayInWord = Constants.SATURDAY;
-			break;		
+			break;
 		default:
 			dayInWord = NOT_VALID;
 

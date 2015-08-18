@@ -17,6 +17,10 @@ public class DaysInWords {
 	private static final Logger LOGGER = Logger.getLogger(DaysInWords.class
 			.getName());
 
+	private DaysInWords() {
+
+	}
+
 	public static void main(String[] args) {
 		try (Scanner scanner = new Scanner(System.in)) {
 			LOGGER.log(Level.INFO, "Please provide a day in number (0-6) :");
@@ -27,7 +31,7 @@ public class DaysInWords {
 			int day = scanner.nextInt();
 			String dayInWords = Days.getDayInWords(day);
 			LOGGER.log(Level.INFO, "The day you have selected is : {0}",
-					new Object[] { dayInWords });
+					dayInWords);
 
 		} catch (InputMismatchException e) {
 			LOGGER.log(Level.WARNING, "Please provide a valid input.");

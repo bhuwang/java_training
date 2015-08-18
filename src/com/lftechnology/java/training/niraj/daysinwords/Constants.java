@@ -14,4 +14,8 @@ public class Constants {
 	public static final String THURSDAY = "Thursday";
 	public static final String FRIDAY = "Friday";
 	public static final String SATURDAY = "Saturday";
+
+	private Constants() {
+
+	}
 }
