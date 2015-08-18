@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.alina.basic;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -13,7 +14,8 @@ import java.util.logging.Logger;
  */
 public class EvenFibonacci {
 
-	private static final Logger LOGGER = Logger.getLogger(EvenFibonacci.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(EvenFibonacci.class
+			.getName());
 
 	public static void main(String[] args) {
 		try {
@@ -21,7 +23,9 @@ public class EvenFibonacci {
 			LOGGER.info("The sum of the even-valued fibonacci terms : "
 					+ fibonacci.getSumOfEvenFibonacci());
 		} catch (ArithmeticException ex) {
-			LOGGER.warning(ex.getMessage());
+			LOGGER.log(Level.WARNING, "Exception Message : {0}",
+					new Object[] { ex.getMessage() });
+			throw new RuntimeException(ex);
 		}
 	}
 
