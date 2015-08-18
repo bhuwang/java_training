@@ -12,7 +12,8 @@ import java.util.logging.Logger;
  */
 public class SumOfMultiples {
 
-	private final static Logger LOGGER = Logger.getLogger(SumOfMultiples.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(SumOfMultiples.class
+			.getName());
 
 
 	public static void main(String[] args) {
@@ -27,6 +28,7 @@ public class SumOfMultiples {
 		} catch (ArithmeticException ex) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}",
 					new Object[] { ex.getMessage() });
+			throw new RuntimeException(ex);
 		}
 	}
 
