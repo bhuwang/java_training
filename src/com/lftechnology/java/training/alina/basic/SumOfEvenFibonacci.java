@@ -7,9 +7,9 @@ package com.lftechnology.java.training.alina.basic;
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class SumOfEvenFibonacci {
-	private final static int MAX_LIMIT = 4000000;
 	private int firstNumber;
 	private int secondNumber;
+	private final static int MAX_LIMIT = 4000000;
 
 	/**
 	 * Function used to set first and second numbers

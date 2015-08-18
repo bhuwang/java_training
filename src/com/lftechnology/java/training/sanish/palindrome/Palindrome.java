@@ -10,6 +10,10 @@ import java.util.logging.Level;
  */
 public class Palindrome {
 	private static final Logger LOGGER = Logger.getLogger(Palindrome.class.getName());
+	
+	private Palindrome(){
+		
+	}
 	/**
 	 * Calculate and return largest palindrome number made from the product of
 	 * two provided digit numbers
@@ -23,12 +27,12 @@ public class Palindrome {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static long getLargestPalindrome(int digitLength) throws Exception {
-		int maxNum = (int) Math.pow(10, digitLength) - 1;
-		int minNum = (int) Math.pow(10, digitLength - 1);
+		long maxNum = (int) Math.pow(10, digitLength) - 1;
+		long minNum = (int) Math.pow(10, digitLength - 1);
 		long multipleNum;
 		for (long i = maxNum; i > minNum; i--) {
 			for (long j = maxNum; j > minNum; j--) {
-				multipleNum = (long) j * i;
+				multipleNum = j * i;
 				if (isPalindromNum(multipleNum)) {
 					LOGGER.log(Level.INFO, "{0}*{1}={2}", new Object[] {i,j, multipleNum});
 					return multipleNum;
