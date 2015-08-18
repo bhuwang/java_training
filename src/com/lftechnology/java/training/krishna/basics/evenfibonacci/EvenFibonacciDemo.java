@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  */
 
 public class EvenFibonacciDemo {
-	private final static Logger LOGGER = Logger.getLogger(EvenFibonacciDemo.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(EvenFibonacciDemo.class.getName());
 	
 	/**
 	 * This is the main method which makes use of sumEvenFibonacci() method.
