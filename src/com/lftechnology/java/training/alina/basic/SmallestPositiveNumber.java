@@ -21,7 +21,7 @@ public class SmallestPositiveNumber {
 			int rangeLimit;
 			LOGGER.info("Enter the maximum range number > ");
 			rangeLimit = scanner.nextInt();
-			Long smallestNumber = displaySmallestNumber(scanner, rangeLimit);
+			Long smallestNumber = displaySmallestNumber(rangeLimit);
 			LOGGER.log(
 					Level.INFO,
 					"The smallest positive number that is evenly divisible by all of the numbers from 1 to {0} is : {1}",
@@ -35,12 +35,11 @@ public class SmallestPositiveNumber {
 	/**
 	 * Function used to display smallest positive number
 	 * 
-	 * @param scanner
 	 * @param rangeLimit {@link Integer} maximum range
 	 * @return number {@link Long} smallest positive number
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	private static Long displaySmallestNumber(Scanner scanner, int rangeLimit) {
+	private static Long displaySmallestNumber(int rangeLimit) {
 		long number = rangeLimit;
 		int i = 2;
 		while (i < rangeLimit) {
