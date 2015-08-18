@@ -62,16 +62,8 @@ public class StemLeafDemo {
 					numbers.add(stemLeaf[j][1]);
 					c = leaf;
 				}
-				int numberSize = numbers.size();
-				// StringBuilder to store comma separated string
-				StringBuilder commaSepLeaf = new StringBuilder();
-				// iterate over list,append numbers and comma until last element
-				for (int k = 0; k < numberSize; k++) {
-					commaSepLeaf.append(numbers.get(k));
-					if (k != numberSize - 1) {
-						commaSepLeaf.append(" ");
-					}
-				}
+
+				StringBuilder commaSepLeaf = Utils.implode(numbers, " ");
 				LOGGER.log(Level.INFO, "Frequency: {0} Steam: {1} Leaf: {2}",
 						new Object[] { mode[i][0], mode[i][1], commaSepLeaf });
 			}
