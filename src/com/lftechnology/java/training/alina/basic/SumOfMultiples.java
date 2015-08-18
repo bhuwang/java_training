@@ -11,10 +11,8 @@ import java.util.logging.Logger;
  * @author Alina Shakya<alinashakya@lftechnology.com>
  */
 public class SumOfMultiples {
-
 	private static final Logger LOGGER = Logger.getLogger(SumOfMultiples.class
 			.getName());
-
 
 	public static void main(String[] args) {
 		int maxNum = 1000;
@@ -28,7 +26,6 @@ public class SumOfMultiples {
 		} catch (ArithmeticException ex) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}",
 					new Object[] { ex.getMessage() });
-			throw new RuntimeException(ex);
 		}
 	}
 
