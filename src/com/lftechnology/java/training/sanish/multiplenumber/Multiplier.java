@@ -14,8 +14,9 @@ public class Multiplier {
 	 */
 	public static int getSmallerMultipleNum(int from, int to) {
 		int smallerMultipleNum = from;
+		int sumNumber;
 		for (int i = from; i <= to; i++) {
-			int sumNumber = smallerMultipleNum;
+			sumNumber = smallerMultipleNum;
 			while (sumNumber % i != 0) {
 				sumNumber += smallerMultipleNum;
 			}
