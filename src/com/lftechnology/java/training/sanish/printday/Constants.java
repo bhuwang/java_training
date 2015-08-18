@@ -14,6 +14,4 @@ public class Constants {
 	public static final String FRIDAY = "Friday";
 	public static final String SATURDAY = "Saturday";
 	public static final String INVALID_DAY = "Not a valid day";
-	public static final String[] DAYS = { SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-			THURSDAY, FRIDAY, SATURDAY };
 }

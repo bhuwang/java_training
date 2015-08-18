@@ -21,13 +21,13 @@ public class EvenFibonacci {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
 			SumOfEvenFibonacci fibonacci = new SumOfEvenFibonacci(0, 1);
 			LOGGER.log(Level.INFO, "The sum of the even-valued fibonacci terms : {0}", new Object[] {fibonacci.getSumOfEvenFibonacci()});
 		} catch (ArithmeticException ex) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {ex.getMessage()});
-			throw new RuntimeException(ex);
+			throw new Exception();
 		}
 	}
 
