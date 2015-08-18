@@ -11,16 +11,16 @@ import java.util.logging.Logger;
  * @author Alina Shakya<alinashakya@lftechnology.com>
  */
 public class SumOfMultiples {
-
-	private final static Logger LOGGER = Logger.getLogger(SumOfMultiples.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(SumOfMultiples.class
+			.getName());
 
 	public static void main(String[] args) {
 		int maxNum = 1000;
 		int num1 = 3;
 		int num2 = 5;
 		try {
-			SumOfMultiples sum = new SumOfMultiples();
-			int totalSumOfMultiples = sum.getTotalSum(maxNum, num1, num2);
+			getTotalSum(maxNum, num1, num2);
+			int totalSumOfMultiples = getTotalSum(maxNum, num1, num2);
 			LOGGER.log(Level.INFO, "Sum of multiples of {0} and {1} is : {2}",
 					new Object[] { num1, num2, totalSumOfMultiples });
 		} catch (ArithmeticException ex) {
@@ -41,7 +41,7 @@ public class SumOfMultiples {
 	 * @return totalSum {@link Integer} total sum of multiples
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	private int getTotalSum(int maxNum, int num1, int num2) {
+	private static int getTotalSum(int maxNum, int num1, int num2) {
 		int totalSum = 0;
 		for (int i = 1; i < maxNum; i++) {
 			if (i % num1 == 0 || i % num2 == 0) {

@@ -12,9 +12,14 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class SmallestMultipleDemo {
-	private final static Logger LOGGER = Logger.getLogger(SmallestMultipleDemo.class.getName());
+	private  static final Logger LOGGER = Logger.getLogger(SmallestMultipleDemo.class.getName());
 
+	//constructor
+	private SmallestMultipleDemo() {
 	
+	}
+
+
 	/**
 	 * This is the main method which makes use of smallestPositiveNumber() method.
 	 * 

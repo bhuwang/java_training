@@ -1,9 +1,9 @@
 package com.lftechnology.java.training.krishna.basics.evenfibonacci;
-
 /**
  * EvenFibonacci.java
  * 
- * The EvenFibonacci program implements an application that simply sum of the even-valued terms
+ * The EvenFibonacci program implements an application that simply sum of the
+ * even-valued terms
  * 
  * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
  * @version 1.0
@@ -11,8 +11,9 @@ package com.lftechnology.java.training.krishna.basics.evenfibonacci;
 public class EvenFibonacci {
 	private int firstNumber;
 	private int secondNumber;
-	private final static int MAX_LIMIT = 4000000;
+	private static final int MAX_LIMIT = 4000000;
 
+	
 	public EvenFibonacci(int firstNumber, int secondNumber) {
 		this.firstNumber = firstNumber;
 		this.secondNumber = secondNumber;
