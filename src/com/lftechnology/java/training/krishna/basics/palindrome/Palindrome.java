@@ -13,6 +13,11 @@ package com.lftechnology.java.training.krishna.basics.palindrome;
  */
 public class Palindrome {
 	
+	//constructor
+	public Palindrome() {
+		
+	}
+
 	/**
 	 * Function is used to largest palindrome that is a multiple of two 3 digit
 	 * numbers

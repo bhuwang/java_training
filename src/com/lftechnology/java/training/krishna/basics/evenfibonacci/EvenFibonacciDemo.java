@@ -13,8 +13,14 @@ import java.util.logging.Logger;
  */
 
 public class EvenFibonacciDemo {
-	private static final Logger LOGGER = Logger.getLogger(EvenFibonacciDemo.class.getName());
-	
+	private static final Logger LOGGER = Logger
+			.getLogger(EvenFibonacciDemo.class.getName());
+
+	// constructor
+	private EvenFibonacciDemo() {
+
+	}
+
 	/**
 	 * This is the main method which makes use of sumEvenFibonacci() method.
 	 * 
@@ -23,7 +29,8 @@ public class EvenFibonacciDemo {
 	public static void main(String[] args) {
 		EvenFibonacci evenFibonacci = new EvenFibonacci(0, 1);
 		Integer sumFibonacci = evenFibonacci.sumEvenFibonacci();
-		LOGGER.log(Level.INFO, "Sum of even fibonacci number : {0}", new Object[]{sumFibonacci.toString()});
+		LOGGER.log(Level.INFO, "Sum of even fibonacci number : {0}",
+				new Object[] { sumFibonacci.toString() });
 	}
 
 }
