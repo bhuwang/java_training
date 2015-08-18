@@ -45,7 +45,7 @@ public class GuessingGame {
 	 * @return {@link Integer} random number between min and max number
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
-	private int getRandomNumber(int minNum, int maxNum) {
+	private static int getRandomNumber(int minNum, int maxNum) {
 		Random random = new Random();
 		return random.nextInt((maxNum - minNum) + 1) + minNum;
 	}
