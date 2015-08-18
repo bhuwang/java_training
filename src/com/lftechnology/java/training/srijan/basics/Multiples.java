@@ -11,7 +11,7 @@ public class Multiples {
 	private int num = 1000;
 	private int sum = 0;
 	
-	private static final Logger LOGGER = Logger.getLogger(Fabonacci.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Multiples.class.getName());
 
 	public static void main(String[] args) {
 		calculateDivisibles(3, 5);
