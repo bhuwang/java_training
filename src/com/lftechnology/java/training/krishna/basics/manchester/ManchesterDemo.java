@@ -13,8 +13,7 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class ManchesterDemo {
-	private final static Logger LOGGER = Logger.getLogger(ManchesterDemo.class
-			.getName());
+	private final static Logger LOGGER = Logger.getLogger(ManchesterDemo.class.getName());
 
 	/**
 	 * This is the main method which makes use of getMatchScore() method.
@@ -38,8 +37,7 @@ public class ManchesterDemo {
 							result.get("goalsConceded"),
 							result.get("numberOfPoints") });
 		} catch (NumberFormatException e) {
-			LOGGER.log(Level.WARNING, "NumberFormatException Message: {0}",
-					e.getMessage());
+			LOGGER.log(Level.WARNING, "NumberFormatException Message: {0}", e.getMessage());
 		}
 	}
 

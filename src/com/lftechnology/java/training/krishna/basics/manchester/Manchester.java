@@ -62,8 +62,7 @@ public class Manchester {
 			}
 
 			goalsScored = goalsScored + Integer.parseInt(splitMatchResult[1]);
-			goalsConceded = goalsConceded
-					+ Integer.parseInt(splitMatchResult[2]);
+			goalsConceded = goalsConceded + Integer.parseInt(splitMatchResult[2]);
 		}
 		matchScore.put("numberOfWins", numberOfWins);
 		matchScore.put("numberOfDraws", numberOfDraws);
@@ -104,8 +103,7 @@ public class Manchester {
 					secondScore = numberOnlyValue;
 				}
 			} catch (NumberFormatException e) {
-				LOGGER.log(Level.WARNING, "NumberFormatException: {0}",
-						e.getMessage());
+				LOGGER.log(Level.WARNING, "NumberFormatException: {0}", e.getMessage());
 			}
 		}
 		score.put("firstScore", firstScore);
