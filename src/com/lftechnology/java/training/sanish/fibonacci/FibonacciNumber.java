@@ -25,14 +25,16 @@ public class FibonacciNumber {
 			eventFibonacciNumSum +=secondNum;
 		}
 
+		int num1 = firstNum;
+		int num2 = secondNum;
 		while(nextNum < maxFibonacciNum){
 			if(nextNum % 2 == 0){
 				eventFibonacciNumSum += nextNum;
 			}
 			
-			firstNum = secondNum;
-			secondNum = nextNum;
-			nextNum = firstNum + secondNum;
+			num1 = num2;
+			num2 = nextNum;
+			nextNum = num1 + num2;
 		}
 		
 		return eventFibonacciNumSum;
