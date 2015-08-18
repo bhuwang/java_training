@@ -30,12 +30,14 @@ public class Fibonacci {
 	public List<Integer> getFibonacciSeries(int num1, int num2, int limit) {
 		List<Integer> series = new ArrayList<Integer>();
 		int sum = 0;
+		int firstNum = num1;
+		int secondNum = num2;
 		series.add(num1);
 		series.add(num2);
 		while (sum < limit) {
-			sum = num1 + num2;
-			num1 = num2;
-			num2 = sum;
+			sum = firstNum + secondNum;
+			firstNum = secondNum;
+			secondNum = sum;
 			series.add(sum);
 		}
 		return series;
@@ -58,8 +60,7 @@ public class Fibonacci {
 	public int getSum(int num1, int num2, int limit, String numType) {
 		int sum = 0;
 		int remainder = (numType == Constant.ODD) ? 1 : 0;
-		List<Integer> fibonacciSeries = getFibonacciSeries(num1, num2,
-				limit);
+		List<Integer> fibonacciSeries = getFibonacciSeries(num1, num2, limit);
 		for (int num : fibonacciSeries) {
 			if (num % 2 == remainder) {
 				sum += num;

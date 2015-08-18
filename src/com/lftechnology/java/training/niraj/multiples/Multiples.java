@@ -27,9 +27,7 @@ public class Multiples {
 		int num2 = 5;
 		int maxNum = 1000;
 		int sumOfMultiples = getSumOfMultiples(num1, num2, maxNum);
-		LOGGER.log(Level.INFO,
-				"The sum of multiples of {0} and {1} below {2} is {3} ",
-				new Object[] { num1, num2, maxNum, sumOfMultiples });
+		LOGGER.log(Level.INFO,"The sum of multiples of {0} and {1} below {2} is {3} ",new Object[] { num1, num2, maxNum, sumOfMultiples });
 	}
 
 	/**
