@@ -17,6 +17,10 @@ public class EvenFibonacci {
 	private static final Logger LOGGER = Logger.getLogger(EvenFibonacci.class
 			.getName());
 
+	private EvenFibonacci() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public static void main(String[] args) {
 		try {
 			SumOfEvenFibonacci fibonacci = new SumOfEvenFibonacci(0, 1);
