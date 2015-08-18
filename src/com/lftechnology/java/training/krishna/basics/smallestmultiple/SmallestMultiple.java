@@ -14,6 +14,11 @@ package com.lftechnology.java.training.krishna.basics.smallestmultiple;
 
 public class SmallestMultiple {
 
+	//constructor
+	public SmallestMultiple() {
+		
+	}
+
 	/**
 	 * <p>
 	 * Function is used to generate smallest positive number
