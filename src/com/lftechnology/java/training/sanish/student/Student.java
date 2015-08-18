@@ -34,8 +34,8 @@ public class Student implements Comparable<Student> {
 		this.roll = roll;
 	}
 
-	public void setMark(String subject, int maskObtain) {
-		Mark mark = new Mark(subject, maskObtain);
+	public void setMark(String subject, int markObtain) {
+		Mark mark = new Mark(subject, markObtain);
 		this.marks.add(mark);
 	}
 
