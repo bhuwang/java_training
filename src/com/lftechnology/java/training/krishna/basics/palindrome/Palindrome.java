@@ -14,7 +14,7 @@ package com.lftechnology.java.training.krishna.basics.palindrome;
 public class Palindrome {
 	
 	//constructor
-	public Palindrome() {
+	private Palindrome() {
 		
 	}
 

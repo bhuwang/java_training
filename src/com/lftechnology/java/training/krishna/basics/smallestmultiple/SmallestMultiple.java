@@ -29,18 +29,18 @@ public class SmallestMultiple {
 	 */
 	public long smallestPositiveNumber(int number) {
 		boolean found = false;
-
+        int positiveNumber = number;
 		while (!found) {
-			number++;
+			positiveNumber++;
 			found = true;
 			for (int i = 2; i <= 20; i++) {
-				if ((number % i != 0) || ((number % i) % 2) != 0) {
+				if ((positiveNumber % i != 0) || ((positiveNumber % i) % 2) != 0) {
 					found = false;
 					break;
 				}
 			}
 		}
-		return number;
+		return positiveNumber;
 	}
 
 }
