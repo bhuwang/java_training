@@ -21,7 +21,8 @@ public class DayInWord {
 			displayDayName(scanner);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
-		} 
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**

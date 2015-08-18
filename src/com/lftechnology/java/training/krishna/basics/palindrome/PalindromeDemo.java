@@ -13,7 +13,13 @@ import java.util.logging.Logger;
  */
 
 public class PalindromeDemo {
-	private final static Logger LOGGER = Logger.getLogger(PalindromeDemo.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(PalindromeDemo.class.getName());
+
+	// constructor
+	private PalindromeDemo() {
+		
+	}
+
 
 	/**
 	 * This is the main method which makes use of findLargestPalindrome() method.
