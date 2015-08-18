@@ -13,6 +13,9 @@ import java.util.logging.Logger;
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  */
 public class EvenFibonacci {
+	private EvenFibonacci() {
+
+	}
 
 	private static final Logger LOGGER = Logger.getLogger(EvenFibonacci.class
 			.getName());
