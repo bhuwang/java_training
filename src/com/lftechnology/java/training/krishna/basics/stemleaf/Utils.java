@@ -12,6 +12,11 @@ import java.util.List;
  */
 public class Utils {
 	
+	//constructor
+	private Utils() {
+	
+	}
+
 	/**
 	 * This method implode the input array with separater.
 	 * 
