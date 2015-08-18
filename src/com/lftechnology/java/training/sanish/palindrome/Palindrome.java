@@ -21,12 +21,12 @@ public class Palindrome {
 	 * @param digitLength
 	 *            {@link Integer} digit length of two product from which have
 	 *            find largest palindrome number
-	 * @return {@link Integer} largest palindrome number
+	 * @return {@link Long} largest palindrome number
 	 * @throws Exception
 	 *             Digit length greater than 4 not supported
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public static long getLargestPalindrome(int digitLength) throws Exception {
+	public static long getLargestPalindrome(int digitLength) {
 		long maxNum = (long) Math.pow(10, digitLength) - 1;
 		long minNum = (long) Math.pow(10, digitLength - 1);
 		long multipleNum;
@@ -47,7 +47,7 @@ public class Palindrome {
 	 * Check is supplied number is palindrom number or not
 	 * 
 	 * @param number
-	 *            {@link Integer} number that have to check is palindrom number
+	 *            {@link Long} number that have to check is palindrom number
 	 * @return {@link Boolean} true if supplied number is palindrom else false
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */

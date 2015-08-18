@@ -23,7 +23,7 @@ public class Manchester {
 
 	//constructor
 	private Manchester() {
-		
+
 	}
 
 	/**
@@ -52,16 +52,16 @@ public class Manchester {
 			String matchResult = calculatePointAndGoal(resultArray[i].trim());
 			String[] splitMatchResult = matchResult.split("-");
 
-			if (splitMatchResult[0].equals("0")) {
+			if ("0".equals(splitMatchResult[0])) {
 				numberOfDefeats++;
 			}
 
-			if (splitMatchResult[0].equals("1")) {
+			if ("1".equals(splitMatchResult[0])) {
 				numberOfDraws++;
 				numberOfPoints = numberOfPoints + DRAW;
 			}
 
-			if (splitMatchResult[0].equals("3")) {
+			if ("3".equals(splitMatchResult[0])) {
 				numberOfWins++;
 				numberOfPoints = numberOfPoints + WIN;
 			}
