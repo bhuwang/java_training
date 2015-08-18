@@ -27,8 +27,8 @@ public class Palindrome {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static long getLargestPalindrome(int digitLength) throws Exception {
-		long maxNum = (int) Math.pow(10, digitLength) - 1;
-		long minNum = (int) Math.pow(10, digitLength - 1);
+		long maxNum = (long) Math.pow(10, digitLength) - 1;
+		long minNum = (long) Math.pow(10, digitLength - 1);
 		long multipleNum;
 		for (long i = maxNum; i > minNum; i--) {
 			for (long j = maxNum; j > minNum; j--) {
