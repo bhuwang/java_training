@@ -5,6 +5,9 @@ package com.lftechnology.java.training.sanish.fibonacci;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class FibonacciNumber {
+	private FibonacciNumber(){
+		
+	}
 	/**
 	 * Return sum 0f event fibonacci number with in given max limit
 	 * 
