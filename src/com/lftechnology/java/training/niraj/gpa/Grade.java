@@ -14,6 +14,11 @@ import java.util.logging.Logger;
 public class Grade {
 	private static final Logger LOGGER = Logger
 			.getLogger(Grade.class.getName());
+
+	private Grade() {
+
+	}
+
 	private static String[] subjects = new String[] { Constants.ENGLISH,
 			Constants.MATHS, Constants.ECONOMICS, Constants.COMPUTER,
 			Constants.ACCOUNTS };

@@ -2,6 +2,7 @@ package com.lftechnology.java.training.niraj.gpa;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,10 @@ public class Result {
 	private static final Logger LOGGER = Logger.getLogger(Result.class
 			.getName());
 
+	private Result() {
+
+	}
+
 	public static void main(String[] args) {
 
 		try (Scanner scanner = new Scanner(System.in)) {
@@ -26,7 +31,7 @@ public class Result {
 				scanner.next();
 			}
 			int noOfStudents = scanner.nextInt();
-			ArrayList<StudentInfo> studentList = getStudentInfo(noOfStudents,
+			List<StudentInfo> studentList = getStudentInfo(noOfStudents,
 					scanner, Constants.DESCENDING);
 			LOGGER.log(Level.INFO, "List of Students :");
 			for (StudentInfo studentInfo : studentList) {
@@ -35,6 +40,16 @@ public class Result {
 
 		} catch (InputMismatchException e) {
 			LOGGER.log(Level.WARNING, "Please provide a valid input");
+		} catch (RuntimeException ex) {
+			LOGGER.log(Level.SEVERE,
+					"Something went wrong. Sorry for the inconvenience");
+			LOGGER.log(Level.SEVERE, "error:{0}", ex.getMessage());
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE,
+					"Something went wrong. Sorry for the inconvenience");
+			LOGGER.log(Level.SEVERE, "error:{0}", e.getMessage());
+			throw new RuntimeException(e.getMessage());
+
 		}
 
 	}
@@ -48,11 +63,11 @@ public class Result {
 	 *            {@link Scanner}
 	 * @param order
 	 *            {@link Constants} ASCENDING | DESCENDING
-	 * @return {@link ArrayList} ordered student list
+	 * @return {@link List} ordered student list
 	 * @throws InputMismatchException
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
-	private static ArrayList<StudentInfo> getStudentInfo(int noOfStudents,
+	private static List<StudentInfo> getStudentInfo(int noOfStudents,
 			Scanner scanner, String order) throws InputMismatchException {
 
 		ArrayList<StudentInfo> studentList = new ArrayList<StudentInfo>();
@@ -63,7 +78,7 @@ public class Result {
 			studentInfo.setStudentInfo(scanner);
 			studentList.add(studentInfo);
 		}
-		ArrayList<StudentInfo> orderedStudentList = StudentInfo
+		List<StudentInfo> orderedStudentList = StudentInfo
 				.getSortedStudentInfoList(studentList, order);
 		return orderedStudentList;
 	}

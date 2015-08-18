@@ -1,9 +1,10 @@
 package com.lftechnology.java.training.niraj.gpa;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,11 @@ public class StudentInfo implements Comparable<StudentInfo> {
 	private int markObtained;
 	private float percentage;
 	private char grade;
-	private HashMap<String, Integer> marks = new HashMap<String, Integer>();
+	private Map<String, Integer> marks = new HashMap<String, Integer>();
+
+	public StudentInfo() {
+
+	}
 
 	public String getName() {
 		return name;
@@ -51,7 +56,7 @@ public class StudentInfo implements Comparable<StudentInfo> {
 		this.standard = standard;
 	}
 
-	public HashMap<String, Integer> getMarks() {
+	public Map<String, Integer> getMarks() {
 		return marks;
 	}
 
@@ -134,11 +139,11 @@ public class StudentInfo implements Comparable<StudentInfo> {
 	 *            {@link StudentInfo}
 	 * @param order
 	 *            {@link Constants} ASCENDING | DESCENDING
-	 * @return {@link ArrayList}
+	 * @return {@link List}
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
-	public static ArrayList<StudentInfo> getSortedStudentInfoList(
-			ArrayList<StudentInfo> studentInfo, String order) {
+	public static List<StudentInfo> getSortedStudentInfoList(
+			List<StudentInfo> studentInfo, String order) {
 
 		if (order.equals(Constants.ASCENDING)) {
 			Collections.sort(studentInfo);

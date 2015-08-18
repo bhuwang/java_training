@@ -16,4 +16,8 @@ public class Constants {
 	public static final String ASCENDING = "asc";
 	public static final String DESCENDING = "desc";
 
+	private Constants() {
+
+	}
+
 }
