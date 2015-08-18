@@ -27,7 +27,8 @@ public class SmallestMultiple {
 		int maxNum = 20;
 		Multiples multiplesHelper = new Multiples(minNum, maxNum);
 		int smallestMultiple = multiplesHelper.smallestMultiple();
-		LOGGER.log(Level.INFO,"The smallest positive number that is evenly divisible by all of the numbers from {0} to {1} is {2}",new Object[] { minNum, maxNum, smallestMultiple });
+		Object[] params = new Object[] { minNum, maxNum, smallestMultiple };
+		LOGGER.log(Level.INFO,"The smallest positive number that is evenly divisible by all of the numbers from {0} to {1} is {2}",params);
 
 	}
 }
