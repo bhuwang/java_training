@@ -129,7 +129,7 @@ public class Manchester {
 
 		String points = "";
 
-		HashMap<String, Integer> matchScore = (HashMap<String, Integer>) getScoreOnly(result);
+		Map<String, Integer> matchScore = (HashMap<String, Integer>) getScoreOnly(result);
 		int firstScore = matchScore.get("firstScore");
 		int secondScore = matchScore.get("secondScore");
 
