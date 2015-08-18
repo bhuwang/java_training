@@ -12,8 +12,12 @@ import java.util.logging.Logger;
  *
  */
 public class GuessingNumber {
-	private static Logger LOGGER = Logger.getLogger(GuessingNumber.class
+	private static final Logger LOGGER = Logger.getLogger(GuessingNumber.class
 			.getName());
+
+	private GuessingNumber() {
+
+	}
 
 	public static void main(String[] args) {
 		int minNum = 1;

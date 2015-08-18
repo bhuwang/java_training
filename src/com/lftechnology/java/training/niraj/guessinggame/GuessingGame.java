@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  */
 public class GuessingGame {
-	private static Logger LOGGER = Logger.getLogger(GuessingGame.class
+	private static final Logger LOGGER = Logger.getLogger(GuessingGame.class
 			.getName());
 	private int guessedNumber;
 	private int noOfAttempts;
@@ -26,7 +26,6 @@ public class GuessingGame {
 	public int getNumberOfAttempts() {
 		return noOfAttempts;
 	}
-	
 
 	public int getGuessedNumber() {
 		return guessedNumber;
@@ -91,7 +90,7 @@ public class GuessingGame {
 		LOGGER.log(
 				Level.INFO,
 				"Congratulations !!! You have guessed a correct number in : {0} attempts",
-				new Object[] { this.getNumberOfAttempts() });
+				this.getNumberOfAttempts());
 	}
 
 }
