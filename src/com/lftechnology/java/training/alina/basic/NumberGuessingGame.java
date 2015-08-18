@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.alina.basic;
 
-import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,8 +15,7 @@ import java.util.logging.Logger;
  */
 public class NumberGuessingGame {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(NumberGuessingGame.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(NumberGuessingGame.class.getName());
 
 	public static void main(String[] args) {
 		int randomNumber;
@@ -26,11 +24,9 @@ public class NumberGuessingGame {
 		try (Scanner scanner = new Scanner(System.in)) {
 			NumberGuessingGame number = new NumberGuessingGame();
 			randomNumber = Randomize.generateRandomNumber(minLimit,maxLimit);
-			NumberGuessingGame.checkForGuessNumber(scanner, randomNumber);
-			checkForGuessNumber(scanner, randomNumber);
+			number.checkForGuessNumber(scanner, randomNumber);
 		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Exception Message : {0}",
-					new Object[] { e.getMessage() });
+			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
 		}
 	}
 
@@ -42,23 +38,18 @@ public class NumberGuessingGame {
 	 * @param randomNumber
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	private static void checkForGuessNumber(Scanner scanner, int randomNumber) {
+	private void checkForGuessNumber(Scanner scanner, int randomNumber) {
 		int guessNumber;
 		int numberOfAttempts = 0;
 		do {
 			LOGGER.info("Enter a guess number (1-20): ");
 			guessNumber = scanner.nextInt();
-			if (guessNumber != randomNumber) {
-				numberOfAttempts++;
-			}
+			numberOfAttempts++;
 			if (guessNumber == randomNumber) {
 				LOGGER.info("Your Guess is Correct. Congratulations!");
-				LOGGER.log(Level.INFO, "Random generated value is : {0}",
-						new Object[] { randomNumber });
-				LOGGER.log(Level.INFO, "Guessed value is : {0}",
-						new Object[] { guessNumber });
-				LOGGER.log(Level.INFO, "Number of attempts : {0}",
-						new Object[] { numberOfAttempts });
+				LOGGER.log(Level.INFO, "Random generated value is : {0}", new Object[] { randomNumber });
+				LOGGER.log(Level.INFO, "Guessed value is : {0}", new Object[] { guessNumber });
+				LOGGER.log(Level.INFO, "Number of attempts : {0}", new Object[] { numberOfAttempts });
 			} else if (guessNumber < randomNumber) {
 				LOGGER.info("Your Guess is incorrect. It should be greater.");
 			} else {
@@ -67,13 +58,5 @@ public class NumberGuessingGame {
 		} while (guessNumber != randomNumber);
 	}
 
-	/**
-	 * Function that generates the random number
-	 * 
-	 * @return randomGeneratedNumber random number
-	 * @author Alina Shakya <alinashakya@lftechnology.com>
-	 */
-	public int generateRandomNumber() {
-		return (int) (Math.random() * 20 + 1);
-	}
+	
 }
