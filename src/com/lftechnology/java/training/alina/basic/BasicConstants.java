@@ -6,7 +6,12 @@ package com.lftechnology.java.training.alina.basic;
  * @author Alina Shakya <alinashakya@lftechnology.com>
  *
  */
-public class BasicConstants {
+public final class BasicConstants {
+
+	private BasicConstants() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public static final String SUNDAY = "Sunday";
 	public static final String MONDAY = "Monday";
 	public static final String TUESDAY = "Tuesday";

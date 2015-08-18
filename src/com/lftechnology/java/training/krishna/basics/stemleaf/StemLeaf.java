@@ -1,7 +1,5 @@
 package com.lftechnology.java.training.krishna.basics.stemleaf;
 
-import java.util.Arrays;
-
 /**
  * StemLeaf.java
  * 

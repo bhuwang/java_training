@@ -29,7 +29,7 @@ public class StemLeafDemo {
 	public static void main(String[] args) {
 
 		// declare an array to store integral data points
-		int dataset[] = new int[] {23,23,44,34,34,33,12,25,45,44,34,34};
+		int[] dataset = new int[] {23,23,44,34,34,33,12,25,45,44,34,34};
 		int datasetLength = dataset.length;
 
 		displayStemLeafData(dataset, datasetLength);

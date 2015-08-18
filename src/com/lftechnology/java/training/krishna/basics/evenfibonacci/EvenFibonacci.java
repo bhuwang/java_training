@@ -13,6 +13,7 @@ public class EvenFibonacci {
 	private int secondNumber;
 	private static final int MAX_LIMIT = 4000000;
 
+	
 	public EvenFibonacci(int firstNumber, int secondNumber) {
 		this.firstNumber = firstNumber;
 		this.secondNumber = secondNumber;
