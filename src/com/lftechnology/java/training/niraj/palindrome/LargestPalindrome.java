@@ -16,9 +16,9 @@ public class LargestPalindrome {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(LargestPalindrome.class.getName());
-	
-	private LargestPalindrome(){
-		
+
+	private LargestPalindrome() {
+
 	}
 
 	public static void main(String[] args) {
@@ -26,7 +26,10 @@ public class LargestPalindrome {
 		int maxLimit = 999;
 		Palindrome palindromeHelper = new Palindrome(minLimit, maxLimit);
 		long largestPalindrome = palindromeHelper.getLargestPalindrome();
-		LOGGER.log(Level.INFO,"The largest palindrome for the product of two 3-digits number is {0}",largestPalindrome);
+		LOGGER.log(
+				Level.INFO,
+				"The largest palindrome for the product of two 3-digits number is {0}",
+				largestPalindrome);
 
 	}
 }

@@ -15,8 +15,8 @@ import java.util.logging.Logger;
  */
 public class SmallestMultiple {
 
-	private static Logger LOGGER = Logger.getLogger(SmallestMultiple.class
-			.getName());
+	private static final Logger LOGGER = Logger
+			.getLogger(SmallestMultiple.class.getName());
 
 	private SmallestMultiple() {
 
