@@ -28,7 +28,7 @@ public class Palindrome {
 	 */
 	public static long getLargestPalindrome(int digitLength) {
 		long maxNum = (long) Math.pow(10, digitLength) - 1;
-		long minNum = (long) Math.pow(10, digitLength - 1);
+		long minNum = (long) Math.pow(10, (long) digitLength - 1);
 		long multipleNum;
 		for (long i = maxNum; i > minNum; i--) {
 			for (long j = maxNum; j > minNum; j--) {
@@ -52,12 +52,13 @@ public class Palindrome {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static boolean isPalindromNum(long number) {
+		long originalNumber = number;
 		long preNumber = number;
 		long reverse = 0;
-		while (number != 0) {
+		while (originalNumber != 0) {
 			reverse = reverse * 10;
-			reverse += number % 10;
-			number = number / 10;
+			reverse += originalNumber % 10;
+			originalNumber = originalNumber / 10;
 		}
 
 		return preNumber == reverse;
