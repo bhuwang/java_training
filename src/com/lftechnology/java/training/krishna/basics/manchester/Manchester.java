@@ -26,7 +26,7 @@ public class Manchester {
 	 * points from the input string
 	 * 
 	 * @param resultString
-	 *            {@link String} match information string
+	 *            {@link String} string of match information
 	 * 
 	 * @return matchScore - match score
 	 * 
@@ -78,8 +78,8 @@ public class Manchester {
 	 * This method gives score number from input string.
 	 * 
 	 * @param result
-	 *            {@link String} match information string
-	 * @return score - goal information
+	 *            {@link String} string of match information
+	 * @return score - goal information 
 	 * 
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
@@ -115,7 +115,7 @@ public class Manchester {
 	 * This method computes the points and goals form given input string.
 	 * 
 	 * @param result
-	 *            {@link String} match information string
+	 *            {@link String}  string of match information
 	 * @return points - points and goals as a string
 	 * 
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>

@@ -24,8 +24,7 @@ public class ManchesterDemo {
 
 		String resultString = "Manchester United 1 Chelsea 0, Arsenal 1 Manchester United 1, Manchester United 3 Fulham 1, Liverpool 2 Manchester United 1, Swansea 2 Manchester United 4";
 		try {
-			HashMap<String, Integer> result = (HashMap<String, Integer>) Manchester
-					.getMatchScore(resultString);
+			HashMap<String, Integer> result = (HashMap<String, Integer>) Manchester.getMatchScore(resultString);
 
 			LOGGER.log(
 					Level.INFO,
