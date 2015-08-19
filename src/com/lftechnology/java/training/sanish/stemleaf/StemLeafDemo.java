@@ -48,22 +48,19 @@ public class StemLeafDemo {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static void generateStemLeafs() {
-		int stem, leaf, firstNum, secondNum, leafCount;
+		int stem, leaf, firstNum, secondNum, leafCount, index;
 		int dataPointLength = numberPoints.size();
-		int index = 0;
 		StemLeaf stemLeaf;
 		while (dataPointLength != 0) {
 			stem = numberPoints.get(0) / 10;
-			leafCount = 0;
-			leaf = 0;
-			index = 0;
+			leafCount = leaf = index = 0;
 			while (index < dataPointLength) {
 				firstNum = numberPoints.get(index) / 10;
 				if (firstNum == stem) {
-					leafCount++;
 					secondNum = numberPoints.get(index) % 10;
 					leaf = leaf * 10 + secondNum;
 					numberPoints.remove(index);
+					leafCount++;
 					dataPointLength--;
 				} else {
 					index++;
@@ -78,10 +75,10 @@ public class StemLeafDemo {
 
 	/**
 	 * Display generated stemLeapfs
+	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static void displayStemLepfs() {
 		String dispalyContent = "";
-
 		for (StemLeaf stemleaf : stemLeafs) {
 			dispalyContent += stemleaf.toString() + "\n ";
 		}
