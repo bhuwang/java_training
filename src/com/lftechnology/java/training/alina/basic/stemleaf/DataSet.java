@@ -6,27 +6,27 @@ package com.lftechnology.java.training.alina.basic.stemleaf;
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class DataSet implements Comparable<DataSet> {
-	public int dataSet;
+	private int dataValue;
 
-	public DataSet(int dataSet) {
-		this.dataSet = dataSet;
+	public DataSet(int dataValue) {
+		this.dataValue = dataValue;
 	}
 
 	public int getDataSet() {
-		return dataSet;
+		return dataValue;
 	}
 
 	public void setDataSet(int dataSet) {
-		this.dataSet = dataSet;
+		this.dataValue = dataSet;
 	}
 
 	@Override
 	public int compareTo(DataSet data) {
-		return Integer.compare(this.dataSet, data.dataSet);
+		return Integer.compare(this.dataValue, data.dataValue);
 	}
 
 	@Override
 	public String toString() {
-		return "" + dataSet;
+		return Integer.toString(dataValue);
 	}
 }
