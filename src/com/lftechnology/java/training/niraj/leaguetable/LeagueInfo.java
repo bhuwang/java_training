@@ -86,8 +86,8 @@ public class LeagueInfo {
 	 * @author Niraj Rajbhandari<nirajrajbhandari@lftechnology.com>
 	 */
 	private String[] parseResults() {
-		String[] resultList = this.result.split(",");
-		return resultList;
+		return this.result.split(",");
+
 	}
 
 	/**
