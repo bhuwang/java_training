@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class UserInput {
-	private final static Logger LOGGER = Logger.getLogger(UserInput.class
+	private static final Logger LOGGER = Logger.getLogger(UserInput.class
 			.getName());
 
 	private UserInput() {
