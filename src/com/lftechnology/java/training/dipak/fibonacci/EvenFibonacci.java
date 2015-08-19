@@ -86,7 +86,7 @@ public class EvenFibonacci {
 				}
 			}
 		} catch (Exception e) {
-			LOGGER.info("Exception occurred");
+			LOGGER.info("Exception Occurred.Exception Type= "+e);
 		}
 
 	}
