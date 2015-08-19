@@ -17,11 +17,11 @@ import java.util.logging.Logger;
  */
 
 public class EvenFibonacci {
-	private final static Logger LOGGER = Logger.getLogger(EvenFibonacci.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(EvenFibonacci.class.getName());
 	private int series[];
 	private int index = 0;
 
-	EvenFibonacci(int range) {
+	public EvenFibonacci(int range) {
 		series = new int[range];
 	}
 
@@ -60,8 +60,7 @@ public class EvenFibonacci {
 	public int getEvenNumberSum() {
 		int sum = 0;
 		for (int i = 0; i < index; i++) {
-			boolean isTrue = checkEven(series[i]);
-			if (isTrue) {
+			if (checkEven(series[i])) {
 				sum += series[i];
 			}
 		}
@@ -69,8 +68,7 @@ public class EvenFibonacci {
 	}
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		try {
+		try(Scanner scanner = new Scanner(System.in)){
 			for (;;) {
 				LOGGER.info("Enter the range upto which the sum even numbers of fibonacci series is to be calculated");
 
@@ -89,8 +87,6 @@ public class EvenFibonacci {
 			}
 		} catch (Exception e) {
 			LOGGER.info("Exception occurred");
-		} finally {
-			scanner.close();
 		}
 
 	}
