@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
+ * Helper class for data representation with stem and leaf plot
+ * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  *
  */
