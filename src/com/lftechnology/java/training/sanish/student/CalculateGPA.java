@@ -22,6 +22,7 @@ public class CalculateGPA {
 			LOGGER.log(Level.INFO, "Enter number of students : ");
 			calculateGPA.setStudentNumber(UserInput.getNumber(scanner,
 					Constants.MIN_STUDENT_NUM, Constants.MAX_STUDENT_NUM));
+			
 			calculateGPA.setStudentInformation(scanner);
 			ResultCalculation.calculateResult(calculateGPA.students);
 			ResultCalculation.orderByTotalMarks(calculateGPA.students,

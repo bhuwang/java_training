@@ -26,8 +26,8 @@ public class Mark {
 		return markObtain;
 	}
 
-	public void setMarkObtain(int maskObtain) {
-		this.markObtain = maskObtain;
+	public void setMarkObtain(int markObtain) {
+		this.markObtain = markObtain;
 	}
 
 	@Override

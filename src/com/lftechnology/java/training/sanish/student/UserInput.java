@@ -17,9 +17,12 @@ public class UserInput {
 	/**
 	 * Scan number from console and return number
 	 * 
-	 * @param scanner {@link Scanner}
-	 * @param min {@link Integer} Minimum value acceptable
-	 * @param max {@link Integer} Maximum value acceptable
+	 * @param scanner
+	 *            {@link Scanner}
+	 * @param min
+	 *            {@link Integer} Minimum value acceptable
+	 * @param max
+	 *            {@link Integer} Maximum value acceptable
 	 * @return {@link Integer}
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
@@ -35,7 +38,6 @@ public class UserInput {
 				LOGGER.log(Level.WARNING,
 						"Please enter number within range ({0}-{1}) : ",
 						new Object[] { min, max });
-				scanner.next();
 			} else {
 				break;
 			}
@@ -47,18 +49,30 @@ public class UserInput {
 	/**
 	 * Scan string form console and return string
 	 * 
-	 * @param scanner {@link Scanner}
+	 * @param scanner
+	 *            {@link Scanner}
 	 * @return {@link Scanner}
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static String getName(Scanner scanner) {
 		String name;
-		Pattern pattern = Pattern.compile("[a-z A-Z]*");
-		while (!scanner.hasNext(pattern)) {
-			LOGGER.log(Level.WARNING, "Only characters are allowed : ");
-			scanner.next();
+		String pattern = "[a-zA-Z]+[a-z A-Z]*";
+		for (;;) {
+			if (!scanner.hasNextLine()) {
+				scanner.nextLine();
+			} else {
+				name = scanner.nextLine();
+				if (name.isEmpty()) {
+					continue;
+				} else if (!name.matches(pattern)) {
+					LOGGER.log(Level.WARNING,
+							"Invalid name, Please type again : ");
+				} else {
+					break;
+				}
+			}
 		}
-		name = scanner.next();
+
 		return name;
 	}
 
