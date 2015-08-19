@@ -12,6 +12,7 @@ public class PointsStructure {
 	private int wins;
 	private int draws;
 	private int lose;
+	private String clubName;
 
 	static {
 		WIN = 3;
@@ -19,12 +20,13 @@ public class PointsStructure {
 		DRAW = 1;
 	}
 
-	public PointsStructure() {
+	public PointsStructure(String club) {
 		this.points = 0;
 		this.counts = 1;
 		this.wins = 0;
 		this.draws = 0;
 		this.lose = 0;
+		this.clubName = club;
 	}
 
 	private static final Logger LOGGER = Logger.getLogger(PointsStructure.class.getName());
@@ -45,11 +47,11 @@ public class PointsStructure {
 		int stringHomePosition = 0;
 		int stringAwayPosition = 2;
 		for (int i = 0; i < numberOfMatches; i++) {
-			if (fixturesWithScore[stringHomePosition].equals("Manchester United")) {
+			if (clubName.equals(fixturesWithScore[stringHomePosition])) {
 				result = determineResult(fixturesWithScore, stringHomePosition);
 			}
 
-			else if (fixturesWithScore[stringAwayPosition].equals("Manchester United")) {
+			else if (clubName.equals(fixturesWithScore[stringAwayPosition])) {
 				result = resultDetermine(fixturesWithScore, stringAwayPosition);
 			}
 			stringHomePosition = stringHomePosition + 4;
@@ -136,7 +138,7 @@ public class PointsStructure {
 			draws++;
 		}
 		if (counts == numberOfWeeks) {
-			LOGGER.info("Total Points" + points);
+			LOGGER.info("Total Points " + points);
 			LOGGER.info("Wins= " + wins);
 			LOGGER.info("Draws= " + draws);
 			LOGGER.info("Lose= " + lose);
