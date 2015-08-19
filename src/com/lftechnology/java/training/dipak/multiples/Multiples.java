@@ -52,14 +52,12 @@ public class Multiples {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	public boolean ifexists(int number) {
-		boolean isMultiple = false;
 		for (int k = 0; k < index; k++) {
 			if (number == multiple[k]) {
-				isMultiple = true;
-				break;
+				return true;
 			}
 		}
-		return isMultiple;
+		return false;
 	}
 
 	/**
