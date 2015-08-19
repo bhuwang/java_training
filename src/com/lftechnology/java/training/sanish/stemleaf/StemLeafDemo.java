@@ -71,10 +71,7 @@ public class StemLeafDemo {
 			}
 
 			// add stemLeaf in stemLeafs ArrayList
-			stemLeaf = new StemLeaf();
-			stemLeaf.setCount(leafCount);
-			stemLeaf.setStem(stem);
-			stemLeaf.setLeaf(leaf);
+			stemLeaf = new StemLeaf(leafCount, stem, leaf);
 			stemLeafs.add(stemLeaf);
 		}
 	}
