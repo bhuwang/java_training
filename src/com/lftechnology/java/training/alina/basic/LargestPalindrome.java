@@ -53,7 +53,7 @@ public class LargestPalindrome {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	public static boolean isPalindrome(int palindrome) {
-		String palindromeString = "" + palindrome;
+		String palindromeString = Integer.toString(palindrome);
 		String reversed = new StringBuilder(palindromeString).reverse()
 				.toString();
 		return palindromeString.equals(reversed);

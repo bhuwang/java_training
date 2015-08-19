@@ -14,14 +14,15 @@ import java.util.logging.Logger;
  */
 public class SmallestPositiveNumber {
 
-	private static final Logger LOGGER = Logger.getLogger(SmallestPositiveNumber.class.getName());
+	private static final Logger LOGGER = Logger
+			.getLogger(SmallestPositiveNumber.class.getName());
 
 	public static void main(String[] args) {
 		try (Scanner scanner = new Scanner(System.in)) {
 			int rangeLimit;
 			LOGGER.info("Enter the maximum range number > ");
 			rangeLimit = scanner.nextInt();
-			Long smallestNumber = displaySmallestNumber(scanner, rangeLimit);
+			Long smallestNumber = displaySmallestNumber(rangeLimit);
 			LOGGER.log(
 					Level.INFO,
 					"The smallest positive number that is evenly divisible by all of the numbers from 1 to {0} is : {1}",
@@ -35,12 +36,12 @@ public class SmallestPositiveNumber {
 	/**
 	 * Function used to display smallest positive number
 	 * 
-	 * @param scanner
-	 * @param rangeLimit {@link Integer} maximum range
+	 * @param rangeLimit
+	 *            {@link Integer} maximum range
 	 * @return number {@link Long} smallest positive number
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	private static Long displaySmallestNumber(Scanner scanner, int rangeLimit) {
+	private static Long displaySmallestNumber(int rangeLimit) {
 		long number = rangeLimit;
 		int i = 2;
 		while (i < rangeLimit) {
@@ -59,14 +60,19 @@ public class SmallestPositiveNumber {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	public static Long leastCommonMultiple(long firstNumber, long secondNumber) {
-		long num1 = firstNumber, num2 = secondNumber;
-		while (firstNumber != secondNumber) {
-			if (firstNumber < secondNumber) {
-				firstNumber += num1;
-			} else {
-				secondNumber += num2;
+		long num1, num2;
+		if (firstNumber > secondNumber) {
+			num1 = firstNumber;
+			num2 = secondNumber;
+		} else {
+			num1 = secondNumber;
+			num2 = firstNumber;
+		}
+		for (int i = 1; i <= num2; i++) {
+			if ((num1 * i) % num2 == 0) {
+				return (long) (i * num1);
 			}
 		}
-		return firstNumber;
+		throw new Error("Error");
 	}
 }
