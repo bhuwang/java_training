@@ -44,8 +44,8 @@ public class StemLeafRepresentation {
 				"Enter number of data points : ", MIN_VALUE, MAX_VALUE);
 		data = new DataSet[dataPoints];
 		for (int i = 0; i < dataPoints; i++) {
-			LOGGER.log(Level.INFO, "[" + i + "]:");
-			data[i] = new DataSet(scanner.nextInt());
+			data[i] = new DataSet(validation.numberValidation(scanner, "[" + i
+					+ "]:", 10, MAX_VALUE));
 		}
 		Arrays.sort(data);
 		LOGGER.log(Level.INFO, "The sorted array is : ");

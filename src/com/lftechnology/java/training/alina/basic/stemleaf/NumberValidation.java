@@ -50,10 +50,11 @@ public class NumberValidation {
 	 */
 	private boolean isValidNumber(int fieldValue, int minValue, int maxValue) {
 		if (fieldValue < minValue || fieldValue > maxValue) {
-			LOGGER.log(Level.INFO, "Please enter number within range (3-99)");
+			LOGGER.log(Level.INFO,
+					"Please enter number within range ({0}-{1})", new Object[] {
+							minValue, maxValue });
 			return false;
-		} else {
-			return true;
 		}
+		return true;
 	}
 }
