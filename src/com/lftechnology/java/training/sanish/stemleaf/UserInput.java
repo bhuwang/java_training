@@ -13,12 +13,18 @@ public class UserInput {
 	private final static Logger LOGGER = Logger.getLogger(UserInput.class
 			.getName());
 
+	private UserInput() {
+	}
+
 	/**
 	 * Scan number from console and return number
 	 * 
-	 * @param scanner {@link Scanner}
-	 * @param min {@link Integer} Minimum value acceptable
-	 * @param max {@link Integer} Maximum value acceptable
+	 * @param scanner
+	 *            {@link Scanner}
+	 * @param min
+	 *            {@link Integer} Minimum value acceptable
+	 * @param max
+	 *            {@link Integer} Maximum value acceptable
 	 * @return {@link Integer}
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */

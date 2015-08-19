@@ -11,6 +11,9 @@ public class StemLeafDemo {
 	private static ArrayList<Integer> numberPoints = new ArrayList<Integer>();
 	private static ArrayList<StemLeaf> stemLeafs = new ArrayList<StemLeaf>();
 
+	private StemLeafDemo() {
+	};
+
 	public static void main(String[] args) {
 		try (Scanner scanner = new Scanner(System.in)) {
 			getDataPoints(scanner);
@@ -50,14 +53,14 @@ public class StemLeafDemo {
 	public static void generateStemLeafs() {
 		int stem, leaf, firstNum, secondNum, leafCount;
 		int dataPointLength = numberPoints.size();
-		int index =0;
+		int index = 0;
 		StemLeaf stemLeaf;
 		while (dataPointLength != 0) {
 			stem = numberPoints.get(0) / 10;
 			leafCount = 0;
 			leaf = 0;
 			index = 0;
-			while(index < dataPointLength){
+			while (index < dataPointLength) {
 				firstNum = numberPoints.get(index) / 10;
 				if (firstNum == stem) {
 					leafCount++;
@@ -65,7 +68,7 @@ public class StemLeafDemo {
 					leaf = leaf * 10 + secondNum;
 					numberPoints.remove(index);
 					dataPointLength--;
-				}else{
+				} else {
 					index++;
 				}
 			}
