@@ -1,8 +1,7 @@
 package com.lftechnology.java.training.dipak;
 
 import java.util.Scanner;
-
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 
 public class Test {
 	private static final Logger LOGGER = Logger.getLogger(Test.class.getName());
@@ -13,7 +12,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter your name with Salutation::");
+		LOGGER.info("Enter your name with Salutation::");
 		String inputName = scanner.nextLine();
 		inputName = inputName.trim();
 
