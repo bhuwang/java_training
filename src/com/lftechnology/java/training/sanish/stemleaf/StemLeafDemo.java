@@ -24,12 +24,15 @@ public class StemLeafDemo {
 
 	/**
 	 * Get data points for console
-	 * @param scanner {@link Scanner}
+	 * 
+	 * @param scanner
+	 *            {@link Scanner}
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static void getDataPoints(Scanner scanner) {
 		LOGGER.log(Level.INFO, "Enter number of data points :");
-		int dataPoints = UserInput.getNumber(scanner, Constants.NUM_ZERO, Constants.MAX_NUM);
+		int dataPoints = UserInput.getNumber(scanner, Constants.NUM_ZERO,
+				Constants.MAX_NUM);
 		int userInputNum;
 		for (int i = 0; i < dataPoints; i++) {
 			LOGGER.log(Level.INFO, "[{0}]", new Object[] { i });
@@ -41,29 +44,33 @@ public class StemLeafDemo {
 
 	/**
 	 * Generate stem & leafs form data points
+	 * 
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static void generateStemLeafs() {
 		int stem, leaf, firstNum, secondNum, leafCount;
 		int dataPointLength = numberPoints.size();
+		int index =0;
 		StemLeaf stemLeaf;
 		while (dataPointLength != 0) {
 			stem = numberPoints.get(0) / 10;
 			leafCount = 0;
 			leaf = 0;
-			for (int j = 0; j < dataPointLength; j++) {
-				firstNum = numberPoints.get(j) / 10;
+			index = 0;
+			while(index < dataPointLength){
+				firstNum = numberPoints.get(index) / 10;
 				if (firstNum == stem) {
 					leafCount++;
-					secondNum = numberPoints.get(j) % 10;
+					secondNum = numberPoints.get(index) % 10;
 					leaf = leaf * 10 + secondNum;
-					numberPoints.remove(j);
+					numberPoints.remove(index);
 					dataPointLength--;
-					j--;
+				}else{
+					index++;
 				}
 			}
 
-			//add stemLeaf in stemLeafs ArrayList
+			// add stemLeaf in stemLeafs ArrayList
 			stemLeaf = new StemLeaf();
 			stemLeaf.setCount(leafCount);
 			stemLeaf.setStem(stem);
@@ -79,11 +86,11 @@ public class StemLeafDemo {
 		String dispalyContent = "";
 
 		for (StemLeaf stemleaf : stemLeafs) {
-			dispalyContent += stemleaf.toString() + "\n";
+			dispalyContent += stemleaf.toString() + "\n ";
 		}
-		LOGGER.log(Level.INFO, "Stem and Leaf Display:\n"
-				+ "Frequency \t\t Stem \t Leaf \n"
-				+ "======================================\n{0}",
+		LOGGER.log(
+				Level.INFO,
+				"\n Stem and Leaf Display:\n Frequency \t Stem \t Leaf \n ======================================\n {0}",
 				new Object[] { dispalyContent });
 	}
 }
