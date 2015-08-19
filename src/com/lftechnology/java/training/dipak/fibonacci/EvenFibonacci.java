@@ -78,7 +78,7 @@ public class EvenFibonacci {
 			LOGGER.log(Level.INFO, "The sum of even numbers of fibonacci series whose values do not exceed {0} = {1}",
 					new Object[] { range, sum });
 		} catch (NumberFormatException nfe) {
-			LOGGER.info("Characters entered.");
+			LOGGER.info("Characters entered.Program will stop");
 			System.exit(0);
 		}
 	}
