@@ -57,13 +57,13 @@ public class CalculateGPA {
 					new Object[] { rollNumber });
 			studentName = UserInput.getName(scanner);
 			student = new Student(studentName, rollNumber);
-			setStudentMasks(scanner, student);
+			setStudentMarks(scanner, student);
 			students.add(student);
 		}
 	}
 
 	/**
-	 * Set mask of all subjects of student
+	 * Set mark of all subjects of student
 	 * 
 	 * @param scanner
 	 *            {@link Scanner}
@@ -71,10 +71,10 @@ public class CalculateGPA {
 	 *            {@link Student} Student
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public void setStudentMasks(Scanner scanner, Student student) {
+	public void setStudentMarks(Scanner scanner, Student student) {
 		int markObtain;
 		for (String subject : Constants.SUBJECT_LIST) {
-			LOGGER.log(Level.INFO, "Enter masks obtain in {0} : ",
+			LOGGER.log(Level.INFO, "Enter marks obtain in {0} : ",
 					new Object[] { subject });
 			markObtain = UserInput.getNumber(scanner, Constants.MIN_MARK,
 					Constants.MAX_MARK);

@@ -46,7 +46,7 @@ public class ResultCalculation {
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public static char getGrade(float percentage) {
-		if (percentage > 80) {
+		if (percentage >= 80) {
 			return 'A';
 		} else if (percentage < 80 && percentage >= 60) {
 			return 'B';
