@@ -79,7 +79,6 @@ public class StemLeafDemo {
 		String dispalyContent = "";
 
 		for (StemLeaf stemleaf : stemLeafs) {
-			System.out.println(stemleaf.toString());
 			dispalyContent += stemleaf.toString() + "\n";
 		}
 		LOGGER.log(Level.INFO, "Stem and Leaf Display:\n"
