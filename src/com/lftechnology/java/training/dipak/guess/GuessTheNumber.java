@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 
 public class GuessTheNumber {
-	private final static Logger LOGGER = Logger.getLogger(GuessTheNumber.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(GuessTheNumber.class.getName());
 	private int theRandomNumber;
 	private int attempts = 0;
 	private int lowerBound = 0;
@@ -35,7 +35,7 @@ public class GuessTheNumber {
 	 */
 	public void generateNumber() {
 		Random random = new Random();
-		theRandomNumber=random.nextInt(upperBound)+lowerBound;
+		theRandomNumber = random.nextInt(upperBound) + lowerBound;
 	}
 
 	/**
@@ -49,11 +49,8 @@ public class GuessTheNumber {
 	 */
 	public boolean checkGuess(int num) {
 		attempts++;
-		if (num == theRandomNumber) {
-			return true;
-		} else {
-			return false;
-		}
+		return num == theRandomNumber;
+
 	}
 
 	public static void main(String[] args) {
@@ -63,35 +60,36 @@ public class GuessTheNumber {
 		GuessTheNumber gtn1 = new GuessTheNumber(lowerBound, upperBound);
 		gtn1.generateNumber();
 		int guessedNumber;
-		try (Scanner sc = new Scanner(System.in)) {
-			for (;;) {
-				LOGGER.info("Make the guess(1-20) or Press 0 or any number(< 0) to quit::");
-				try {
-					guessedNumber = Integer.parseInt(sc.nextLine());
-					if (guessedNumber <= 0) {
-						LOGGER.log(Level.INFO, "So you quit...");
-						LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
-						LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
-						break;
-					}
-					boolean result = gtn1.checkGuess(guessedNumber);
-					if (result) {
-						LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
-						LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
-						break;
-					} else {
-						LOGGER.log(Level.INFO, "Oops... Missed. Try again");
-					}
-				} catch (NumberFormatException nfe) {
-					gtn1.attempts++;
-					LOGGER.info("Characters entered.Re-enter the values.");
-					continue;
+		Scanner sc = new Scanner(System.in);
+		boolean closeResource=false;
+		for (;;) {
+			LOGGER.info("Make the guess(1-20) or Press 0 or any number(< 0) to quit::");
+			try {
+				guessedNumber = Integer.parseInt(sc.nextLine());
+				if (guessedNumber <= 0) {
+					LOGGER.log(Level.INFO, "So you quit...");
+					LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
+					LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
+					closeResource=true;
+					break;
+				}
+				boolean result = gtn1.checkGuess(guessedNumber);
+				if (result) {
+					LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
+					LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
+					closeResource=true;
+					break;
+				} else {
+					LOGGER.log(Level.INFO, "Oops... Missed. Try again");
+				}
+			} catch (NumberFormatException nfe) {
+				gtn1.attempts++;
+				LOGGER.info("Oops.. Characters entered.Re-enter the values.");
+			} finally {
+				if(closeResource){
+					sc.close();
 				}
 			}
-
-		} catch (Exception e) {
-			LOGGER.info("Exception occurred");
 		}
-
 	}
 }
