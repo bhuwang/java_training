@@ -30,10 +30,10 @@ public class SmallestMultiple {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	public void getMultiples() {
-		for (int i = 1;; i=i+10) {
+		for (int i = 1;; i = i + 10) {
 			if (checkMultiples(i)) {
 				smallest = i;
-				break;				
+				break;
 			}
 		}
 	}
@@ -59,7 +59,7 @@ public class SmallestMultiple {
 				break;
 			}
 		}
-		return (count == endingPoint);
+		return count == endingPoint;
 
 	}
 
