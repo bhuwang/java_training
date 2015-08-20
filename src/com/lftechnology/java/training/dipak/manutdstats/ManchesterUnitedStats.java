@@ -21,7 +21,6 @@ public class ManchesterUnitedStats {
 
 	public ManchesterUnitedStats(String team){
 		yourTeam=team;
-		results=results.toLowerCase();
 	}
 	/**
 	 * <p>
@@ -32,7 +31,8 @@ public class ManchesterUnitedStats {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	void computeResults() {
-		String[] singleFixtureResult = results.split(",");
+		String tempResults=results.toLowerCase();
+		String[] singleFixtureResult = tempResults.split(",");
 		int goalScored = 0;
 		int goalConceded = 0;
 		int noOfDraws = 0;
