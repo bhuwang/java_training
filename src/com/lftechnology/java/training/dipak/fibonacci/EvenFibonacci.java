@@ -40,13 +40,13 @@ public class EvenFibonacci {
 		while (sum < range) {
 			sum = num1 + num2;
 			series[index++] = sum;
-			num1 = num2;
+			num1 = num2;			
 			num2 = sum;
 		}
 	}
 
 	public boolean checkEven(int number) {
-		return (number % 2) == 0;
+		return number % 2 == 0;
 	}
 
 	/**
@@ -62,7 +62,8 @@ public class EvenFibonacci {
 		int sum = 0;
 		for (int i = 0; i < index; i++) {
 			if (checkEven(series[i])) {
-				sum += series[i];
+				sum += series[i];	
+				
 			}
 		}
 		return sum;
@@ -78,7 +79,7 @@ public class EvenFibonacci {
 			LOGGER.log(Level.INFO, "The sum of even numbers of fibonacci series whose values do not exceed {0} = {1}",
 					new Object[] { range, sum });
 		} catch (NumberFormatException nfe) {
-			LOGGER.info("Characters entered.");
+			LOGGER.info("Characters entered.Program will stop");
 			System.exit(0);
 		}
 	}
