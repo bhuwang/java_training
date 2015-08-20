@@ -61,7 +61,7 @@ public class StemLeaf {
 		float divisionResult;
 		for (int i = 0; i < dataPoints.length; i++) {
 			remainder = dataPoints[i] % DIVIDER;
-			divisionResult = dataPoints[i] / DIVIDER;
+			divisionResult = (float)dataPoints[i] / DIVIDER;
 			quotient = (int) Math.floor(divisionResult);
 			setSpecificStemLeafPlot(quotient, remainder);
 		}

@@ -15,7 +15,7 @@ import com.lftechnology.java.training.alina.basic.SumOfMultiples;
  *
  */
 public class StemLeafPlot {
-	private final static Logger LOGGER = Logger.getLogger(SumOfMultiples.class
+	private static final Logger LOGGER = Logger.getLogger(SumOfMultiples.class
 			.getName());
 
 	private StemLeafPlot() {
