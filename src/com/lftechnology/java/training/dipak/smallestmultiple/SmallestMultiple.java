@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * @author Dipak Thapa <dipakthapa@lftechnology.com>
  */
 public class SmallestMultiple {
-	private final static Logger LOGGER = Logger.getLogger(SmallestMultiple.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(SmallestMultiple.class.getName());
 	private int smallest = 0;
 	private int startingPoint = 0;
 	private int endingPoint = 0;
@@ -30,11 +30,10 @@ public class SmallestMultiple {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	public void getMultiples() {
-		for (int i = 1;; i++) {
-			boolean isMultiple = checkMultiples(i);
-			if (isMultiple) {
+		for (int i = 1;; i=i+10) {
+			if (checkMultiples(i)) {
 				smallest = i;
-				break;
+				break;				
 			}
 		}
 	}
