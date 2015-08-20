@@ -89,9 +89,11 @@ public class StudentRecord {
 	}
 
 	/**
-	 * This method display the report of student such as namee, percentage,
+	 * This method display the report of student such as name, percentage,
 	 * total marks
 	 *
+	 * @param students
+	 *            {@link Student}
 	 * @param subjects
 	 *            {@link ArrayList}
 	 * @return grade {@link char} grade obtained by the student
