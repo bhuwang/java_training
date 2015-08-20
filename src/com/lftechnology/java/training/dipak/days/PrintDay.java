@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * @author Dipak Thapa <dipakthapa@lftechnology.com>
  */
 public class PrintDay {
-	private final static Logger LOGGER = Logger.getLogger(PrintDay.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(PrintDay.class.getName());
 
 	/**
 	 * <p>
@@ -54,30 +54,29 @@ public class PrintDay {
 	}
 
 	public static void main(String[] args) {
-
-		try (Scanner sc = new Scanner(System.in)) {
-			for (;;) {
-				LOGGER.info("Enter a number(1-7) or press any number (<=0) to terminate::");
-				int day;
-					try {
-						day = (Integer.parseInt(sc.nextLine()));
-						if (day <= 0) {
-							break;
-						}
-						PrintDay pd1 = new PrintDay();
-						String displayText = pd1.getDay(day);
-						LOGGER.info(displayText);
-					} catch (NumberFormatException nfe) {
-						LOGGER.info("Characters entered.Re-enter the values.");
-						continue;
-					}
+		Scanner sc=new Scanner(System.in);
+		boolean closeResource=false;
+		for (;;) {
+			LOGGER.info("Enter a number(1-7) or press any number (<=0) to terminate::");
+			int day;
+			try {
+				day = (Integer.parseInt(sc.nextLine()));
+				if (day <= 0) {
+					closeResource=true;
+					break;
 				}
-				
-			
-		} catch (Exception e) {
-			LOGGER.info("Exception occurred");
+				PrintDay pd1 = new PrintDay();
+				String displayText = pd1.getDay(day);
+				LOGGER.info(displayText);
+			} catch (NumberFormatException nfe) {
+				LOGGER.info("Characters entered.Re-enter the values.");
+				continue;
+			}finally{
+				if(closeResource){
+					sc.close();
+				}
+			}
 		}
-
 	}
 
 }

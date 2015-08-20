@@ -9,5 +9,7 @@ public final class CommonConstantsDayNames {
 	public static final String FRIDAY = "Friday";
 	public static final String SATURDAY = "Saturday";
 	public static final String INVALID_DAY = "Not a valid day";
-
+	
+	private CommonConstantsDayNames() {
+	}
 }
