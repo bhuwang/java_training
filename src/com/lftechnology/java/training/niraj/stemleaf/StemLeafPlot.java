@@ -26,15 +26,15 @@ public class StemLeafPlot {
 		try (Scanner scanner = new Scanner(System.in)) {
 			int dataPointLength;
 
-			LOGGER.log(Level.INFO, "Please provide the number of data points:");
+			LOGGER.log(Level.INFO, "Please provide the number of data points : ");
 			while (true) {
 				while (!scanner.hasNextInt()) {
-					LOGGER.warning("Please enter a number:");
+					LOGGER.warning("Please enter a number :");
 					scanner.next();
 				}
 				dataPointLength = scanner.nextInt();
 				if (dataPointLength < 0) {
-					LOGGER.warning("Please provide a positive number");
+					LOGGER.warning("Please provide a positive number : ");
 					scanner.next();
 				} else {
 					break;

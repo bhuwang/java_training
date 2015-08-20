@@ -104,7 +104,7 @@ public class StemLeaf {
 		stemLeafPlot.append("Stem and leaf Display: \n\n");
 		stemLeafPlot.append("Frequency \t\t Stem \t\t Leaf\n");
 		stemLeafPlot
-				.append("====================================================\n");
+				.append("===================================================\n");
 		for (Entry<Integer, List<Integer>> entry : stemLeafInfo.entrySet()) {
 			leafList = entry.getValue();
 			eachEntry = leafList.size() + "\t\t\t  " + entry.getKey()
