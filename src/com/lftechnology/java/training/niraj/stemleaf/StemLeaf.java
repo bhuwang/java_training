@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Logger;
 
 /**
  * Helper class for data representation with stem and leaf plot
@@ -17,6 +18,8 @@ import java.util.Map.Entry;
  *
  */
 public class StemLeaf {
+	private static final Logger LOGGER = Logger.getLogger(StemLeaf.class
+			.getName());
 	private static final int DIVIDER = 10;
 	private int[] dataPoints;
 	private Map<Integer, List<Integer>> stemLeafInfo;
@@ -93,17 +96,22 @@ public class StemLeaf {
 	private void displayStemLeafPlot() {
 		List<Integer> leafList;
 
-		System.out.format("%s\n%s\n", "Sorted Array :",
-				Arrays.toString(dataPoints));
-		System.out.format("%s\n%1s%23s%15s\n%s", "Stem and leaf Display",
-				"Frequency", "Stem", "Leaf",
-				"====================================================");
+		String eachEntry;
+		StringBuilder stemLeafPlot = new StringBuilder();
+		stemLeafPlot.append("\n\n\nSorted Array: \n\t");
+		stemLeafPlot.append(Arrays.toString(dataPoints) + "\n");
+		stemLeafPlot.append("-------------------------------------\n\n");
+		stemLeafPlot.append("Stem and leaf Display: \n\n");
+		stemLeafPlot.append("Frequency \t\t Stem \t\t Leaf\n");
+		stemLeafPlot
+				.append("====================================================\n");
 		for (Entry<Integer, List<Integer>> entry : stemLeafInfo.entrySet()) {
 			leafList = entry.getValue();
-			System.out.format("\n%1d%30d%15s", leafList.size(), entry.getKey(),
-					getLeafListString(leafList));
+			eachEntry = leafList.size() + "\t\t\t  " + entry.getKey()
+					+ "\t\t  " + getLeafListString(leafList) + "\n";
+			stemLeafPlot.append(eachEntry);
 		}
-
+		LOGGER.info(stemLeafPlot.toString());
 	}
 
 	/**

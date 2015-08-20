@@ -64,7 +64,7 @@ public class StemLeafPlot {
 		int[] dataPoints = new int[dataPointLength];
 		int dataPoint;
 		for (int i = 0; i < dataPointLength; i++) {
-			System.out.println("datapoint[" + i + "] :");
+			LOGGER.log(Level.INFO, "datapoint[{0}] :", i);
 			while (true) {
 				while (!scanner.hasNextInt()) {
 					LOGGER.warning("Please provide the integer value:");
