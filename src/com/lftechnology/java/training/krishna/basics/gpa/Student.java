@@ -2,6 +2,15 @@ package com.lftechnology.java.training.krishna.basics.gpa;
 
 import java.util.ArrayList;
 
+/**
+ * Student.java
+ * 
+ * This program store students information
+ * 
+ *
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class Student {
 	private int studentId;
 	private String name;

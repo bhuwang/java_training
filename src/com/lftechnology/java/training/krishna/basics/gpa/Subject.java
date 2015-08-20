@@ -1,5 +1,14 @@
 package com.lftechnology.java.training.krishna.basics.gpa;
 
+/**
+ * Subject.java
+ * 
+ * This program store subject and marks information
+ * 
+ *
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class Subject {
 	private String subject;
 	private int marks;
