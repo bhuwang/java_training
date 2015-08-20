@@ -6,11 +6,18 @@ package com.lftechnology.java.training.sanish.sumnumber;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class SumMultiples {
+	private SumMultiples() {
+
+	}
+
 	/**
 	 * Return sum of multiples of number within given limit
 	 * 
-	 * @param num {@link Integer} number 
-	 * @param limit {@link Integer} below which have to found sum of multiples of number
+	 * @param num
+	 *            {@link Integer} number
+	 * @param limit
+	 *            {@link Integer} below which have to found sum of multiples of
+	 *            number
 	 * @return sum {@link Integer} of multiples
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
