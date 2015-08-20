@@ -46,7 +46,7 @@ public class EvenFibonacci {
 	}
 
 	public boolean checkEven(int number) {
-		return (number % 2) == 0;
+		return number % 2 == 0;
 	}
 
 	/**
