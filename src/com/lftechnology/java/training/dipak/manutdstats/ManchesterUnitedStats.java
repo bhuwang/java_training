@@ -8,10 +8,10 @@ import java.util.logging.Logger;
  * @author Dipak Thapa <dipakthapa@lftechnology.com>
  *
  */
-
 public class ManchesterUnitedStats {
-	private final static Logger LOGGER = Logger.getLogger(ManchesterUnitedStats.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ManchesterUnitedStats.class.getName());
 	private String results = "West Ham United 0 Manchester United 3,Manchester United 5 Manchester City 1 , Manchester United 1 Chelsea 0, Arsenal 1 Manchester United 1,  Manchester United 3 Fulham 1, Liverpool 2 Manchester United 1, Swansea 2 Manchester United 4";
+	private String yourTeam="";
 	private int noOfWins = 0;
 	private int noOfDraws = 0;
 	private int noOfDefeats = 0;
@@ -19,6 +19,10 @@ public class ManchesterUnitedStats {
 	private int goalConceded = 0;
 	private int noOfPoints = 0;
 
+	public ManchesterUnitedStats(String team){
+		yourTeam=team;
+		results=results.toLowerCase();
+	}
 	/**
 	 * <p>
 	 * This method computes the all the statistics(win,losses,draws,goals) of
@@ -27,24 +31,25 @@ public class ManchesterUnitedStats {
 	 * @param team
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
-	void computeResults(String team) {
+	void computeResults() {
 		String[] singleFixtureResult = results.split(",");
 		int goalScored = 0;
 		int goalConceded = 0;
 		int noOfDraws = 0;
 		int noOfWins = 0;
 		int noOfDefeats = 0;
+		String yourTeamTemp=yourTeam.toLowerCase();
 		for (int i = 0; i < singleFixtureResult.length; i++) {
 			goalScored = 0;
 			goalConceded = 0;
 			singleFixtureResult[i] = singleFixtureResult[i].trim();
-			if (singleFixtureResult[i].contains(team)) {
+			if (singleFixtureResult[i].contains(yourTeamTemp)) {
 				String[] temp = singleFixtureResult[i].split(" ");
 				String team1 = "";
 				for (String s : temp) {
 					try {
 						int goal = Integer.parseInt(s.trim());
-						if (team.equalsIgnoreCase(team1.trim())) {
+						if (yourTeamTemp.equalsIgnoreCase(team1.trim())) {
 							goalScored = goal;
 						} else {
 							goalConceded = goal;
@@ -82,7 +87,7 @@ public class ManchesterUnitedStats {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	boolean checkWin(int goalScored, int goalConceded) {
-		return (goalScored > goalConceded);
+		return goalScored > goalConceded;
 	}
 
 	/**
@@ -95,7 +100,7 @@ public class ManchesterUnitedStats {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	boolean checkDraw(int goalScored, int goalConceded) {
-		return (goalScored == goalConceded);
+		return goalScored == goalConceded;
 	}
 
 	/**
@@ -116,7 +121,7 @@ public class ManchesterUnitedStats {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	void displayResults() {
-		LOGGER.info("The final verdict of your team is::");
+		LOGGER.log(Level.INFO,"The final verdict of {0}::",yourTeam);
 		LOGGER.log(Level.INFO, "Number of wins={0}", noOfWins);
 		LOGGER.log(Level.INFO, "Number of draws={0}", noOfDraws);
 		LOGGER.log(Level.INFO, "Number of defeats={0}", noOfDefeats);
@@ -127,8 +132,8 @@ public class ManchesterUnitedStats {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ManchesterUnitedStats mus1 = new ManchesterUnitedStats();
-		mus1.computeResults("Manchester United");
+		ManchesterUnitedStats mus1 = new ManchesterUnitedStats("manchester united");
+		mus1.computeResults();
 		mus1.computePoints();
 		mus1.displayResults();
 	}
