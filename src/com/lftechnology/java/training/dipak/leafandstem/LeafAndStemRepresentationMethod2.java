@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.dipak.leafandstem;
 
-
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +41,7 @@ public class LeafAndStemRepresentationMethod2 {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	void displaySortedArray() {
-		LOGGER.info("The sorted array is::"); 
+		LOGGER.info("The sorted array is::");
 		for (int i = 0; i < numberArray.length; i++) {
 			LOGGER.log(Level.INFO, "{0} ", numberArray[i]);
 		}
@@ -64,9 +63,8 @@ public class LeafAndStemRepresentationMethod2 {
 		leavesAndStems = new String[numberArray.length + 1][3];
 		for (int i = 0; i < numberArray.length; i++) {
 			String stringRepresentation = "";
-			stringRepresentation = "" + numberArray[i];
+			stringRepresentation = new Integer(numberArray[i]).toString();
 			if (stringRepresentation.length() == 1) {
-				stem[i] = "" + 0;
 				leaf[i] = stringRepresentation;
 				continue;
 			}
@@ -76,13 +74,13 @@ public class LeafAndStemRepresentationMethod2 {
 		}
 		int index = 0;
 		for (int i = 0; i < stem.length; i++) {
-			if (stem[i].equals("10")) {
+			if ("10".equals(stem[i])) {
 				continue;
 			}
 			frequency = 1;
 			leafFinal[index] = leafFinal[index] + leaf[i];
 			for (int j = i + 1; j < stem.length; j++) {
-				if ((stem[i].equals(stem[j])) && (!(stem[i].equals("10")))) {
+				if ((stem[i].equals(stem[j])) && (!("10".equals(stem[i])))) {
 					frequency++;
 					leafFinal[index] += "," + leaf[j];
 					stem[j] = "10";
@@ -90,7 +88,7 @@ public class LeafAndStemRepresentationMethod2 {
 			}
 			stemFinal[index] = "" + stem[i];
 			leavesAndStems[index][0] = stemFinal[index];
-			leavesAndStems[index][1] = "" + frequency;
+			leavesAndStems[index][1] = new Integer(frequency).toString();
 			leavesAndStems[index][2] = leafFinal[index];
 			index++;
 			stem[i] = "10";
@@ -107,7 +105,7 @@ public class LeafAndStemRepresentationMethod2 {
 	 */
 	void displayStemAndLeaf() {
 		LOGGER.info("The Stem and Leaf Display ::");
-		for (int i = 0; i < leavesAndStems.length && leavesAndStems[i][0] != null; i++) {			
+		for (int i = 0; i < leavesAndStems.length && leavesAndStems[i][0] != null; i++) {
 			LOGGER.log(Level.INFO, "Stem::{0}   Frequency::{1}   Leaves::{2}",
 					new Object[] { leavesAndStems[i][0], leavesAndStems[i][1], leavesAndStems[i][2] });
 		}
@@ -115,33 +113,40 @@ public class LeafAndStemRepresentationMethod2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int range;
+		int range=0;
 		LeafAndStemRepresentationMethod2 lsrm1;
-		try(Scanner scanner = new Scanner(System.in)) {			
-			LOGGER.log(Level.INFO, "Enter the size of array:");
+		Scanner scanner = new Scanner(System.in);
+		boolean closeResource=false;
+		LOGGER.log(Level.INFO, "Enter the size of array:");
+		try{
 			range = Math.abs(Integer.parseInt(scanner.nextLine()));
-			lsrm1 = new LeafAndStemRepresentationMethod2(range);
-			for (int i = 0; i < lsrm1.numberArray.length; i++) {
-				try {
-					LOGGER.log(Level.INFO, "Enter number:");
-					int m = Integer.parseInt(scanner.nextLine());
-					lsrm1.numberArray[i] = m;
-				} catch (NumberFormatException nfe) {
-					LOGGER.info("Character Entered");
-					i--;
-					continue;
-				}
-
-			}
-			lsrm1.sortArray();
-			lsrm1.displaySortedArray();
-			lsrm1.separateStemAndLeaf();
-			lsrm1.displayStemAndLeaf();
-		} catch (NumberFormatException nfe) {
-			LOGGER.info("Character Entered");
+		}catch(NumberFormatException nfe){
+			LOGGER.info("Characters entered. Program will terminate");
 			System.exit(0);
 		}
-		
+		LOGGER.log(Level.INFO,"Enter {0} numbers::",range);
+		lsrm1 = new LeafAndStemRepresentationMethod2(range);
+		for (int i = 0; i < lsrm1.numberArray.length; i++) {
+			try {
+				LOGGER.log(Level.INFO, "Enter number {0}:",i+1);
+				int m = Integer.parseInt(scanner.nextLine());
+				lsrm1.numberArray[i] = m;
+				
+			} catch (NumberFormatException nfe) {
+				LOGGER.info("Character Entered");
+				i--;
+			}finally{
+				if(closeResource){
+					scanner.close();
+				}
+			}
+
+		}
+		lsrm1.sortArray();
+		lsrm1.displaySortedArray();
+		lsrm1.separateStemAndLeaf();
+		lsrm1.displayStemAndLeaf();
+
 	}
 
 }
