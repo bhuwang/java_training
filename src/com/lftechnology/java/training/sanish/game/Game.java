@@ -30,6 +30,7 @@ public class Game {
 
     /**
      * Process and extract game result form resultText
+     *
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public void processGameResult() {
@@ -46,8 +47,9 @@ public class Game {
 
     /**
      * Set TeamA & TeamB game result
-     * @param teamAName {@link String} Team A name
-     * @param teamBName {@link String} Team B name
+     *
+     * @param teamAName  {@link String} Team A name
+     * @param teamBName  {@link String} Team B name
      * @param teamAGoals {@link Integer} Team A goals count
      * @param teamBGoals {@link Integer} Team B goals count
      * @uthor Sanish Maharjan <sanishmaharjan@lftechnology.com>
@@ -75,6 +77,7 @@ public class Game {
 
     /**
      * Return team by team name if team exist in game
+     *
      * @param teamName {@link String} Team name
      * @return {@link Team}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>

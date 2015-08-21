@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 /**
  * Football League game result display program
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class FootballLeague {
