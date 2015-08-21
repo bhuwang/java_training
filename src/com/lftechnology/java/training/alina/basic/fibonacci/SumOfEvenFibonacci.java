@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.fibonacci;
 
 /**
  * The SumOfEvenFibonacci program implements an application that simply
