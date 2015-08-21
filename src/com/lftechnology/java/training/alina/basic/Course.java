@@ -68,7 +68,8 @@ public class Course {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	public float getTotalMarks() {
-		return this.subject1 + this.subject2 + this.subject3 + this.subject4 + this.subject5;
+		return this.subject1 + this.subject2 + this.subject3 + this.subject4
+				+ this.subject5;
 	}
 
 	/**
@@ -110,5 +111,44 @@ public class Course {
 	public String toString() {
 		return "Total Marks : " + getTotalMarks() + ", Percentage : "
 				+ getPercentage() + ", Grade : " + getGrade();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Float.floatToIntBits(subject1);
+		result = prime * result + Float.floatToIntBits(subject2);
+		result = prime * result + Float.floatToIntBits(subject3);
+		result = prime * result + Float.floatToIntBits(subject4);
+		result = prime * result + Float.floatToIntBits(subject5);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Course other = (Course) obj;
+		if (Float.floatToIntBits(subject1) != Float
+				.floatToIntBits(other.subject1))
+			return false;
+		if (Float.floatToIntBits(subject2) != Float
+				.floatToIntBits(other.subject2))
+			return false;
+		if (Float.floatToIntBits(subject3) != Float
+				.floatToIntBits(other.subject3))
+			return false;
+		if (Float.floatToIntBits(subject4) != Float
+				.floatToIntBits(other.subject4))
+			return false;
+		if (Float.floatToIntBits(subject5) != Float
+				.floatToIntBits(other.subject5))
+			return false;
+		return true;
 	}
 }
