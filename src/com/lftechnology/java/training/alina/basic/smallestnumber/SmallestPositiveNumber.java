@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.smallestnumber;
 
 import java.util.Scanner;
 import java.util.logging.Level;

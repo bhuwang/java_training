@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.palindrome;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
