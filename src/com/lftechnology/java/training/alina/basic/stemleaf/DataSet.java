@@ -22,7 +22,7 @@ public class DataSet implements Comparable<DataSet> {
 
 	@Override
 	public int compareTo(DataSet data) {
-		return Integer.compare(this.dataValue, data.dataValue);
+		return this.dataValue - data.dataValue;
 	}
 
 	@Override
