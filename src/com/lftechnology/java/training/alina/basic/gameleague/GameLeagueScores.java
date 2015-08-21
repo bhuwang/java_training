@@ -23,7 +23,7 @@ public class GameLeagueScores {
 					+ " Manchester United 3 Fulham 1,"
 					+ " Liverpool 2 Manchester United 1,"
 					+ " Swansea 2 Manchester United 4";
-			String resultSet[] = results.split(",");
+			String[] resultSet = results.split(",");
 			GameInfo game = new GameInfo();
 			for (int i = 0; i < resultSet.length; i++) {
 				getScores = game.getGameScores(resultSet[i].trim());
