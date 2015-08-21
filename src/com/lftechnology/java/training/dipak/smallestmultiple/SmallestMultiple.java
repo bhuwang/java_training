@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.dipak.smallestmultiple;
 
 import java.util.logging.Level;
@@ -11,7 +12,9 @@ import java.util.logging.Logger;
  * @author Dipak Thapa <dipakthapa@lftechnology.com>
  */
 public class SmallestMultiple {
-	private static final Logger LOGGER = Logger.getLogger(SmallestMultiple.class.getName());
+
+	private static final Logger LOGGER =
+		Logger.getLogger(SmallestMultiple.class.getName());
 	private int smallest = 1;
 	private int startingPoint = 0;
 	private int endingPoint = 0;
@@ -22,29 +25,25 @@ public class SmallestMultiple {
 	}
 
 	/**
-	 * <p>
-	 * This method checks all numbers.The method doesn't terminate until a
-	 * number if found
-	 * </p>
+	 * <p> This method checks all numbers.The method doesn't terminate until a
+	 * number if found </p>
 	 * 
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	public void getMultiples() {
-		int i=smallest;
-		while(true){
+		int i = smallest;
+		while (i >= smallest) {
 			if (checkMultiples(i)) {
 				smallest = i;
 				break;
 			}
-			i=i+smallest;
+			i = i + smallest;
 		}
 	}
 
 	/**
-	 * <p>
-	 * This method checks whether the number is multiple of numbers from 1-20 or
-	 * not.
-	 * </p>
+	 * <p> This method checks whether the number is multiple of numbers from
+	 * 1-20 or not. </p>
 	 * 
 	 * @param number
 	 * @return true if the number is a multiple of all the numbers in the given
@@ -53,11 +52,13 @@ public class SmallestMultiple {
 	 */
 
 	private boolean checkMultiples(int number) {
+
 		int count = 0;
 		for (int i = startingPoint; i <= endingPoint; i++) {
 			if (number % i == 0) {
 				count++;
-			} else {
+			}
+			else {
 				break;
 			}
 		}
@@ -66,12 +67,15 @@ public class SmallestMultiple {
 	}
 
 	public static void main(String[] args) {
+
 		SmallestMultiple sm1 = new SmallestMultiple(1, 20);
 
 		sm1.getMultiples();
 
-		LOGGER.log(Level.INFO, "The smallest multiple that can be divided evenly by all nos. from 1-20 is {0}",
-				sm1.smallest);
+		LOGGER.log(
+			Level.INFO,
+			"The smallest multiple that can be divided evenly by all nos. from 1-20 is {0}",
+			sm1.smallest);
 	}
 
 }
