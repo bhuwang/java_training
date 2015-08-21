@@ -13,6 +13,7 @@ public class ManchesterUnited {
 		int numberOfGameWeeks = 0;
 		String club = "";
 		Scanner input = new Scanner(System.in);
+		
 		Scanner clubNameString = new Scanner(System.in);
 		try{
 			LOGGER.info("Enter the number of GameWeek");

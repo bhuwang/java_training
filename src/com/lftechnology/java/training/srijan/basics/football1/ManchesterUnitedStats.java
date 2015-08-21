@@ -56,7 +56,7 @@ public class ManchesterUnitedStats {
 	private static final Logger LOGGER = Logger.getLogger(ManchesterUnitedStats.class.getName());
 	private String[] fixtureWithScore;
 	private String clubName;
-
+	
 	public ManchesterUnitedStats(int numberOfGameWeeks, String club) {
 		this.fixtureWithScore = new String[numberOfGameWeeks * 4];
 		this.clubName = club;

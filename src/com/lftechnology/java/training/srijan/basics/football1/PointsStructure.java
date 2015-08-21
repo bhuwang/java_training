@@ -14,7 +14,7 @@ public class PointsStructure {
 	private int wins;
 	private int draws;
 	private int lose;
-
+	
 	static {
 		WIN = 3;
 		LOSE = 0;
