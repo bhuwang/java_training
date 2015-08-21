@@ -1,5 +1,9 @@
 package com.lftechnology.java.training.sanish.game;
 
+/**
+ * content constants variables
+ * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+ */
 public class Constants {
 	public static final String WIN = "win";
 	public static final String DRAW = "draw";

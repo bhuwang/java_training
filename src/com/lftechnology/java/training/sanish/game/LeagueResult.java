@@ -4,12 +4,24 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Provide football league game results funcitons
+ *
+ * @autor Sanish Maharjan <sanishmaharjan@lftechnology.com>
+ */
 public class LeagueResult {
     private static final Logger LOGGER = Logger.getLogger(LeagueResult.class.getName());
 
     private LeagueResult() {
     }
 
+    /**
+     * Display League game result of specific team
+     *
+     * @param games    {@link Game} list of games
+     * @param teamName {@link String} team name
+     * @author Sanish Maharjan <sanishmaharjan@lftechology.com>
+     */
     public static void displayLeagueGameResultOfTeam(ArrayList<Game> games, String teamName) {
         Team team;
         int totalGoalScore = 0, totalGoalConceded = 0, totalGameScore = 0, winGameCount = 0,
