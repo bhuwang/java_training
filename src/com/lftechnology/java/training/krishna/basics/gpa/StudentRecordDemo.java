@@ -28,15 +28,15 @@ public class StudentRecordDemo {
 			Scanner scanner = new Scanner(System.in);
 			Map<Integer, Object> studentData = new HashMap<Integer, Object>();
 			LOGGER.log(Level.INFO, "Please enter the no. of student: ");
-			int studentCount = scanner.nextInt();
+			int studentCount = ScannerValidation.numberValidation(scanner);
 			for (int j = 1; j <= studentCount; j++) {
 				int studentId = j;
 				LOGGER.log(Level.INFO, "Please enter the name: ");
 				String name = scanner.next();
 				LOGGER.log(Level.INFO, "Please enter the class: ");
-				int classDomain = scanner.nextInt();
+				int classDomain = ScannerValidation.numberValidation(scanner);
 				LOGGER.log(Level.INFO, "Please enter the roll number: ");
-				int rollNumber = scanner.nextInt();
+				int rollNumber = ScannerValidation.numberValidation(scanner);
 
 				Student students = new Student(studentId, name, classDomain,
 						rollNumber);
@@ -63,13 +63,13 @@ public class StudentRecordDemo {
 	 *            {@link Scanner}
 	 * @param students
 	 *            {@link Student}
-	 *            
+	 * 
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static void setSubjectInformation(Scanner scanner, Student students) {
 		ArrayList<Subject> subjectMarks = new ArrayList<Subject>();
 		LOGGER.log(Level.INFO, "Please enter the no. of subject: ");
-		int subjectCount = scanner.nextInt();
+		int subjectCount = ScannerValidation.numberValidation(scanner);
 		for (int i = 1; i <= subjectCount; i++) {
 			LOGGER.log(Level.INFO, "Please enter the name of subject[" + i
 					+ "]: ");
