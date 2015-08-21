@@ -1,11 +1,16 @@
 package com.lftechnology.java.training.alina.basic.gameleague;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Class GameInfo consists of game score informations of Manchester United
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class GameInfo {
+	private static final Logger LOGGER = Logger.getLogger(GameInfo.class
+			.getName());
 	private int noOfWins = 0;
 	private int noOfDraws = 0;
 	private int noOfDefeats = 0;
@@ -100,6 +105,7 @@ public class GameInfo {
 					secondScore = outputValue;
 				}
 			} catch (NumberFormatException e) {
+				LOGGER.log(Level.INFO, "Exception Message occured");
 			}
 		}
 		getGoalPoint(result);

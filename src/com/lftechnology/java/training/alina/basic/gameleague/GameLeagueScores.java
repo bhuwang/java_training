@@ -13,6 +13,9 @@ public class GameLeagueScores {
 			.getLogger(GameLeagueScores.class.getName());
 	private static String getScores = null;
 
+	private GameLeagueScores() {
+	}
+
 	public static void main(String[] args) {
 		try {
 			String results = "Manchester United 1 Chelsea 0,"
