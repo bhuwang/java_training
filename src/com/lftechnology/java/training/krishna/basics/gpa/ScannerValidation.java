@@ -17,17 +17,17 @@ public class ScannerValidation {
 	private static final Logger LOGGER = Logger
 			.getLogger(ScannerValidation.class.getName());
 
-	public final static int MIN_NUM = 0;
-	public final static int MAX_NUM = 100;
+	public static final int MIN_NUM = 0;
+	public static final int MAX_NUM = 100;
 
 	/**
-	 * Function used to validate the user input using scanner
+	 * Function is used to validate the user input using scanner
 	 *
 	 * @param scanner
 	 *            {@link Scanner}
 	 * @return number {@link Integer} input value
 	 * 
-	 * @author @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static int numberValidation(Scanner scanner) {
 		int number;
@@ -42,16 +42,16 @@ public class ScannerValidation {
 	}
 
 	/**
-	 * Function used to check if a number is valid and within range
+	 * Function is used to check if number is valid and within range
 	 *
-	 * @param fieldValue
-	 *            {@link Integer} value of input field
+	 * @param number
+	 *            {@link int} number
 	 * @return {@link boolean}
 	 * 
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	private static boolean isValidNumber(int fieldValue) {
-		if (fieldValue <= MIN_NUM) {
+	private static boolean isValidNumber(int number) {
+		if (number <= MIN_NUM) {
 			LOGGER.log(Level.INFO, "Please enter number greater than 0 : ");
 			return false;
 		} else {
@@ -66,7 +66,7 @@ public class ScannerValidation {
 	 *            {@link Scanner}
 	 * @return mark {@link int} input marks
 	 * 
-	 * @author @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static int markValidation(Scanner scanner) {
 		int mark;

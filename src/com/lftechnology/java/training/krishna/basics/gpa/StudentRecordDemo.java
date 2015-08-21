@@ -32,7 +32,7 @@ public class StudentRecordDemo {
 			for (int j = 1; j <= studentCount; j++) {
 				int studentId = j;
 				LOGGER.log(Level.INFO, "Please enter the name: ");
-				String name = scanner.next();
+				String name = ScannerValidation.nameValidation(scanner);
 				LOGGER.log(Level.INFO, "Please enter the class: ");
 				int classDomain = ScannerValidation.numberValidation(scanner);
 				LOGGER.log(Level.INFO, "Please enter the roll number: ");
@@ -73,10 +73,10 @@ public class StudentRecordDemo {
 		for (int i = 1; i <= subjectCount; i++) {
 			LOGGER.log(Level.INFO, "Please enter the name of subject[" + i
 					+ "]: ");
-			String subject = scanner.next();
+			String subject = ScannerValidation.nameValidation(scanner);
 			LOGGER.log(Level.INFO, "Please enter the " + subject.toUpperCase()
 					+ " marks[" + i + "]: ");
-			int marks = scanner.nextInt();
+			int marks = ScannerValidation.markValidation(scanner);
 			subjectMarks.add(new Subject(subject, marks));
 			students.setSubjects(subjectMarks);
 		}

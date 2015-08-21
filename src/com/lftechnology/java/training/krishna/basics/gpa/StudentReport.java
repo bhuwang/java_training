@@ -1,5 +1,14 @@
 package com.lftechnology.java.training.krishna.basics.gpa;
 
+/**
+ * StudentReport.java
+ * 
+ * This program stores student information
+ * 
+ *
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class StudentReport{
 	private String name;
 	private int marks;
