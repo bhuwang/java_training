@@ -76,7 +76,7 @@ public class ManchesterUnitedStats {
 	 *            {@link String}
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-	public void displayGameweekFixtures(int numberOfMatches, String[] gamesFixtures) {
+	public void displayGameweekFixtures(String[] gamesFixtures) {
 		int count = 0;
 		LOGGER.info(clubName + " Fixtures:\n ");
 		for (int i = 0; i < gamesFixtures.length; i += 2) {
@@ -126,9 +126,9 @@ public class ManchesterUnitedStats {
 			}
 
 		} catch (NoSuchElementException ex) {
-			LOGGER.info("Error Message:" + ex.getMessage());
+			LOGGER.info("Error Message:" + ex);
 		} catch (ArrayIndexOutOfBoundsException exception) {
-			LOGGER.info("Exception Message:" + exception.getMessage());
+			LOGGER.info("Exception Message:" + exception);
 		} finally {
 			displayFixturesAndScores(numberOfMatches);
 			inputScore.close();
@@ -185,7 +185,7 @@ public class ManchesterUnitedStats {
 				scored = Integer.parseInt(fixtureWithScore[positionAway + 1]);
 			}
 			goalScored = goalScored + scored;
-			against = calculateGoalsConceded(numberOfMatches, positionHome, positionAway);
+			against = calculateGoalsConceded(positionHome, positionAway);
 			goalConceded = goalConceded + against;
 			positionHome = positionHome + 4;
 			positionAway = positionAway + 4;
@@ -206,7 +206,7 @@ public class ManchesterUnitedStats {
 	 * @return totalAgainst {@link Integer}
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-	public int calculateGoalsConceded(int numberOfMatches, int positionHome, int positionAway) {
+	public int calculateGoalsConceded(int positionHome, int positionAway) {
 		int totalAgainst = 0;
 		int against = 0;
 		if (!clubName.equals(fixtureWithScore[positionHome])) {
