@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class EvenFibonacci {
 	private static final Logger LOGGER = Logger.getLogger(EvenFibonacci.class.getName());
-	private int series[];
+	private int[] series;
 	private int index = 0;
 
 	public EvenFibonacci(int range) {
@@ -36,16 +36,17 @@ public class EvenFibonacci {
 	public void generateSeries(int range) {
 		int num1 = 0;
 		int num2 = 1;
-		for (int sum = 0; sum < range;) {
+		int sum = 0;
+		while (sum < range) {
 			sum = num1 + num2;
 			series[index++] = sum;
-			num1 = num2;
+			num1 = num2;			
 			num2 = sum;
 		}
 	}
 
 	public boolean checkEven(int number) {
-		return (number % 2 == 0);
+		return number % 2 == 0;
 	}
 
 	/**
@@ -61,34 +62,26 @@ public class EvenFibonacci {
 		int sum = 0;
 		for (int i = 0; i < index; i++) {
 			if (checkEven(series[i])) {
-				sum += series[i];
+				sum += series[i];	
+				
 			}
 		}
 		return sum;
 	}
 
 	public static void main(String[] args) {
-		try(Scanner scanner = new Scanner(System.in)){
-			for (;;) {
-				LOGGER.info("Enter the range upto which the sum even numbers of fibonacci series is to be calculated");
-
-				try {
-					int range = Math.abs(Integer.parseInt(scanner.nextLine()));
-					EvenFibonacci ef1 = new EvenFibonacci(range);
-					ef1.generateSeries(range);
-					int sum = ef1.getEvenNumberSum();
-					LOGGER.log(Level.INFO,
-							"The sum of even numbers of fibonacci series whose values do not exceed {0} = {1}",
-							new Object[] { range, sum });
-					break;
-				} catch (NumberFormatException nfe) {
-					LOGGER.info("Characters entered or value out of integer out of bound.Re-enter the values.");
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.info("Exception occurred");
+		LOGGER.info("Enter the range upto which the sum even numbers of fibonacci series is to be calculated");
+		try (Scanner scanner = new Scanner(System.in)) {
+			int range = Math.abs(Integer.parseInt(scanner.nextLine()));
+			EvenFibonacci ef1 = new EvenFibonacci(range);
+			ef1.generateSeries(range);
+			int sum = ef1.getEvenNumberSum();
+			LOGGER.log(Level.INFO, "The sum of even numbers of fibonacci series whose values do not exceed {0} = {1}",
+					new Object[] { range, sum });
+		} catch (NumberFormatException nfe) {
+			LOGGER.info("Characters entered.Program will stop");
+			System.exit(0);
 		}
-
 	}
 
 }

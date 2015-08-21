@@ -1,12 +1,6 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.dipak.days;
 
-/**
- * Collected common constants to be used
- * 
- * @author Alina Shakya <alinashakya@lftechnology.com>
- *
- */
-public class CommonConstants {
+public final class CommonConstantsDayNames {
 	public static final String SUNDAY = "Sunday";
 	public static final String MONDAY = "Monday";
 	public static final String TUESDAY = "Tuesday";
@@ -16,7 +10,6 @@ public class CommonConstants {
 	public static final String SATURDAY = "Saturday";
 	public static final String INVALID_DAY = "Not a valid day";
 	
-	private CommonConstants() {
-		// TODO Auto-generated constructor stub
+	private CommonConstantsDayNames() {
 	}
 }

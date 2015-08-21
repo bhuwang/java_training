@@ -22,11 +22,34 @@ public class DataSet implements Comparable<DataSet> {
 
 	@Override
 	public int compareTo(DataSet data) {
-		return Integer.compare(this.dataValue, data.dataValue);
+		return this.dataValue - data.dataValue;
 	}
 
 	@Override
 	public String toString() {
 		return Integer.toString(dataValue);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + dataValue;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DataSet other = (DataSet) obj;
+		if (dataValue != other.dataValue)
+			return false;
+		return true;
+	}
+	
 }

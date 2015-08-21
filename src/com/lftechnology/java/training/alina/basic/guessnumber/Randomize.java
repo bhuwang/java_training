@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.guessnumber;
 
 import java.util.Random;
 

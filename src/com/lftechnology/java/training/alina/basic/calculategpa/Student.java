@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.calculategpa;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
-public class Student extends Course implements Comparable<Course> {
+public class Student extends Course {
 
 	static ArrayList<Student> students = new ArrayList<Student>();
 	static ArrayList<Course> courses = new ArrayList<Course>();
@@ -108,11 +108,4 @@ public class Student extends Course implements Comparable<Course> {
 		return "Name : " + this.fullName + ", Class : " + this.standard
 				+ ", Roll Number : " + this.rollNo + "," + super.toString();
 	}
-
-	@Override
-	public int compareTo(Course val) {
-		int percentageToCompare = (int) val.getPercentage();
-		return (int) (this.getPercentage() - percentageToCompare);
-	}
-
 }
