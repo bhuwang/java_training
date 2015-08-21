@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.calculategpa;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,12 +12,13 @@ import java.util.logging.Logger;
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
-public class Student extends Course implements Comparable<Course> {
+public class Student extends Course {
 
 	static ArrayList<Student> students = new ArrayList<Student>();
 	static ArrayList<Course> courses = new ArrayList<Course>();
 
-	private static final Logger LOGGER = Logger.getLogger(Student.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Student.class
+			.getName());
 	private String fullName;
 	private int standard;
 	private int rollNo;
@@ -70,8 +71,10 @@ public class Student extends Course implements Comparable<Course> {
 			LOGGER.log(Level.INFO, "Enter Student's Full Name : ");
 			String fullName = input.nextLine();
 			MarksValidation validation = new MarksValidation();
-			int standard = validation.numberValidation(input, "Enter Standard : ");
-			int rollNumber = validation.numberValidation(input, "Enter Roll Number : ");
+			int standard = validation.numberValidation(input,
+					"Enter Standard : ");
+			int rollNumber = validation.numberValidation(input,
+					"Enter Roll Number : ");
 			LOGGER.log(Level.INFO, "Enter Marks for following Subjects : ");
 			float maths = validation.marksValidation(input, "Maths : ");
 			float science = validation.marksValidation(input, "Science : ");
@@ -82,7 +85,7 @@ public class Student extends Course implements Comparable<Course> {
 					history, fullName, standard, rollNumber);
 			students.add(student);
 		}
-		displayStudentDetails(students, courses);
+		displayStudentDetails(students);
 	}
 
 	/**
@@ -90,16 +93,14 @@ public class Student extends Course implements Comparable<Course> {
 	 * 
 	 * @param students
 	 *            {@link ArrayList} arrays of student details
-	 * @param courses
-	 *            {@link ArrayList} arrays of course details
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	private static void displayStudentDetails(ArrayList<Student> students,
-			ArrayList<Course> courses) {
+	private static void displayStudentDetails(ArrayList<Student> students) {
 		Comparator<Student> mycomparator = Collections.reverseOrder();
 		Collections.sort(students, mycomparator);
 		for (Student student : students) {
-			LOGGER.log(Level.INFO, "Student lists : {0}", new Object[] { student });
+			LOGGER.log(Level.INFO, "Student lists : {0}",
+					new Object[] { student });
 		}
 	}
 
@@ -107,10 +108,4 @@ public class Student extends Course implements Comparable<Course> {
 		return "Name : " + this.fullName + ", Class : " + this.standard
 				+ ", Roll Number : " + this.rollNo + "," + super.toString();
 	}
-
-	public int compareTo(Course val) {
-		int percentageToCompare = (int) val.getPercentage();
-		return (int) (this.getPercentage() - percentageToCompare);
-	}
-
 }

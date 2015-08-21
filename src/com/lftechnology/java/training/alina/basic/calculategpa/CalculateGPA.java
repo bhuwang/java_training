@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.calculategpa;
 
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class CalculateGPA {
-	private final static Logger LOGGER = Logger.getLogger(CalculateGPA.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CalculateGPA.class.getName());
 
 	public static void main(String[] args) {
 		try (Scanner input = new Scanner(System.in)) {
