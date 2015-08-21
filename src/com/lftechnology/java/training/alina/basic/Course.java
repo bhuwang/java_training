@@ -68,7 +68,7 @@ public class Course {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	public float getTotalMarks() {
-		return (this.subject1 + this.subject2 + this.subject3 + this.subject4 + this.subject5);
+		return this.subject1 + this.subject2 + this.subject3 + this.subject4 + this.subject5;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class Course {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	public float getPercentage() {
-		return (getTotalMarks() / 5);
+		return getTotalMarks() / 5;
 	}
 
 	/**
@@ -106,6 +106,7 @@ public class Course {
 		return grade;
 	}
 
+	@Override
 	public String toString() {
 		return "Total Marks : " + getTotalMarks() + ", Percentage : "
 				+ getPercentage() + ", Grade : " + getGrade();
