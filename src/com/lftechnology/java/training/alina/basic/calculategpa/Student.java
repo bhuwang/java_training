@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.calculategpa;
 
 import java.util.ArrayList;
 import java.util.Collections;

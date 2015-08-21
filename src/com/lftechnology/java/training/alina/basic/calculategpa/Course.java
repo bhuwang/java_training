@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.alina.basic;
+package com.lftechnology.java.training.alina.basic.calculategpa;
 
 /**
  * Class Course contains course details and marks calculations.
