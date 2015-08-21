@@ -2,9 +2,6 @@ package com.lftechnology.java.training.srijan.basics.football1;
 
 import java.util.logging.Logger;
 
-
-
-
 public class PointsStructure {
 	private static final int WIN;
 	private static final int LOSE;
@@ -14,6 +11,7 @@ public class PointsStructure {
 	private int wins;
 	private int draws;
 	private int lose;
+	private String clubName;
 	
 	static {
 		WIN = 3;
@@ -27,6 +25,7 @@ public class PointsStructure {
 		this.wins = 0;
 		this.draws = 0;
 		this.lose = 0;
+		this.clubName = club;
 	}
 
 	private static final Logger LOGGER = Logger.getLogger(PointsStructure.class.getName());
@@ -47,11 +46,11 @@ public class PointsStructure {
 		int stringHomePosition = 0;
 		int stringAwayPosition = 2;
 		for (int i = 0; i < numberOfMatches; i++) {
-			if (fixturesWithScore[stringHomePosition].equals("Manchester United")) {
+			if (clubName.equals(fixturesWithScore[stringHomePosition])) {
 				result = determineResult(fixturesWithScore, stringHomePosition);
 			}
 
-			else if (fixturesWithScore[stringAwayPosition].equals("Manchester United")) {
+			else if (clubName.equals(fixturesWithScore[stringAwayPosition])) {
 				result = resultDetermine(fixturesWithScore, stringAwayPosition);
 			}
 			stringHomePosition = stringHomePosition + 4;
@@ -127,10 +126,10 @@ public class PointsStructure {
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
 	public void displayPoints(String result, int numberOfWeeks) {
-		if (result.equals("WIN")) {
+		if ("WIN".equals(result)) {
 			points = points + WIN;
 			wins++;
-		} else if (result.equals("LOSE")) {
+		} else if ("LOSE".equals(result)) {
 			points = points + LOSE;
 			lose++;
 		} else {

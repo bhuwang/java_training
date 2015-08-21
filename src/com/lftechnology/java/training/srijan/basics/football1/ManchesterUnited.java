@@ -1,13 +1,18 @@
 package com.lftechnology.java.training.srijan.basics.football1;
 
 import java.util.logging.Logger;
+
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class ManchesterUnited {
+public class ManchesterUnited{
 
 	private static final Logger LOGGER = Logger.getLogger(ManchesterUnited.class.getName());
+	
+	private ManchesterUnited(){
+		
+	}
 	
 	public static void main(String[] args) {
 		int numberOfGameWeeks = 0;
@@ -22,9 +27,9 @@ public class ManchesterUnited {
 			club = clubNameString.nextLine();
 			inputFixtures(numberOfGameWeeks, club);
 		}catch(InputMismatchException ex){
-			LOGGER.info("Error:Input MisMatchException" + ex.getMessage());
+			LOGGER.info("your error message"+ ex);
 		}catch(NoSuchElementException ex){
-			LOGGER.info("Error Message" + ex.getMessage());
+			LOGGER.info("Error Message" + ex);
 		}finally{
 		input.close();
 		clubNameString.close();
@@ -64,7 +69,7 @@ public class ManchesterUnited {
 				stringLengthCount++;
 			}
 		}
-		manchesterUnitedStats.displayGameweekFixtures(numberOfGameWeeks, gamesFixtures);
+		manchesterUnitedStats.displayGameweekFixtures(gamesFixtures);
 		manchesterUnitedStats.inputGameweekScores(numberOfGameWeeks, gamesFixtures);
 		intake.close();		
 	}

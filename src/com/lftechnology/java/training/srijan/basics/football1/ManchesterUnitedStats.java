@@ -193,7 +193,6 @@ public class ManchesterUnitedStats {
 		LOGGER.info("Goals Scored " + goalScored);
 		LOGGER.info("Goal Conceded " + goalConceded);
 		displayResults(numberOfMatches);
-		
 	}
 	
 	
