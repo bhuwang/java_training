@@ -1,6 +1,6 @@
 package com.lftechnology.java.training.sanish.game;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +22,7 @@ public class LeagueResult {
      * @param teamName {@link String} team name
      * @author Sanish Maharjan <sanishmaharjan@lftechology.com>
      */
-    public static void displayLeagueGameResultOfTeam(ArrayList<Game> games, String teamName) {
+    public static void displayLeagueGameResultOfTeam(LinkedList<Game> games, String teamName) {
         Team team;
         int totalGoalScore = 0, totalGoalConceded = 0, totalGameScore = 0, winGameCount = 0,
                 lossGameCount = 0, drawGameCount = 0;
