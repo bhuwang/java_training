@@ -12,9 +12,23 @@ public class GameInfo {
 	private int noOfGoalScored = 0;
 	private int noOfGoalConceded = 0;
 	private int noOfPoints = 0;
-	private String goalPoint = "";
 	private int firstScore = 0;
 	private int secondScore = 0;
+	private GameStatus goalPoint;
+
+	/**
+	 * Enum function for Game status
+	 * 
+	 * @author Alina Shakya <alinashakya@lftechnology.com>
+	 */
+	public enum GameStatus {
+		WIN("Win"), DRAW("Draw"), LOSE("Lose"), NO_MATCH("0");
+		private String status;
+
+		private GameStatus(String status) {
+			this.status = status;
+		}
+	}
 
 	public int getNoOfWins() {
 		return noOfWins;
@@ -104,26 +118,26 @@ public class GameInfo {
 		int opponentScore = 0, selfScore = 0;
 		if (team == 0) {
 			if (firstScore > secondScore) {
-				goalPoint = Constants.WIN;
+				goalPoint = GameStatus.WIN;
 			} else if (secondScore > firstScore) {
-				goalPoint = Constants.LOSS;
+				goalPoint = GameStatus.LOSE;
 			} else if (firstScore == secondScore) {
-				goalPoint = Constants.DRAW;
+				goalPoint = GameStatus.DRAW;
 			}
 			selfScore = firstScore;
 			opponentScore = secondScore;
 		} else if (team > 0) {
 			if (secondScore > firstScore) {
-				goalPoint = Constants.WIN;
+				goalPoint = GameStatus.WIN;
 			} else if (firstScore > secondScore) {
-				goalPoint = Constants.LOSS;
+				goalPoint = GameStatus.LOSE;
 			} else if (firstScore == secondScore) {
-				goalPoint = Constants.DRAW;
+				goalPoint = GameStatus.DRAW;
 			}
 			selfScore = secondScore;
 			opponentScore = firstScore;
 		} else {
-			goalPoint = Constants.NO_MATCH;
+			goalPoint = GameStatus.NO_MATCH;
 		}
 		scoreCalculation(goalPoint, selfScore, opponentScore);
 	}
@@ -139,15 +153,15 @@ public class GameInfo {
 	 *            {@link Integer} points conceded
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	public void scoreCalculation(String goalPoint, int selfScore,
+	public void scoreCalculation(GameStatus goalPoint, int selfScore,
 			int opponentScore) {
-		if (goalPoint == Constants.LOSS) {
+		if (goalPoint == GameStatus.LOSE) {
 			this.noOfDefeats++;
 		}
-		if (goalPoint == Constants.DRAW) {
+		if (goalPoint == GameStatus.DRAW) {
 			this.noOfDraws++;
 		}
-		if (goalPoint == Constants.WIN) {
+		if (goalPoint == GameStatus.WIN) {
 			this.noOfWins++;
 		}
 		this.noOfGoalScored += selfScore;
