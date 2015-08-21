@@ -1,19 +1,21 @@
 /**
  * 
  */
+
 package com.lftechnology.java.training.niraj.palindrome;
 
 /**
  * Helper class for functionality related to Palindrome
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
- *
  */
 public class Palindrome {
+
 	private int minLimit;
 	private int maxLimit;
 
 	public Palindrome(int minLimit, int maxLimit) {
+
 		this.minLimit = minLimit;
 		this.maxLimit = maxLimit;
 	}
@@ -27,6 +29,7 @@ public class Palindrome {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public boolean isPalindrome(long num) {
+
 		long reverse = reverseNumber(num);
 		return num == reverse;
 	}
@@ -40,6 +43,7 @@ public class Palindrome {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public long reverseNumber(long num) {
+
 		long number = num;
 		long temp;
 		long reverse = 0;
@@ -57,10 +61,10 @@ public class Palindrome {
 	 * 
 	 * @return{@link Integer} largest palindrome number from product of two
 	 *               digits between min and max limit
-	 * 
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public long getLargestPalindrome() {
+
 		long largestPalindrome = 0;
 		long product;
 		for (long i = maxLimit; i >= minLimit; i--) {

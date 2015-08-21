@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.niraj.stemleaf;
 
 import java.util.InputMismatchException;
@@ -8,25 +9,26 @@ import java.util.logging.Logger;
 import com.lftechnology.java.training.alina.basic.SumOfMultiples;
 
 /**
- * 
  * Plots stem and leaf
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
- *
  */
 public class StemLeafPlot {
-	private static final Logger LOGGER = Logger.getLogger(SumOfMultiples.class
-			.getName());
+
+	private static final Logger LOGGER =
+		Logger.getLogger(SumOfMultiples.class.getName());
 
 	private StemLeafPlot() {
 
 	}
 
 	public static void main(String[] args) {
+
 		try (Scanner scanner = new Scanner(System.in)) {
 			int dataPointLength;
 
-			LOGGER.log(Level.INFO, "Please provide the number of data points : ");
+			LOGGER.log(
+				Level.INFO, "Please provide the number of data points : ");
 			while (true) {
 				while (!scanner.hasNextInt()) {
 					LOGGER.warning("Please enter a number :");
@@ -36,7 +38,8 @@ public class StemLeafPlot {
 				if (dataPointLength < 0) {
 					LOGGER.warning("Please provide a positive number : ");
 					scanner.next();
-				} else {
+				}
+				else {
 					break;
 				}
 			}
@@ -44,7 +47,8 @@ public class StemLeafPlot {
 			StemLeaf stemLeaf = new StemLeaf(dataPoints);
 			stemLeaf.plotStemLeaf();
 
-		} catch (InputMismatchException e) {
+		}
+		catch (InputMismatchException e) {
 			LOGGER.warning("Invalid input is provided");
 		}
 
@@ -61,6 +65,7 @@ public class StemLeafPlot {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	private static int[] getDataPoints(int dataPointLength, Scanner scanner) {
+
 		int[] dataPoints = new int[dataPointLength];
 		int dataPoint;
 		for (int i = 0; i < dataPointLength; i++) {
@@ -74,7 +79,8 @@ public class StemLeafPlot {
 				if (dataPoint < 0) {
 					LOGGER.warning("Please provide positive data points:");
 					scanner.next();
-				} else {
+				}
+				else {
 					break;
 				}
 			}

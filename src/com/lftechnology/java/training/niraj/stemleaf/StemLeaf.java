@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 package com.lftechnology.java.training.niraj.stemleaf;
 
 import java.util.ArrayList;
@@ -15,25 +16,28 @@ import java.util.logging.Logger;
  * Helper class for data representation with stem and leaf plot
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
- *
  */
 public class StemLeaf {
-	private static final Logger LOGGER = Logger.getLogger(StemLeaf.class
-			.getName());
+
+	private static final Logger LOGGER =
+		Logger.getLogger(StemLeaf.class.getName());
 	private static final int DIVIDER = 10;
 	private int[] dataPoints;
 	private Map<Integer, List<Integer>> stemLeafInfo;
 
 	public StemLeaf(int[] dataPoints) {
+
 		stemLeafInfo = new HashMap<Integer, List<Integer>>();
 		setDataPoints(dataPoints);
 	}
 
 	public int[] getDataPoints() {
+
 		return dataPoints;
 	}
 
 	public void setDataPoints(int[] dataPoints) {
+
 		this.dataPoints = dataPoints;
 		Arrays.sort(this.dataPoints);
 	}
@@ -44,6 +48,7 @@ public class StemLeaf {
 	 * @author Niraj Rajbhandari<nirajrajbhandari@lftechnology.com>
 	 */
 	public void plotStemLeaf() {
+
 		setStemLeafInfo(dataPoints);
 		displayStemLeafPlot();
 	}
@@ -56,12 +61,13 @@ public class StemLeaf {
 	 * @author Niraj Rajbhandari <nirajrajbahndari@lftechnology.com>
 	 */
 	public void setStemLeafInfo(int[] dataPoints) {
+
 		int quotient;
 		int remainder;
 		float divisionResult;
 		for (int i = 0; i < dataPoints.length; i++) {
 			remainder = dataPoints[i] % DIVIDER;
-			divisionResult = (float)dataPoints[i] / DIVIDER;
+			divisionResult = (float) dataPoints[i] / DIVIDER;
 			quotient = (int) Math.floor(divisionResult);
 			setSpecificStemLeafPlot(quotient, remainder);
 		}
@@ -77,11 +83,13 @@ public class StemLeaf {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	private void setSpecificStemLeafPlot(int quotient, int remainder) {
+
 		List<Integer> leafList;
 		if (stemLeafInfo.containsKey(quotient)) {
 			leafList = stemLeafInfo.get(quotient);
 			leafList.add(remainder);
-		} else {
+		}
+		else {
 			leafList = new ArrayList<Integer>();
 			leafList.add(remainder);
 		}
@@ -94,6 +102,7 @@ public class StemLeaf {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	private void displayStemLeafPlot() {
+
 		List<Integer> leafList;
 
 		String eachEntry;
@@ -103,12 +112,12 @@ public class StemLeaf {
 		stemLeafPlot.append("-------------------------------------\n\n");
 		stemLeafPlot.append("Stem and leaf Display: \n\n");
 		stemLeafPlot.append("Frequency \t\t Stem \t\t Leaf\n");
-		stemLeafPlot
-				.append("===================================================\n");
+		stemLeafPlot.append("===================================================\n");
 		for (Entry<Integer, List<Integer>> entry : stemLeafInfo.entrySet()) {
 			leafList = entry.getValue();
-			eachEntry = leafList.size() + "\t\t\t  " + entry.getKey()
-					+ "\t\t  " + getLeafListString(leafList) + "\n";
+			eachEntry =
+				leafList.size() + "\t\t\t  " + entry.getKey() + "\t\t  " +
+					getLeafListString(leafList) + "\n";
 			stemLeafPlot.append(eachEntry);
 		}
 		LOGGER.info(stemLeafPlot.toString());
@@ -123,6 +132,7 @@ public class StemLeaf {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	private String getLeafListString(List<Integer> leafList) {
+
 		String leafListString = "";
 		for (int leaf : leafList) {
 			leafListString += leaf + " ";
