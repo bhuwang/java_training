@@ -5,7 +5,7 @@ package com.lftechnology.java.training.alina.basic;
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
-public class Course {
+public class Course implements Comparable<Course> {
 	private float subject1;
 	private float subject2;
 	private float subject3;
@@ -111,6 +111,12 @@ public class Course {
 	public String toString() {
 		return "Total Marks : " + getTotalMarks() + ", Percentage : "
 				+ getPercentage() + ", Grade : " + getGrade();
+	}
+
+	@Override
+	public int compareTo(Course val) {
+		int percentageToCompare = (int) val.getPercentage();
+		return (int) (this.getPercentage() - percentageToCompare);
 	}
 
 	@Override
