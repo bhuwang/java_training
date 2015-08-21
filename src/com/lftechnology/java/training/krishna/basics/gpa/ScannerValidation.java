@@ -20,6 +20,11 @@ public class ScannerValidation {
 	public static final int MIN_NUM = 0;
 	public static final int MAX_NUM = 100;
 
+	//constructor
+	private ScannerValidation() {
+		
+	}
+
 	/**
 	 * Function is used to validate the user input using scanner
 	 *

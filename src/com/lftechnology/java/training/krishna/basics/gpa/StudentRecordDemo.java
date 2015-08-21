@@ -20,6 +20,11 @@ import java.util.logging.Logger;
 
 public class StudentRecordDemo {
 
+	// constructor
+	private StudentRecordDemo() {
+
+	}
+
 	private static final Logger LOGGER = Logger
 			.getLogger(StudentRecordDemo.class.getName());
 
@@ -47,7 +52,6 @@ public class StudentRecordDemo {
 
 			TreeMap<Integer, Object> sortedReports = StudentRecord
 					.sortedStudentReport(studentData);
-			System.out.println(sortedReports);
 			StudentRecord.displayStudentDetails(sortedReports);
 			scanner.close();
 		} catch (NumberFormatException e) {

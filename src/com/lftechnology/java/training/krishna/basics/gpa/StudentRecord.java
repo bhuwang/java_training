@@ -21,6 +21,11 @@ public class StudentRecord {
 	private static final Logger LOGGER = Logger
 			.getLogger(StudentRecordDemo.class.getName());
 
+	//constructor
+	private StudentRecord() {
+	
+	}
+
 	/**
 	 * Calculate the total marks of the student
 	 *
@@ -89,13 +94,15 @@ public class StudentRecord {
 	}
 
 	/**
-	 * This method display the report of student such as name, percentage,
-	 * total marks
+	 * This method display the report of student such as name, percentage, total
+	 * marks
 	 *
 	 * @param students
 	 *            {@link Student}
 	 * @param subjects
 	 *            {@link ArrayList}
+	 * @param studentData
+	 *            {@link Map<Integer, Object>}
 	 * @return grade {@link char} grade obtained by the student
 	 * 
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
