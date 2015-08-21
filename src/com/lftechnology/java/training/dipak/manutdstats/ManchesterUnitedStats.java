@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ * Program computes the statistics of Manchester united in a season based on the scores added on a string.
  * @author Dipak Thapa <dipakthapa@lftechnology.com>
  *
  */
@@ -132,7 +132,7 @@ public class ManchesterUnitedStats {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ManchesterUnitedStats mus1 = new ManchesterUnitedStats("manchester united");
+		ManchesterUnitedStats mus1 = new ManchesterUnitedStats("mAnchEster uniTeD");
 		mus1.computeResults();
 		mus1.computePoints();
 		mus1.displayResults();
