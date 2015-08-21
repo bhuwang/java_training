@@ -60,7 +60,7 @@ public class PrintDay {
 			LOGGER.info("Enter a number(1-7) or press any number (<=0) to terminate::");
 			int day;
 			try {
-				day = (Integer.parseInt(sc.nextLine()));
+				day = Integer.parseInt(sc.nextLine());
 				if (day <= 0) {
 					closeResource=true;
 					break;
@@ -70,7 +70,6 @@ public class PrintDay {
 				LOGGER.info(displayText);
 			} catch (NumberFormatException nfe) {
 				LOGGER.info("Characters entered.Re-enter the values.");
-				continue;
 			}finally{
 				if(closeResource){
 					sc.close();
