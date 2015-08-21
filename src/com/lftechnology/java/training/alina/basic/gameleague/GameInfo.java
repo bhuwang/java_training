@@ -86,7 +86,6 @@ public class GameInfo {
 					secondScore = outputValue;
 				}
 			} catch (NumberFormatException e) {
-
 			}
 		}
 		getGoalPoint(result);
