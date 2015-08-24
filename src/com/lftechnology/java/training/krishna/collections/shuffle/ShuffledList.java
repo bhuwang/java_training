@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.krishna.collections.shuffle;
 
 import java.util.ArrayList;
@@ -15,16 +16,16 @@ import java.util.logging.Logger;
  */
 
 /**
- * ShuffledList.java
- * 
- * This program shuffled the given list, sublist and finally sort the list
+ * ShuffledList.java This program shuffled the given list, sublist and finally
+ * sort the list
  * 
  * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
  * @version 1.0
  */
 public class ShuffledList {
-	private static final Logger LOGGER = Logger.getLogger(ShuffledList.class
-			.getName());
+
+	private static final Logger LOGGER =
+		Logger.getLogger(ShuffledList.class.getName());
 
 	// constructor
 	private ShuffledList() {
@@ -37,13 +38,14 @@ public class ShuffledList {
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static void main(String[] args) {
+
 		List<Integer> arrayList = new ArrayList<>();
 		List<Integer> sortedList = new ArrayList<>();
 		for (int i = 1; i <= 49; i++) {
 			arrayList.add(i);
 		}
 		LOGGER.log(Level.INFO, "Values of list: {0}", arrayList);
-		
+
 		Collections.shuffle(arrayList);
 		LOGGER.log(Level.INFO, "Values of list after shuffling: {0}", arrayList);
 

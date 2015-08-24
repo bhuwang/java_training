@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.krishna.collections.shuffle;
 
 import java.util.LinkedList;
@@ -23,8 +24,8 @@ import java.util.logging.Logger;
  */
 public class LinkedListCollection {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(LinkedListCollection.class.getName());
+	private static final Logger LOGGER =
+		Logger.getLogger(LinkedListCollection.class.getName());
 
 	// constructor
 	private LinkedListCollection() {
@@ -32,6 +33,7 @@ public class LinkedListCollection {
 	}
 
 	public static void main(String[] arg) {
+
 		List<String> one = new LinkedList<String>();
 		List<String> two = new LinkedList<String>();
 		one.add("one");
