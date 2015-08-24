@@ -9,12 +9,9 @@ import java.util.logging.Logger;
 
 /**
  * <p>ShuffleNumbers Class creates an array list with 49 Integer objects from 1
- * to 49 </p> 
- * <p>Randomly shuffles the list </p> 
- * <p>selects the first 6 values from the shuffled list </p>
- * <p> sorts the selected values and prints them out
- * </p> 
- * <p>Use ArrayList, Collections.shuffle(), ArrayList.subList(), and
+ * to 49 </p> <p>Randomly shuffles the list </p> <p>selects the first 6 values
+ * from the shuffled list </p> <p> sorts the selected values and prints them out
+ * </p> <p>Use ArrayList, Collections.shuffle(), ArrayList.subList(), and
  * Collection.sort() </p>
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
@@ -23,12 +20,12 @@ public class ShuffleNumbers {
 
 	private static final Logger LOGGER =
 		Logger.getLogger(ShuffleNumbers.class.getName());
-	public static List<Integer> arrayList = new ArrayList<Integer>();
-	public static List<Integer> sortedList = new ArrayList<Integer>();
 
 	public static void main(String[] args) {
 
-		getArrayList();
+		List<Integer> arrayList = new ArrayList<Integer>();
+
+		getArrayList(arrayList);
 		getShuffledList(arrayList);
 		getSortedArrayList(arrayList);
 	}
@@ -36,9 +33,11 @@ public class ShuffleNumbers {
 	/**
 	 * Function used to get array list with 49 Integer objects from 1 to 49
 	 * 
+	 * @param arrayList
+	 *            {@link List} list of array with 49 integers
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	public static void getArrayList() {
+	public static void getArrayList(List<Integer> arrayList) {
 
 		for (int i = 1; i < 50; i++) {
 			arrayList.add(i);
@@ -75,6 +74,7 @@ public class ShuffleNumbers {
 	 */
 	public static void getSortedArrayList(List<Integer> arrayList) {
 
+		List<Integer> sortedList = new ArrayList<Integer>();
 		sortedList = arrayList.subList(0, 6);
 		LOGGER.log(
 			Level.INFO, "First 6 SubList stored in List : {0}", new Object[] {
