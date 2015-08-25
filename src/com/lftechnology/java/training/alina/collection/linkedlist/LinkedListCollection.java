@@ -24,6 +24,10 @@ public class LinkedListCollection {
 	private static List<String> one = new LinkedList<String>();
 	private static List<String> two = new LinkedList<String>();
 
+	
+	public LinkedListCollection() {
+	}
+	
 	public static void main(String[] args) {
 
 		addElements();
