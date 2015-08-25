@@ -25,7 +25,7 @@ public class LinkedListCollection {
 	private static List<String> two = new LinkedList<String>();
 
 	
-	public LinkedListCollection() {
+	private LinkedListCollection() {
 	}
 	
 	public static void main(String[] args) {
