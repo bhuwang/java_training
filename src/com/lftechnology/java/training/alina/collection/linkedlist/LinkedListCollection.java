@@ -7,10 +7,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * a. Create a linked list named one and two. b. Add some elements to both one
- * (one, two, three, four, five) and two (six, seven, eight, nine, and ten). c.
- * Merge the words from two into one. d. Remove every second word from two. e.
- * Remove all words in two from one. f. Print the value after each operation.
+ * a. Create a linked list named one and two. 
+ * b. Add some elements to both one (one, two, 
+ * three, four, five) and two (six, seven, eight, nine, and ten).
+ * c. Merge the words from two into one. 
+ * d. Remove every second word from two. 
+ * e. Remove all words in two from one. 
+ * f. Print the value after each operation.
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
