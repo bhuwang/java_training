@@ -1,5 +1,5 @@
+package com.lftechnology.java.training.alina.collections.shufflenumbers;
 
-package com.lftechnology.java.training.alina.basic.sufflenumbers;
 
 import java.util.ArrayList;
 import java.util.List;
