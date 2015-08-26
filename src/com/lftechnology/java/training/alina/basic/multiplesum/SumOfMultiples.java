@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 34_dipak
 package com.lftechnology.java.training.alina.basic.multiplesum;
 
 import java.util.logging.Level;
@@ -15,7 +12,6 @@ import java.util.logging.Logger;
  * @author Alina Shakya<alinashakya@lftechnology.com>
  */
 public class SumOfMultiples {
-<<<<<<< HEAD
 
 	private static final Logger LOGGER =
 		Logger.getLogger(SumOfMultiples.class.getName());
@@ -26,19 +22,12 @@ public class SumOfMultiples {
 
 	public static void main(String[] args) {
 
-=======
-	private static final Logger LOGGER = Logger.getLogger(SumOfMultiples.class
-			.getName());
-
-	public static void main(String[] args) {
->>>>>>> 34_dipak
 		int maxNum = 1000;
 		int num1 = 3;
 		int num2 = 5;
 		try {
 			getTotalSum(maxNum, num1, num2);
 			int totalSumOfMultiples = getTotalSum(maxNum, num1, num2);
-<<<<<<< HEAD
 			LOGGER.log(
 				Level.INFO, "Sum of multiples of {0} and {1} is : {2}",
 				new Object[] {
@@ -49,13 +38,6 @@ public class SumOfMultiples {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {
 				ex
 			});
-=======
-			LOGGER.log(Level.INFO, "Sum of multiples of {0} and {1} is : {2}",
-					new Object[] { num1, num2, totalSumOfMultiples });
-		} catch (ArithmeticException ex) {
-			LOGGER.log(Level.WARNING, "Exception Message : {0}",
-					new Object[] { ex });
->>>>>>> 34_dipak
 		}
 	}
 
@@ -72,10 +54,7 @@ public class SumOfMultiples {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private static int getTotalSum(int maxNum, int num1, int num2) {
-<<<<<<< HEAD
 
-=======
->>>>>>> 34_dipak
 		int totalSum = 0;
 		for (int i = 1; i < maxNum; i++) {
 			if (i % num1 == 0 || i % num2 == 0) {

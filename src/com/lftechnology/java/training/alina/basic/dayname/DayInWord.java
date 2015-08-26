@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.alina.basic.dayname;
 
 import java.util.Scanner;
@@ -10,22 +11,21 @@ import java.util.logging.Logger;
  * Otherwise, it shall print “Not a valid day”.
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
- *
  */
 public class DayInWord {
 
-	private static final Logger LOGGER = Logger.getLogger(DayInWord.class.getName());
+	private static final Logger LOGGER =
+		Logger.getLogger(DayInWord.class.getName());
 
 	public static void main(String[] args) {
-		try(Scanner scanner = new Scanner(System.in)) {
+
+		try (Scanner scanner = new Scanner(System.in)) {
 			displayDayName(scanner);
-		} catch (Exception e) {
-<<<<<<< HEAD
-			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e});
-=======
-			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
-			throw new RuntimeException(e);
->>>>>>> 34_dipak
+		}
+		catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {
+				e
+			});
 		}
 	}
 
@@ -37,6 +37,7 @@ public class DayInWord {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private String getDayName(int number) {
+
 		String day = null;
 		switch (number) {
 		case 0:
@@ -74,12 +75,15 @@ public class DayInWord {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private static void displayDayName(Scanner scanner) {
+
 		int number;
 		LOGGER.info("Enter a number > ");
 		number = scanner.nextInt();
 		DayInWord dayName = new DayInWord();
 		while (number >= 0) {
-			LOGGER.log(Level.INFO, "Day {0} is {1}", new Object[] {number,dayName.getDayName(number)});
+			LOGGER.log(Level.INFO, "Day {0} is {1}", new Object[] {
+				number, dayName.getDayName(number)
+			});
 			LOGGER.info("Please enter another number > ");
 			number++;
 			number = scanner.nextInt();
