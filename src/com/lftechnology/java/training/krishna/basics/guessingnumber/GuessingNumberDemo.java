@@ -24,7 +24,11 @@ public class GuessingNumberDemo {
 	private GuessingNumberDemo() {
 
 	}
-
+	/**
+	 * This is the main method.
+	 * 
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
 	public static void main(String[] args) {
 
 		try {
