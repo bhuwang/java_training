@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  * Java program to present data in stem and leaf form
- * 
+ *
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class StemLeafRepresentation {
@@ -23,13 +23,10 @@ public class StemLeafRepresentation {
 	private static int dataPoints;
 	private static DataSet[] data;
 
-<<<<<<< HEAD
 	private StemLeafRepresentation() {
 
 	}
 
-=======
->>>>>>> 34_dipak
 	public static void main(String[] args) {
 
 		try (Scanner scanner = new Scanner(System.in)) {
@@ -43,7 +40,7 @@ public class StemLeafRepresentation {
 
 	/**
 	 * Function used to get data points and display data in order
-	 * 
+	 *
 	 * @param scanner
 	 *            {@link Scanner}
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
@@ -70,7 +67,7 @@ public class StemLeafRepresentation {
 
 	/**
 	 * Gets and displays stem leaf
-	 * 
+	 *
 	 * @param data
 	 *            {@link Arrays} list of data
 	 * @param dataPoints
