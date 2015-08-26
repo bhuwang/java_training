@@ -11,13 +11,16 @@ import java.util.List;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class ResultCalculation {
+    private ResultCalculation() {
+    }
+
     /**
      * Calculate & set student's total marks, percentage and grade obtain
      *
-     * @param students {@link ArrayList} list of student objects
+     * @param {@link ArrayList} list of student objects
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public static void calculateResult(ArrayList<Student> students) {
+    public static void calculateResult(List<Student> students) {
         int totalMarks;
         List<Mark> marks = new ArrayList<Mark>();
         Result studeResult;

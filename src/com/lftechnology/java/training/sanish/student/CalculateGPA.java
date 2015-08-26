@@ -1,6 +1,7 @@
 package com.lftechnology.java.training.sanish.student;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,12 +12,13 @@ import java.util.logging.Logger;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class CalculateGPA {
-    private final static Logger LOGGER = Logger.getLogger(CalculateGPA.class
+    private static final Logger LOGGER = Logger.getLogger(CalculateGPA.class
             .getName());
     private int studentNumber = 0;
     private ArrayList<Student> students = new ArrayList<Student>();
+    private static final String[] SUBJECT_LIST = {Constants.SUBJECT_NEPALI, Constants.SUBJECT_ENGLISH, Constants.SUBJECT_MATH, Constants.SUBJECT_SCIENCE};
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         CalculateGPA calculateGPA = new CalculateGPA();
         try (Scanner scanner = new Scanner(System.in)) {
             LOGGER.log(Level.INFO, "Enter number of students : ");
@@ -71,7 +73,7 @@ public class CalculateGPA {
      */
     public void setStudentMarks(Scanner scanner, Student student) {
         int markObtain;
-        for (String subject : Constants.SUBJECT_LIST) {
+        for (String subject : SUBJECT_LIST) {
             LOGGER.log(Level.INFO, "Enter marks obtain in {0} : ",
                     new Object[]{subject});
             markObtain = UserInput.getNumber(scanner, Constants.MIN_MARK,
@@ -86,7 +88,7 @@ public class CalculateGPA {
      * @param students {@link ArrayList} list of students
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public void listOutStudents(ArrayList<Student> students) {
+    public void listOutStudents(List<Student> students) {
         for (Student student : students) {
             LOGGER.log(Level.INFO, student.toString());
         }
