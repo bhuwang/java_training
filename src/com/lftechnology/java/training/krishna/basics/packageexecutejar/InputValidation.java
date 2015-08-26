@@ -28,7 +28,7 @@ public class InputValidation {
 	 *
 	 * @param scanner
 	 *            {@link Scanner}
-	 * @return number {@link Integer} input value
+	 * @return number {@link int} input value
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static int numberValidation(Scanner scanner) {
@@ -41,8 +41,27 @@ public class InputValidation {
 			}
 			number = scanner.nextInt();
 		}
-		while (number < MIN_NUM);
+		while (!isValidNumber(number));
 		return number;
+	}
+
+	/**
+	 * Function is used to check if number is valid and within range
+	 *
+	 * @param number
+	 *            {@link int} number
+	 * @return {@link boolean}
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
+	private static boolean isValidNumber(int number) {
+
+		if (number <= MIN_NUM) {
+			LOGGER.log(Level.INFO, "Please enter number 0 or greater than 0 : ");
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 }
