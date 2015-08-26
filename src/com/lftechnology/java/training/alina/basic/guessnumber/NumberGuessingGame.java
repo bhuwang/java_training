@@ -26,7 +26,7 @@ public class NumberGuessingGame {
 			randomNumber = Randomize.generateRandomNumber(minLimit,maxLimit);
 			number.checkForGuessNumber(scanner, randomNumber);
 		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
+			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e});
 		}
 	}
 
