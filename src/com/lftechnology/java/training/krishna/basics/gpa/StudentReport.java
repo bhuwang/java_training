@@ -9,37 +9,38 @@ package com.lftechnology.java.training.krishna.basics.gpa;
  */
 public class StudentReport {
 
-	private String name;
-	private int marks;
+	private String studentName;
+	private int subjectMarks;
 	private float percentage;
 	private char grade;
 
-	public StudentReport(String name, int marks, float percentage, char grade) {
+	public StudentReport(
+		String studentName, int subjectMarks, float percentage, char grade) {
 
-		this.name = name;
-		this.marks = marks;
+		this.studentName = studentName;
+		this.subjectMarks = subjectMarks;
 		this.percentage = percentage;
 		this.grade = grade;
 	}
 
-	public String getName() {
+	public String getStudentName() {
 
-		return name;
+		return studentName;
 	}
 
-	public void setName(String name) {
+	public void setStudentName(String studentName) {
 
-		this.name = name;
+		this.studentName = studentName;
 	}
 
-	public int getMarks() {
+	public int getSubjectMarks() {
 
-		return marks;
+		return subjectMarks;
 	}
 
-	public void setMarks(int marks) {
+	public void setSubjectMarks(int subjectMarks) {
 
-		this.marks = marks;
+		this.subjectMarks = subjectMarks;
 	}
 
 	public float getPercentage() {
@@ -65,8 +66,9 @@ public class StudentReport {
 	@Override
 	public String toString() {
 
-		return "StudentReport [name=" + name + ", marks=" + marks +
-			", percentage=" + percentage + ", grade=" + grade + "]";
+		return "StudentReport [studentName=" + studentName + ", subjectMarks=" +
+			subjectMarks + ", percentage=" + percentage + ", grade=" + grade +
+			"]";
 	}
 
 }
