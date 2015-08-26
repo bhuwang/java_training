@@ -11,16 +11,17 @@ public class StudentReport {
 
 	private String studentName;
 	private int subjectMarks;
-	private float percentage;
-	private char grade;
+	private float studentPercentage;
+	private char studentGrade;
 
 	public StudentReport(
-		String studentName, int subjectMarks, float percentage, char grade) {
+		String studentName, int subjectMarks, float studentPercentage,
+		char studentGrade) {
 
 		this.studentName = studentName;
 		this.subjectMarks = subjectMarks;
-		this.percentage = percentage;
-		this.grade = grade;
+		this.studentPercentage = studentPercentage;
+		this.studentGrade = studentGrade;
 	}
 
 	public String getStudentName() {
@@ -43,32 +44,32 @@ public class StudentReport {
 		this.subjectMarks = subjectMarks;
 	}
 
-	public float getPercentage() {
+	public float getStudentPercentage() {
 
-		return percentage;
+		return studentPercentage;
 	}
 
-	public void setPercentage(float percentage) {
+	public void setStudentPercentage(float studentPercentage) {
 
-		this.percentage = percentage;
+		this.studentPercentage = studentPercentage;
 	}
 
-	public char getGrade() {
+	public char getStudentGrade() {
 
-		return grade;
+		return studentGrade;
 	}
 
-	public void setGrade(char grade) {
+	public void setStudentGrade(char studentGrade) {
 
-		this.grade = grade;
+		this.studentGrade = studentGrade;
 	}
 
 	@Override
 	public String toString() {
 
 		return "StudentReport [studentName=" + studentName + ", subjectMarks=" +
-			subjectMarks + ", percentage=" + percentage + ", grade=" + grade +
-			"]";
+			subjectMarks + ", studentPercentage=" + studentPercentage +
+			", studentGrade=" + studentGrade + "]";
 	}
 
 }
