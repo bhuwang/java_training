@@ -145,7 +145,6 @@ public class ManchesterUnitedStats {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		ManchesterUnitedStats mus1 = new ManchesterUnitedStats("mAnchEster uniTeD");
 		mus1.computeResults();
 		mus1.computePoints();
