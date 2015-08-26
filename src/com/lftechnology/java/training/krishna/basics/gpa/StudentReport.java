@@ -9,64 +9,67 @@ package com.lftechnology.java.training.krishna.basics.gpa;
  */
 public class StudentReport {
 
-	private String name;
-	private int marks;
-	private float percentage;
-	private char grade;
+	private String studentName;
+	private int subjectMarks;
+	private float studentPercentage;
+	private char studentGrade;
 
-	public StudentReport(String name, int marks, float percentage, char grade) {
+	public StudentReport(
+		String studentName, int subjectMarks, float studentPercentage,
+		char studentGrade) {
 
-		this.name = name;
-		this.marks = marks;
-		this.percentage = percentage;
-		this.grade = grade;
+		this.studentName = studentName;
+		this.subjectMarks = subjectMarks;
+		this.studentPercentage = studentPercentage;
+		this.studentGrade = studentGrade;
 	}
 
-	public String getName() {
+	public String getStudentName() {
 
-		return name;
+		return studentName;
 	}
 
-	public void setName(String name) {
+	public void setStudentName(String studentName) {
 
-		this.name = name;
+		this.studentName = studentName;
 	}
 
-	public int getMarks() {
+	public int getSubjectMarks() {
 
-		return marks;
+		return subjectMarks;
 	}
 
-	public void setMarks(int marks) {
+	public void setSubjectMarks(int subjectMarks) {
 
-		this.marks = marks;
+		this.subjectMarks = subjectMarks;
 	}
 
-	public float getPercentage() {
+	public float getStudentPercentage() {
 
-		return percentage;
+		return studentPercentage;
 	}
 
-	public void setPercentage(float percentage) {
+	public void setStudentPercentage(float studentPercentage) {
 
-		this.percentage = percentage;
+		this.studentPercentage = studentPercentage;
 	}
 
-	public char getGrade() {
+	public char getStudentGrade() {
 
-		return grade;
+		return studentGrade;
 	}
 
-	public void setGrade(char grade) {
+	public void setStudentGrade(char studentGrade) {
 
-		this.grade = grade;
+		this.studentGrade = studentGrade;
 	}
 
 	@Override
 	public String toString() {
 
-		return "StudentReport [name=" + name + ", marks=" + marks +
-			", percentage=" + percentage + ", grade=" + grade + "]";
+		return "StudentReport [studentName=" + studentName + ", subjectMarks=" +
+			subjectMarks + ", studentPercentage=" + studentPercentage +
+			", studentGrade=" + studentGrade + "]";
 	}
 
 }
