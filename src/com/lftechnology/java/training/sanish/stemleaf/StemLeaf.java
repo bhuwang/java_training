@@ -5,12 +5,13 @@ public class StemLeaf {
 	private int leaf;
 	private int count;
 
+	private StemLeaf(){}
 	public StemLeaf(int count, int stem, int leaf){
 		this.count = count;
 		this.stem = stem;
 		this.leaf = leaf;
 	}
-	
+
 	public int getStem() {
 		return stem;
 	}
