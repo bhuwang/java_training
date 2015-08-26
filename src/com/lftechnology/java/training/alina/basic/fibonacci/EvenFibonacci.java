@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.alina.basic.fibonacci;
 
 import java.util.logging.Level;
@@ -14,11 +15,11 @@ import java.util.logging.Logger;
  */
 public class EvenFibonacci {
 
-	private static final Logger LOGGER = Logger.getLogger(EvenFibonacci.class
-			.getName());
+	private static final Logger LOGGER =
+		Logger.getLogger(EvenFibonacci.class.getName());
 
 	private EvenFibonacci() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public static void main(String[] args) throws Exception {

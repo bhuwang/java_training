@@ -69,7 +69,8 @@ public class GuessTheNumber {
 				"Make the guess(1-20) or Press 0 or any number(< 0) to quit::");
 			try {
 				guessedNumber = Integer.parseInt(sc.nextLine());
-				if (guessedNumber <= 0) {
+				boolean result = gtn1.checkGuess(guessedNumber);
+				if (guessedNumber <= 0 ) {
 					LOGGER.log(Level.INFO, "So you quit...");
 					LOGGER.log(
 						Level.INFO, "The number was:: {0} ",
@@ -78,10 +79,7 @@ public class GuessTheNumber {
 						Level.INFO, "Number of Attempts made:: {0} ",
 						gtn1.attempts);
 					closeResource = true;
-					continue;
-				}
-				boolean result = gtn1.checkGuess(guessedNumber);
-				if (result) {
+				}else if (result) {
 					LOGGER.log(
 						Level.INFO, "The number was:: {0} ",
 						gtn1.theRandomNumber);

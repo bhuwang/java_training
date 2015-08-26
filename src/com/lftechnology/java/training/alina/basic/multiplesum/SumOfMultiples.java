@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.alina.basic.multiplesum;
 
 import java.util.logging.Level;
@@ -11,6 +12,7 @@ import java.util.logging.Logger;
  * @author Alina Shakya<alinashakya@lftechnology.com>
  */
 public class SumOfMultiples {
+
 	private static final Logger LOGGER =
 		Logger.getLogger(SumOfMultiples.class.getName());
 
@@ -52,6 +54,7 @@ public class SumOfMultiples {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private static int getTotalSum(int maxNum, int num1, int num2) {
+
 		int totalSum = 0;
 		for (int i = 1; i < maxNum; i++) {
 			if (i % num1 == 0 || i % num2 == 0) {

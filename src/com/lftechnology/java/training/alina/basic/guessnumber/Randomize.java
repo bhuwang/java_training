@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.alina.basic.guessnumber;
 
 import java.util.Random;
@@ -12,6 +13,7 @@ public class Randomize {
 	private Randomize() {
 
 	}
+
 	/**
 	 * Function that generates the random number
 	 *
@@ -21,6 +23,7 @@ public class Randomize {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	public static int generateRandomNumber(int minLimit, int maxLimit) {
+
 		int randomGeneratedNumber = 0;
 		Random random = new Random();
 		randomGeneratedNumber = random.nextInt(maxLimit - minLimit) + minLimit;
