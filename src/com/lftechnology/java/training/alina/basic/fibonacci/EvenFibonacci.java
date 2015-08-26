@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * 8, 13, 21, 34, 55, 89, ... By considering the terms in the Fibonacci sequence
  * whose values do not exceed four million. Find the sum of the even-valued
  * terms.
- * 
+ *
  * @author Alina Shakya<alinashakya@lftechnology.com>
  */
 public class EvenFibonacci {
@@ -20,17 +20,13 @@ public class EvenFibonacci {
 	private EvenFibonacci() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		try {
 			SumOfEvenFibonacci fibonacci = new SumOfEvenFibonacci(0, 1);
 			LOGGER.log(Level.INFO, "The sum of the even-valued fibonacci terms : {0}", new Object[] {fibonacci.getSumOfEvenFibonacci()});
 		} catch (ArithmeticException ex) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {ex});
-<<<<<<< HEAD
-=======
-			throw new Exception();
->>>>>>> 34_dipak
 		}
 	}
 
