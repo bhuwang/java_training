@@ -71,23 +71,23 @@ public class GuessTheNumber {
 					LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
 					LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
 					closeResource=true;
-					break;
-				}
-				boolean result = gtn1.checkGuess(guessedNumber);
-				if (result) {
-					LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
-					LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
-					closeResource=true;
-					break;
-				} else {
-					LOGGER.log(Level.INFO, "Oops... Missed. Try again");
-				}
+				}else{
+					boolean result = gtn1.checkGuess(guessedNumber);
+					if (result) {
+						LOGGER.log(Level.INFO, "The number was:: {0} ", gtn1.theRandomNumber);
+						LOGGER.log(Level.INFO, "Number of Attempts made:: {0} ", gtn1.attempts);
+						closeResource=true;
+					} else {
+						LOGGER.log(Level.INFO, "Oops... Missed. Try again");
+					}
+				}				
 			} catch (NumberFormatException nfe) {
 				gtn1.attempts++;
 				LOGGER.info("Oops.. Characters entered.Re-enter the values.");
 			} finally {
 				if(closeResource){
 					sc.close();
+					break;
 				}
 			}
 		}
