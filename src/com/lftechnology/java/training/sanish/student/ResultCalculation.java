@@ -20,7 +20,7 @@ public class ResultCalculation {
      * @param {@link ArrayList} list of student objects
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public static void calculateResult(List<Student> students) {
+    public static void calculateResult(List<Student> students, int totalSubject) {
         int totalMarks;
         List<Mark> marks = new ArrayList<Mark>();
         Result studeResult;
@@ -34,7 +34,7 @@ public class ResultCalculation {
 
             studeResult = student.getResult();
             studeResult.setTotalMarks(totalMarks);
-            percentage = totalMarks / Constants.SUBJECT_LIST.length;
+            percentage = totalMarks / totalSubject;
             studeResult.setPercentage(percentage);
             studeResult.setGrade(getGrade(percentage));
         }

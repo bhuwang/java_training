@@ -53,9 +53,10 @@ public class UserInput {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static String getName(Scanner scanner) {
-        String name;
+        String name = "";
         String pattern = "[a-zA-Z]+[a-z A-Z]*";
-        for (; ; ) {
+        boolean checkNextInput = true;
+        while (checkNextInput){
             if (!scanner.hasNextLine()) {
                 scanner.nextLine();
             } else {
@@ -66,7 +67,7 @@ public class UserInput {
                     LOGGER.log(Level.WARNING,
                             "Invalid name, Please type again : ");
                 } else {
-                    break;
+                    checkNextInput = false;
                 }
             }
         }

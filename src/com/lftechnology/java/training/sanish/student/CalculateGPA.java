@@ -26,7 +26,7 @@ public class CalculateGPA {
                     Constants.MIN_STUDENT_NUM, Constants.MAX_STUDENT_NUM));
 
             calculateGPA.setStudentInformation(scanner);
-            ResultCalculation.calculateResult(calculateGPA.students);
+            ResultCalculation.calculateResult(calculateGPA.students, SUBJECT_LIST.length);
             ResultCalculation.orderByTotalMarks(calculateGPA.students,
                     Constants.DESCENDING);
             calculateGPA.listOutStudents(calculateGPA.students);

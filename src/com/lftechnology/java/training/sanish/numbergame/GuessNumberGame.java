@@ -68,13 +68,8 @@ public class GuessNumberGame {
 	 *             Guess number should be less or equal to [MAX_RANDOM_NUM]
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public void setGuessNum(int guessNum) throws Exception {
-		if (guessNum >= MIN_RANDOM_NUM && guessNum <= MAX_RANDOM_NUM) {
-			this.guessNum = guessNum;
-		} else {
-			throw new Exception("Guess number should be in range form "
-					+ MIN_RANDOM_NUM + " to " + MAX_RANDOM_NUM);
-		}
+	public void setGuessNum(int guessNum){
+		this.guessNum = guessNum;
 	}
 
 	/**
