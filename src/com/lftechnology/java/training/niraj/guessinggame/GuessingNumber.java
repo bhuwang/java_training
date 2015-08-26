@@ -34,21 +34,7 @@ public class GuessingNumber {
 			game.startGame(scanner);
 		}
 		catch (InputMismatchException e) {
-			LOGGER.log(Level.WARNING, "Please provide a valid input");
-		}
-		catch (RuntimeException ex) {
-			LOGGER.log(
-				Level.SEVERE,
-				"Something went wrong. Sorry for the inconvenience");
-			LOGGER.log(Level.SEVERE, "error:{0}", ex.getMessage());
-		}
-		catch (Exception e) {
-			LOGGER.log(
-				Level.SEVERE,
-				"Something went wrong. Sorry for the inconvenience");
-			LOGGER.log(Level.SEVERE, "error:{0}", e.getMessage());
-			throw new CustomException(e.getMessage());
-
+			LOGGER.log(Level.WARNING, "Exception:{0}", e);
 		}
 
 	}

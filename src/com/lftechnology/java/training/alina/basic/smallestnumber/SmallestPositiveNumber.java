@@ -17,6 +17,13 @@ public class SmallestPositiveNumber {
 	private static final Logger LOGGER = Logger
 			.getLogger(SmallestPositiveNumber.class.getName());
 
+<<<<<<< HEAD
+	
+	private SmallestPositiveNumber() {
+	}
+	
+=======
+>>>>>>> 34_dipak
 	public static void main(String[] args) {
 		try (Scanner scanner = new Scanner(System.in)) {
 			int rangeLimit;
@@ -29,7 +36,7 @@ public class SmallestPositiveNumber {
 					new Object[] { rangeLimit, smallestNumber.toString() });
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}",
-					new Object[] { e.getMessage() });
+					new Object[] { e });
 		}
 	}
 
@@ -73,6 +80,10 @@ public class SmallestPositiveNumber {
 				return (long) (i * num1);
 			}
 		}
+<<<<<<< HEAD
+		return num2;
+=======
 		throw new Error("Error");
+>>>>>>> 34_dipak
 	}
 }

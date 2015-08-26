@@ -16,12 +16,19 @@ public class LargestPalindrome {
 	private static final Logger LOGGER = Logger
 			.getLogger(LargestPalindrome.class.getName());
 
+<<<<<<< HEAD
+	private LargestPalindrome(){
+		
+	}
+	
+=======
+>>>>>>> 34_dipak
 	public static void main(String[] args) {
 		try {
 			getLargestPalindrome();
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}",
-					new Object[] { e.getMessage() });
+					new Object[] { e });
 		}
 
 	}
