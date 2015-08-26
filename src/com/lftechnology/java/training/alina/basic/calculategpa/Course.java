@@ -176,46 +176,4 @@ public class Course implements Comparable<Course> {
 		int percentageToCompare = (int) val.getPercentage();
 		return (int) (this.getPercentage() - percentageToCompare);
 	}
-
-	@Override
-	public int hashCode() {
-
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Float.floatToIntBits(subject1);
-		result = prime * result + Float.floatToIntBits(subject2);
-		result = prime * result + Float.floatToIntBits(subject3);
-		result = prime * result + Float.floatToIntBits(subject4);
-		result = prime * result + Float.floatToIntBits(subject5);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Course other = (Course) obj;
-		boolean floatBits = getFloatInBits(other);
-		return floatBits;
-	}
-
-	private boolean getFloatInBits(Course other) {
-
-		if (Float.floatToIntBits(subject1) != Float.floatToIntBits(other.subject1))
-			return false;
-		if (Float.floatToIntBits(subject2) != Float.floatToIntBits(other.subject2))
-			return false;
-		if (Float.floatToIntBits(subject3) != Float.floatToIntBits(other.subject3))
-			return false;
-		if (Float.floatToIntBits(subject4) != Float.floatToIntBits(other.subject4))
-			return false;
-		if (Float.floatToIntBits(subject5) != Float.floatToIntBits(other.subject5))
-			return false;
-		return false;
-	}
 }
