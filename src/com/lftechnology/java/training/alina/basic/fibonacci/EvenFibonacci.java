@@ -27,7 +27,6 @@ public class EvenFibonacci {
 			LOGGER.log(Level.INFO, "The sum of the even-valued fibonacci terms : {0}", new Object[] {fibonacci.getSumOfEvenFibonacci()});
 		} catch (ArithmeticException ex) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {ex});
-			throw new Exception();
 		}
 	}
 

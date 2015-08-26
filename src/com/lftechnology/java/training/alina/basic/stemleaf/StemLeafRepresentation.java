@@ -23,6 +23,10 @@ public class StemLeafRepresentation {
 	private static int dataPoints;
 	private static DataSet[] data;
 
+	private StemLeafRepresentation() {
+
+	}
+
 	public static void main(String[] args) {
 
 		try (Scanner scanner = new Scanner(System.in)) {
