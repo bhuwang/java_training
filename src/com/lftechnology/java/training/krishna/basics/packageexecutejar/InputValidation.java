@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * ScannerValidation.java This program is used for validation.
+ * This program is used for validation.
  * 
  * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
  * @version 1.0
