@@ -34,7 +34,7 @@ public class ResultCalculation {
 
             studeResult = student.getResult();
             studeResult.setTotalMarks(totalMarks);
-            percentage = totalMarks / totalSubject;
+            percentage = (float) totalMarks / totalSubject;
             studeResult.setPercentage(percentage);
             studeResult.setGrade(getGrade(percentage));
         }
@@ -66,7 +66,7 @@ public class ResultCalculation {
      * @param order    {@link String} possible value asc | desc
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public static void orderByTotalMarks(ArrayList<Student> students,
+    public static void orderByTotalMarks(List<Student> students,
                                          String order) {
         if (order.equals(Constants.ASCENDING)) {
             Collections.sort(students);
