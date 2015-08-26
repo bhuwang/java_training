@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 /**
  * Main class
- * 
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  *
  */
@@ -21,7 +21,7 @@ public class Main {
 					+ (SumMultiples.getMultiples(3, 999) + SumMultiples
 							.getMultiples(5, 999)));
 		} catch (ArithmeticException e) {
-			LOGGER.warning("Exception : " + e.getMessage());
+			LOGGER.warning("Exception : " + e);
 		}
 	}
 }
