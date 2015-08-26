@@ -20,7 +20,12 @@ public class DayInWord {
 		try(Scanner scanner = new Scanner(System.in)) {
 			displayDayName(scanner);
 		} catch (Exception e) {
+<<<<<<< HEAD
 			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e});
+=======
+			LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] {e.getMessage()});
+			throw new RuntimeException(e);
+>>>>>>> 34_dipak
 		}
 	}
 

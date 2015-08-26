@@ -114,7 +114,6 @@ public class LeafAndStemRepresentationMethod2 {
 	}
 
 	/**
-public clas
 	 * <p> This method displays the stems and leaves. </p>
 	 * 
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
