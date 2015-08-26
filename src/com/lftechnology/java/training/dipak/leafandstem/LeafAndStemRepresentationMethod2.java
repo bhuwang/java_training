@@ -1,4 +1,3 @@
-
 package com.lftechnology.java.training.dipak.leafandstem;
 
 import java.util.Scanner;
@@ -16,6 +15,7 @@ public class LeafAndStemRepresentationMethod2 {
 	private static final Logger LOGGER =
 		Logger.getLogger(LeafAndStemRepresentationMethod2.class.getName());
 	private int[] numberArray;
+
 	private String[][] leavesAndStems;
 
 	public LeafAndStemRepresentationMethod2(int range) {
@@ -103,6 +103,7 @@ public class LeafAndStemRepresentationMethod2 {
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
 	boolean isPresent(String numberToBeChecked) {
+
 		for (int i = 0; i < leavesAndStems.length &&
 			leavesAndStems[i][0] != null; i++) {
 			if (numberToBeChecked.equals(leavesAndStems[i][0])) {
@@ -113,6 +114,7 @@ public class LeafAndStemRepresentationMethod2 {
 	}
 
 	/**
+public clas
 	 * <p> This method displays the stems and leaves. </p>
 	 * 
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
@@ -185,7 +187,9 @@ public class LeafAndStemRepresentationMethod2 {
 				LOGGER.log(Level.INFO, "Enter number {0}:", i + 1);
 				int m = Integer.parseInt(scanner.nextLine());
 				lsrm1.numberArray[i] = m;
-
+				if (i + 1 == lsrm1.numberArray.length) {
+					closeResource = true;
+				}
 			}
 			catch (NumberFormatException nfe) {
 				LOGGER.info("Character Entered");

@@ -4,8 +4,7 @@ package com.lftechnology.java.training.dipak.leafandstem;
  * This is a bubble sort program that sorts the integer array in ascending
  * order.
  * 
- * @param int[]
- *            array
+ * @param int[]   array
  * @return array (Sorted array)
  * @author Dipak Thapa <dipakthapa@lftechnology.com>
  *
