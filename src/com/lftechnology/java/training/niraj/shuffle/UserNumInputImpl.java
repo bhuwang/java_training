@@ -13,10 +13,10 @@ import java.util.logging.Logger;
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  */
-public class UserInputImpl implements UserInput {
+public class UserNumInputImpl implements UserNumInput {
 
 	private static final Logger LOGGER =
-		Logger.getLogger(UserInputImpl.class.getName());
+		Logger.getLogger(UserNumInputImpl.class.getName());
 
 	@Override
 	public int getInput(Scanner scanner, int min, int max) {
@@ -84,7 +84,7 @@ public class UserInputImpl implements UserInput {
 	}
 
 	@Override
-	public int getInput(Scanner scanner) {
+	public Integer getInput(Scanner scanner) {
 
 		LOGGER.info("Please enter a number : ");
 		int listLength = getInputInt(scanner);

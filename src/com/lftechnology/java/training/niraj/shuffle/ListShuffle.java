@@ -20,11 +20,11 @@ public class ListShuffle {
 
 	private static final Logger LOGGER =
 		Logger.getLogger(ListShuffle.class.getName());
-	private UserInputImpl userInput;
+	private UserNumInputImpl userInput;
 
 	private ListShuffle() {
 
-		userInput = new UserInputImpl();
+		userInput = new UserNumInputImpl();
 	}
 
 	public static void main(String[] args) {
