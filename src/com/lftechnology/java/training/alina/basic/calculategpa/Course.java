@@ -15,6 +15,10 @@ public class Course implements Comparable<Course> {
 	private float subject5;
 	private float totalMarks;
 
+	public Course() {
+
+	}
+
 	public Course(
 		float subject1, float subject2, float subject3, float subject4,
 		float subject5) {
@@ -87,7 +91,7 @@ public class Course implements Comparable<Course> {
 		return this.subject1 + this.subject2 + this.subject3 + this.subject4 +
 			this.subject5;
 	}
-	
+
 	public void setTotalMarks(float totalMarks) {
 
 		this.totalMarks = totalMarks;
