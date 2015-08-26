@@ -29,11 +29,8 @@ public class GPA {
 		studentGpa = gpa;
 	}
 
-	
-	
 	public static void main(String[] args) {
 
-		// TODO Auto-generated method stub
 		String[] subjects = {
 			"Maths", "Java", "DBMS", "DSC", "MicroControllers"
 		};
@@ -60,11 +57,11 @@ public class GPA {
 				gp[i] = new GPA(name, roll, className, gpa);
 
 			}
-			gp=SortStudents.sortStudents(gp);
+			gp = SortStudents.sortStudents(gp);
 			Results.displayResults(gp);
 		}
 		catch (NumberFormatException nfe) {
-			LOGGER.info("Characters entered in place of integer values.");
+			LOGGER.info("Characters entered in place of integer values. "+nfe);
 			System.exit(0);
 		}
 	}

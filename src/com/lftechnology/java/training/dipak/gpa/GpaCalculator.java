@@ -18,8 +18,7 @@ public class GpaCalculator {
 			sum+=marks[i];
 		}
 		sum=(sum/500)*100;
-		sum=new BigDecimal(sum/25).setScale(1, RoundingMode.HALF_UP).floatValue();
-		System.out.println(sum);
+		sum=BigDecimal.valueOf(sum/25).setScale(1, RoundingMode.HALF_UP).floatValue();
 		return sum;
 	}
 
