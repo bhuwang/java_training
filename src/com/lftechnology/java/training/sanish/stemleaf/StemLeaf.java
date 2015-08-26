@@ -1,43 +1,45 @@
 package com.lftechnology.java.training.sanish.stemleaf;
 
 public class StemLeaf {
-	private int stem;
-	private int leaf;
-	private int count;
+    private int stem;
+    private int leaf;
+    private int count;
 
-	private StemLeaf(){}
-	public StemLeaf(int count, int stem, int leaf){
-		this.count = count;
-		this.stem = stem;
-		this.leaf = leaf;
-	}
+    private StemLeaf() {
+    }
 
-	public int getStem() {
-		return stem;
-	}
+    public StemLeaf(int count, int stem, int leaf) {
+        this.count = count;
+        this.stem = stem;
+        this.leaf = leaf;
+    }
 
-	public void setStem(int stem) {
-		this.stem = stem;
-	}
+    public int getStem() {
+        return stem;
+    }
 
-	public int getLeaf() {
-		return leaf;
-	}
+    public void setStem(int stem) {
+        this.stem = stem;
+    }
 
-	public void setLeaf(int leaf) {
-		this.leaf = leaf;
-	}
+    public int getLeaf() {
+        return leaf;
+    }
 
-	public int getCount() {
-		return count;
-	}
+    public void setLeaf(int leaf) {
+        this.leaf = leaf;
+    }
 
-	public void setCount(int count) {
-		this.count = count;
-	}
+    public int getCount() {
+        return count;
+    }
 
-	@Override
-	public String toString() {
-		return count + "\t\t" + stem + "\t" + leaf;
-	}
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return count + "\t\t" + stem + "\t" + leaf;
+    }
 }

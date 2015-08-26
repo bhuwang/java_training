@@ -11,6 +11,9 @@ public class StemLeafDemo {
     private static ArrayList<Integer> numberPoints = new ArrayList<Integer>();
     private static ArrayList<StemLeaf> stemLeafs = new ArrayList<StemLeaf>();
 
+    private StemLeafDemo() {
+    }
+
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             getDataPoints(scanner);
