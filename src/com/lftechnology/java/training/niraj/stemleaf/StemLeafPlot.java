@@ -6,8 +6,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.lftechnology.java.training.alina.basic.SumOfMultiples;
-
 /**
  * Plots stem and leaf
  * 
@@ -16,7 +14,7 @@ import com.lftechnology.java.training.alina.basic.SumOfMultiples;
 public class StemLeafPlot {
 
 	private static final Logger LOGGER =
-		Logger.getLogger(SumOfMultiples.class.getName());
+		Logger.getLogger(StemLeafPlot.class.getName());
 
 	private StemLeafPlot() {
 
@@ -49,7 +47,7 @@ public class StemLeafPlot {
 
 		}
 		catch (InputMismatchException e) {
-			LOGGER.warning("Invalid input is provided");
+			LOGGER.warning(e.toString());
 		}
 
 	}

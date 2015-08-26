@@ -5,6 +5,9 @@ import java.util.logging.Logger;
 
 public class Results {
 	private static final Logger LOGGER = Logger.getLogger(Results.class.getName());
+	private Results(){
+		
+	}
 	/**
 	 * This method displays the students along with their name and respective GPAs.
 	 * @param gp

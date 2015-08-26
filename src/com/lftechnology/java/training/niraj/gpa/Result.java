@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.niraj.gpa;
 
 import java.util.ArrayList;
@@ -8,15 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
  * Get list of students as per their result
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
- *
  */
 public class Result {
-	private static final Logger LOGGER = Logger.getLogger(Result.class
-			.getName());
+
+	private static final Logger LOGGER =
+		Logger.getLogger(Result.class.getName());
 
 	private Result() {
 
@@ -31,24 +31,16 @@ public class Result {
 				scanner.next();
 			}
 			int noOfStudents = scanner.nextInt();
-			List<StudentInfo> studentList = getStudentInfo(noOfStudents,
-					scanner, Constants.DESCENDING);
+			List<StudentInfo> studentList =
+				getStudentInfo(noOfStudents, scanner, Constants.DESCENDING);
 			LOGGER.log(Level.INFO, "List of Students :");
 			for (StudentInfo studentInfo : studentList) {
 				LOGGER.log(Level.INFO, studentInfo.toString());
 			}
 
-		} catch (InputMismatchException e) {
-			LOGGER.log(Level.WARNING, "Please provide a valid input");
-		} catch (RuntimeException ex) {
-			LOGGER.log(Level.SEVERE,
-					"Something went wrong. Sorry for the inconvenience");
-			LOGGER.log(Level.SEVERE, "error:{0}", ex.getMessage());
-		} catch (Exception e) {
-			LOGGER.log(Level.SEVERE,
-					"Something went wrong. Sorry for the inconvenience");
-			LOGGER.log(Level.SEVERE, "error:{0}", e.getMessage());
-			throw new CustomException(e.getMessage());
+		}
+		catch (InputMismatchException e) {
+			LOGGER.log(Level.WARNING, e.toString());
 		}
 
 	}
@@ -66,19 +58,21 @@ public class Result {
 	 * @throws InputMismatchException
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
-	private static List<StudentInfo> getStudentInfo(int noOfStudents,
-			Scanner scanner, String order) throws InputMismatchException {
+	private static List<StudentInfo> getStudentInfo(
+		int noOfStudents, Scanner scanner, String order)
+		throws InputMismatchException {
 
 		ArrayList<StudentInfo> studentList = new ArrayList<StudentInfo>();
 		StudentInfo studentInfo;
 		for (int i = 0; i < noOfStudents; i++) {
 			studentInfo = new StudentInfo();
-			LOGGER.log(Level.INFO, "Student {0}", new Object[] { (i + 1) });
+			LOGGER.log(Level.INFO, "Student {0}", new Object[] {
+				i + 1
+			});
 			studentInfo.setStudentInfo(scanner);
 			studentList.add(studentInfo);
 		}
-		List<StudentInfo> orderedStudentList = StudentInfo
-				.getSortedStudentInfoList(studentList, order);
-		return orderedStudentList;
+
+		return StudentInfo.getSortedStudentInfoList(studentList, order);
 	}
 }
