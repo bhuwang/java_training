@@ -31,7 +31,7 @@ public class GameLeagueScores {
 			LOGGER.log(Level.INFO, "Game Scores of Manchester United : {0}",
 					new Object[] { getScores });
 		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+			LOGGER.log(Level.WARNING, "Exception Message : {0}", e);
 		}
 	}
 }
