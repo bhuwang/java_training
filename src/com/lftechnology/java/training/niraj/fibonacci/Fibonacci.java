@@ -1,17 +1,16 @@
 /**
  * 
  */
+
 package com.lftechnology.java.training.niraj.fibonacci;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * Helper class related to fibonacci series
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
- *
  */
 public class Fibonacci {
 
@@ -28,6 +27,7 @@ public class Fibonacci {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public List<Integer> getFibonacciSeries(int num1, int num2, int limit) {
+
 		List<Integer> series = new ArrayList<Integer>();
 		int sum = 0;
 		int firstNum = num1;
@@ -58,6 +58,7 @@ public class Fibonacci {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public int getSum(int num1, int num2, int limit, String numType) {
+
 		int sum = 0;
 		int remainder = (numType == Constant.ODD) ? 1 : 0;
 		List<Integer> fibonacciSeries = getFibonacciSeries(num1, num2, limit);

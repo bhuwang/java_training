@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 /**
  * Guess number program in between 1 - 20
- * 
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class GuessNumberGame {
@@ -21,7 +21,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public GuessNumberGame() {
@@ -32,7 +32,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Return randomNum value
-	 * 
+	 *
 	 * @return {@link Integer}
 	 */
 	public int getRandomNum() {
@@ -41,7 +41,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Set randomNum value
-	 * 
+	 *
 	 * @param randomNum
 	 *            {@link Integer}
 	 */
@@ -51,7 +51,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Return guessNum value
-	 * 
+	 *
 	 * @return {@link Integer}
 	 */
 	public int getGuessNum() {
@@ -61,25 +61,20 @@ public class GuessNumberGame {
 	/**
 	 * Set guessNum value. If parameter guessNum value greater than max random
 	 * number set value then throw exception
-	 * 
+	 *
 	 * @param guessNum
 	 *            {@link Integer} user guess number
 	 * @throws Exception
 	 *             Guess number should be less or equal to [MAX_RANDOM_NUM]
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
-	public void setGuessNum(int guessNum) throws Exception {
-		if (guessNum >= MIN_RANDOM_NUM && guessNum <= MAX_RANDOM_NUM) {
-			this.guessNum = guessNum;
-		} else {
-			throw new Exception("Guess number should be in range form "
-					+ MIN_RANDOM_NUM + " to " + MAX_RANDOM_NUM);
-		}
+	public void setGuessNum(int guessNum){
+		this.guessNum = guessNum;
 	}
 
 	/**
 	 * Return guessCount value
-	 * 
+	 *
 	 * @return {@link Integer}
 	 */
 	public int getGuessCount() {
@@ -88,7 +83,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Set guessCount value
-	 * 
+	 *
 	 * @param guessCount
 	 *            {@link Integer}
 	 */
@@ -98,7 +93,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Check is user guess number match with randomly generated number
-	 * 
+	 *
 	 * @return {@link Boolean} true if match else false
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
