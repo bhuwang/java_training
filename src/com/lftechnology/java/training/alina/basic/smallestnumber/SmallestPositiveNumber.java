@@ -82,7 +82,7 @@ public class SmallestPositiveNumber {
 		}
 		for (int i = 1; i <= num2; i++) {
 			if ((num1 * i) % num2 == 0) {
-				return (i * num1);
+				return i * num1;
 			}
 		}
 		return num2;
