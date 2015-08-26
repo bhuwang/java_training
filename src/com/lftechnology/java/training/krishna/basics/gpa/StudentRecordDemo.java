@@ -1,11 +1,10 @@
 package com.lftechnology.java.training.krishna.basics.gpa;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,7 +49,7 @@ public class StudentRecordDemo {
 						students.getSubjects(), studentData);
 			}
 
-			TreeMap<Integer, Object> sortedReports = StudentRecord
+			Map<Integer, Object> sortedReports = StudentRecord
 					.sortedStudentReport(studentData);
 			StudentRecord.displayStudentDetails(sortedReports);
 			scanner.close();
@@ -71,7 +70,7 @@ public class StudentRecordDemo {
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
 	public static void setSubjectInformation(Scanner scanner, Student students) {
-		ArrayList<Subject> subjectMarks = new ArrayList<Subject>();
+		List<Subject> subjectMarks = new ArrayList<Subject>();
 		LOGGER.log(Level.INFO, "Please enter the no. of subject: ");
 		int subjectCount = ScannerValidation.numberValidation(scanner);
 		for (int i = 1; i <= subjectCount; i++) {

@@ -24,10 +24,10 @@ public class CheckComparator implements Comparator {
 
 		StudentReport studentReport1 = (StudentReport) mp.get(o1);
 		StudentReport studentReport2 = (StudentReport) mp.get(o2);
-		if (studentReport1.getPercentage() > studentReport2.getPercentage()) {
+		if (studentReport1.getStudentPercentage() > studentReport2.getStudentPercentage()) {
 			return -1;
-		} else if (studentReport1.getPercentage() < studentReport2
-				.getPercentage()) {
+		} else if (studentReport1.getStudentPercentage() < studentReport2
+				.getStudentPercentage()) {
 			return 1;
 		} else {
 			return 0;
