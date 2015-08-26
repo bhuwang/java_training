@@ -122,7 +122,6 @@ public class LeafAndStemRepresentationMethod2 {
 
 		sortStemAndLeafArray();
 		LOGGER.info("The Stem and Leaf Display ::");
-		System.out.println(leavesAndStems[0][0]);
 		for (int i = 0; i < leavesAndStems.length &&
 			leavesAndStems[i][0] != null; i++) {
 			LOGGER.log(
