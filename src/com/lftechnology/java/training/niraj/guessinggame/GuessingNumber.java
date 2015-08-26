@@ -34,7 +34,7 @@ public class GuessingNumber {
 			game.startGame(scanner);
 		}
 		catch (InputMismatchException e) {
-			LOGGER.log(Level.WARNING, e.toString());
+			LOGGER.log(Level.WARNING, "Exception:{0}", e);
 		}
 
 	}

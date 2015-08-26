@@ -47,7 +47,7 @@ public class StemLeafPlot {
 
 		}
 		catch (InputMismatchException e) {
-			LOGGER.warning(e.toString());
+			LOGGER.log(Level.WARNING, "Exception:{0}", e);
 		}
 
 	}

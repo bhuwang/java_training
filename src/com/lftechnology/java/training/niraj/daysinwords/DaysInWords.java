@@ -6,8 +6,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.lftechnology.java.training.niraj.guessinggame.CustomException;
-
 /**
  * Get days in words
  * 
@@ -37,7 +35,7 @@ public class DaysInWords {
 
 		}
 		catch (InputMismatchException ie) {
-			LOGGER.log(Level.WARNING, ie.toString());
+			LOGGER.log(Level.WARNING, "Exception:{0}", ie);
 		}
 
 	}
