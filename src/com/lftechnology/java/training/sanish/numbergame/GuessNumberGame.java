@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 /**
  * Guess number program in between 1 - 20
- * 
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class GuessNumberGame {
@@ -21,7 +21,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */
 	public GuessNumberGame() {
@@ -32,7 +32,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Return randomNum value
-	 * 
+	 *
 	 * @return {@link Integer}
 	 */
 	public int getRandomNum() {
@@ -41,7 +41,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Set randomNum value
-	 * 
+	 *
 	 * @param randomNum
 	 *            {@link Integer}
 	 */
@@ -51,7 +51,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Return guessNum value
-	 * 
+	 *
 	 * @return {@link Integer}
 	 */
 	public int getGuessNum() {
@@ -61,7 +61,7 @@ public class GuessNumberGame {
 	/**
 	 * Set guessNum value. If parameter guessNum value greater than max random
 	 * number set value then throw exception
-	 * 
+	 *
 	 * @param guessNum
 	 *            {@link Integer} user guess number
 	 * @throws Exception
@@ -79,7 +79,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Return guessCount value
-	 * 
+	 *
 	 * @return {@link Integer}
 	 */
 	public int getGuessCount() {
@@ -88,7 +88,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Set guessCount value
-	 * 
+	 *
 	 * @param guessCount
 	 *            {@link Integer}
 	 */
@@ -98,7 +98,7 @@ public class GuessNumberGame {
 
 	/**
 	 * Check is user guess number match with randomly generated number
-	 * 
+	 *
 	 * @return {@link Boolean} true if match else false
 	 * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
 	 */

@@ -1,7 +1,5 @@
 package com.lftechnology.java.training.sanish.student;
 
-import com.lftechnology.java.training.niraj.fibonacci.Constant;
-
 /**
  * Provide constant value
  *
@@ -16,7 +14,6 @@ public class Constants {
     public static final String SUBJECT_NEPALI = "Nepali";
     public static final String SUBJECT_ENGLISH = "English";
     public static final String SUBJECT_SCIENCE = "Science";
-    public static final String[] SUBJECT_LIST = {SUBJECT_NEPALI, SUBJECT_ENGLISH, SUBJECT_MATH, SUBJECT_SCIENCE};
     public static final String ASCENDING = "asc";
     public static final String DESCENDING = "desc";
 
