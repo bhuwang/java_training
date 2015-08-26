@@ -16,6 +16,10 @@ import java.util.logging.Logger;
 public class CalculateGPA {
 	private static final Logger LOGGER = Logger.getLogger(CalculateGPA.class.getName());
 
+	
+	private CalculateGPA() {
+	}
+	
 	public static void main(String[] args) {
 		try (Scanner input = new Scanner(System.in)) {
 			MarksValidation validation = new MarksValidation();
