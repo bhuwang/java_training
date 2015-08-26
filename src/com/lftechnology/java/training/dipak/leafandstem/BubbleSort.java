@@ -2,7 +2,7 @@
 package com.lftechnology.java.training.dipak.leafandstem;
 
 /**
- * <<<<<<< HEAD This is a bubble sort program that sorts the integer array in
+ * This is a bubble sort program that sorts the integer array in
  * ascending order.
  * 
  * @param int[]

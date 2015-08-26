@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * Java program to display an integer data set in the form of stem and leaf. The
  * data points are input by the user from keyboard.
  * 
- * @author Dipak Thapa <dipakthapa@lftechnology.com> <<<<<<< HEAD
+ * @author Dipak Thapa <dipakthapa@lftechnology.com>
  */
 public class LeafAndStemRepresentationMethod2 {
 
