@@ -3,9 +3,13 @@ package com.lftechnology.java.training.niraj.shuffle;
 
 import java.util.Scanner;
 
+/**
+ * Interface related to services for user input
+ * 
+ * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+ * @param <T>
+ */
 public interface UserInput<T> {
-
-	
 
 	/**
 	 * Get the input from the user

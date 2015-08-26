@@ -4,6 +4,11 @@ package com.lftechnology.java.training.niraj.linkedlist;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ * Implementation of user string input interface
+ * 
+ * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+ */
 public class UserStringInputImpl implements UserStringInput {
 
 	private static final Logger LOGGER =

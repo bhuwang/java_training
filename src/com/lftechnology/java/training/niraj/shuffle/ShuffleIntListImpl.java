@@ -4,6 +4,11 @@ package com.lftechnology.java.training.niraj.shuffle;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Implementation of shuffle related services {@link List}
+ * 
+ * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+ */
 public class ShuffleIntListImpl implements ShuffleList<Integer> {
 
 	@Override

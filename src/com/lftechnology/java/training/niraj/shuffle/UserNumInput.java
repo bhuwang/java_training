@@ -3,6 +3,11 @@ package com.lftechnology.java.training.niraj.shuffle;
 
 import java.util.Scanner;
 
+/**
+ * Interface for user input of type number
+ * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+ *
+ */
 public interface UserNumInput extends UserInput<Integer> {
 
 	/**

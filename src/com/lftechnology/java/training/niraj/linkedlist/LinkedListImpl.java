@@ -14,7 +14,9 @@ import java.util.logging.Logger;
 import com.lftechnology.java.training.niraj.shuffle.UserNumInputImpl;
 
 /**
- * @author niraj
+ * Process the linked list
+ * 
+ * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  */
 public class LinkedListImpl {
 

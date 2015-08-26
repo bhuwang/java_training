@@ -3,6 +3,11 @@ package com.lftechnology.java.training.niraj.linkedlist;
 
 import java.util.List;
 
+/**
+ * Implementation of services related to list
+ * 
+ * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+ */
 public class ListServiceImpl implements ListService {
 
 	@Override
