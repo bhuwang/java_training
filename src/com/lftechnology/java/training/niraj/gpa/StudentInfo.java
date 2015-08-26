@@ -100,7 +100,7 @@ public class StudentInfo implements Comparable<StudentInfo> {
 	public int compareTo(StudentInfo studentInfo) {
 
 		int markToCompare = studentInfo.getMarkObtained();
-		return (this.getMarkObtained() - markToCompare);
+		return this.getMarkObtained() - markToCompare;
 	}
 
 	/**
@@ -113,8 +113,7 @@ public class StudentInfo implements Comparable<StudentInfo> {
 	public void setStudentInfo(Scanner scanner) {
 
 		LOGGER.log(Level.INFO, "Name: ");
-		String name = scanner.next();
-		setName(name);
+		setName(scanner.next());
 
 		LOGGER.log(Level.INFO, "Class: ");
 		while (!scanner.hasNextInt()) {
