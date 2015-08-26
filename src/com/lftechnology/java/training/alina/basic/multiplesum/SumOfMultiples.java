@@ -25,7 +25,7 @@ public class SumOfMultiples {
 					new Object[] { num1, num2, totalSumOfMultiples });
 		} catch (ArithmeticException ex) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}",
-					new Object[] { ex.getMessage() });
+					new Object[] { ex });
 		}
 	}
 

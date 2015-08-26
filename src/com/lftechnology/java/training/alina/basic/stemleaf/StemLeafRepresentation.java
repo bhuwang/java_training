@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.alina.basic.stemleaf;
 
 import java.util.Arrays;
@@ -17,17 +18,19 @@ public class StemLeafRepresentation {
 
 	public static final int MIN_VALUE = 3;
 	public static final int MAX_VALUE = 99;
-	private static final Logger LOGGER = Logger
-			.getLogger(StemLeafRepresentation.class.getName());
+	private static final Logger LOGGER =
+		Logger.getLogger(StemLeafRepresentation.class.getName());
 	private static int dataPoints;
 	private static DataSet[] data;
 
 	public static void main(String[] args) {
+
 		try (Scanner scanner = new Scanner(System.in)) {
 			getDataPoints(scanner);
 			getStemLeaf();
-		} catch (InputMismatchException e) {
-			LOGGER.log(Level.WARNING, "Invalid number.");
+		}
+		catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Invalid number. {0}", e);
 		}
 	}
 
@@ -39,13 +42,16 @@ public class StemLeafRepresentation {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private static void getDataPoints(Scanner scanner) {
+
 		NumberValidation validation = new NumberValidation();
-		dataPoints = validation.numberValidation(scanner,
-				"Enter number of data points : ", MIN_VALUE, MAX_VALUE);
+		dataPoints =
+			validation.numberValidation(
+				scanner, "Enter number of data points : ", MIN_VALUE, MAX_VALUE);
 		data = new DataSet[dataPoints];
 		for (int i = 0; i < dataPoints; i++) {
-			data[i] = new DataSet(validation.numberValidation(scanner, "[" + i
-					+ "]:", 10, MAX_VALUE));
+			data[i] =
+				new DataSet(validation.numberValidation(
+					scanner, "[" + i + "]:", 10, MAX_VALUE));
 		}
 		Arrays.sort(data);
 		LOGGER.log(Level.INFO, "The sorted array is : ");
@@ -65,6 +71,7 @@ public class StemLeafRepresentation {
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
 	private static void getStemLeaf() {
+
 		Map<Integer, Integer> dictionary = new HashMap<Integer, Integer>();
 		int stem, leaf, second;
 		for (int i = 0; i < dataPoints; i++) {
@@ -73,17 +80,23 @@ public class StemLeafRepresentation {
 				leaf = (int) dictionary.get(stem);
 				second = data[i].getDataSet() % 10;
 				leaf = leaf * 10 + second;
-			} else {
+			}
+			else {
 				leaf = data[i].getDataSet() % 10;
 			}
 			dictionary.put(stem, leaf);
 		}
-		LOGGER.log(Level.INFO, "Stem and Leaf Display of size : {0}",
-				dictionary.size());
+		LOGGER.log(
+			Level.INFO, "Stem and Leaf Display of size : {0}",
+			dictionary.size());
 		for (Object key : dictionary.keySet()) {
-			LOGGER.log(Level.INFO, "Frequency : {0}, Stem : {1}, Leaf : {2}",
-					new Object[] { dictionary.get(key).toString().length(),
-							key, dictionary.get(key) });
+			LOGGER.log(
+				Level.INFO,
+				"Frequency : {0}, Stem : {1}, Leaf : {2}",
+				new Object[] {
+					dictionary.get(key).toString().length(), key,
+					dictionary.get(key)
+				});
 		}
 
 	}

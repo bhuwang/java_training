@@ -100,7 +100,32 @@ public class StudentInfo implements Comparable<StudentInfo> {
 	public int compareTo(StudentInfo studentInfo) {
 
 		int markToCompare = studentInfo.getMarkObtained();
-		return (this.getMarkObtained() - markToCompare);
+		return this.getMarkObtained() - markToCompare;
+	}
+
+
+	@Override
+	public int hashCode() {
+
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + markObtained;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentInfo other = (StudentInfo) obj;
+		if (markObtained != other.markObtained)
+			return false;
+		return true;
 	}
 
 	/**
@@ -113,8 +138,7 @@ public class StudentInfo implements Comparable<StudentInfo> {
 	public void setStudentInfo(Scanner scanner) {
 
 		LOGGER.log(Level.INFO, "Name: ");
-		String name = scanner.next();
-		setName(name);
+		setName(scanner.next());
 
 		LOGGER.log(Level.INFO, "Class: ");
 		while (!scanner.hasNextInt()) {

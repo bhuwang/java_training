@@ -21,7 +21,7 @@ public class LargestPalindrome {
 			getLargestPalindrome();
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Exception Message : {0}",
-					new Object[] { e.getMessage() });
+					new Object[] { e });
 		}
 
 	}
