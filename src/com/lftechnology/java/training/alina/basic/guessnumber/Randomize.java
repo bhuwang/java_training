@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * Used to get the random sets of numbers
- * 
+ *
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class Randomize {
@@ -16,7 +16,7 @@ public class Randomize {
 
 	/**
 	 * Function that generates the random number
-	 * 
+	 *
 	 * @param maxLimit
 	 *            {@link Integer} maximum number limit
 	 * @return randomGeneratedNumber random number

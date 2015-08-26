@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * Write a program called PrintDayInWord, which prints “Sunday”, “Monday”, ...
  * “Saturday” if the int variable "day" is 0, 1, ..., 6, respectively.
  * Otherwise, it shall print “Not a valid day”.
- * 
+ *
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class DayInWord {
@@ -31,7 +31,7 @@ public class DayInWord {
 
 	/**
 	 * Function used to get name of day on the basis of input number
-	 * 
+	 *
 	 * @param int number input number
 	 * @return String day
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
@@ -70,7 +70,7 @@ public class DayInWord {
 
 	/**
 	 * Function used to display day name with number given
-	 * 
+	 *
 	 * @param scanner
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
