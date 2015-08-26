@@ -8,6 +8,9 @@ package com.lftechnology.java.training.dipak.leafandstem;
  *
  */
 public class BubbleSort {
+	private BubbleSort(){
+		
+	}
 	public static final int[] sortArray(int[] array) {
 		int temp;
 		for (int i = 0; i < array.length - 1; i++) {
