@@ -5,9 +5,12 @@ import java.util.logging.Logger;
 
 public class CalculatorTest {
 	private static final Logger LOGGER = Logger.getLogger(CalculatorTest.class.getName());
-
+	
+	private CalculatorTest(){
+		
+	}
+	
 	public static void main(String[] args) {
-
 		Calculator student1 = new Calculator(0, 0, 0, 0, 0);
 		Scanner input = new Scanner(System.in);
 		float[] inputNumbers = new float[5];
@@ -24,10 +27,8 @@ public class CalculatorTest {
 			}
 			student1.showMarksEntered(studentName, inputNumbers);
 		}
-
 		student1.highestGPA();
 		input.close();
-
 	}
 
 }

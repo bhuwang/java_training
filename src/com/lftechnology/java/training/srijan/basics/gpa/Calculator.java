@@ -13,7 +13,6 @@ import java.util.logging.Logger;
  * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
  *
  */
-
 public class Calculator {
 	private float subject1;
 	private float subject2;
@@ -72,7 +71,6 @@ public class Calculator {
 	 * @param subjectMarks {@link Float}
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-
 	public void showMarksEntered(String studentName, float[] subjectMarks) {
 		float sum = 0;
 		float percentage;
@@ -92,7 +90,6 @@ public class Calculator {
 		gpa = calculateGPA(percentage);
 		gpaOfStudent[countGpa++] = gpa;
 		LOGGER.info("The GPA obtained by student is:" + gpa);
-
 	}
 
 	/**
@@ -105,7 +102,6 @@ public class Calculator {
 	 * @return percentage {@link Float}
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-
 	public float calculatePercentage(float sum, float total) {
 		return ((sum / total) * 100);
 	}
@@ -119,7 +115,6 @@ public class Calculator {
 	 * @return GPA {@link Float}
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-
 	public float calculateGPA(float percentage) {
 		return (4 * percentage) / 100;
 	}
@@ -134,7 +129,6 @@ public class Calculator {
 	 * 
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-
 	public void highestGPA() {
 		float highestGpa = 0;
 		String student = "";
@@ -147,5 +141,4 @@ public class Calculator {
 		LOGGER.info("Student obtaining highest GPA is:" + student);
 		LOGGER.info("Hightest GPA obtained = " + highestGpa);
 	}
-
 }
