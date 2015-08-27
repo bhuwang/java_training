@@ -7,7 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * IntegerDoubleSum Class is used to calculate two numbers
+ * IntegerDoubleSum Class is used to calculate sum of numbers,
+ * Write a program in which Generic method is used to sum Integer or Double.
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
