@@ -5,7 +5,11 @@ import java.util.logging.Logger;
 
 public class CalculatorTest {
 	private static final Logger LOGGER = Logger.getLogger(CalculatorTest.class.getName());
-
+	
+	private CalculatorTest(){
+		
+	}
+	
 	public static void main(String[] args) {
 
 		Calculator student1 = new Calculator(0, 0, 0, 0, 0);
