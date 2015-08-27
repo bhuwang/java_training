@@ -26,6 +26,10 @@ public class ShuffleNumbers {
 	private static List<Integer> arrayList = new ArrayList<Integer>();
 	private static List<Integer> sortedList = new ArrayList<Integer>();
 
+	
+	private ShuffleNumbers() {
+	}
+	
 	public static void main(String[] args) {
 
 		getArrayList();
