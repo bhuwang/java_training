@@ -38,17 +38,17 @@ public class PointsStructure {
 	 * @param fixturesWithScore
 	 *            {@link String}
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
-	 */
+	 */	
 	public void getPoints(int numberOfMatches, String[] fixturesWithScore) {
 		String result = "";
 		int stringHomePosition = 0;
 		int stringAwayPosition = 2;
 		for (int i = 0; i < numberOfMatches; i++) {
-			if (fixturesWithScore[stringHomePosition].equals("Manchester United")) {
+			if ("Manchester United".equals(fixturesWithScore[stringHomePosition])) {
 				result = determineResult(fixturesWithScore, stringHomePosition);
 			}
 
-			else if (fixturesWithScore[stringAwayPosition].equals("Manchester United")) {
+			else if ("Manchester United".equals(fixturesWithScore[stringAwayPosition])) {
 				result = resultDetermine(fixturesWithScore, stringAwayPosition);
 			}
 			stringHomePosition = stringHomePosition + 4;
@@ -124,10 +124,10 @@ public class PointsStructure {
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
 	public void displayPoints(String result, int numberOfWeeks) {
-		if (result.equals("WIN")) {
+		if ("WIN".equals(result)) {
 			points = points + WIN;
 			wins++;
-		} else if (result.equals("LOSE")) {
+		} else if ("LOSE".equals(result)) {
 			points = points + LOSE;
 			lose++;
 		} else {
