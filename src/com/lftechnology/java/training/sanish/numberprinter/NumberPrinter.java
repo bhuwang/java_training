@@ -11,22 +11,26 @@ import java.util.logging.Logger;
 public class NumberPrinter {
     private static final Logger LOGGER = Logger.getLogger(NumberPrinter.class.getName());
 
+    private NumberPrinter() {
+    }
+
     public static void main(String[] agrs) {
-        System.out.print("Hello world.");
+        printNumber(1, 10);
     }
 
     /**
      * Print number from min to max parameter provided
+     *
      * @param min {@link Integer} minimum number of number series
      * @param max {@link Integer}  maximum number of number series
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void printNumber(int min, int max) {
-        String numberSeries = "" + min;
+        String numberSeries = Integer.toString(min);
         for (int i = min + 1; i <= max; i++) {
             numberSeries += ", " + i;
         }
 
-       LOGGER.log(Level.INFO, "Number from 1-10 : {0}", new Object[]{numberSeries});
+        LOGGER.log(Level.INFO, "Number from 1-10 : {0}", new Object[]{numberSeries});
     }
 }
