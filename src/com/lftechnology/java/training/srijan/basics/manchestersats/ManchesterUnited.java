@@ -16,7 +16,7 @@ public class ManchesterUnited {
 			numberOfGameWeeks = input.nextInt();
 			inputFixtures(numberOfGameWeeks);
 		}catch(InputMismatchException ex){
-			LOGGER.info("Error:Input MisMatchException" + ex.getMessage());
+			LOGGER.info("Error:Input MisMatchException" + ex);
 		}finally{
 		input.close();
 		}
