@@ -2,8 +2,6 @@ package com.lftechnology.java.training.srijan.basics.percentage;
 
 import java.util.logging.Logger;
 
-
-
 /**
  * Write a program that calculates percentage and GPA of 5 students. User will
  * enter the marks of each 5 students from the keyboard. Each of the students
