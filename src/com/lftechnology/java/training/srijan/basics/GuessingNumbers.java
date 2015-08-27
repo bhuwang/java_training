@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.srijan.basics;
 
-
 import java.security.SecureRandom;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -26,7 +25,7 @@ public class GuessingNumbers {
 		int guessedNumber;
 		input = new Scanner(System.in);
 		int randomGeneratedNumber = 1 + randomNumber.nextInt(19);
-		System.out.println("random Generated Number:" + randomGeneratedNumber);
+		LOGGER.info("random Generated Number:" + randomGeneratedNumber);
 		
 		do{
 			LOGGER.info("Guess a number between 1 and 20:");
