@@ -39,7 +39,7 @@ public class ListShuffle {
 			LOGGER.log(Level.INFO, "Sorted List : {0}", sortedList);
 		}
 		catch (InputMismatchException e) {
-			LOGGER.warning(e.getMessage());
+			LOGGER.log(Level.WARNING, "Exception : {0}", e);
 		}
 
 	}
@@ -112,9 +112,8 @@ public class ListShuffle {
 		List<Integer> shuffledList = shuffleList.shuffleList(itemList);
 		List<Integer> subList =
 			shuffleList.getSubList(shuffledList, subListLength);
-		List<Integer> sortedSubList = shuffleList.sortList(subList);
 
-		return sortedSubList;
+		return shuffleList.sortList(subList);
 
 	}
 }

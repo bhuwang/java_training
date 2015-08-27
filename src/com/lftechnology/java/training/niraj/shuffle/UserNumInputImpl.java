@@ -87,8 +87,7 @@ public class UserNumInputImpl implements UserNumInput {
 	public Integer getInput(Scanner scanner) {
 
 		LOGGER.info("Please enter a number : ");
-		int listLength = getInputInt(scanner);
-		return listLength;
+		return getInputInt(scanner);
 
 	}
 
