@@ -126,7 +126,7 @@ public class ManchesterUnitedStats {
 		} catch (NoSuchElementException ex) {
 			LOGGER.info("Error Message:" + ex.getMessage());
 		} catch (ArrayIndexOutOfBoundsException exception) {
-			LOGGER.info("Exception Message:" + exception.getMessage());
+			LOGGER.info("Exception Message:" + exception);
 		} finally {
 			displayFixturesAndScores(numberOfMatches);
 			inputScore.close();
@@ -175,11 +175,11 @@ public class ManchesterUnitedStats {
 		int goalScored = 0;
 		int goalConceded = 0;
 		for (int i = 0; i < numberOfMatches; i++) {
-			if (fixtureWithScore[positionHome].equals("Manchester United")) {
+			if ("Manchester United".equals(fixtureWithScore[positionHome])) {
 				scored = Integer.parseInt(fixtureWithScore[positionHome + 1]);	
 			}
 
-			else if (fixtureWithScore[positionAway].equals("Manchester United")) {
+			else if ("Manchester United".equals(fixtureWithScore[positionAway])) {
 				scored = Integer.parseInt(fixtureWithScore[positionAway + 1]);
 			}
 			goalScored = goalScored + scored;
@@ -204,15 +204,15 @@ public class ManchesterUnitedStats {
 	 * @return totalAgainst {@link Integer}
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-	public int calculateGoalsConceded(int numberOfMatches, int positionHome, int PositionAway) {
+	public int calculateGoalsConceded(int numberOfMatches, int positionHome, int positionAway) {
 		int totalAgainst = 0;
 		int against = 0;
-		if (!fixtureWithScore[positionHome].equals("Manchester United")) {
+		if (!"Manchester United".equals(fixtureWithScore[positionHome])) {
 			against = Integer.parseInt(fixtureWithScore[positionHome + 1]);
 
 		}
-		else if (!fixtureWithScore[PositionAway].equals("Manchester United")) {
-			against = Integer.parseInt(fixtureWithScore[PositionAway + 1]);
+		else if (!"Manchester United".equals(fixtureWithScore[positionAway])) {
+			against = Integer.parseInt(fixtureWithScore[positionAway + 1]);
 
 		}
 		totalAgainst = totalAgainst + against;

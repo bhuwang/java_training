@@ -1,4 +1,5 @@
-package com.lftechnology.java.training.srijan.basics.percentage;
+package com.lftechnology.java.training.srijan.basics.gpa;
+
 
 import java.util.logging.Logger;
 
@@ -106,7 +107,7 @@ public class Calculator {
 	 */
 
 	public float calculatePercentage(float sum, float total) {
-		return (sum / total) * 100;
+		return ((sum / total) * 100);
 	}
 
 	/**
