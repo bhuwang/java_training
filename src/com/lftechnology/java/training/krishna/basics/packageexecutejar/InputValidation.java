@@ -31,7 +31,7 @@ public class InputValidation {
 	 * @return number {@link int} input value
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	public static int numberValidation(Scanner scanner) {
+	public static int inputNumberValidation(Scanner scanner) {
 
 		int number;
 		do {
@@ -41,7 +41,7 @@ public class InputValidation {
 			}
 			number = scanner.nextInt();
 		}
-		while (!isValidNumber(number));
+		while (!isValidInputNumber(number));
 		return number;
 	}
 
@@ -53,7 +53,7 @@ public class InputValidation {
 	 * @return {@link boolean}
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	private static boolean isValidNumber(int number) {
+	private static boolean isValidInputNumber(int number) {
 
 		if (number <= MIN_NUM) {
 			LOGGER.log(Level.INFO, "Please enter number 0 or greater than 0 : ");

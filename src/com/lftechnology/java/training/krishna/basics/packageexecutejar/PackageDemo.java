@@ -34,9 +34,9 @@ public class PackageDemo {
 		try {
 			Scanner scanner = new Scanner(System.in);
 			LOGGER.log(Level.INFO, "Please enter the first number: ");
-			int firstNumber = InputValidation.numberValidation(scanner);
+			int firstNumber = InputValidation.inputNumberValidation(scanner);
 			LOGGER.log(Level.INFO, "Please enter the second number: ");
-			int secondNumber = InputValidation.numberValidation(scanner);
+			int secondNumber = InputValidation.inputNumberValidation(scanner);
 			AddNumber addNumber = new AddNumber(firstNumber, secondNumber);
 			int sum = addNumber.sum();
 			LOGGER.log(Level.INFO, "Sum: {0}", sum);

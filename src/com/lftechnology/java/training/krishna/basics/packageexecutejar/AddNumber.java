@@ -9,40 +9,40 @@ package com.lftechnology.java.training.krishna.basics.packageexecutejar;
  */
 public class AddNumber {
 
-	private int firstNumber;
-	private int secondNumber;
+	private int firstDigit;
+	private int secondDigit;
 
-	public AddNumber(int firstNumber, int secondNumber) {
+	public AddNumber(int firstDigit, int secondDigit) {
 
-		this.firstNumber = firstNumber;
-		this.secondNumber = secondNumber;
+		this.firstDigit = firstDigit;
+		this.secondDigit = secondDigit;
 	}
 
-	public int getFirstNumber() {
+	public int getFirstDigit() {
 
-		return firstNumber;
+		return firstDigit;
 	}
 
-	public void setFirstNumber(int firstNumber) {
+	public void setFirstDigit(int firstDigit) {
 
-		this.firstNumber = firstNumber;
+		this.firstDigit = firstDigit;
 	}
 
-	public int getSecondNumber() {
+	public int getSecondDigit() {
 
-		return secondNumber;
+		return secondDigit;
 	}
 
-	public void setSecondNumber(int secondNumber) {
+	public void setSecondDigit(int secondDigit) {
 
-		this.secondNumber = secondNumber;
+		this.secondDigit = secondDigit;
 	}
 
 	@Override
 	public String toString() {
 
-		return "AddNumber [firstNumber=" + firstNumber + ", secondNumber=" +
-			secondNumber + "]";
+		return "AddNumber [firstDigit=" + firstDigit + ", secondDigit=" +
+			secondDigit + "]";
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class AddNumber {
 	 */
 	public int sum() {
 
-		int sum = this.firstNumber + this.secondNumber;
+		int sum = this.firstDigit + this.secondDigit;
 		return sum;
 	}
 
