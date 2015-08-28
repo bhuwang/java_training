@@ -19,6 +19,12 @@ public class AdditionDemo {
 	private static final Logger LOGGER =
 		Logger.getLogger(AdditionDemo.class.getName());
 
+	//constructor
+	private AdditionDemo() {
+
+	}
+
+
 	public static void main(String[] args) {
 
 		IntegerAdditionImpl integerNumber = new IntegerAdditionImpl();
