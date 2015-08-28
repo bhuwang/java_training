@@ -20,6 +20,10 @@ public class VehicleListDemo {
 	private static VehicleList<MotorBike, Integer> motorbikeList =
 		new VehicleList<MotorBike, Integer>();
 
+	private VehicleListDemo() {
+
+	}
+
 	/**
 	 * Main function includes functionality to add/remove vehicle brands
 	 * 
