@@ -22,7 +22,7 @@ public class ProductDemo {
 
 	/**
 	 * Main Class consists of display of products in terms of different data
-	 * types and class
+	 * types
 	 * 
 	 * @param args
 	 * @throws InstantiationException
@@ -35,21 +35,6 @@ public class ProductDemo {
 		displayInStringStringForm();
 		displayInStringIntForm();
 		displayInIntBooleanForm();
-		displayInClassForm();
-	}
-
-	/**
-	 * Representation of Class form generics
-	 * 
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @author Alina Shakya <alinashakya@lftechnology.com>
-	 */
-	private static void displayInClassForm()
-		throws InstantiationException, IllegalAccessException {
-
-		GenericClass<Car> car = new GenericClass<Car>(Car.class);
-		car.buildOne();
 	}
 
 	/**
