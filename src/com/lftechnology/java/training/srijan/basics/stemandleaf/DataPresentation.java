@@ -1,12 +1,23 @@
 package com.lftechnology.java.training.srijan.basics.stemandleaf;
 
+import java.util.ArrayList;
+//import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 public class DataPresentation {
 	private int[] datas;
 	private static final Logger LOGGER = Logger.getLogger(DataPresentation.class.getName());
 	private int[][] stemFrequencyLeaf;
+	List<Integer> stemAndLeaf = new ArrayList<>();
+	Set<Integer> treeSetOfStemAndLeaf = new TreeSet<>();
+	Set<Integer> stem = new TreeSet<>();
+	List<Integer> leaf = new ArrayList<>();
+
 	/**
 	 * <p>
 	 * constructor
@@ -25,9 +36,9 @@ public class DataPresentation {
 		for (int i = 0; i < datas.length; i++) {
 			datas[i] = 0;
 		}
-		
-		for(int i=0;i<numberOfDatas;i++){
-			for(int j=0;j<3;j++){
+
+		for (int i = 0; i < numberOfDatas; i++) {
+			for (int j = 0; j < 3; j++) {
 				stemFrequencyLeaf[i][j] = 0;
 			}
 		}
@@ -63,11 +74,12 @@ public class DataPresentation {
 		try {
 			for (int i = 0; i < datas.length; i++) {
 				datas[i] = inputData.nextInt();
+				stemAndLeaf.add(datas[i]);
+				//treeSetOfStemAndLeaf.add(datas[i]);
 			}
 		} catch (ArrayIndexOutOfBoundsException ex) {
 			LOGGER.info("Array index out of bound:" + ex.getMessage());
 		} finally {
-
 			inputData.close();
 		}
 	}
@@ -80,9 +92,14 @@ public class DataPresentation {
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
 	public void displayUnsortedInputData() {
+		Iterator<Integer> iterator;
+		iterator = treeSetOfStemAndLeaf.iterator();
 		LOGGER.info("Unsorted Entered Datas:");
 		for (int i = 0; i < datas.length; i++) {
 			LOGGER.info("[" + i + "]" + ":" + datas[i]);
+		}
+		while (iterator.hasNext()) {
+			LOGGER.info("Treeset " + iterator.next() + "");
 		}
 	}
 
@@ -121,8 +138,39 @@ public class DataPresentation {
 			LOGGER.info("[" + i + "]" + ":" + datas[i]);
 		}
 	}
-	
-	public void separateStemFrequencyLeaf(){
+
+	public void separateStemFrequencyLeaf() {
+		Iterator<Integer> iterator;
+		iterator = stemAndLeaf.iterator();
+		int quotient = 0;
+		int remainder = 0;
+		while (iterator.hasNext()) {
+			int value = iterator.next();
+			quotient = value / 10;
+			remainder = value % 10;
+			stem.add(quotient);
+			leaf.add(remainder);
+		}
+		displayStem();
 		
 	}
+	
+	public void displayStem(){
+		Iterator<Integer> stemIterator;
+		stemIterator = stem.iterator();
+		while(stemIterator.hasNext()){
+			LOGGER.info("Stem " + stemIterator.next());
+		}
+		displayLeaf();
+		
+	}
+	
+	public void displayLeaf(){
+		Iterator<Integer> leafIterator;
+		leafIterator = leaf.iterator();
+		while(leafIterator.hasNext()){
+			LOGGER.info("Leaf " + leafIterator.next());
+		}
+	}
+
 }
