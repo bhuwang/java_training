@@ -6,7 +6,6 @@ package com.lftechnology.java.training.alina.basic.calculategpa;
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class Course implements Comparable<Course> {
-
     private float subject1;
     private float subject2;
     private float subject3;

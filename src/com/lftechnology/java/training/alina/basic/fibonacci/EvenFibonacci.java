@@ -15,7 +15,6 @@ public class EvenFibonacci {
     private static final Logger LOGGER = Logger.getLogger(EvenFibonacci.class.getName());
 
     private EvenFibonacci() {
-
     }
 
     public static void main(String[] args) throws Exception {
@@ -26,5 +25,4 @@ public class EvenFibonacci {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { ex });
         }
     }
-
 }

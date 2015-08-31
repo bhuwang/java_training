@@ -23,7 +23,7 @@ public class CalculateGPA {
             int studentNo = validation.numberValidation(input, "Enter number of Students : ");
             Student.getStudentDetails(input, studentNo);
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
         }
     }
 }
