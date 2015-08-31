@@ -90,9 +90,8 @@ public class WildcardDemo {
 		customerList.add(customerA);
 		customerList.add(customerB);
 		customerList.add(customerC);
-		List<CustomerUtil<?>> customerDisplay =
-			CustomerUtil.getCustomers(customerList);
-		LOGGER.log(Level.INFO, "{0}", customerDisplay);
+		for (CustomerUtil<?> customer : customerList) {
+			LOGGER.log(Level.INFO, "{0}", customer);
+		}
 	}
-
 }

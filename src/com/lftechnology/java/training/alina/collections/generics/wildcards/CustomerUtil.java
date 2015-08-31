@@ -35,24 +35,6 @@ public class CustomerUtil<T extends Customer> {
 	}
 
 	/**
-	 * Generic method to list customers
-	 * 
-	 * @param buttonList
-	 * @return customer {@link List} lists of customers
-	 * @author Alina Shakya <alinashakya@lftechnology.com>
-	 */
-	public static List<CustomerUtil<?>> getCustomers(
-		List<CustomerUtil<?>> customerList) {
-
-		List<CustomerUtil<?>> customers =
-			new ArrayList<CustomerUtil<?>>(customerList.size());
-		for (CustomerUtil<?> customer : customerList) {
-			customers.add(customer);
-		}
-		return customers;
-	}
-
-	/**
 	 * Checks if the salary is equal or not
 	 * 
 	 * @param otherCustomer
