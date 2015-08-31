@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.lftechnology.java.training.sanish.student.UserInput;
 
 public class StemLeafDemo {
     private static final Logger LOGGER = Logger.getLogger(StemLeafDemo.class
