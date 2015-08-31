@@ -14,13 +14,16 @@ import java.util.logging.Logger;
 public class CalculateGPA {
     private static final Logger LOGGER = Logger.getLogger(CalculateGPA.class.getName());
 
+    private CalculateGPA() {
+    }
+
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
             MarksValidation validation = new MarksValidation();
             int studentNo = validation.numberValidation(input, "Enter number of Students : ");
             Student.getStudentDetails(input, studentNo);
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
         }
     }
 }

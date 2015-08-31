@@ -22,34 +22,40 @@ public class Student extends Course {
     private int standard;
     private int rollNo;
 
-    public Student(float subject1, float subject2, float subject3, float subject4, float subject5, String fullName, int standard, int rollNo) {
-        super(subject1, subject2, subject3, subject4, subject5);
+    public Student(String fullName, int standard, int rollNo) {
+
         this.fullName = fullName;
         this.standard = standard;
         this.rollNo = rollNo;
     }
 
     public void setFullName(String fullName) {
+
         this.fullName = fullName;
     }
 
     public String getFullName() {
+
         return fullName;
     }
 
     public void setStandard(int standard) {
+
         this.standard = standard;
     }
 
     public int getStandard() {
+
         return standard;
     }
 
     public void setRollNo(int rollNo) {
+
         this.rollNo = rollNo;
     }
 
     public int getRollNo() {
+
         return rollNo;
     }
 
@@ -63,6 +69,7 @@ public class Student extends Course {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static void getStudentDetails(Scanner input, int studentNo) {
+
         for (int i = 0; i < studentNo; i++) {
             LOGGER.log(Level.INFO, "Enter Student's Full Name : ");
             String fullName = input.nextLine();
@@ -75,10 +82,12 @@ public class Student extends Course {
             float english = validation.marksValidation(input, "English : ");
             float nepali = validation.marksValidation(input, "Nepali : ");
             float history = validation.marksValidation(input, "History : ");
-            Student student = new Student(maths, science, english, nepali, history, fullName, standard, rollNumber);
+            Student student = new Student(fullName, standard, rollNumber);
+            Course course = new Course(maths, science, english, nepali, history);
             students.add(student);
+            courses.add(course);
         }
-        displayStudentDetails(students);
+        displayStudentDetails(students, courses);
     }
 
     /**
@@ -88,15 +97,15 @@ public class Student extends Course {
      *            {@link ArrayList} arrays of student details
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    private static void displayStudentDetails(ArrayList<Student> students) {
+    private static void displayStudentDetails(ArrayList<Student> students, ArrayList<Course> courses) {
+
         Comparator<Student> mycomparator = Collections.reverseOrder();
         Collections.sort(students, mycomparator);
-        for (Student student : students) {
-            LOGGER.log(Level.INFO, "Student lists : {0}", new Object[] { student });
-        }
+        LOGGER.log(Level.INFO, "Student lists : {0} , {1}", new Object[] { students.toString(), courses.toString() });
     }
 
     public String toString() {
-        return "Name : " + this.fullName + ", Class : " + this.standard + ", Roll Number : " + this.rollNo + "," + super.toString();
+
+        return "Name : " + this.fullName + ", Class : " + this.standard + ", Roll Number : " + this.rollNo;
     }
 }

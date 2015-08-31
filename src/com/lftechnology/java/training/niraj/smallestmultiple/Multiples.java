@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.niraj.smallestmultiple;
 
 /**
@@ -11,6 +12,7 @@ public class Multiples {
 	private int maxNum;
 
 	public Multiples(int minNum, int maxNum) {
+
 		this.minNum = minNum;
 		this.maxNum = maxNum;
 	}
@@ -23,6 +25,7 @@ public class Multiples {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public int smallestMultiple() {
+
 		int smallestMultiple = minNum;
 		int num;
 		for (int i = minNum; i <= maxNum; i++) {
@@ -44,6 +47,7 @@ public class Multiples {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public boolean isMultiple(int num) {
+
 		boolean isMultiple = true;
 		for (int i = minNum; i <= maxNum; i++) {
 			if (num % i != 0) {

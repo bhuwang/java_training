@@ -2,7 +2,6 @@ package com.lftechnology.java.training.alina.basic.stemleaf;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -10,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  * Java program to present data in stem and leaf form
- * 
+ *
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class StemLeafRepresentation {
@@ -21,23 +20,29 @@ public class StemLeafRepresentation {
     private static int dataPoints;
     private static DataSet[] data;
 
+    private StemLeafRepresentation() {
+
+    }
+
     public static void main(String[] args) {
+
         try (Scanner scanner = new Scanner(System.in)) {
             getDataPoints(scanner);
             getStemLeaf();
-        } catch (InputMismatchException e) {
-            LOGGER.log(Level.WARNING, "Invalid number.");
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, "Invalid number. {0}", e);
         }
     }
 
     /**
      * Function used to get data points and display data in order
-     * 
+     *
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     private static void getDataPoints(Scanner scanner) {
+
         NumberValidation validation = new NumberValidation();
         dataPoints = validation.numberValidation(scanner, "Enter number of data points : ", MIN_VALUE, MAX_VALUE);
         data = new DataSet[dataPoints];
@@ -54,7 +59,7 @@ public class StemLeafRepresentation {
 
     /**
      * Gets and displays stem leaf
-     * 
+     *
      * @param data
      *            {@link Arrays} list of data
      * @param dataPoints
@@ -62,6 +67,7 @@ public class StemLeafRepresentation {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     private static void getStemLeaf() {
+
         Map<Integer, Integer> dictionary = new HashMap<Integer, Integer>();
         int stem, leaf, second;
         for (int i = 0; i < dataPoints; i++) {
@@ -80,6 +86,5 @@ public class StemLeafRepresentation {
             LOGGER.log(Level.INFO, "Frequency : {0}, Stem : {1}, Leaf : {2}", new Object[] { dictionary.get(key).toString().length(), key,
                     dictionary.get(key) });
         }
-
     }
 }

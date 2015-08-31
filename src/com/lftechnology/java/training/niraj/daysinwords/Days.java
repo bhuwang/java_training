@@ -1,12 +1,13 @@
+
 package com.lftechnology.java.training.niraj.daysinwords;
 
 /**
  * Helper class that has helper methods to functionality related to days
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
- *
  */
 public class Days {
+
 	private static final String NOT_VALID = "Not a valid day";
 
 	private Days() {
@@ -22,6 +23,7 @@ public class Days {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public static String getDayInWords(int day) {
+
 		String dayInWord;
 		switch (day) {
 		case 0:

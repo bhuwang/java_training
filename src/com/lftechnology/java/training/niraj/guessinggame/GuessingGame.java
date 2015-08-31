@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.niraj.guessinggame;
 
 import java.util.InputMismatchException;
@@ -10,28 +11,32 @@ import java.util.logging.Logger;
  * Helper class containing helper methods related to guessing number game
  * 
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
- *
  */
 public class GuessingGame {
-	private static final Logger LOGGER = Logger.getLogger(GuessingGame.class
-			.getName());
+
+	private static final Logger LOGGER =
+		Logger.getLogger(GuessingGame.class.getName());
 	private int guessedNumber;
 	private int noOfAttempts;
 
 	public GuessingGame(int minNum, int maxNum) {
+
 		int randomNumber = getRandomNumber(minNum, maxNum);
 		setGuessedNumber(randomNumber);
 	}
 
 	public int getNumberOfAttempts() {
+
 		return noOfAttempts;
 	}
 
 	public int getGuessedNumber() {
+
 		return guessedNumber;
 	}
 
 	public void setGuessedNumber(int guessedNumber) {
+
 		this.guessedNumber = guessedNumber;
 	}
 
@@ -46,6 +51,7 @@ public class GuessingGame {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	private static int getRandomNumber(int minNum, int maxNum) {
+
 		Random random = new Random();
 		return random.nextInt((maxNum - minNum) + 1) + minNum;
 	}
@@ -59,6 +65,7 @@ public class GuessingGame {
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
 	public boolean checkGuessedNumber(int num) {
+
 		noOfAttempts++;
 		return guessedNumber == num;
 	}
@@ -71,26 +78,29 @@ public class GuessingGame {
 	 * @throws InputMismatchException
 	 * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
 	 */
-	public void startGame(Scanner scanner) throws InputMismatchException {
+	public void startGame(Scanner scanner)
+		throws InputMismatchException {
+
 		int numberGuessed;
 		while (true) {
 			if (!scanner.hasNextInt()) {
-				LOGGER.log(Level.WARNING,
-						"It's not a number. Please try again: ");
+				LOGGER.log(
+					Level.WARNING, "It's not a number. Please try again: ");
 				scanner.next();
 			}
 			numberGuessed = scanner.nextInt();
 			if (this.checkGuessedNumber(numberGuessed)) {
 				break;
-			} else {
-				LOGGER.log(Level.INFO,
-						"Your guess is not correct. Please try again: ");
+			}
+			else {
+				LOGGER.log(
+					Level.INFO, "Your guess is not correct. Please try again: ");
 			}
 		}
 		LOGGER.log(
-				Level.INFO,
-				"Congratulations !!! You have guessed a correct number in : {0} attempts",
-				this.getNumberOfAttempts());
+			Level.INFO,
+			"Congratulations !!! You have guessed a correct number in : {0} attempts",
+			this.getNumberOfAttempts());
 	}
 
 }
