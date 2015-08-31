@@ -1,63 +1,75 @@
+
 package com.lftechnology.java.training.krishna.basics.gpa;
 
 /**
- * StudentReport.java
+ * StudentReport.java This program stores student information
  * 
- * This program stores student information
- * 
- *
  * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
  * @version 1.0
  */
-public class StudentReport{
-	private String name;
-	private int marks;
-	private float percentage;
-	private char grade;
+public class StudentReport {
 
-	public StudentReport(String name, int marks, float percentage, char grade) {
-		this.name = name;
-		this.marks = marks;
-		this.percentage = percentage;
-		this.grade = grade;
+	private String studentName;
+	private int subjectMarks;
+	private float studentPercentage;
+	private char studentGrade;
+
+	public StudentReport(
+		String studentName, int subjectMarks, float studentPercentage,
+		char studentGrade) {
+
+		this.studentName = studentName;
+		this.subjectMarks = subjectMarks;
+		this.studentPercentage = studentPercentage;
+		this.studentGrade = studentGrade;
 	}
 
-	public String getName() {
-		return name;
+	public String getStudentName() {
+
+		return studentName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStudentName(String studentName) {
+
+		this.studentName = studentName;
 	}
 
-	public int getMarks() {
-		return marks;
+	public int getSubjectMarks() {
+
+		return subjectMarks;
 	}
 
-	public void setMarks(int marks) {
-		this.marks = marks;
+	public void setSubjectMarks(int subjectMarks) {
+
+		this.subjectMarks = subjectMarks;
 	}
 
-	public float getPercentage() {
-		return percentage;
+	public float getStudentPercentage() {
+
+		return studentPercentage;
 	}
 
-	public void setPercentage(float percentage) {
-		this.percentage = percentage;
+	public void setStudentPercentage(float studentPercentage) {
+
+		this.studentPercentage = studentPercentage;
 	}
 
-	public char getGrade() {
-		return grade;
+	public char getStudentGrade() {
+
+		return studentGrade;
 	}
 
-	public void setGrade(char grade) {
-		this.grade = grade;
+	public void setStudentGrade(char studentGrade) {
+
+		this.studentGrade = studentGrade;
 	}
 
 	@Override
 	public String toString() {
-		return "StudentReport [name=" + name + ", marks=" + marks
-				+ ", percentage=" + percentage + ", grade=" + grade + "]";
+
+		return "StudentReport [studentName=" + studentName + ", subjectMarks=" +
+			subjectMarks + ", studentPercentage=" + studentPercentage +
+			", studentGrade=" + studentGrade + "]";
 	}
 
 }

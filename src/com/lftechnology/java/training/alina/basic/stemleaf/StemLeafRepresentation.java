@@ -3,7 +3,6 @@ package com.lftechnology.java.training.alina.basic.stemleaf;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -11,7 +10,7 @@ import java.util.logging.Logger;
 
 /**
  * Java program to present data in stem and leaf form
- * 
+ *
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class StemLeafRepresentation {
@@ -40,7 +39,7 @@ public class StemLeafRepresentation {
 
 	/**
 	 * Function used to get data points and display data in order
-	 * 
+	 *
 	 * @param scanner
 	 *            {@link Scanner}
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
@@ -67,7 +66,7 @@ public class StemLeafRepresentation {
 
 	/**
 	 * Gets and displays stem leaf
-	 * 
+	 *
 	 * @param data
 	 *            {@link Arrays} list of data
 	 * @param dataPoints
