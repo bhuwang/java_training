@@ -1,9 +1,6 @@
 
 package com.lftechnology.java.training.alina.collections.generics.wildcards;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * CustomerUtil Class consists of comparisions of different customer
  * 
