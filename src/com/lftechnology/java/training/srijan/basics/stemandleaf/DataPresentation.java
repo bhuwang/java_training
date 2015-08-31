@@ -1,7 +1,6 @@
 package com.lftechnology.java.training.srijan.basics.stemandleaf;
 
 import java.util.ArrayList;
-//import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +13,6 @@ public class DataPresentation {
 	private static final Logger LOGGER = Logger.getLogger(DataPresentation.class.getName());
 	private int[][] stemFrequencyLeaf;
 	List<Integer> stemAndLeaf = new ArrayList<>();
-	Set<Integer> treeSetOfStemAndLeaf = new TreeSet<>();
 	Set<Integer> stem = new TreeSet<>();
 	List<Integer> leaf = new ArrayList<>();
 
@@ -93,13 +91,10 @@ public class DataPresentation {
 	 */
 	public void displayUnsortedInputData() {
 		Iterator<Integer> iterator;
-		iterator = treeSetOfStemAndLeaf.iterator();
+		iterator = stemAndLeaf.iterator();
 		LOGGER.info("Unsorted Entered Datas:");
 		for (int i = 0; i < datas.length; i++) {
 			LOGGER.info("[" + i + "]" + ":" + datas[i]);
-		}
-		while (iterator.hasNext()) {
-			LOGGER.info("Treeset " + iterator.next() + "");
 		}
 	}
 
@@ -138,7 +133,11 @@ public class DataPresentation {
 			LOGGER.info("[" + i + "]" + ":" + datas[i]);
 		}
 	}
-
+	
+	/**
+	 * <p>Separates stem and leaf from collection</p>
+	 * @author srijan
+	 */
 	public void separateStemFrequencyLeaf() {
 		Iterator<Integer> iterator;
 		iterator = stemAndLeaf.iterator();
@@ -155,6 +154,10 @@ public class DataPresentation {
 		
 	}
 	
+	/**
+	 * <p>Displays stem </p>
+	 * @author srijan
+	 */
 	public void displayStem(){
 		Iterator<Integer> stemIterator;
 		stemIterator = stem.iterator();
@@ -165,6 +168,10 @@ public class DataPresentation {
 		
 	}
 	
+	/**
+	 * <p>Displays leaf</p>
+	 * @author srijan
+	 */
 	public void displayLeaf(){
 		Iterator<Integer> leafIterator;
 		leafIterator = leaf.iterator();
