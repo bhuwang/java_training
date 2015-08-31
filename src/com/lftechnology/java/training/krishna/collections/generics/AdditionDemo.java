@@ -24,7 +24,6 @@ public class AdditionDemo {
 
 	}
 
-
 	public static void main(String[] args) {
 
 		IntegerAdditionImpl integerNumber = new IntegerAdditionImpl();
