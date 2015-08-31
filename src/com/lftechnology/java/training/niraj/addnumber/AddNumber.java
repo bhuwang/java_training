@@ -1,7 +1,6 @@
 package com.lftechnology.java.training.niraj.addnumber;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
