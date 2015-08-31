@@ -16,6 +16,10 @@ public class ProductDemo {
 	private static final Logger LOGGER =
 		Logger.getLogger(ProductDemo.class.getName());
 
+	private ProductDemo() {
+
+	}
+
 	/**
 	 * Main Class consists of display of products in terms of different data
 	 * types and class

@@ -19,13 +19,17 @@ public class WildcardDemo {
 	private static List<CustomerUtil<?>> customerList =
 		new ArrayList<CustomerUtil<?>>();
 
+	private WildcardDemo() {
+
+	}
+
 	/**
 	 * Main Class consists of display different sub classes and comparisions
 	 * 
 	 * @param args
 	 * @author Alina Shakya <alinashakya@lftechnology.com>
 	 */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 		CustomerUtil<CustomerA> customerA =
 			new CustomerUtil<CustomerA>(new CustomerA(

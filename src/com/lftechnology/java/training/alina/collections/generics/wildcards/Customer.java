@@ -10,9 +10,9 @@ public class Customer {
 
 	private String name;
 	private String address;
-	private float bill;
+	private int bill;
 
-	public Customer(String name, String address, float bill) {
+	public Customer(String name, String address, int bill) {
 
 		this.name = name;
 		this.address = address;
@@ -44,7 +44,7 @@ public class Customer {
 		return bill;
 	}
 
-	public void setBill(float bill) {
+	public void setBill(int bill) {
 
 		this.bill = bill;
 	}

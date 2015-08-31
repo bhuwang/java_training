@@ -8,7 +8,7 @@ package com.lftechnology.java.training.alina.collections.generics.wildcards;
  */
 public class CustomerA extends Customer {
 
-	public CustomerA(String name, String address, float bill) {
+	public CustomerA(String name, String address, int bill) {
 
 		super(name, address, bill);
 	}
