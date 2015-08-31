@@ -47,7 +47,7 @@ public class VehicleList<T extends Vehicle> {
 	}
 
 	/**
-	 * L vehisticle information
+	 * vehicle list information
 	 * 
 	 * @return vehicles {@link Map}
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
