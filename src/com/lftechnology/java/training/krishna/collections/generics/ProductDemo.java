@@ -22,19 +22,19 @@ public class ProductDemo {
 	public static void main(String[] args) {
 
 		Product<String, String> strObject =
-			new Product<String, String>("Brick", "Stone");
+			new Product<String, String>("Acura", "Arash");
 		strObject.displayInformation();
 
 		Product<String, Integer> intObject =
-			new Product<String, Integer>("Brick", 1);
+			new Product<String, Integer>("Alfa Romeo", 1);
 		intObject.displayInformation();
 
 		Product<String, Float> floatObject =
-			new Product<String, Float>("Brick", 1.5f);
+			new Product<String, Float>("Ascari", 1.5f);
 		floatObject.displayInformation();
 
 		Product<String, Boolean> boolObject =
-			new Product<String, Boolean>("Brick", true);
+			new Product<String, Boolean>("Audi", true);
 		boolObject.displayInformation();
 
 		Product<Car, Boolean> carObject =
