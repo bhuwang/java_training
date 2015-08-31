@@ -12,11 +12,11 @@ public class Customer {
 	private String address;
 	private float bill;
 
-	public Customer(String name, String address, float salary) {
+	public Customer(String name, String address, float bill) {
 
 		this.name = name;
 		this.address = address;
-		this.bill = salary;
+		this.bill = bill;
 	}
 
 	public String getName() {
@@ -53,6 +53,6 @@ public class Customer {
 	public String toString() {
 
 		return "Name : " + getName() + ", Address : " + getAddress() +
-			", Salary : " + getBill() + "\n";
+			", Bill Payment : " + getBill() + "\n";
 	}
 }
