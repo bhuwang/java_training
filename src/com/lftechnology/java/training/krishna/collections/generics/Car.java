@@ -10,13 +10,13 @@ package com.lftechnology.java.training.krishna.collections.generics;
 public class Car extends Vehicle {
 
 	private int gears;
-	private int CC;
+	private int cylinderVolume;
 
-	public Car(String brandName, int plateNumber, int gears, int cC) {
+	public Car(String brandName, int plateNumber, int gears, int cylinderVolume) {
 
 		super(brandName, plateNumber);
 		this.gears = gears;
-		CC = cC;
+		this.cylinderVolume = cylinderVolume;
 	}
 
 	public int getGears() {
@@ -29,23 +29,23 @@ public class Car extends Vehicle {
 		this.gears = gears;
 	}
 
-	public int getCC() {
+	public int getCylinderVolume() {
 
-		return CC;
+		return cylinderVolume;
 	}
 
-	public void setCC(int cC) {
+	public void setCylinderVolume(int cylinderVolume) {
 
-		CC = cC;
+		this.cylinderVolume = cylinderVolume;
 	}
 
 	@Override
 	public String toString() {
 
-		return "Car [gears=" + gears + ", CC=" + CC + ", brandName=" +
-			getBrandName() + ", plateNumber=" + getPlateNumber() +
-			", toString()=" + super.toString() + ", hashCode()=" + hashCode() +
-			"]";
+		return "Car [gears=" + gears + ", cylinderVolume=" + cylinderVolume +
+			", brandName=" + getBrandName() + ", plateNumber=" +
+			getPlateNumber() + ", toString()=" + super.toString() +
+			", hashCode()=" + hashCode() + "]";
 	}
 
 }
