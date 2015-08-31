@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.sanish.game;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
