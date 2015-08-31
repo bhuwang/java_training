@@ -29,7 +29,7 @@ public class NumberSeries {
         NumberSeriesOperator.displaySeries(seriesOne);
 
         //remove event position element form list of seriesTow
-        seriesTwo = NumberSeriesOperator.removeEventElement(seriesTwo);
+        seriesTwo = NumberSeriesOperator.removeEventPosElement(seriesTwo);
         NumberSeriesOperator.displaySeries(seriesTwo);
 
         //remove seriesTwo elements form seriesOne list

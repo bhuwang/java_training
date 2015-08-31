@@ -41,7 +41,7 @@ public class NumberSeriesOperator {
      * @return {@link List}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public static List<String> removeEventElement(List<String> series) {
+    public static List<String> removeEventPosElement(List<String> series) {
         List<String> tempSeries = series;
         int index = 0;
         int count = 1;
