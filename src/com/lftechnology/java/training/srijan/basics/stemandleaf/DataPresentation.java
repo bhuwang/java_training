@@ -73,10 +73,9 @@ public class DataPresentation {
 			for (int i = 0; i < datas.length; i++) {
 				datas[i] = inputData.nextInt();
 				stemAndLeaf.add(datas[i]);
-				// treeSetOfStemAndLeaf.add(datas[i]);
 			}
 		} catch (ArrayIndexOutOfBoundsException ex) {
-			LOGGER.info("Array index out of bound:" + ex.getMessage());
+			LOGGER.info("Array index out of bound:" + ex);
 		} finally {
 			inputData.close();
 		}
