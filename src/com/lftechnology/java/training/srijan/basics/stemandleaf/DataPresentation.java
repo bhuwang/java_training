@@ -73,7 +73,7 @@ public class DataPresentation {
 			for (int i = 0; i < datas.length; i++) {
 				datas[i] = inputData.nextInt();
 				stemAndLeaf.add(datas[i]);
-				//treeSetOfStemAndLeaf.add(datas[i]);
+				// treeSetOfStemAndLeaf.add(datas[i]);
 			}
 		} catch (ArrayIndexOutOfBoundsException ex) {
 			LOGGER.info("Array index out of bound:" + ex.getMessage());
@@ -90,8 +90,6 @@ public class DataPresentation {
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
 	public void displayUnsortedInputData() {
-		Iterator<Integer> iterator;
-		iterator = stemAndLeaf.iterator();
 		LOGGER.info("Unsorted Entered Datas:");
 		for (int i = 0; i < datas.length; i++) {
 			LOGGER.info("[" + i + "]" + ":" + datas[i]);
@@ -133,9 +131,12 @@ public class DataPresentation {
 			LOGGER.info("[" + i + "]" + ":" + datas[i]);
 		}
 	}
-	
+
 	/**
-	 * <p>Separates stem and leaf from collection</p>
+	 * <p>
+	 * Separates stem and leaf from collection
+	 * </p>
+	 * 
 	 * @author srijan
 	 */
 	public void separateStemFrequencyLeaf() {
@@ -151,31 +152,37 @@ public class DataPresentation {
 			leaf.add(remainder);
 		}
 		displayStem();
-		
+
 	}
-	
+
 	/**
-	 * <p>Displays stem </p>
+	 * <p>
+	 * Displays stem
+	 * </p>
+	 * 
 	 * @author srijan
 	 */
-	public void displayStem(){
+	public void displayStem() {
 		Iterator<Integer> stemIterator;
 		stemIterator = stem.iterator();
-		while(stemIterator.hasNext()){
+		while (stemIterator.hasNext()) {
 			LOGGER.info("Stem " + stemIterator.next());
 		}
 		displayLeaf();
-		
+
 	}
-	
+
 	/**
-	 * <p>Displays leaf</p>
+	 * <p>
+	 * Displays leaf
+	 * </p>
+	 * 
 	 * @author srijan
 	 */
-	public void displayLeaf(){
+	public void displayLeaf() {
 		Iterator<Integer> leafIterator;
 		leafIterator = leaf.iterator();
-		while(leafIterator.hasNext()){
+		while (leafIterator.hasNext()) {
 			LOGGER.info("Leaf " + leafIterator.next());
 		}
 	}
