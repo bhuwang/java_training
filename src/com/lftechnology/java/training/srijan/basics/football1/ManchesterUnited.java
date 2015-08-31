@@ -1,27 +1,42 @@
-package com.lftechnology.java.training.srijan.basics;
+package com.lftechnology.java.training.srijan.basics.football1;
 
 import java.util.logging.Logger;
+
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class ManchesterUnited {
+public class ManchesterUnited{
 
 	private static final Logger LOGGER = Logger.getLogger(ManchesterUnited.class.getName());
-
+	
+	private ManchesterUnited(){
+		
+	}
+	
 	public static void main(String[] args) {
 		int numberOfGameWeeks = 0;
+		String club = "";
 		Scanner input = new Scanner(System.in);
+		
+		Scanner clubNameString = new Scanner(System.in);
 		try{
 			LOGGER.info("Enter the number of GameWeek");
 			numberOfGameWeeks = input.nextInt();
-			inputFixtures(numberOfGameWeeks);
+			LOGGER.info("Enter club's name your want to see stat of:");
+			club = clubNameString.nextLine();
+			inputFixtures(numberOfGameWeeks, club);
 		}catch(InputMismatchException ex){
-			LOGGER.info("Error:Input MisMatchException" + ex.getMessage());
+			LOGGER.info("your error message"+ ex);
+		}catch(NoSuchElementException ex){
+			LOGGER.info("Error Message" + ex);
 		}finally{
 		input.close();
+		clubNameString.close();
 		}
 	}
 
+	
 	/**
 	 * <p>
 	 * Inputs number of Gameweeks
@@ -33,13 +48,13 @@ public class ManchesterUnited {
 	 * @param numberOfGameWeeks
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
-	public static void inputFixtures(int numberOfGameWeeks) {
-		ManchesterUnitedStats manchesterUnitedStats = new ManchesterUnitedStats(numberOfGameWeeks);
+	public static void inputFixtures(int numberOfGameWeeks, String clubName) {
+		ManchesterUnitedStats manchesterUnitedStats = new ManchesterUnitedStats(numberOfGameWeeks, clubName);
 		String[] gamesFixtures = new String[numberOfGameWeeks * 2];
 		String matches = "";
 		Scanner intake = new Scanner(System.in);
 		int stringLengthCount = 0;
-		LOGGER.info("Manchester United Game Fixtures");
+		LOGGER.info(clubName + " Game Fixtures");
 		for (int i = 1; i <= numberOfGameWeeks; i++) {
 			int count = 0;
 			LOGGER.info("GameWeek" + i);
@@ -54,7 +69,7 @@ public class ManchesterUnited {
 				stringLengthCount++;
 			}
 		}
-		manchesterUnitedStats.displayGameweekFixtures(numberOfGameWeeks, gamesFixtures);
+		manchesterUnitedStats.displayGameweekFixtures(gamesFixtures);
 		manchesterUnitedStats.inputGameweekScores(numberOfGameWeeks, gamesFixtures);
 		intake.close();		
 	}

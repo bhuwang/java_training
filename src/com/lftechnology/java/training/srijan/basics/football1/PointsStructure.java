@@ -1,7 +1,6 @@
-package com.lftechnology.java.training.srijan.basics.ManUtdStats;
+package com.lftechnology.java.training.srijan.basics.football1;
 
 import java.util.logging.Logger;
-
 
 public class PointsStructure {
 	private static final int WIN;
@@ -13,7 +12,7 @@ public class PointsStructure {
 	private int draws;
 	private int lose;
 	private String clubName;
-
+	
 	static {
 		WIN = 3;
 		LOSE = 0;
@@ -127,10 +126,10 @@ public class PointsStructure {
 	 * @author Srijan Bajracharya <srijanbajracharya@lftechnology.com>
 	 */
 	public void displayPoints(String result, int numberOfWeeks) {
-		if (result.equals("WIN")) {
+		if ("WIN".equals(result)) {
 			points = points + WIN;
 			wins++;
-		} else if (result.equals("LOSE")) {
+		} else if ("LOSE".equals(result)) {
 			points = points + LOSE;
 			lose++;
 		} else {
@@ -138,7 +137,7 @@ public class PointsStructure {
 			draws++;
 		}
 		if (counts == numberOfWeeks) {
-			LOGGER.info("Total Points " + points);
+			LOGGER.info("Total Points" + points);
 			LOGGER.info("Wins= " + wins);
 			LOGGER.info("Draws= " + draws);
 			LOGGER.info("Lose= " + lose);
