@@ -18,6 +18,10 @@ public class NumberAdd {
 	private static final Logger LOGGER =
 		Logger.getLogger(NumberAdd.class.getName());
 
+	private NumberAdd() {
+
+	}
+
 	/**
 	 * Main method used to calculate and display the sum of numbers
 	 * 
@@ -26,10 +30,17 @@ public class NumberAdd {
 	 */
 	public static void main(String[] args) {
 
-		int totalSum = 0;
-		for (int i = 0; i < args.length; i++) {
-			totalSum += Integer.parseInt(args[i]);
+		try {
+			int totalSum = 0;
+			for (int i = 0; i < args.length; i++) {
+				totalSum += Integer.parseInt(args[i]);
+			}
+			LOGGER.log(Level.INFO, "Sum of two numbers is : {0}", totalSum);
 		}
-		LOGGER.log(Level.INFO, "Sum of two numbers is : {0}", totalSum);
+		catch (NumberFormatException e) {
+			LOGGER.log(Level.WARNING, "Exception message : {0}", new Object[] {
+				e
+			});
+		}
 	}
 }
