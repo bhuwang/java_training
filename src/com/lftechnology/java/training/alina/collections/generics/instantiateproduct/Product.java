@@ -8,33 +8,33 @@ package com.lftechnology.java.training.alina.collections.generics.instantiatepro
  * @param <T1>
  * @param <T2>
  */
-public class Product<T1, T2> {
+public class Product<TA, TB> {
 
-	private T1 product1;
-	private T2 product2;
+	private TA product1;
+	private TB product2;
 
-	public Product(T1 product1, T2 product2) {
+	public Product(TA product1, TB product2) {
 
 		this.setProduct1(product1);
 		this.setProduct2(product2);
 	}
 
-	public T1 getProduct1() {
+	public TA getProduct1() {
 
 		return product1;
 	}
 
-	public void setProduct1(T1 product1) {
+	public void setProduct1(TA product1) {
 
 		this.product1 = product1;
 	}
 
-	public T2 getProduct2() {
+	public TB getProduct2() {
 
 		return product2;
 	}
 
-	public void setProduct2(T2 product2) {
+	public void setProduct2(TB product2) {
 
 		this.product2 = product2;
 	}
