@@ -33,7 +33,7 @@ public class ShuffleNumbers {
 	 * @param upperRange
 	 * @author Dipak Thapa <dipakthapa@lftechnology.com>
 	 */
-	public void getNumbers(Scanner sc, int lowerRange, int upperRange) {
+	public void getNumbers(int lowerRange, int upperRange) {
 
 		for (int i = lowerRange; i <= upperRange; i++) {
 			integerArray.add(i);
@@ -105,7 +105,7 @@ public class ShuffleNumbers {
 			int lowerRange = Math.abs(Integer.parseInt(sc.nextLine()));
 			LOGGER.info("Enter the upper range:: (Upper Range Inclusive)");
 			int upperRange = Math.abs(Integer.parseInt(sc.nextLine()));
-			sn.getNumbers(sc, lowerRange, upperRange);
+			sn.getNumbers(lowerRange, upperRange);
 
 			sn.shuffleArray();
 
