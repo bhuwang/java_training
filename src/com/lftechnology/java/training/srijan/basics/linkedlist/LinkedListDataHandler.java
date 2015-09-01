@@ -63,7 +63,7 @@ public class LinkedListDataHandler {
 	 * @author srijan
 	 */
 	public void removeEverySecondWordFromLinkedListTwo(){
-		for(int i=0;i<linkedListTwo.size();i+=2){
+		for(int i=0;i<linkedListTwo.size();i++){
 			linkedListTwo.remove(i);
 		}
 		LOGGER.log(Level.INFO, "Elements in linkedListTwo after every second Word removal {0}", linkedListTwo);
