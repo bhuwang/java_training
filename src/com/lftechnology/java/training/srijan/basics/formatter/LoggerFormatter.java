@@ -25,7 +25,6 @@ public class LoggerFormatter {
 			fileHandler.setLevel(Level.ALL);
 			LOGGER.setLevel(Level.ALL);
 			LOGGER.finest("Finnest message: Logger with SIMPLE FORMATTER");
-
 		}catch(IOException exception){
 			LOGGER.log(Level.SEVERE, "Error occur in FileHandler.", exception);
 
