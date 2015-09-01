@@ -38,7 +38,7 @@ public class Customer {
         this.address = address;
     }
 
-    public float getBill() {
+    public int getBill() {
 
         return bill;
     }

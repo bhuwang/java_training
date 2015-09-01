@@ -25,7 +25,7 @@ public class CustomerUtil<T extends Customer> {
         this.customer = customer;
     }
 
-    public float getBill() {
+    public int getBill() {
 
         return customer.getBill();
     }
