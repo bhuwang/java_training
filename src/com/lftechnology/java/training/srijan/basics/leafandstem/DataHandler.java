@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DataHandler {
@@ -18,7 +19,7 @@ public class DataHandler {
 	Set<Integer> setOfStems = new TreeSet<>();
 	List<Integer> listOfLeaves = new ArrayList<>();
 	Set<Integer> setOfSortedInputs = new TreeSet<>();
-	Map<Integer, String> stemByLeaves = new HashMap<Integer, String>();
+	Map<Integer, List<Integer>> stemByLeaves = new HashMap<Integer, List<Integer>>();
 
 	public DataHandler(int numberOfDatas) {
 		this.numberOfDatas = numberOfDatas;
@@ -27,13 +28,14 @@ public class DataHandler {
 	public void dataHandler() {
 		inputsStemsAndLeaves();
 		displayStemAndLeaf();
-		separateStemFromUserInputs();
-		separatesLeavesFromUserInputs();
-		displayStems();
-		displayLeaves();
+		//separateStemFromUserInputs();
+		//separatesLeavesFromUserInputs();
+		//displayStems();
+		//displayLeaves();
 		sortStemAndLeaf();
 		displaySortedStemAndLeaf();
-		determineLeavesForStems();
+		//determineLeavesForStems();
+		separateStemsAndLeaves();
 	}
 
 	public void inputsStemsAndLeaves() {
@@ -106,7 +108,7 @@ public class DataHandler {
 		}
 	}
 
-	public void determineLeavesForStems() {
+	/*public void determineLeavesForStems() {
 		System.out.println(" stems " + this.setOfStems);
 		System.out.println(" list of leaves : " + this.listOfLeaves.toString());
 		List<Integer> tempListOfLeaves = new ArrayList<>();
@@ -126,6 +128,28 @@ public class DataHandler {
 			tempListOfLeaves.clear();
 		}
 		System.out.println(stemByLeaves);
+	}*/
+	
+	public void separateStemsAndLeaves(){
+		int stem = 0;
+		//int leaf = 0;
+		Iterator<Integer> iterator;
+		iterator = this.userInputs.iterator();
+		while(iterator.hasNext()){
+			int value = iterator.next();
+			stem = value/10;
+			Integer leafValue = getLeafValue(value);
+			List<Integer> leaf = this.stemByLeaves.get(leafValue);
+			this.stemByLeaves.put(stem,leaf = new ArrayList<Integer>());
+			leaf.add(leafValue);
+			System.out.println(leafValue);
+		}
+		//System.out.println(stemByLeaves);
+		LOGGER.log(Level.INFO, "separate stem and leaf {0}", stemByLeaves);
+	}
+	
+	public Integer getLeafValue(Integer value){
+		return (value % 10);
 	}
 
 }
