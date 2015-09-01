@@ -1,3 +1,4 @@
+.~
 *.class
 .project
 .classpath
@@ -5,7 +6,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -15,3 +15,5 @@ hs_err_pid*
 .metadata/
 src/com/lftechnology/java/training/.metadata/
 .settings/
+.idea/
+training.iml

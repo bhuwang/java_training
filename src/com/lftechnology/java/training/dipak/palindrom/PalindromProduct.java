@@ -61,11 +61,7 @@ public class PalindromProduct {
 			num = num * 10 + temp;
 			b = b / 10;
 		}
-		if (num == product) {
-			return true;
-		} else {
-			return false;
-		}
+		return num==product;
 
 	}
 
