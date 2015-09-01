@@ -1,4 +1,3 @@
-
 package com.lftechnology.java.training.alina.collections.generics.vehiclelist;
 
 /**
@@ -10,28 +9,28 @@ package com.lftechnology.java.training.alina.collections.generics.vehiclelist;
  */
 public interface Vehicles<T, K extends Number> {
 
-	/**
-	 * Adds vehicle list
-	 * 
-	 * @param element
-	 *            {@link Object}
-	 * @author Alina Shakya <alinashakya@lftechnology.com>
-	 */
-	void addVehicle(T element);
+    /**
+     * Adds vehicle list
+     * 
+     * @param element
+     *            {@link Object}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    void addVehicle(T element);
 
-	/**
-	 * Removes vehicle element
-	 * 
-	 * @param element
-	 *            {@link Integer}
-	 * @author Alina Shakya <alinashakya@lftechnology.com>
-	 */
-	void removeVehicle(K element);
+    /**
+     * Removes vehicle element
+     * 
+     * @param element
+     *            {@link Integer}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    void removeVehicle(K element);
 
-	/**
-	 * Displays vehicle list
-	 * 
-	 * @author Alina Shakya <alinashakya@lftechnology.com>
-	 */
-	void displayLists();
+    /**
+     * Displays vehicle list
+     * 
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    void displayLists();
 }

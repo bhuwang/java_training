@@ -1,4 +1,3 @@
-
 package com.lftechnology.java.training.alina.collections.generics.vehiclelist;
 
 /**
@@ -8,26 +7,26 @@ package com.lftechnology.java.training.alina.collections.generics.vehiclelist;
  */
 public class MotorBike {
 
-	private String brandName;
+    private String brandName;
 
-	public MotorBike(String brandName) {
+    public MotorBike(String brandName) {
 
-		this.brandName = brandName;
-	}
+        this.brandName = brandName;
+    }
 
-	public String getBrandName() {
+    public String getBrandName() {
 
-		return brandName;
-	}
+        return brandName;
+    }
 
-	public void setBrandName(String brandName) {
+    public void setBrandName(String brandName) {
 
-		this.brandName = brandName;
-	}
+        this.brandName = brandName;
+    }
 
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
 
-		return brandName;
-	}
+        return brandName;
+    }
 }

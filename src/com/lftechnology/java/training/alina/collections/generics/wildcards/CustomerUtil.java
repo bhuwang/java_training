@@ -1,4 +1,3 @@
-
 package com.lftechnology.java.training.alina.collections.generics.wildcards;
 
 /**
@@ -9,46 +8,46 @@ package com.lftechnology.java.training.alina.collections.generics.wildcards;
  */
 public class CustomerUtil<T extends Customer> {
 
-	private T customer;
+    private T customer;
 
-	public CustomerUtil(T obj) {
+    public CustomerUtil(T obj) {
 
-		this.setCustomer(obj);
-	}
+        this.setCustomer(obj);
+    }
 
-	public T getCustomer() {
+    public T getCustomer() {
 
-		return customer;
-	}
+        return customer;
+    }
 
-	public void setCustomer(T customer) {
+    public void setCustomer(T customer) {
 
-		this.customer = customer;
-	}
+        this.customer = customer;
+    }
 
-	public float getBill() {
+    public float getBill() {
 
-		return customer.getBill();
-	}
+        return customer.getBill();
+    }
 
-	/**
-	 * Checks if the salary is equal or not
-	 * 
-	 * @param otherCustomer
-	 * @return
-	 * @author Alina Shakya <alinashakya@lftechnology.com>
-	 */
-	public boolean isBillPaymentEqual(CustomerUtil<?> otherCustomer) {
+    /**
+     * Checks if the salary is equal or not
+     * 
+     * @param otherCustomer
+     * @return
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    public boolean isBillPaymentEqual(CustomerUtil<?> otherCustomer) {
 
-		if (customer.getBill() == otherCustomer.getBill()) {
-			return true;
-		}
-		return false;
-	}
+        if (customer.getBill() == otherCustomer.getBill()) {
+            return true;
+        }
+        return false;
+    }
 
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
 
-		return customer.toString();
-	}
+        return customer.toString();
+    }
 }

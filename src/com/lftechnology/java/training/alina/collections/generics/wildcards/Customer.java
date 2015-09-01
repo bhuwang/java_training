@@ -1,4 +1,3 @@
-
 package com.lftechnology.java.training.alina.collections.generics.wildcards;
 
 /**
@@ -8,51 +7,50 @@ package com.lftechnology.java.training.alina.collections.generics.wildcards;
  */
 public class Customer {
 
-	private String name;
-	private String address;
-	private int bill;
+    private String name;
+    private String address;
+    private int bill;
 
-	public Customer(String name, String address, int bill) {
+    public Customer(String name, String address, int bill) {
 
-		this.name = name;
-		this.address = address;
-		this.bill = bill;
-	}
+        this.name = name;
+        this.address = address;
+        this.bill = bill;
+    }
 
-	public String getName() {
+    public String getName() {
 
-		return name;
-	}
+        return name;
+    }
 
-	public void setName(String name) {
+    public void setName(String name) {
 
-		this.name = name;
-	}
+        this.name = name;
+    }
 
-	public String getAddress() {
+    public String getAddress() {
 
-		return address;
-	}
+        return address;
+    }
 
-	public void setAddress(String address) {
+    public void setAddress(String address) {
 
-		this.address = address;
-	}
+        this.address = address;
+    }
 
-	public float getBill() {
+    public float getBill() {
 
-		return bill;
-	}
+        return bill;
+    }
 
-	public void setBill(int bill) {
+    public void setBill(int bill) {
 
-		this.bill = bill;
-	}
+        this.bill = bill;
+    }
 
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
 
-		return "Name : " + getName() + ", Address : " + getAddress() +
-			", Bill Payment : " + getBill() + "\n";
-	}
+        return "Name : " + getName() + ", Address : " + getAddress() + ", Bill Payment : " + getBill() + "\n";
+    }
 }
