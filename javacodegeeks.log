@@ -1,37 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
-<record>
-  <date>2015-09-01T13:33:29</date>
-  <millis>1441093709478</millis>
-  <sequence>0</sequence>
-  <logger>com.lftechnology.java.training.srijan.basics.logger.HandlerExample</logger>
-  <level>CONFIG</level>
-  <class>com.lftechnology.java.training.srijan.basics.logger.HandlerExample</class>
-  <method>main</method>
-  <thread>1</thread>
-  <message>Configuration done</message>
-</record>
-<record>
-  <date>2015-09-01T13:33:29</date>
-  <millis>1441093709529</millis>
-  <sequence>1</sequence>
-  <logger>com.lftechnology.java.training.srijan.basics.logger.HandlerExample</logger>
-  <level>FINE</level>
-  <class>com.lftechnology.java.training.srijan.basics.logger.HandlerExample</class>
-  <method>main</method>
-  <thread>1</thread>
-  <message>fine logged</message>
-</record>
-<record>
-  <date>2015-09-01T13:33:29</date>
-  <millis>1441093709529</millis>
-  <sequence>2</sequence>
-  <logger>com.lftechnology.java.training.srijan.basics.logger.HandlerExample</logger>
-  <level>FINER</level>
-  <class>com.lftechnology.java.training.srijan.basics.logger.HandlerExample</class>
-  <method>main</method>
-  <thread>1</thread>
-  <message>Finest example on LOGGER handler completed.</message>
-</record>
 </log>
