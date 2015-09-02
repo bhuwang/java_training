@@ -1,5 +1,5 @@
 
-package com.lftechnology.java.training.niraj.linkedlist;
+package com.lftechnology.java.training.niraj.utils;
 
 import java.util.Scanner;
 import java.util.logging.Logger;

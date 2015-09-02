@@ -1,5 +1,5 @@
 
-package com.lftechnology.java.training.niraj.shuffle;
+package com.lftechnology.java.training.niraj.utils;
 
 import java.util.Scanner;
 

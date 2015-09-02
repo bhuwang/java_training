@@ -8,6 +8,8 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.lftechnology.java.training.niraj.utils.UserNumInputImpl;
+
 /**
  * Creates an array list with 49 Integer objects containing the numbers 1
  * through 49. It then randomly shuffles the list and selects the first 6 values
