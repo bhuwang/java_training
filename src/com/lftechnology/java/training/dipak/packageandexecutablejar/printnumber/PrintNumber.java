@@ -1,10 +1,9 @@
 package com.lftechnology.java.training.dipak.packageandexecutablejar.printnumber;
 
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- * <p>This program prints the number from 1 to user given range.</p>
+ * <p>This program prints the number from 1 to 10.</p>
  * @author Dipak Thapa <dipakthapa@lftechnology.com>
  *
  */
@@ -23,16 +22,8 @@ public class PrintNumber {
 	}
 
 	public static void main(String[] args) {
-		PrintNumber pn=new PrintNumber();
-		int range=0;
-		try(Scanner sc=new Scanner(System.in)){
-			LOGGER.info("Enter the upper bound");
-			range=Math.abs(Integer.parseInt(sc.nextLine()));
-		}catch(NumberFormatException nfe) {
-			LOGGER.log(Level.INFO,"{0}",nfe);
-			System.exit(0);
-		}
-		pn.display(range);
+		PrintNumber pn=new PrintNumber();		
+		pn.display(10);
 	}
 
 }

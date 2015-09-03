@@ -1,10 +1,9 @@
 package com.lftechnology.java.training.dipak.packageandexecutablejar.addnumber;
 
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- * <p>The program adds two user inputted numbers and displays the sum.</p>
+ * <p>The program adds two user inputted numbers(numbers taken from the command line) and displays the sum.</p>
  * @author Dipak Thapa <dipakthapa@lftechnology.com>
  */
 public class AddNumber {
@@ -30,19 +29,8 @@ public class AddNumber {
 	public void displaySum() {
 		LOGGER.log(Level.INFO, "The sum of {0} and {1} is {2}",new Object[] {number1,number2,sum});
 	}
-	public static void main(String[] args) {
-		int number1=0;
-		int number2=0;
-		try(Scanner sc=new Scanner(System.in)){
-			LOGGER.info("Enter number1");
-			number1=Integer.parseInt(sc.nextLine());
-			LOGGER.info("Enter number2");
-			number2=Integer.parseInt(sc.nextLine());
-		}catch(NumberFormatException nfe) {
-			LOGGER.log(Level.INFO,"{0}",nfe);
-			System.exit(0);
-		}
-		AddNumber add=new AddNumber(number1, number2);
+	public static void main(String[] args) {		
+		AddNumber add=new AddNumber(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 		add.computeSum();
 		add.displaySum();
 	}
