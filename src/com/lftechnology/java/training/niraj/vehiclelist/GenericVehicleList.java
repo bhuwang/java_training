@@ -15,23 +15,23 @@ public class GenericVehicleList {
 
     private static final Logger LOGGER = Logger.getLogger(GenericVehicleList.class.getName());
     private VehiclesDaoImpl<Car> carDao;
-    private VehiclesDaoImpl<MotorBikes> motorBikeDao;
+    private VehiclesDaoImpl<MotorBike> motorBikeDao;
     private VehicleServiceImpl<Car> carService;
-    private VehicleServiceImpl<MotorBikes> motorBikeService;
+    private VehicleServiceImpl<MotorBike> motorBikeService;
     private String[] carBrands = { "BMW", "Mercedes", "Volkswagon", "AUDI" };
     private String[] motorbikeBrands = { "Ducati", "Honda", "Yamaha", "Sujuki" };
 
     private GenericVehicleList() {
         carDao = new VehiclesDaoImpl<Car>();
-        motorBikeDao = new VehiclesDaoImpl<MotorBikes>();
+        motorBikeDao = new VehiclesDaoImpl<MotorBike>();
         carService = new VehicleServiceImpl<Car>(carDao);
-        motorBikeService = new VehicleServiceImpl<MotorBikes>(motorBikeDao);
+        motorBikeService = new VehicleServiceImpl<MotorBike>(motorBikeDao);
     }
 
     public static void main(String[] args) {
         GenericVehicleList genericVehicleList = new GenericVehicleList();
         genericVehicleList.addBikes();
-        List<MotorBikes> bikeList = genericVehicleList.motorBikeService.list();
+        List<MotorBike> bikeList = genericVehicleList.motorBikeService.list();
         LOGGER.log(Level.INFO, "\n\nMotor Bike Brands:\n{0}\n\n", bikeList);
 
         genericVehicleList.addCars();
@@ -56,7 +56,7 @@ public class GenericVehicleList {
      */
     private void addBikes() {
         for (int i = 0; i < motorbikeBrands.length; i++) {
-            MotorBikes motorBike = addMotorBikeBrand(motorbikeBrands[i]);
+            MotorBike motorBike = addMotorBikeBrand(motorbikeBrands[i]);
             LOGGER.log(Level.INFO, "Motorbike of Brand : \"{0}\" is added", motorBike.getBrand());
         }
     }
@@ -79,10 +79,10 @@ public class GenericVehicleList {
      * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
      * @param brand
      *            {@link String}
-     * @return {@link MotorBikes}
+     * @return {@link MotorBike}
      */
-    private MotorBikes addMotorBikeBrand(String brand) {
-        MotorBikes bike = new MotorBikes();
+    private MotorBike addMotorBikeBrand(String brand) {
+        MotorBike bike = new MotorBike();
         bike.setBrand(brand);
         motorBikeService.add(bike);
         return bike;
@@ -129,7 +129,7 @@ public class GenericVehicleList {
      * @param brand
      */
     private void removeBike(String brand) {
-        MotorBikes bike = motorBikeService.findByBrand(brand);
+        MotorBike bike = motorBikeService.findByBrand(brand);
         if (bike != null) {
             boolean removeBike = motorBikeService.remove(bike);
             if (removeBike) {
