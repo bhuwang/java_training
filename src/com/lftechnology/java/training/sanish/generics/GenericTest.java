@@ -1,5 +1,8 @@
 package com.lftechnology.java.training.sanish.generics;
 
+import com.lftechnology.java.training.sanish.generics.product.Computer;
+import com.lftechnology.java.training.sanish.generics.product.Mouse;
+import com.lftechnology.java.training.sanish.generics.product.Product;
 import com.lftechnology.java.training.sanish.generics.vehicle.Car;
 import com.lftechnology.java.training.sanish.generics.vehicle.VehicleList;
 import com.lftechnology.java.training.sanish.generics.vehicle.VehicleListImpl;
@@ -16,11 +19,22 @@ public class GenericTest {
     private static final Logger LOGGER = Logger.getLogger(VehicleListImpl.class.getName());
 
     public static void main(String[] args) {
+        // add two number using generic function
         addIntegerNumbers(2, 5);
         addDoubleNumbers(3.5, 7.75);
 
+        // add / remove vehicle list of diffenrent type with generic class
         workOnCarList();
         workOnBikeList();
+
+        //Instantiate an object of Product using different data types.
+        Product computerProduct = new Product(new Computer("Dell", "Intel® Core™ i5-3337U CPU @ 1.80GHz × 4 ", "7.7 GiB", "500.0 GB"));
+        computerProduct.displayProductInfo();
+
+        Product mouseProduct = new Product(new Mouse("Delux", "Optical mouse"));
+        mouseProduct.displayProductInfo();
+
+
     }
 
     /**
