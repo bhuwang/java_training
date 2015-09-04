@@ -2,6 +2,7 @@ package com.lftechnology.java.training.sanish.generics;
 
 /**
  * Number operator
+ *
  * @param <T> {@link Number}
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */

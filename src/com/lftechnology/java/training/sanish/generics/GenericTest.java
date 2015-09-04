@@ -1,10 +1,15 @@
 package com.lftechnology.java.training.sanish.generics;
 
+import com.lftechnology.java.training.sanish.generics.vehicle.Car;
+import com.lftechnology.java.training.sanish.generics.vehicle.VehicleList;
+import com.lftechnology.java.training.sanish.generics.vehicle.VehicleListImpl;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * Generic class, interface & function test
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class GenericTest {
@@ -20,6 +25,7 @@ public class GenericTest {
 
     /**
      * Add tow interger number using generic function
+     *
      * @param num1 {@link Integer}
      * @param num2 {@link Integer}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
@@ -32,6 +38,7 @@ public class GenericTest {
 
     /**
      * Add tow double number using generic function
+     *
      * @param num1 {@link Double}
      * @param num2 {@link Double}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
@@ -44,9 +51,10 @@ public class GenericTest {
 
     /**
      * Add / remove cars form car list using generic class
+     *
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public static void workOnCarList(){
+    public static void workOnCarList() {
         VehicleList<Car> carList = new VehicleListImpl<Car>();
         carList.addVehicle(new Car("BMW", "Black"));
         carList.addVehicle(new Car("Ferrari", "Red"));
@@ -62,9 +70,10 @@ public class GenericTest {
 
     /**
      * Add / remove cars form car list using generic class
+     *
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public static void workOnBikeList(){
+    public static void workOnBikeList() {
         VehicleList<Car> bikeList = new VehicleListImpl<Car>();
         bikeList.addVehicle(new Car("Yamaha", "Black"));
         bikeList.addVehicle(new Car("Honda", "Red"));

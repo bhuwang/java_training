@@ -1,7 +1,8 @@
-package com.lftechnology.java.training.sanish.generics;
+package com.lftechnology.java.training.sanish.generics.vehicle;
 
 /**
  * Vehicle interface
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public interface Vehicle {

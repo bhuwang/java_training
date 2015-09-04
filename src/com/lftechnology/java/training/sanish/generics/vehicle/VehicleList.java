@@ -1,9 +1,10 @@
-package com.lftechnology.java.training.sanish.generics;
+package com.lftechnology.java.training.sanish.generics.vehicle;
 
 import java.util.List;
 
 /**
  * VehicleList interface
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public interface VehicleList<T extends Vehicle> {
@@ -33,6 +34,7 @@ public interface VehicleList<T extends Vehicle> {
 
     /**
      * Print list of vehicles
+     *
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public void listVehicles();

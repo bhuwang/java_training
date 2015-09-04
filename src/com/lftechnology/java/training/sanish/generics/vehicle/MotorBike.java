@@ -1,7 +1,8 @@
-package com.lftechnology.java.training.sanish.generics;
+package com.lftechnology.java.training.sanish.generics.vehicle;
 
 /**
  * MotorBike class
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class MotorBike implements Vehicle {

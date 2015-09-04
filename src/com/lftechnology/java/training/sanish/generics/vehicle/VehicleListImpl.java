@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.sanish.generics;
+package com.lftechnology.java.training.sanish.generics.vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 /**
  * VehicleList implementation class
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class VehicleListImpl<T extends Vehicle> implements VehicleList {
