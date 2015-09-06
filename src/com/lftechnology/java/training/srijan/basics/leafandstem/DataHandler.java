@@ -24,7 +24,11 @@ public class DataHandler {
 	public DataHandler(int numberOfDatas) {
 		this.numberOfDatas = numberOfDatas;
 	}
-
+	
+	/**
+	 * <p>Handles all the functionality of this application</p>
+	 * @author srijan
+	 */
 	public void dataHandler() {
 		inputsStemsAndLeaves();
 		displayStemAndLeaf();
@@ -32,7 +36,11 @@ public class DataHandler {
 		displaySortedStemAndLeaf();
 		separateStemsAndLeaves();
 	}
-
+	
+	/**
+	 * <p>Inputs data from user whose stem and leaf to be determined</p>
+	 * @author srijan
+	 */
 	public void inputsStemsAndLeaves() {
 		Scanner input = new Scanner(System.in);
 		int unseparatedStemAndLeaf = 0;
@@ -48,7 +56,11 @@ public class DataHandler {
 			input.close();
 		}
 	}
-
+	
+	/**
+	 * <p>Displays stem and leaf</p>
+	 * @author srijan
+	 */
 	public void displayStemAndLeaf() {
 		Iterator<Integer> iterator;
 		iterator = userInputs.iterator();
@@ -57,7 +69,11 @@ public class DataHandler {
 			LOGGER.info(iterator.next() + "");
 		}
 	}
-
+	
+	/**
+	 * <p>Sorts unique input data in ascending order before stem and leaf are separated</p>
+	 * @author srijan
+	 */
 	public void sortStemAndLeaf() {
 		Iterator<Integer> iterator;
 		iterator = userInputs.iterator();
@@ -65,7 +81,11 @@ public class DataHandler {
 			setOfSortedInputs.add(iterator.next());
 		}
 	}
-
+	
+	/**
+	 * <p>Displays sorted input data</p>
+	 * @author srijan
+	 */
 	public void displaySortedStemAndLeaf() {
 		Iterator<Integer> iterator;
 		iterator = setOfSortedInputs.iterator();
@@ -75,23 +95,33 @@ public class DataHandler {
 		}
 	}
 	
-	public void separateStemsAndLeaves(){
+	/**
+	 * <p>Separates stems and leaves and displays </p>
+	 * @author srijan
+	 */
+	public void separateStemsAndLeaves() {
 		int stem = 0;
 		Iterator<Integer> iterator;
 		iterator = this.userInputs.iterator();
-		while(iterator.hasNext()){
+		while (iterator.hasNext()) {
 			int value = iterator.next();
-			stem = value/10;
+			stem = value / 10;
 			Integer leafValue = getLeafValue(value);
 			List<Integer> leaf = this.stemByLeaves.get(leafValue);
-			this.stemByLeaves.put(stem,leaf = new ArrayList<Integer>());
+			leaf = new ArrayList<Integer>();
+			this.stemByLeaves.put(stem, leaf);
 			leaf.add(leafValue);
 		}
 		LOGGER.log(Level.INFO, "separate stem and leaf {0}", stemByLeaves);
 	}
 	
-	public Integer getLeafValue(Integer value){
-		return (value % 10);
+	/**
+	 * <p>determine leaf from input data</p>
+	 * @param value
+	 * @return
+	 */
+	public Integer getLeafValue(Integer value) {
+		return value % 10;
 	}
 
 }

@@ -5,11 +5,11 @@ import java.util.logging.Logger;
 
 public class LeafAndStem {
 	private static final Logger LOGGER = Logger.getLogger(LeafAndStem.class.getName());
-	
-	private LeafAndStem(){
-		
+
+	private LeafAndStem() {
+
 	}
-	
+
 	public static void main(String[] args) {
 		int numberOfDatas = 0;
 		Scanner input = new Scanner(System.in);
