@@ -28,13 +28,8 @@ public class DataHandler {
 	public void dataHandler() {
 		inputsStemsAndLeaves();
 		displayStemAndLeaf();
-		//separateStemFromUserInputs();
-		//separatesLeavesFromUserInputs();
-		//displayStems();
-		//displayLeaves();
 		sortStemAndLeaf();
 		displaySortedStemAndLeaf();
-		//determineLeavesForStems();
 		separateStemsAndLeaves();
 	}
 
@@ -79,60 +74,9 @@ public class DataHandler {
 			LOGGER.info(iterator.next() + "");
 		}
 	}
-
-	public void separateStemFromUserInputs() {
-		Iterator<Integer> iterator;
-		iterator = userInputs.iterator();
-		while (iterator.hasNext()) {
-			setOfStems.add(iterator.next() / 10);
-		}
-	}
-
-	public void separatesLeavesFromUserInputs() {
-		for (Integer leaves : userInputs) {
-			listOfLeaves.add(leaves % 10);
-		}
-	}
-
-	public void displayStems() {
-		LOGGER.info("All Stems");
-		for (Integer stems : setOfStems) {
-			LOGGER.info(stems + "");
-		}
-	}
-
-	public void displayLeaves() {
-		LOGGER.info("All Leaves");
-		for (Integer leaves : listOfLeaves) {
-			LOGGER.info(leaves + "");
-		}
-	}
-
-	/*public void determineLeavesForStems() {
-		System.out.println(" stems " + this.setOfStems);
-		System.out.println(" list of leaves : " + this.listOfLeaves.toString());
-		List<Integer> tempListOfLeaves = new ArrayList<>();
-		for (int stem : this.setOfStems) {
-			//check if leave is of corresponding stem
-			for (int leaf : this.listOfLeaves) {
-				if ((leaf == 2 || leaf == 3) && stem == 1) {
-					if (this.stemByLeaves.get(stem) == null) {
-						this.stemByLeaves.put(stem, "");
-					}
-					String temp = this.stemByLeaves.get(stem) + "," + leaf;
-					this.stemByLeaves.put(stem, temp);
-					tempListOfLeaves.add(leaf);
-				}
-			}
-			this.listOfLeaves.removeAll(tempListOfLeaves);
-			tempListOfLeaves.clear();
-		}
-		System.out.println(stemByLeaves);
-	}*/
 	
 	public void separateStemsAndLeaves(){
 		int stem = 0;
-		//int leaf = 0;
 		Iterator<Integer> iterator;
 		iterator = this.userInputs.iterator();
 		while(iterator.hasNext()){
@@ -142,9 +86,7 @@ public class DataHandler {
 			List<Integer> leaf = this.stemByLeaves.get(leafValue);
 			this.stemByLeaves.put(stem,leaf = new ArrayList<Integer>());
 			leaf.add(leafValue);
-			System.out.println(leafValue);
 		}
-		//System.out.println(stemByLeaves);
 		LOGGER.log(Level.INFO, "separate stem and leaf {0}", stemByLeaves);
 	}
 	
