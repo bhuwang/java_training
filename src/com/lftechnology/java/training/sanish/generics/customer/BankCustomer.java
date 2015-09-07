@@ -17,6 +17,9 @@ public class BankCustomer implements Customer {
     private String bankName;
     private String customerType;
 
+    private BankCustomer() {
+    }
+
     public BankCustomer(int customerId, String customerName, String customerContactNumber, int accountNumber, String bankName,
             String customerType) {
         this.customerId = customerId;

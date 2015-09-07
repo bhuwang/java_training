@@ -2,13 +2,17 @@ package com.lftechnology.java.training.sanish.generics.product;
 
 /**
  * Mouse product
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Mouse {
     private String brandName;
     private String type;
 
-    public Mouse(String brandName, String type){
+    private Mouse() {
+    }
+
+    public Mouse(String brandName, String type) {
         this.brandName = brandName;
         this.type = type;
     }

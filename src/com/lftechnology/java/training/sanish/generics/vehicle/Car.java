@@ -11,6 +11,9 @@ public class Car implements Vehicle {
     private String brandName;
     private String color;
 
+    private Car() {
+    }
+
     public Car(String brandName, String color) {
         this.brandName = brandName;
         this.color = color;

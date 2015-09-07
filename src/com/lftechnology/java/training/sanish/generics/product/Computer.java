@@ -2,6 +2,7 @@ package com.lftechnology.java.training.sanish.generics.product;
 
 /**
  * Computer product
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Computer {
@@ -10,7 +11,10 @@ public class Computer {
     private String memorySize;
     private String diskSize;
 
-    public Computer(String brandName, String processor, String memorySize, String diskSize){
+    private Computer() {
+    }
+
+    public Computer(String brandName, String processor, String memorySize, String diskSize) {
         this.brandName = brandName;
         this.processor = processor;
         this.memorySize = memorySize;

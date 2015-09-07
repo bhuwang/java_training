@@ -15,6 +15,9 @@ public class RestaurantCustomer implements Customer {
     private String customerContactNumber;
     private String restaurantName;
 
+    private RestaurantCustomer() {
+    }
+
     public RestaurantCustomer(int customerId, String customerName, String customerContactNumber, String restaurantName) {
         this.customerId = customerId;
         this.customerName = customerName;

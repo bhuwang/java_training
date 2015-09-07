@@ -11,6 +11,9 @@ public class MotorBike implements Vehicle {
     private String brandName;
     private String color;
 
+    private MotorBike() {
+    }
+
     public MotorBike(String brandName, String color) {
         this.brandName = brandName;
         this.color = color;

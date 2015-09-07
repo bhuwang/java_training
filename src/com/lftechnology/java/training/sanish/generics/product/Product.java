@@ -12,6 +12,9 @@ public class Product<T> {
     private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
     private T product;
 
+    private Product() {
+    }
+
     public Product(T product) {
         this.product = product;
     }
