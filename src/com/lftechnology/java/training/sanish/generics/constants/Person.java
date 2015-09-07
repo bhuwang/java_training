@@ -1,11 +1,13 @@
 package com.lftechnology.java.training.sanish.generics.constants;
 
+import java.io.Serializable;
+
 /**
  * Person information
  *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public class Person {
+public class Person implements Serializable {
     private String name;
     private String address;
     private String contactNumber;

@@ -6,12 +6,12 @@ package com.lftechnology.java.training.sanish.generics.constants;
  */
 public enum RestaurentName {
     ID_1("Cafe Time"), ID_2("Launch Hour"), ID_3("Thakali Restaurant");
-    private String restaurantName;
-    RestaurentName(String restaurantName){
-        this.restaurantName = restaurantName;
+    private String restaurant;
+    RestaurentName(String restaurant){
+        this.restaurant = restaurant;
     }
 
     public String getRestaurantName(){
-        return  this.restaurantName;
+        return  this.restaurant;
     }
 }

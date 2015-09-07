@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.sanish.generics;
 
-import com.lftechnology.java.training.niraj.fibonacci.Constant;
 import com.lftechnology.java.training.sanish.generics.constants.*;
 import com.lftechnology.java.training.sanish.generics.customer.BankCustomer;
 import com.lftechnology.java.training.sanish.generics.customer.Customer;
@@ -91,11 +90,11 @@ public class GenericTest {
      */
     public static void workOnCarList() {
         VehicleList<Car> carList = new VehicleListImpl<Car>();
-        carList.addVehicle(new Car(VehicleBrand.BMW.getBrandName(), Color.BLACK.getColor()));
-        carList.addVehicle(new Car(VehicleBrand.FERRARI.getBrandName(), Color.RED.getColor()));
-        carList.addVehicle(new Car(VehicleBrand.KIA.getBrandName(), Color.BLACK.getColor()));
-        carList.addVehicle(new Car(VehicleBrand.FERRARI.getBrandName(), Color.WHITE.getColor()));
-        carList.addVehicle(new Car(VehicleBrand.BMW.getBrandName(), Color.RED.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.BMW.getBrandName(), VehicleColor.BLACK.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.FERRARI.getBrandName(), VehicleColor.RED.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.KIA.getBrandName(), VehicleColor.BLACK.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.FERRARI.getBrandName(), VehicleColor.WHITE.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.BMW.getBrandName(), VehicleColor.RED.getColor()));
 
         carList.listVehicles();
         carList.removeVehicle(2);
@@ -110,11 +109,11 @@ public class GenericTest {
      */
     public static void workOnBikeList() {
         VehicleList<Car> bikeList = new VehicleListImpl<Car>();
-        bikeList.addVehicle(new Car(VehicleBrand.YAMAHA.getBrandName(), Color.BLACK.getColor()));
-        bikeList.addVehicle(new Car(VehicleBrand.HONDA.getBrandName(), Color.RED.getColor()));
-        bikeList.addVehicle(new Car(VehicleBrand.KIA.getBrandName(), Color.WHITE.getColor()));
-        bikeList.addVehicle(new Car(VehicleBrand.ATK.getBrandName(), Color.BLACK_WHITE.getColor()));
-        bikeList.addVehicle(new Car(VehicleBrand.BAJAJ.getBrandName(), Color.RED.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.YAMAHA.getBrandName(), VehicleColor.BLACK.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.HONDA.getBrandName(), VehicleColor.RED.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.KIA.getBrandName(), VehicleColor.WHITE.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.ATK.getBrandName(), VehicleColor.BLACK_WHITE.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.BAJAJ.getBrandName(), VehicleColor.RED.getColor()));
 
         bikeList.listVehicles();
         bikeList.removeVehicle(2);

@@ -7,13 +7,13 @@ package com.lftechnology.java.training.sanish.generics.constants;
  */
 public enum BankName {
     ID_1("Global"), ID_2("Nepal Investment"), ID_3("NBI");
-    private String bankName;
+    private String name;
 
-    BankName(String bankName) {
-        this.bankName = bankName;
+    BankName(String name) {
+        this.name = name;
     }
 
     public String getBankName() {
-        return this.bankName;
+        return this.name;
     }
 }
