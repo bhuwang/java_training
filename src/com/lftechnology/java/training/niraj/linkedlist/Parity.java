@@ -1,4 +1,3 @@
-
 package com.lftechnology.java.training.niraj.linkedlist;
 
 /**
@@ -7,5 +6,5 @@ package com.lftechnology.java.training.niraj.linkedlist;
  * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
  */
 public enum Parity {
-	EVEN, ODD
+    EVEN, ODD
 }
