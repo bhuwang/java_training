@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 public class LinkedListProgram {
 	private static final Logger LOGGER=Logger.getLogger(LinkedListProgram.class.getName());
 	
+	
+	private LinkedListProgram() {
+	}
 	/**
 	 * This method merges the second list to the first list.
 	 * @param listOne
