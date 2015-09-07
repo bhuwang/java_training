@@ -1,7 +1,4 @@
-
-package com.lftechnology.java.training.niraj.linkedlist;
-
-import com.lftechnology.java.training.niraj.shuffle.UserInput;
+package com.lftechnology.java.training.niraj.utils;
 
 /**
  * Interface for methods related to string input from user

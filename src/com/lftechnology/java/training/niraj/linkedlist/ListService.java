@@ -1,4 +1,3 @@
-
 package com.lftechnology.java.training.niraj.linkedlist;
 
 import java.util.List;
