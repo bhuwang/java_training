@@ -1,5 +1,7 @@
 package com.lftechnology.java.training.sanish.generics;
 
+import com.lftechnology.java.training.niraj.fibonacci.Constant;
+import com.lftechnology.java.training.sanish.generics.constants.*;
 import com.lftechnology.java.training.sanish.generics.customer.BankCustomer;
 import com.lftechnology.java.training.sanish.generics.customer.Customer;
 import com.lftechnology.java.training.sanish.generics.customer.RestaurantCustomer;
@@ -24,7 +26,6 @@ public class GenericTest {
     private static final Logger LOGGER = Logger.getLogger(VehicleListImpl.class.getName());
 
     private GenericTest() {
-
     }
 
     public static void main(String[] args) {
@@ -45,12 +46,15 @@ public class GenericTest {
 
         // display customers information using wildcard function
         List<BankCustomer> bankCustomers = new ArrayList<BankCustomer>();
-        bankCustomers.add(new BankCustomer(1, "Sanish", "9841115968", 145258696, "Global", "Saving"));
+        bankCustomers.add(new BankCustomer(1, PersonList.ID_1.getName(), PersonList.ID_1.getContactNumber(), 145258696,
+                BankName.ID_1.getBankName(), BankAccountType.SAVING.getAccountType()));
         displayList(bankCustomers);
 
         List<RestaurantCustomer> restaurantCustomers = new ArrayList<RestaurantCustomer>();
-        restaurantCustomers.add(new RestaurantCustomer(1, "Sanish", "9841115968", "Cafe time"));
-        restaurantCustomers.add(new RestaurantCustomer(2, "Manish", "9841115968", "Thakali"));
+        restaurantCustomers.add(new RestaurantCustomer(1, PersonList.ID_2.getName(), PersonList.ID_2.getContactNumber(),
+                RestaurentName.ID_1.getRestaurantName()));
+        restaurantCustomers.add(new RestaurantCustomer(2, PersonList.ID_3.getName(), PersonList.ID_3.getContactNumber(),
+                RestaurentName.ID_2.getRestaurantName()));
         displayList(restaurantCustomers);
     }
 
@@ -87,11 +91,11 @@ public class GenericTest {
      */
     public static void workOnCarList() {
         VehicleList<Car> carList = new VehicleListImpl<Car>();
-        carList.addVehicle(new Car("BMW", "Black"));
-        carList.addVehicle(new Car("Ferrari", "Red"));
-        carList.addVehicle(new Car("Kia", "Black"));
-        carList.addVehicle(new Car("Ford", "White"));
-        carList.addVehicle(new Car("BMW", "Red"));
+        carList.addVehicle(new Car(VehicleBrand.BMW.getBrandName(), Color.BLACK.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.FERRARI.getBrandName(), Color.RED.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.KIA.getBrandName(), Color.BLACK.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.FERRARI.getBrandName(), Color.WHITE.getColor()));
+        carList.addVehicle(new Car(VehicleBrand.BMW.getBrandName(), Color.RED.getColor()));
 
         carList.listVehicles();
         carList.removeVehicle(2);
@@ -106,11 +110,11 @@ public class GenericTest {
      */
     public static void workOnBikeList() {
         VehicleList<Car> bikeList = new VehicleListImpl<Car>();
-        bikeList.addVehicle(new Car("Yamaha", "Black"));
-        bikeList.addVehicle(new Car("Honda", "Red"));
-        bikeList.addVehicle(new Car("Kia", "Black"));
-        bikeList.addVehicle(new Car("ATK", "White & Black"));
-        bikeList.addVehicle(new Car("Bajaj", "Red"));
+        bikeList.addVehicle(new Car(VehicleBrand.YAMAHA.getBrandName(), Color.BLACK.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.HONDA.getBrandName(), Color.RED.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.KIA.getBrandName(), Color.WHITE.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.ATK.getBrandName(), Color.BLACK_WHITE.getColor()));
+        bikeList.addVehicle(new Car(VehicleBrand.BAJAJ.getBrandName(), Color.RED.getColor()));
 
         bikeList.listVehicles();
         bikeList.removeVehicle(2);
