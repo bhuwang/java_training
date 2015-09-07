@@ -25,6 +25,10 @@ public class CharacterCount {
             LOGGER.log(Level.INFO, "{0}", new Object[] { characterCount });
         } catch (IOException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            LOGGER.log(Level.WARNING, "Process character count through terminal.");
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
         }
     }
 
@@ -35,6 +39,5 @@ public class CharacterCount {
      */
     private static void showUsage() {
         LOGGER.log(Level.INFO, "Usage : java com.lftechnology.java.training.alina.io.charactercount.CharacterCount <letter>");
-        System.exit(-1);
     }
 }
