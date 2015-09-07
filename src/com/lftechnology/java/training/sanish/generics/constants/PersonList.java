@@ -1,7 +1,5 @@
 package com.lftechnology.java.training.sanish.generics.constants;
 
-import java.io.Serializable;
-
 /**
  * Provide person information
  *
