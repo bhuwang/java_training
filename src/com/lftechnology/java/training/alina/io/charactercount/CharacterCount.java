@@ -24,6 +24,10 @@ public class CharacterCount {
         try (BufferedReader reader = new BufferedReader(new FileReader("lorem.txt"))) {
             if (args.length != 1 || args[0].length() != 1)
                 showUsage();
+            if (args.length == 0) {
+                LOGGER.log(Level.INFO, "Not enough arguments received");
+                return;
+            }
             Letters letters = new Letters(args[0].charAt(0));
             String characterCount = letters.getCountOfCharacters(reader);
             LOGGER.log(Level.INFO, "{0}", new Object[] { characterCount });
