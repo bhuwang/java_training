@@ -1,5 +1,8 @@
 package com.lftechnology.java.training.sanish.generics;
 
+import com.lftechnology.java.training.sanish.generics.customer.BankCustomer;
+import com.lftechnology.java.training.sanish.generics.customer.Customer;
+import com.lftechnology.java.training.sanish.generics.customer.RestaurantCustomer;
 import com.lftechnology.java.training.sanish.generics.product.Computer;
 import com.lftechnology.java.training.sanish.generics.product.Mouse;
 import com.lftechnology.java.training.sanish.generics.product.Product;
@@ -7,6 +10,8 @@ import com.lftechnology.java.training.sanish.generics.vehicle.Car;
 import com.lftechnology.java.training.sanish.generics.vehicle.VehicleList;
 import com.lftechnology.java.training.sanish.generics.vehicle.VehicleListImpl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +22,10 @@ import java.util.logging.Logger;
  */
 public class GenericTest {
     private static final Logger LOGGER = Logger.getLogger(VehicleListImpl.class.getName());
+
+    private GenericTest() {
+
+    }
 
     public static void main(String[] args) {
         // add two number using generic function
@@ -34,11 +43,19 @@ public class GenericTest {
         Product mouseProduct = new Product(new Mouse("Delux", "Optical mouse"));
         mouseProduct.displayProductInfo();
 
+        // display customers information using wildcard function
+        List<BankCustomer> bankCustomers = new ArrayList<BankCustomer>();
+        bankCustomers.add(new BankCustomer(1, "Sanish", "9841115968", 145258696, "Global", "Saving"));
+        displayList(bankCustomers);
 
+        List<RestaurantCustomer> restaurantCustomers = new ArrayList<RestaurantCustomer>();
+        restaurantCustomers.add(new RestaurantCustomer(1, "Sanish", "9841115968", "Cafe time"));
+        restaurantCustomers.add(new RestaurantCustomer(2, "Manish", "9841115968", "Thakali"));
+        displayList(restaurantCustomers);
     }
 
     /**
-     * Add tow interger number using generic function
+     * Add two integer number using generic function
      *
      * @param num1 {@link Integer}
      * @param num2 {@link Integer}
@@ -51,7 +68,7 @@ public class GenericTest {
     }
 
     /**
-     * Add tow double number using generic function
+     * Add two double number using generic function
      *
      * @param num1 {@link Double}
      * @param num2 {@link Double}
@@ -99,6 +116,23 @@ public class GenericTest {
         bikeList.removeVehicle(2);
         bikeList.removeVehicle(2);
         bikeList.listVehicles();
+    }
+
+    /**
+     * Method which takes List of any subclass of object Customer. (use wildcard)
+     *
+     * @param customers {@link Customer}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
+    public static void displayList(List<? extends Customer> customers) {
+        String customerListText = "";
+        for (Customer customer : customers) {
+            customerListText += customer.toString() + "\n";
+        }
+
+        LOGGER.log(Level.INFO, "Car list : \n" +
+                "==================================== \n" +
+                "{0}", new Object[] { customerListText });
     }
 
 }

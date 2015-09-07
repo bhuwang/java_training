@@ -4,20 +4,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by sanish on 9/4/15.
+ * Generic product class
+ *
+ * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Product<T> {
     private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
     private T product;
-    public Product(T product){
+
+    public Product(T product) {
         this.product = product;
     }
 
     /**
      * Display product information
-     * @author <
+     *
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public void displayProductInfo(){
+    public void displayProductInfo() {
         LOGGER.log(Level.INFO, "Product Information : \n" +
                 "==================================== \n" +
                 "{0}", new Object[] { product.toString() });

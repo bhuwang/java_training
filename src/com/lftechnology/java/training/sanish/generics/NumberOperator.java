@@ -7,6 +7,13 @@ package com.lftechnology.java.training.sanish.generics;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class NumberOperator<T extends Number> {
+    /**
+     * Generic function that add two numbers
+     *
+     * @param num1 {@link Number}
+     * @param num2 {@link Integer}
+     * @return {@link Number}
+     */
     public Number addTwoNumbers(T num1, T num2) {
         Number sumNum;
         if (num1 instanceof Integer) {
