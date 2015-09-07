@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class Person implements Serializable {
+    private static final long serialVersionUID = 2405172041950251807L;
     private String name;
     private String address;
     private String contactNumber;
