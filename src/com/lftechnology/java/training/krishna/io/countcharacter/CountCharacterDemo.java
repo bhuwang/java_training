@@ -29,7 +29,8 @@ public class CountCharacterDemo {
 	public static void main(String[] args) {
 
 		if (args.length != 1 || args[0].length() != 1) {
-			System.exit(-1);
+			LOGGER.log(Level.INFO, "Please enter only one character.");
+			return;
 		}
 
 		char inputCharacter = args[0].charAt(0);
@@ -40,7 +41,5 @@ public class CountCharacterDemo {
 			Level.INFO, "Input Character: {0}  Count: {1}", new Object[] {
 				inputCharacter, count
 			});
-
 	}
-
 }

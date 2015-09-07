@@ -56,7 +56,7 @@ public class CountCharacter {
 	}
 
 	/**
-	 * This method computes the no. of character occurrence.
+	 * This method computes the no. of character occurrence from given file.
 	 * 
 	 * @return count {@link int} no. of character occurrence
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
@@ -68,28 +68,40 @@ public class CountCharacter {
 		try {
 			Reader file = new FileReader(getFilePath());
 			reader = new BufferedReader(file);
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				for (int i = 0; i < line.length(); i++) {
-					if (inputCharacter == line.charAt(i)) {
-						count++;
-					}
-				}
-			}
+			count = readCharacter(reader);
 		}
 		catch (IOException ex) {
-			LOGGER.log(Level.INFO, "IOException: {0}", ex);
+			LOGGER.log(Level.INFO, "IOException Information: {0}", ex);
 		}
 		finally {
 			try {
 				reader.close();
 			}
 			catch (IOException ex) {
-				LOGGER.log(Level.INFO, "IOException: {0}", ex);
+				LOGGER.log(Level.INFO, "IOException Information: {0}", ex);
 			}
 
 		}
 
+		return count;
+	}
+	/**
+	 * This method reads the no. of character occurrence from buffer.
+	 * 
+	 * @param reader {@link BufferedReader}
+	 * @return count {@link int} no. of character occurrence
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
+	private int readCharacter(BufferedReader reader) throws IOException{
+		int count = 0;
+		String line = null;
+		while ((line = reader.readLine()) != null) {
+			for (int i = 0; i < line.length(); i++) {
+				if (inputCharacter == line.charAt(i)) {
+					count++;
+				}
+			}
+		}
 		return count;
 	}
 
