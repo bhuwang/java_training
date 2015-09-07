@@ -29,8 +29,6 @@ public class CharacterCount {
             LOGGER.log(Level.INFO, "{0}", new Object[] { characterCount });
         } catch (IOException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
-        } catch (ArrayIndexOutOfBoundsException e) {
-            LOGGER.log(Level.WARNING, "Process character count through terminal : {0}", new Object[] { e });
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
         }
