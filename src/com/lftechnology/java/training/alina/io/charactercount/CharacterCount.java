@@ -16,6 +16,10 @@ public class CharacterCount {
 
     private static final Logger LOGGER = Logger.getLogger(CharacterCount.class.getName());
 
+    private CharacterCount() {
+
+    }
+
     public static void main(String[] args) {
         try (BufferedReader reader = new BufferedReader(new FileReader("lorem.txt"))) {
             if (args.length != 1 || args[0].length() != 1)
