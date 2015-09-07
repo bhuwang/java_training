@@ -56,7 +56,7 @@ public class UserInput {
         String name = "";
         String pattern = "[a-zA-Z]+[a-z A-Z]*";
         boolean checkNextInput = true;
-        while (checkNextInput){
+        while (checkNextInput) {
             if (!scanner.hasNextLine()) {
                 scanner.nextLine();
             } else {
