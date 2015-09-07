@@ -14,6 +14,10 @@ import java.util.logging.Logger;
 public class IntReader {
     private static final Logger LOGGER = Logger.getLogger(IntReader.class.getName());
 
+    private IntReader() {
+
+    }
+
     /**
      * Main Method consists of displaying of int values from a file
      * 
