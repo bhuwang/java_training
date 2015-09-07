@@ -10,13 +10,13 @@ import java.util.logging.Logger;
  */
 public class Product<T> {
     private static final Logger LOGGER = Logger.getLogger(Product.class.getName());
-    private T product;
+    private T genericProduct;
 
     private Product() {
     }
 
     public Product(T product) {
-        this.product = product;
+        this.genericProduct = product;
     }
 
     /**
@@ -27,6 +27,6 @@ public class Product<T> {
     public void displayProductInfo() {
         LOGGER.log(Level.INFO, "Product Information : \n" +
                 "==================================== \n" +
-                "{0}", new Object[] { product.toString() });
+                "{0}", new Object[] { genericProduct.toString() });
     }
 }
