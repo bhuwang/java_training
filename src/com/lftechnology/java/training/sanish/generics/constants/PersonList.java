@@ -1,11 +1,13 @@
 package com.lftechnology.java.training.sanish.generics.constants;
 
+import java.io.Serializable;
+
 /**
  * Provide person information
  *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public enum PersonList {
+public enum PersonList implements Serializable {
     ID_1(new Person("Sanish Maharjan", "Panga, Kirtipur", "9841115968")),
     ID_2(new Person("Manish Maharjan", "Panga, Kirtipur", "9841908956")),
     ID_3(new Person("Dinesh", "Satungal, Kathmandu", "9841418393")),
