@@ -57,7 +57,6 @@ public class BytesCopy {
     private static String getFileContent(FileInputStream reader, FileOutputStream writer) throws IOException {
         BytesData bytes = new BytesData();
         bytes.setBuffer(new byte[1024]);
-        String fileContent = bytes.readWriteByteData(reader, writer);
-        return fileContent;
+        return bytes.readWriteByteData(reader, writer);
     }
 }
