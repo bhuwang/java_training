@@ -17,6 +17,7 @@ import com.lftechnology.java.training.niraj.utils.FileServiceImpl;
 public class CountCharacter {
     private static final Logger LOGGER = Logger.getLogger(CountCharacter.class.getName());
     private static final String NO_CONTENT = "No File Content";
+    private static final String BASE_PATH = "src/com/lftechnology/java/training/niraj/countcharacter/files/";
     private String readFilePath;
     private String writeFilePath;
 
@@ -44,15 +45,16 @@ public class CountCharacter {
 
     public static void main(String[] args) {
         try {
-            String readPath = "src/com/lftechnology/java/training/niraj/countcharacter/files/characters.txt";
-            String writePath = "src/com/lftechnology/java/training/niraj/countcharacter/files/character-count.txt";
+
+            String readPath = BASE_PATH + "characters.txt";
+            String writePath = BASE_PATH + "character-count.txt";
             CountCharacter countChar = new CountCharacter(readPath, writePath);
             String fileContent = countChar.readFileContent();
             Map<Character, Integer> charCount = countChar.getCharacterCount(fileContent);
             LOGGER.log(Level.INFO, "{0}", charCount);
-            if(countChar.writeToFile(charCount.toString())){
-             LOGGER.info("Successfully added the character count to the file");   
-            }else{
+            if (countChar.writeToFile(charCount.toString())) {
+                LOGGER.info("Successfully added the character count to the file");
+            } else {
                 LOGGER.severe("Failed to add the character count to the file");
             }
         } catch (Exception e) {

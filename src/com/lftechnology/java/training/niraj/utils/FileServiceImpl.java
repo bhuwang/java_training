@@ -78,7 +78,6 @@ public class FileServiceImpl implements FileServices {
     public boolean writeFile(String content) throws FileNotFoundException, IOException {
         boolean status = false;
         try {
-            System.out.println(filePath);
             outputStream = new BufferedWriter(new FileWriter(filePath));
             for (int i = 0; i < content.length(); i++) {
                 byte charAscii = (byte) content.charAt(i);
