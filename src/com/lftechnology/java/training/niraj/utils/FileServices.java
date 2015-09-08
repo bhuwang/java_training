@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.niraj.utils;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -18,7 +17,7 @@ public interface FileServices {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public String readFile() throws FileNotFoundException, IOException;
+    public String readFile() throws IOException;
 
     /**
      * Writes content to a file
@@ -27,5 +26,5 @@ public interface FileServices {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public boolean writeFile(String s) throws FileNotFoundException, IOException;
+    public boolean writeFile(String s) throws IOException;
 }

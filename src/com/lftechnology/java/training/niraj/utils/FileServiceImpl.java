@@ -5,10 +5,11 @@ package com.lftechnology.java.training.niraj.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * File Service Implementation
@@ -17,6 +18,7 @@ import java.io.IOException;
  *
  */
 public class FileServiceImpl implements FileServices {
+    private static final Logger LOGGER = Logger.getLogger(FileServiceImpl.class.getName());
     private BufferedReader inputStream = null;
     private BufferedWriter outputStream = null;
     private String filePath;
@@ -50,7 +52,7 @@ public class FileServiceImpl implements FileServices {
     }
 
     @Override
-    public String readFile() throws FileNotFoundException, IOException {
+    public String readFile() throws IOException {
         StringBuilder fileContent = new StringBuilder();
         try {
             inputStream = new BufferedReader(new FileReader(filePath));
@@ -65,7 +67,7 @@ public class FileServiceImpl implements FileServices {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    throw e;
+                    LOGGER.log(Level.SEVERE, "IOException: {0}", e);
                 }
             }
 
@@ -75,7 +77,7 @@ public class FileServiceImpl implements FileServices {
     }
 
     @Override
-    public boolean writeFile(String content) throws FileNotFoundException, IOException {
+    public boolean writeFile(String content) throws IOException {
         boolean status = false;
         try {
             outputStream = new BufferedWriter(new FileWriter(filePath));
@@ -89,7 +91,7 @@ public class FileServiceImpl implements FileServices {
                 try {
                     outputStream.close();
                 } catch (IOException e) {
-                    throw e;
+                    LOGGER.log(Level.SEVERE, "IOException: {0}", e);
                 }
             }
         }
