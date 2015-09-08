@@ -21,38 +21,47 @@ public class IntegerReader {
 	}
 
 	public static void main(String[] args) {
-		readIntegerFromFile();
+		readFile();
+
 	}
 
 	/**
 	 * <p>
-	 * Reads Integer from file inputfile.txt
-	 * </p>
-	 * <p>
-	 * Displays integer present in file
+	 * Reads file inputfile.txt one character at a time
 	 * </p>
 	 * 
 	 * @author srijan
 	 */
-	public static void readIntegerFromFile() {
+	public static void readFile() {
 		try {
 			FileReader readFromFile = new FileReader("inputfile.txt");
-			int integerInFile = 0;
-			try {
-				integerInFile = readFromFile.read();
-				LOGGER.info("Integer present in file");
-				while (integerInFile != -1) {
-					if (integerInFile >= 48 && integerInFile <= 57) {
-						LOGGER.info(" " + (char) integerInFile);
-					}
-					integerInFile = readFromFile.read();
-				}
-				readFromFile.close();
-			} catch (IOException e) {
-				LOGGER.info("exception" + e);
-			}
+			readIntegerFromFile(readFromFile);
 		} catch (FileNotFoundException e) {
 			LOGGER.info("File not found exception: " + e);
+		}
+	}
+
+	/**
+	 * <p>
+	 * Displays integer present in file
+	 * </p>
+	 * 
+	 * @param readFromFile
+	 */
+	public static void readIntegerFromFile(FileReader readFromFile) {
+		int integerInFile = 0;
+		try {
+			integerInFile = readFromFile.read();
+			LOGGER.info("Integer present in file");
+			while (integerInFile != -1) {
+				if (integerInFile >= 48 && integerInFile <= 57) {
+					LOGGER.info(" " + (char) integerInFile);
+				}
+				integerInFile = readFromFile.read();
+			}
+			readFromFile.close();
+		} catch (IOException e) {
+			LOGGER.info("exception" + e);
 		}
 	}
 }
