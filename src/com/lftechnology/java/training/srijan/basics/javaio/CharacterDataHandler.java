@@ -28,7 +28,9 @@ public class CharacterDataHandler {
 			writeInFile();
 			readFromFile();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.info("FileNotFoundException:" + e);
+		}catch(Exception ex){
+			LOGGER.info("Exception:" + ex);
 		}
 	}
 	
@@ -75,7 +77,7 @@ public class CharacterDataHandler {
 			}
 			fileRead.close();
 		} catch (IOException e) {
-			LOGGER.info("Error" + e);
+			LOGGER.info("IOException" + e);
 		}
 		LOGGER.log(Level.INFO, "The character {0} is repeated {1} times", new Object[] { inputCharacter, count });
 	}
