@@ -1,7 +1,6 @@
 package com.lftechnology.java.training.sanish.application.model.domain;
 
 import com.lftechnology.java.training.sanish.application.model.Model;
-import sun.awt.image.PixelConverter;
 
 /**
  * User model
@@ -105,7 +104,7 @@ public class User implements Model {
             return true;
         } else {
             User user = (User) model;
-            if (userId != user.userId) {
+            if (userId == user.userId || userName == user.userName) {
                 return false;
             } else {
                 return true;

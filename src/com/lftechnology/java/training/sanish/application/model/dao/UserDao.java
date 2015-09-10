@@ -10,11 +10,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * User data access object
  *
+ * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class UserDao implements UserImpl {
     private static final Logger LOGGER = Logger.getLogger(UserDao.class.getName());
     private static PreparedStatement preparedStatement;
+
     @Override public User getUserByUserName(String userName) {
         try {
             String query = "SELECT * FROM users WHERE userName=? AND isTerminated=? LIMIT 1";
@@ -34,21 +37,21 @@ public class UserDao implements UserImpl {
         return null;
     }
 
-    public void setResultSetAttributes(User user, ResultSet rs){
-        String[] colWithStringDataType = {"userName", "password", "email", "createdAt", "modifiedAt"};
-        String[] colWithIntDataType = {"userId"};
-        String[] colWithBooleanDataType = {"isTerminated"};
+    @Override public void setResultSetAttributes(User user, ResultSet rs) {
+        String[] colWithStringDataType = { "userName", "password", "email", "createdAt", "modifiedAt" };
+        String[] colWithIntDataType = { "userId" };
+        String[] colWithBooleanDataType = { "isTerminated" };
         try {
             ResultSetMetaData metadata = rs.getMetaData();
             int colCount = metadata.getColumnCount();
             String column;
-            for(int i=1; i<=colCount; i++){
+            for (int i = 1; i <= colCount; i++) {
                 column = metadata.getColumnName(i);
                 if (Arrays.asList(colWithStringDataType).contains(column)) {
                     user.setAttribute(column, rs.getString(i));
-                }else if (Arrays.asList(colWithIntDataType).contains(column)) {
+                } else if (Arrays.asList(colWithIntDataType).contains(column)) {
                     user.setAttribute(column, rs.getInt(i));
-                }else if (Arrays.asList(colWithBooleanDataType).contains(column)) {
+                } else if (Arrays.asList(colWithBooleanDataType).contains(column)) {
                     user.setAttribute(column, rs.getBoolean(i));
                 }
             }
@@ -58,18 +61,22 @@ public class UserDao implements UserImpl {
     }
 
     @Override public User addNew(User user) {
+        // TODO add new user
         return null;
     }
 
     @Override public User findById(Integer pk) {
+        // TODO find user by id
         return null;
     }
 
     @Override public ResultSet getAll() {
+        // TODO get all users
         return null;
     }
 
     @Override public ResultSet getAll(String condition) {
+        // TODO get all users by condition
         return null;
     }
 }

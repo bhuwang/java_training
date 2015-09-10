@@ -2,6 +2,7 @@ package com.lftechnology.java.training.sanish.application.model;
 
 /**
  * Db model
+ *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public interface Model {
