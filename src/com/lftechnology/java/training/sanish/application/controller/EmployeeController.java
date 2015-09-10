@@ -35,7 +35,15 @@ public class EmployeeController {
                 User user = UserLogin.getCurrentUser();
                 EmployeeDashboardPage.renderPage(inputScanner, user);
                 int menuSelected = UserInput.getNumber(inputScanner, 1, 5);
-                if (menuSelected == 5) {
+                if (menuSelected == 1) {
+                    employeeListPage();
+                }else if (menuSelected == 2) {
+                    employeeSearchPage();
+                }else if (menuSelected == 3) {
+                    ownInformationEditPage();
+                }else if (menuSelected == 4) {
+                    // TODO change password
+                }else{
                     LoginController.logoutPage();
                 }
             } else {
