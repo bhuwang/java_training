@@ -1,25 +1,24 @@
-package com.lftechnology.java.training.alina.jdbc.demo;
+package com.lftechnology.java.training.alina.jdbc.controller;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
-import java.sql.SQLException;
+import com.lftechnology.java.training.alina.jdbc.demo.EmployeeManagement;
 
 public class LoginController {
 
-    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EmployeeManagement.class.getName());
 
-    public static void main(String[] args) throws SQLException {
+    public void userLogin() throws SQLException {
         Boolean isLogin = false;
         try (Scanner scanner = new Scanner(System.in)) {
             UserDaoImpl userDao = new UserDaoImpl();
             do {
                 isLogin = userDao.checkEmployeeLogin(scanner);
-                if (isLogin) {
-                    LOGGER.log(Level.INFO, "Welcome !");
-                }
             } while (!checkNotLogin(isLogin));
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
@@ -38,10 +37,11 @@ public class LoginController {
      */
     private static boolean checkNotLogin(Boolean isLogin) {
         if (!isLogin) {
-            LOGGER.log(Level.INFO, "Username and Password not found. Please try again.");
+            LOGGER.log(Level.INFO, "\n=====>\nUsername or Password not found. Please try again.\n=====>\n");
             return false;
         } else {
             return true;
         }
     }
+
 }

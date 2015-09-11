@@ -8,15 +8,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
-import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
 import com.lftechnology.java.training.alina.jdbc.service.UserService;
+import com.lftechnology.java.training.alina.jdbc.views.LoginView;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,15 +23,68 @@ import java.sql.PreparedStatement;
 public class UserDaoImpl implements UserDao {
 
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
-    private static User user = new User();
     private static Employee employee = new Employee();
-    private static UserDaoImpl userDao = new UserDaoImpl();
-    private static EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
     private static List<User> userList = new ArrayList<User>();
     private static List<Employee> employeeList = new ArrayList<Employee>();
 
+    /**
+     * Checks whether employee username or password matches. Logins to the system if password matches.
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @return loginStatus {@link Boolean} login status
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException
+     */
+    public boolean checkEmployeeLogin(Scanner scanner) throws SQLException {
+        User user = new User();
+        LoginView.displayLoginHeader();
+        user = UserService.setLoginInfo(scanner);
+        Boolean loginStatus = false;
+        String sql =
+                "SELECT * FROM user u inner join employee e where u.username=? and u.password=? and u.is_terminated=? and e.is_deleted=?";
+        Connection connection = DbFacade.getDbConnection();
+        PreparedStatement preparedStatement = DbFacade.getPreparedStatement(sql);
+        preparedStatement.setString(1, user.getUsername());
+        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setBoolean(3, Constants.NOT_TERMINATED);
+        preparedStatement.setBoolean(4, Constants.NOT_DELETED);
+        ResultSet result = preparedStatement.executeQuery();
+        if (result.next()) {
+            loginStatus = true;
+            checkValidUser(scanner, result.getInt("user_id"), connection);
+        } else {
+            loginStatus = false;
+        }
+        return loginStatus;
+    }
+
+    /**
+     * Checks if user is valid
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param userId
+     *            {@link Integer}
+     * @param connection
+     *            {@link Connection}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void checkValidUser(Scanner scanner, int userId, Connection connection) throws SQLException {
+        String sql = "SELECT * FROM employee where user_id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, userId);
+        ResultSet result = preparedStatement.executeQuery();
+        if (result.next()) {
+            UserService.getEmployeeRole(scanner, result);
+        } else {
+            LOGGER.log(Level.INFO, "Employee not found");
+        }
+    }
+
     @Override
-    public User findByPk(String id) {
+    public User findByPk(Integer id) {
         Connection connection = DbFacade.getDbConnection();
         Statement statement = null;
         ResultSet rs = null;
@@ -59,6 +111,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAll() {
+        User user = new User();
         String sql = "Select * from user";
         try {
             Connection connection = DbFacade.getDbConnection();
@@ -77,7 +130,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Integer addNew(User user) {
+    public int addNew(User user) {
         int employeeId = 0;
         String sql = "Insert into user (username,password,is_terminated,created_at) values (?,?,?,?)";
         try {
@@ -105,96 +158,8 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-    /**
-     * Checks whether employee username and password matches. Logins to the system if password matches.
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @return loginStatus {@link Boolean} login status
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException
-     */
-    public boolean checkEmployeeLogin(Scanner scanner) throws SQLException {
-        user = UserService.setLoginInfo(scanner);
-        Boolean loginStatus = false;
-        String sql = "SELECT * FROM user where username=? and password=? and is_terminated=?";
-        Connection connection = DbFacade.getDbConnection();
-        PreparedStatement preparedStatement = DbFacade.getPreparedStatement(sql);
-        preparedStatement.setString(1, user.getUsername());
-        preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setBoolean(3, Constants.NOT_TERMINATED);
-        ResultSet result = preparedStatement.executeQuery();
-        if (result.next()) {
-            loginStatus = true;
-            checkEmployeeUser(scanner, result.getInt("user_id"), connection);
-        } else {
-            loginStatus = false;
-        }
-        return loginStatus;
-    }
-
-    /**
-     * Checks employee role and assigns role
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @param userId
-     *            {@link Integer}
-     * @param connection
-     *            {@link Connection}
-     * @throws SQLException
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    private void checkEmployeeUser(Scanner scanner, int userId, Connection connection) throws SQLException {
-        String sql = "SELECT * FROM employee where user_id=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, userId);
-        ResultSet result = preparedStatement.executeQuery();
-        if (result.next()) {
-            UserService.getEmployeeRole(scanner, result);
-        } else {
-            LOGGER.log(Level.INFO, "Employee Role not found");
-        }
-    }
-
-    public static void addNewEmployee(Scanner scanner) throws SQLException {
-        Connection connection = DbFacade.getDbConnection();
-        connection.setAutoCommit(false);
-        user = UserService.setLoginInfo(scanner);
-        int userId = userDao.addNew(user);
-        if (userId != 0) {
-            employee = UserService.setEmployeeInfo(scanner, userId);
-            int employeeId = employeeDao.addNew(employee);
-            if (employeeId != 0) {
-                connection.commit();
-                LOGGER.log(Level.INFO, "Successfully added new employee.");
-            } else {
-                LOGGER.log(Level.INFO, "Failed to add new employee.");
-            }
-        }
-    }
-
-    // @Override
-    // public void searchEmployee(String... searchContent,String sql) {
-    // try {
-    // Connection connection = DbFacade.getDbConnection();
-    // PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
-    // preparedStatement.setString(1, searchContent);
-    // ResultSet result = preparedStatement.executeQuery();
-    // while (result.next()) {
-    // System.out.println(result.getString("fullname"));
-    // System.out.println(result.getString("department"));
-    // System.out.println(result.getString("address"));
-    // System.out.println(result.getString("role"));
-    // System.out.println(result.getTimestamp("created_at"));
-    // }
-    // } catch (SQLException sqe) {
-    // LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
-    // }
-    // }
-
     @Override
-    public Boolean delete(String username) {
+    public boolean delete(String username) {
         boolean isDeleted = false;
         String sql =
                 "update user u inner join employee e on u.user_id=e.user_id set u.is_terminated=?,u.modified_at=?,e.modified_at=? where e.fullname=?";

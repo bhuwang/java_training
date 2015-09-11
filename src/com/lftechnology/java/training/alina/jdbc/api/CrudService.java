@@ -2,16 +2,16 @@ package com.lftechnology.java.training.alina.jdbc.api;
 
 import java.util.List;
 
-public interface CrudService<T, I extends Number, B, S> {
+public interface CrudService<T> {
     /**
      * Find details based on id
      * 
      * @param id
-     *            {@link String}
+     *            {@link Integer}
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    T findByPk(String id);
+    T findByPk(Integer id);
 
     /**
      * Lists all details
@@ -22,16 +22,16 @@ public interface CrudService<T, I extends Number, B, S> {
     List<T> findAll();
 
     /**
-     * Add new details
+     * Add new record
      * 
      * @param t
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    I addNew(T t);
+    int addNew(T t);
 
     /**
-     * Update details
+     * Update record
      * 
      * @param t
      * @return
@@ -39,5 +39,12 @@ public interface CrudService<T, I extends Number, B, S> {
      */
     T update(T t);
 
-    B delete(S i);
+    /**
+     * Delete record
+     * 
+     * @param s
+     * @return
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    boolean delete(String s);
 }

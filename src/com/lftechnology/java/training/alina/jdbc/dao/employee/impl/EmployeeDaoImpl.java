@@ -23,7 +23,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     private static List<Employee> employeeList = new ArrayList<Employee>();
 
     @Override
-    public Employee findByPk(String id) {
+    public Employee findByPk(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -45,7 +45,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Integer addNew(Employee employee) {
+    public int addNew(Employee employee) {
         int employeeId = 0;
         String sql = "Insert into employee (fullname,department,address,role,user_id,created_at) values (?,?,?,?,?,?)";
         try {
@@ -77,7 +77,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Boolean delete(String username) {
+    public boolean delete(String username) {
         boolean isDeleted = false;
         String sql = "update employee set is_deleted=?,modified_at=? where fullname=?";
         try {

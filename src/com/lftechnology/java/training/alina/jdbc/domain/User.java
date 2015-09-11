@@ -60,6 +60,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "Username : " + username + " ,Is Terminated : " + isTerminated + " ,Created At : " + createdAt;
+        return "Username : " + username;
     }
 }

@@ -96,7 +96,8 @@ public class Employee extends User {
 
     @Override
     public String toString() {
-        return "Name : " + fullname + ", Address : " + address + ", Department : " + department + ", Role : " + role + ", "
-                + super.toString() + "\n";
+        return "Full Name : " + fullname + ", Address : " + address + ", Department : " + department + ", Role : " + role + ", "
+                + super.toString()
+                + "\n===================================================================================================\n";
     }
 }
