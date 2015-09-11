@@ -2,7 +2,7 @@ package com.lftechnology.java.training.alina.jdbc.api;
 
 import java.util.List;
 
-public interface CrudService<T, I extends Number, B> {
+public interface CrudService<T, I extends Number, B, S> {
     /**
      * Find details based on id
      * 
@@ -39,6 +39,5 @@ public interface CrudService<T, I extends Number, B> {
      */
     T update(T t);
 
-    B delete(I i);
-
+    B delete(S i);
 }

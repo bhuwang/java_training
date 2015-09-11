@@ -9,6 +9,7 @@ public class Employee extends User {
     private String address;
     private String role;
     private int userId;
+    private boolean isDeleted;
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 
@@ -67,6 +68,14 @@ public class Employee extends User {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     public Timestamp getCreatedAt() {

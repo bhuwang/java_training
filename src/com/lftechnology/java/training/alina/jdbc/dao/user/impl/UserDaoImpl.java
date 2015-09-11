@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
@@ -28,6 +29,7 @@ public class UserDaoImpl implements UserDao {
     private static UserDaoImpl userDao = new UserDaoImpl();
     private static EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
     private static List<User> userList = new ArrayList<User>();
+    private static List<Employee> employeeList = new ArrayList<Employee>();
 
     @Override
     public User findByPk(String id) {
@@ -83,7 +85,7 @@ public class UserDaoImpl implements UserDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setBoolean(3, true);
+            preparedStatement.setBoolean(3, Constants.NOT_TERMINATED);
             preparedStatement.setTimestamp(4, user.getCreatedAt());
             int result = preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -100,7 +102,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User update(User user) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -121,7 +122,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = DbFacade.getPreparedStatement(sql);
         preparedStatement.setString(1, user.getUsername());
         preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setBoolean(3, true);
+        preparedStatement.setBoolean(3, Constants.NOT_TERMINATED);
         ResultSet result = preparedStatement.executeQuery();
         if (result.next()) {
             loginStatus = true;
@@ -173,34 +174,37 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    @Override
-    public void searchEmployee(String username) {
-        String sql = "select * from employee where fullname=?";
-        try {
-            Connection connection = DbFacade.getDbConnection();
-            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
-            preparedStatement.setString(1, username);
-            ResultSet result = preparedStatement.executeQuery();
-            while (result.next()) {
-                System.out.println(result.getString("fullname"));
-                System.out.println(result.getString("department"));
-                System.out.println(result.getString("address"));
-            }
-        } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
-        }
-    }
+    // @Override
+    // public void searchEmployee(String... searchContent,String sql) {
+    // try {
+    // Connection connection = DbFacade.getDbConnection();
+    // PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+    // preparedStatement.setString(1, searchContent);
+    // ResultSet result = preparedStatement.executeQuery();
+    // while (result.next()) {
+    // System.out.println(result.getString("fullname"));
+    // System.out.println(result.getString("department"));
+    // System.out.println(result.getString("address"));
+    // System.out.println(result.getString("role"));
+    // System.out.println(result.getTimestamp("created_at"));
+    // }
+    // } catch (SQLException sqe) {
+    // LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+    // }
+    // }
 
     @Override
-    public Boolean delete(Integer userId) {
+    public Boolean delete(String username) {
         boolean isDeleted = false;
-        String sql = "update user set is_terminated=?,modified_at=? where user_id=?";
+        String sql =
+                "update user u inner join employee e on u.user_id=e.user_id set u.is_terminated=?,u.modified_at=?,e.modified_at=? where e.fullname=?";
         try {
             Connection connection = DbFacade.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setBoolean(1, false);
+            preparedStatement.setBoolean(1, Constants.TERMINATED);
             preparedStatement.setTimestamp(2, DateTimeService.getCurrentTimeStamp());
-            preparedStatement.setInt(3, userId);
+            preparedStatement.setTimestamp(3, DateTimeService.getCurrentTimeStamp());
+            preparedStatement.setString(4, username);
             int result = preparedStatement.executeUpdate();
             isDeleted = (result != 0) ? true : false;
         } catch (SQLException sqe) {
@@ -210,8 +214,23 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void searchEmployee() {
-        // TODO Auto-generated method stub
-        
+    public List<Employee> searchEmployee(String sql, String... searchContent) {
+        try {
+            Connection connection = DbFacade.getDbConnection();
+            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+            for (String content : searchContent) {
+                preparedStatement.setString(1, content);
+                preparedStatement.setString(2, content);
+                preparedStatement.setString(3, content);
+            }
+            ResultSet result = preparedStatement.executeQuery();
+            while (result.next()) {
+                employeeList.add(UserService.map(result));
+            }
+
+        } catch (SQLException sqe) {
+            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+        }
+        return employeeList;
     }
 }
