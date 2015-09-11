@@ -17,7 +17,8 @@ public class EmployeeSearchPage {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void renderPage() {
-        String pageContent = "\n============================= Employee Search Page =========================\n";
+        String pageContent = "\n=========================================== Employee Search Page =======================================\n";
+        pageContent +=">> type user name  or email address to search employee:";
         LOGGER.log(Level.INFO, pageContent, new Object[] {});
     }
 }

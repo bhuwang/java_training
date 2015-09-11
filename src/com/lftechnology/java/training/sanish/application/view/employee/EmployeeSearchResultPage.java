@@ -8,21 +8,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Employee listing page view
- *
- * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+ * Created by sanish on 9/11/15.
  */
-public class EmployeeListingPage {
-    private static final Logger LOGGER = Logger.getLogger(EmployeeListingPage.class.getName());
-
+public class EmployeeSearchResultPage {
+    private static final Logger LOGGER = Logger.getLogger(EmployeeSearchResultPage.class.getName());
     /**
-     * Render employee listing page
+     * Render employee search result page
      *
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void renderPage(List<User> userList) {
-        String pageContent = "\n========================================== Employee Listing Page ======================================\n";
-        pageContent += "\n Active User list \n";
+        String pageContent = "\n=========================================== Employee Search Page =======================================\n";
+        pageContent += "\n Search User list \n";
         pageContent += "\n " + OutputFormatter.getStringForListCol("User Id", 10) + OutputFormatter.getStringForListCol("User Name", 30)
                 + OutputFormatter.getStringForListCol("Email", 45) + "\n";
         for (User user : userList) {

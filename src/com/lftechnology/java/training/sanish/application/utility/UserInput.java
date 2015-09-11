@@ -54,7 +54,7 @@ public class UserInput {
      */
     public static String getString(Scanner scanner) {
         String inputString = "";
-        String pattern = "[a-zA-Z1-9!@#$%^&*]+";
+        String pattern = "[a-zA-Z1-9!@#$%^&*.]+";
         boolean checkNextInput = true;
         while (checkNextInput) {
             if (!scanner.hasNext()) {

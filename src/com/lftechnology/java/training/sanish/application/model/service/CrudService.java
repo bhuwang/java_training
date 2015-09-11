@@ -3,6 +3,7 @@ package com.lftechnology.java.training.sanish.application.model.service;
 import com.lftechnology.java.training.sanish.application.model.Model;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 /**
  * Crud service interface
@@ -36,14 +37,25 @@ public interface CrudService<T extends Model> {
      * @return {@link ResultSet}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    ResultSet getAll();
+    List<T> getAll();
 
     /**
      * Return all data set with specific condition
      *
      * @param condition {@link String}
+     * @param parameters list of parameters
      * @return {@link ResultSet}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    ResultSet getAll(String condition);
+    <V> List<T> getAll(String condition, V... parameters);
+
+    /**
+     * Update database table row
+     * @param setStatement {@link String} set statement of query
+     * @param condition {@link String} condition statement of query
+     * @param parameters list of parameters
+     * @param <V>
+     * @return {@link Integer} number of row affected
+     */
+    <V> int update(String setStatement, String condition, V... parameters);
 }

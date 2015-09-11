@@ -37,7 +37,6 @@ public abstract class DbConnect {
                 Class.forName("com.mysql.jdbc.Driver");
                 try {
                     connection = DriverManager.getConnection(DB_URL, USER, PASS);
-                    LOGGER.log(Level.INFO, "Database connected");
                     return connection;
                 } catch (SQLException e) {
                     LOGGER.log(Level.WARNING, "Exception : {1}", new Object[] { e });
