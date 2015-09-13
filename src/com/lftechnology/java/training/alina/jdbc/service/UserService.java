@@ -5,12 +5,15 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.controller.EmployeeController;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
-import com.lftechnology.java.training.alina.jdbc.views.LoginView;
+import com.lftechnology.java.training.alina.jdbc.views.AdminView;
+import com.lftechnology.java.training.alina.jdbc.views.EmployeeEditView;
+import com.lftechnology.java.training.alina.jdbc.views.EmployeeView;
 
 public class UserService {
 
@@ -34,6 +37,11 @@ public class UserService {
         user.setCreatedAt(DateTimeService.getCurrentTimeStamp());
         user.setModifiedAt(DateTimeService.getCurrentTimeStamp());
         return user;
+    }
+
+    public static Employee setInfo(String value) {
+        employee.setFullname(value);
+        return employee;
     }
 
     /**
@@ -66,24 +74,11 @@ public class UserService {
      */
     private static void getAdminRole(Scanner scanner, ResultSet result) throws SQLException {
         char choice = ' ';
-        while (choice != Constants.EXIT) {
-            LoginView.displayAdminRoleMenu(result);
-            choice = getSelectedMenu(scanner);
+        while (choice != Constants.ADMIN_EXIT) {
+            AdminView.displayAdminRoleMenu(result);
+            choice = UtilityService.getSelectedMenu(scanner, "Select an option (a-f) : ");
             getAdminRoleOptions(scanner, choice);
         }
-    }
-
-    /**
-     * Gets the user selected menu options
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @return str {@link Character} menu choice
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    private static char getSelectedMenu(Scanner scanner) {
-        String str = UtilityService.getInputData(scanner, "Select an option (a-f) : ");
-        return str.toLowerCase().charAt(0);
     }
 
     /**
@@ -111,7 +106,7 @@ public class UserService {
             EmployeeController.terminateExistingEmployee(scanner);
             return;
         case 'd':
-            LOGGER.log(Level.INFO, "\n========================\nEmployee List : \n========================\n");
+            LOGGER.log(Level.INFO, "\n========================\nView Employee List : \n========================\n");
             EmployeeController.getEmployeeList();
             return;
         case 'e':
@@ -119,10 +114,10 @@ public class UserService {
             EmployeeController.searchExistingEmployee(scanner);
             return;
         case 'f':
-            LOGGER.log(Level.INFO, "\n========================\nUser successfully logged out from the system.\n========================\n");
+            LOGGER.log(Level.INFO, "\n========================\nUser successfully logged out.\n========================\n");
             userDao.checkEmployeeLogin(scanner);
         default:
-            System.out.println("\n========================\nInvalid entry, Please choose from menu option.\n========================\n");
+            LOGGER.log(Level.INFO, "\n========================\nInvalid entry, Please choose from menu option.\n========================\n");
             return;
         }
     }
@@ -143,16 +138,97 @@ public class UserService {
         employee.setAddress(UtilityService.getInputData(scanner, "Enter address : "));
         Boolean roleStatus = false;
         do {
-            roleStatus = EmployeeController.checkMatchedRole(scanner, roleStatus);
+            String role = UtilityService.getInputData(scanner, "Enter role (user/admin): ");
+            roleStatus = EmployeeController.checkMatchedRole(scanner, roleStatus, role);
+            if (roleStatus) {
+                employee.setRole(role);
+            }
+            System.out.println(employee.getRole());
         } while (!roleStatus);
         employee.setUserId(userId);
-        System.out.println(DateTimeService.getCurrentTimeStamp());
         employee.setCreatedAt(DateTimeService.getCurrentTimeStamp());
         employee.setModifiedAt(DateTimeService.getCurrentTimeStamp());
         return employee;
     }
 
-    private static void getNormalUserRole(Scanner scanner, ResultSet result) {
+    private static void getNormalUserRole(Scanner scanner, ResultSet result) throws SQLException {
+        char choice = ' ';
+        while (choice != Constants.EMPLOYEE_EXIT) {
+            EmployeeView.displayEmployeeRoleMenu(result);
+            choice = UtilityService.getSelectedMenu(scanner, "Select an option (a-d) : ");
+            getEmployeeRoleOptions(scanner, choice, result);
+        }
+    }
+
+    /**
+     * Gets employee role menu options
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param choice
+     *            {@link Character}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException
+     */
+    private static void getEmployeeRoleOptions(Scanner scanner, char choice, ResultSet result) throws SQLException {
+        switch (choice) {
+        case 'a':
+            LOGGER.log(Level.INFO, "\n========================\nView Employee List : \n========================\n");
+            EmployeeController.getEmployeeList();
+            break;
+        case 'b':
+            LOGGER.log(Level.INFO, "\n========================\nSearch an Employee : \n========================\n");
+            EmployeeController.searchExistingEmployee(scanner);
+            return;
+        case 'c':
+            LOGGER.log(Level.INFO, "\n========================\nEdit Information\n========================\n");
+            getEditInfo(scanner, result);
+        case 'd':
+            LOGGER.log(Level.INFO, "\n========================\nUser successfully logged out.\n========================\n");
+            userDao.checkEmployeeLogin(scanner);
+        default:
+            LOGGER.log(Level.INFO, "\n========================\nInvalid entry, Please choose from menu option.\n========================\n");
+            return;
+        }
+    }
+
+    private static void getEditInfo(Scanner scanner, ResultSet result) throws SQLException {
+        char choice = ' ';
+        while (choice != Constants.EMPLOYEE_EDIT_EXIT) {
+            EmployeeEditView.displayEmployeeEditMenu();
+            choice = UtilityService.getSelectedMenu(scanner, "Select an option (a-f) : ");
+            getEmployeeEditOptions(scanner, choice, result);
+        }
+    }
+
+    private static void getEmployeeEditOptions(Scanner scanner, char choice, ResultSet result) throws SQLException {
+        switch (choice) {
+        case 'a':
+            LOGGER.log(Level.INFO, "\n========================\nEdit fullname\n========================\n");
+            employee.setFullname(UtilityService.getInputData(scanner, "Enter Fullname to Edit : "));
+            EmployeeController.updateEmployeeInfo(Constants.FULLNAME, employee.getFullname(), result.getInt("employee_id"));
+            return;
+        case 'b':
+            LOGGER.log(Level.INFO, "\n========================\nEdit Department\n========================\n");
+            employee.setDepartment(UtilityService.getInputData(scanner, "Enter Department to Edit : "));
+            EmployeeController.updateEmployeeInfo(Constants.DEPARTMENT, employee.getDepartment(), result.getInt("employee_id"));
+            return;
+        case 'c':
+            LOGGER.log(Level.INFO, "\n========================\nEdit Address\n========================\n");
+            employee.setAddress(UtilityService.getInputData(scanner, "Enter Address to Edit : "));
+            EmployeeController.updateEmployeeInfo(Constants.ADDRESS, employee.getAddress(), result.getInt("employee_id"));
+            return;
+        case 'd':
+            LOGGER.log(Level.INFO, "\n========================\nChange Password\n========================\n");
+            return;
+        case 'e':
+            LOGGER.log(Level.INFO, "\n========================\nBack\n========================\n");
+            getNormalUserRole(scanner, result);
+            return;
+        default:
+            LOGGER.log(Level.INFO, "\n========================\nInvalid entry, Please choose from menu option.\n========================\n");
+            return;
+        }
     }
 
     /**

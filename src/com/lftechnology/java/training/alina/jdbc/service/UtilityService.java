@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.alina.jdbc.service;
 
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,31 @@ public class UtilityService {
         return scanner.nextLine();
     }
 
+    /**
+     * Gets the user selected menu options
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @return str {@link Character} menu choice
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    public static char getSelectedMenu(Scanner scanner, String fieldLabel) {
+        String str = UtilityService.getInputData(scanner, "Select an option (a-f) : ");
+        return str.toLowerCase().charAt(0);
+    }
+
+    public static String getKeyValue(Map<String, String> dictionary) {
+        for (String key : dictionary.keySet()) {
+            return key;
+        }
+        return null;
+    }
+
+    /**
+     * Used to clear the console
+     * 
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public final static void clearConsole() {
         try {
             final String operatingSystem = System.getProperty("os.name");
@@ -37,7 +63,7 @@ public class UtilityService {
                 Runtime.getRuntime().exec("clear");
             }
         } catch (final Exception e) {
-            // Handle any exceptions.
+            LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
         }
     }
 }

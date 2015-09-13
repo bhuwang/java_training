@@ -2,15 +2,20 @@ package com.lftechnology.java.training.alina.jdbc.controller;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.lftechnology.java.training.alina.jdbc.api.Database;
+import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
+import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
 import com.lftechnology.java.training.alina.jdbc.service.UserService;
 import com.lftechnology.java.training.alina.jdbc.service.UtilityService;
 
@@ -19,6 +24,9 @@ public class EmployeeController {
     private static final Logger LOGGER = Logger.getLogger(EmployeeController.class.getName());
     private static UserDaoImpl userDao = new UserDaoImpl();
     private static EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
+    private static Map<Integer, Object> params = new HashMap<>();
+    private static String sqlQuery = null;
+    private static Database database = new Database();
 
     /**
      * Adds new employee
@@ -54,15 +62,14 @@ public class EmployeeController {
      *            {@link Scanner}
      * @param roleStatus
      *            {@link Boolean}
+     * @param role
+     *            {@link String}
      * @return roleStatus {@link Boolean} role status as admin/user
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    public static boolean checkMatchedRole(Scanner scanner, Boolean roleStatus) {
-        Employee employee = new Employee();
-        String role = UtilityService.getInputData(scanner, "Enter role (user/admin): ");
+    public static boolean checkMatchedRole(Scanner scanner, Boolean roleStatus, String role) {
         if (role.equals(Employee.EmployeeRole.ADMIN.role) || role.equals(Employee.EmployeeRole.USER.role)) {
             roleStatus = true;
-            employee.setRole(role);
         } else {
             LOGGER.log(Level.INFO, "\n=====>\nRole should be user/admin. Please enter valid role\n=====>\n");
             roleStatus = false;
@@ -131,8 +138,32 @@ public class EmployeeController {
         String searchContent = UtilityService.getInputData(scanner, "Search Employee by fullname, department or address : ");
         String sql =
                 "select * from employee e inner join user u on e.user_id=u.user_id where e.fullname=? or e.department=? or e.address=?";
-        List<Employee> list = userDao.searchEmployee(sql, searchContent, searchContent, searchContent);
+        List<Employee> list = employeeDao.searchEmployee(sql, searchContent, searchContent, searchContent);
         LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
+    }
+
+    public static void updateEmployeeInfo(String keyName, String keyValue, Integer employeeId) {
+        if (keyName == Constants.FULLNAME) {
+            sqlQuery = "update employee set fullname=?,modified_at=? where employee_id=?";
+        } else if (keyName == Constants.DEPARTMENT) {
+            sqlQuery = "update employee set department=?,modified_at=? where employee_id=?";
+        } else if (keyName == Constants.ADDRESS) {
+            sqlQuery = "update employee set address=?,modified_at=? where employee_id=?";
+        } else if (keyName == Constants.ROLE) {
+            sqlQuery = "update employee set role=?,modified_at=? where employee_id=?";
+        }
+        params.put(1, keyValue);
+        params.put(2, DateTimeService.getCurrentTimeStamp());
+        params.put(3, employeeId);
+        database.setParameters(params);
+        database.setSqlQuery(sqlQuery);
+        int result = employeeDao.update(database);
+        if (result > 0) {
+            LOGGER.log(Level.INFO, "\n=====>\nSuccessfully updated employee information of ID : {0}.\n=====>\n",
+                    new Object[] { employeeId });
+        } else {
+            LOGGER.log(Level.INFO, "\n=====>\nFailed to update employee information.\n=====>\n");
+        }
     }
 
 }

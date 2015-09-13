@@ -1,7 +1,6 @@
 package com.lftechnology.java.training.alina.jdbc.demo;
 
 import java.sql.SQLException;
-
 import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
 
 public class EmployeeManagement {
@@ -10,5 +9,4 @@ public class EmployeeManagement {
         LoginController loginController = new LoginController();
         loginController.userLogin();
     }
-
 }

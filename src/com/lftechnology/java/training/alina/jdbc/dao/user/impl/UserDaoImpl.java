@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.lftechnology.java.training.alina.jdbc.api.Database;
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
@@ -25,7 +27,6 @@ public class UserDaoImpl implements UserDao {
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
     private static Employee employee = new Employee();
     private static List<User> userList = new ArrayList<User>();
-    private static List<Employee> employeeList = new ArrayList<Employee>();
 
     /**
      * Checks whether employee username or password matches. Logins to the system if password matches.
@@ -42,7 +43,7 @@ public class UserDaoImpl implements UserDao {
         user = UserService.setLoginInfo(scanner);
         Boolean loginStatus = false;
         String sql =
-                "SELECT * FROM user u inner join employee e where u.username=? and u.password=? and u.is_terminated=? and e.is_deleted=?";
+                "SELECT * FROM user u inner join employee e on (u.user_id = e.user_id) where u.username=? and u.password=? and u.is_terminated=? and e.is_deleted=?";
         Connection connection = DbFacade.getDbConnection();
         PreparedStatement preparedStatement = DbFacade.getPreparedStatement(sql);
         preparedStatement.setString(1, user.getUsername());
@@ -85,28 +86,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByPk(Integer id) {
-        Connection connection = DbFacade.getDbConnection();
-        Statement statement = null;
-        ResultSet rs = null;
-
-        User user = new User();
-        try {
-            statement = connection.createStatement();
-            String sql = "SELECT * FROM user where id= " + id;
-            rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                user.setUsername(rs.getString("username"));
-            }
-        } catch (SQLException e) {
-            System.err.println("Exception while creating statement.");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException se) {
-                System.err.println("Error closing connection.");
-            }
-        }
-        return user;
+        return null;
     }
 
     @Override
@@ -130,7 +110,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int addNew(User user) {
+    public Integer addNew(User user) {
         int employeeId = 0;
         String sql = "Insert into user (username,password,is_terminated,created_at) values (?,?,?,?)";
         try {
@@ -154,12 +134,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User update(User user) {
-        return null;
-    }
-
-    @Override
-    public boolean delete(String username) {
+    public Boolean delete(String username) {
         boolean isDeleted = false;
         String sql =
                 "update user u inner join employee e on u.user_id=e.user_id set u.is_terminated=?,u.modified_at=?,e.modified_at=? where e.fullname=?";
@@ -179,23 +154,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<Employee> searchEmployee(String sql, String... searchContent) {
-        try {
-            Connection connection = DbFacade.getDbConnection();
-            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
-            for (String content : searchContent) {
-                preparedStatement.setString(1, content);
-                preparedStatement.setString(2, content);
-                preparedStatement.setString(3, content);
-            }
-            ResultSet result = preparedStatement.executeQuery();
-            while (result.next()) {
-                employeeList.add(UserService.map(result));
-            }
+    public List<User> searchUser(String sql, String... searchContent) {
+        return null;
+    }
 
-        } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
-        }
-        return employeeList;
+    @Override
+    public Integer update(Database db) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

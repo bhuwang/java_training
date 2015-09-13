@@ -28,7 +28,7 @@ public interface CrudService<T> {
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    int addNew(T t);
+    Integer addNew(T t);
 
     /**
      * Update record
@@ -37,7 +37,7 @@ public interface CrudService<T> {
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    T update(T t);
+    Integer update(Database db);
 
     /**
      * Delete record
@@ -46,5 +46,5 @@ public interface CrudService<T> {
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    boolean delete(String s);
+    Boolean delete(String s);
 }

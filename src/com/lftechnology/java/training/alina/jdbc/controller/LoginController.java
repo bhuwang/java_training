@@ -37,7 +37,7 @@ public class LoginController {
      */
     private static boolean checkNotLogin(Boolean isLogin) {
         if (!isLogin) {
-            LOGGER.log(Level.INFO, "\n=====>\nUsername or Password not found. Please try again.\n=====>\n");
+            LOGGER.log(Level.INFO, "\n=====>\nInvalid Username or Password. Please try again.\n=====>\n");
             return false;
         } else {
             return true;
