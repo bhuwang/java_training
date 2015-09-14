@@ -14,9 +14,11 @@ import com.lftechnology.java.training.krishna.employeemanagement.domain.User;
 import com.lftechnology.java.training.krishna.employeemanagement.jdbc.DbConnectionFactory;
 
 /**
- * DAO of User.
+ * Implementation of user DAO interface.
+ *
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
  */
-
 public class UserDaoImpl implements UserDao {
 
 	private static final Logger LOGGER =
@@ -84,7 +86,6 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	@Override
 	public User findById(Integer id) {

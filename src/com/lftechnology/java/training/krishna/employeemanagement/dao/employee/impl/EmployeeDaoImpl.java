@@ -15,6 +15,12 @@ import com.lftechnology.java.training.krishna.employeemanagement.dao.employee.Em
 import com.lftechnology.java.training.krishna.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.krishna.employeemanagement.jdbc.DbConnectionFactory;
 
+/**
+ * Implementation of employee DAO interface.
+ *
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class EmployeeDaoImpl implements EmployeeDao {
 
 	private static final Logger LOGGER =
@@ -34,7 +40,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private static final String SEARCH_BY_ID_QUERY =
 		"SELECT * FROM user WHERE id = ?";
 	private static final String SEARCH_BY_USERNAME_QUERY =
-					"SELECT * FROM user WHERE username = ?";
+		"SELECT * FROM user WHERE username = ?";
 
 	@Override
 	public Employee create(Employee entity) {
@@ -175,8 +181,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				throw new SQLException(
 					"Updating user failed, no rows affected.");
 			}
-				entity.setId(entity.getId());
-		
+			entity.setId(entity.getId());
+
 		}
 		catch (SQLException e) {
 			LOGGER.log(
@@ -252,12 +258,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 		boolean isDuplicate = false;
 		try {
-			preparedStatement = connection.prepareStatement(SEARCH_BY_USERNAME_QUERY);
+			preparedStatement =
+				connection.prepareStatement(SEARCH_BY_USERNAME_QUERY);
 			preparedStatement.setString(1, username);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			 if (resultSet.next()) {
-				 isDuplicate = true;
-			 }
+			if (resultSet.next()) {
+				isDuplicate = true;
+			}
 		}
 		catch (SQLException e) {
 			LOGGER.log(

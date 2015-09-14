@@ -7,6 +7,12 @@ import com.lftechnology.java.training.krishna.employeemanagement.dao.user.impl.U
 import com.lftechnology.java.training.krishna.employeemanagement.domain.User;
 import com.lftechnology.java.training.krishna.employeemanagement.service.user.UserService;
 
+/**
+ * Implementation of user service interface.
+ *
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class UserServiceImpl implements UserService {
 
 	private UserDaoImpl userDaoImpl;

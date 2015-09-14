@@ -8,6 +8,12 @@ import com.lftechnology.java.training.krishna.employeemanagement.domain.Employee
 import com.lftechnology.java.training.krishna.employeemanagement.service.employee.EmployeeService;
 import com.lftechnology.java.training.krishna.employeemanagement.utils.DateUtils;
 
+/**
+ * Implementation of employee service interface.
+ *
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class EmployeeServiceImpl implements EmployeeService {
 
 	private EmployeeDaoImpl employeeDaoImpl;
