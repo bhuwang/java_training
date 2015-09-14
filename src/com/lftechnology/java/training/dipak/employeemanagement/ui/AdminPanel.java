@@ -28,9 +28,10 @@ public class AdminPanel {
 	}
 
 	public void displayPanel(Employee employee, Scanner sc) {
-		Employee e=new Employee();
-		e=DuplicateEmployee.duplicateEmployeeObject(employee, e);
-		
+
+		Employee e = new Employee();
+		e = DuplicateEmployee.duplicateEmployeeObject(employee, e);
+
 		EmployeeController ec = new EmployeeController();
 		for (;;) {
 			try {
@@ -53,8 +54,8 @@ public class AdminPanel {
 					ec.viewEmployee(e, sc);
 					break;
 				case 4:
-						employee=ec.editEmployeeDetails(employee, sc);
-						break;
+					employee = ec.editEmployeeDetails(employee, sc);
+					break;
 				case 5:
 					LOGGER.info("Are you sure you want to log out?\n");
 					LOGGER.info("yes-->1\t\tno-->2\n");
@@ -67,7 +68,6 @@ public class AdminPanel {
 					else {
 						break;
 					}
-					
 
 				default:
 					LOGGER.info("Illegal choice. Please re-enter your choice.");

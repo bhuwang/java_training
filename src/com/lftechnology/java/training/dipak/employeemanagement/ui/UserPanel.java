@@ -28,9 +28,10 @@ public class UserPanel {
 	}
 
 	public void displayPanel(Employee employee, Scanner sc) {
+
 		EmployeeController ec = new EmployeeController();
-		Employee e=new Employee();
-		e=DuplicateEmployee.duplicateEmployeeObject(employee, e);
+		Employee e = new Employee();
+		e = DuplicateEmployee.duplicateEmployeeObject(employee, e);
 		for (;;) {
 			try {
 				LOGGER.info("Welcome to the user panel...\n");
@@ -43,8 +44,11 @@ public class UserPanel {
 				case 1:
 					ec.viewEmployee(e, sc);
 					break;
-				case 2:LOGGER.info(""+e.getAddress()+" "+e.getDepartment()+" "+e.getFullName());
-					employee=ec.editEmployeeDetails(employee, sc);
+				case 2:
+					LOGGER.info(
+						"" + e.getAddress() + " " + e.getDepartment() + " " +
+							e.getFullName());
+					employee = ec.editEmployeeDetails(employee, sc);
 					break;
 				case 3:
 

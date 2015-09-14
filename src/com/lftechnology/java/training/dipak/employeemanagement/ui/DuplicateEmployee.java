@@ -1,9 +1,12 @@
+
 package com.lftechnology.java.training.dipak.employeemanagement.ui;
 
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 
 public class DuplicateEmployee {
-	public static Employee duplicateEmployeeObject(Employee e1,Employee e2) {
+
+	public static Employee duplicateEmployeeObject(Employee e1, Employee e2) {
+
 		e2.setId(e1.getId());
 		e2.setUserName(e1.getUserName());
 		e2.setPassword(e1.getPassword());
@@ -12,8 +15,7 @@ public class DuplicateEmployee {
 		e2.setDepartment(e1.getDepartment());
 		e2.setIsTerminated(e1.getIsTerminated());
 		e2.setRole(e1.getRole());
-		
-		
+
 		return e2;
 	}
 }

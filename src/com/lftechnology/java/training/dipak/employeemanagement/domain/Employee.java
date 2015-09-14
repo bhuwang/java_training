@@ -1,16 +1,20 @@
+
 package com.lftechnology.java.training.dipak.employeemanagement.domain;
 
-public class Employee extends User{
+public class Employee extends User {
+
 	private String fullName;
 	private String department;
 	private String address;
 	private UserType role;
+
 	public String getFullName() {
-		
+
 		return fullName;
 	}
 
 	public void setFullName(String fullName) {
+
 		this.fullName = fullName;
 	}
 
@@ -43,5 +47,5 @@ public class Employee extends User{
 
 		this.role = role;
 	}
-	
+
 }

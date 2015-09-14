@@ -1,5 +1,7 @@
+
 package com.lftechnology.java.training.dipak.employeemanagement.controller;
 
+import java.io.Console;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,35 +12,43 @@ import com.lftechnology.java.training.dipak.employeemanagement.service.LoginServ
 import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFactory;
 
 public class LoginController {
-	private static final Logger LOGGER=Logger.getLogger(LoginController.class.getName());
-	
-	public Employee validateLogin(User u,Scanner sc) {
-		Employee employee=new Employee();
-		
-		try{
-			String userName="";
-			String password="";
-			LoginService ls=ServiceFactory.getLoginService();
-			
+
+	private static final Logger LOGGER =
+		Logger.getLogger(LoginController.class.getName());
+
+	public Employee validateLogin(User u, Scanner sc) {
+
+		Employee employee = new Employee();
+		Console cnsl = null;
+
+		try {
+			cnsl = System.console();
+			String userName = "";
+			String password = "";
+			LoginService ls = ServiceFactory.getLoginService();
+
 			LOGGER.info("Enter username::");
-			
-			userName=sc.nextLine();
-			
+
+			userName = sc.nextLine();
+
 			u.setUserName(userName);
-			
+
 			LOGGER.info("Enter password::");
-			
-			password=sc.nextLine();	
-			
+			char[] pwd = cnsl.readPassword();
+
+			password = String.valueOf(pwd);
+
+			// password=sc.nextLine();
+
 			u.setPassword(password);
-			
-			employee=ls.validateLogin(u);			
-			
-		}catch(Exception e) {
-			LOGGER.log(Level.INFO,"{0}",e);
+
+			employee = ls.validateLogin(u);
+
+		}
+		catch (Exception e) {
+			LOGGER.log(Level.INFO, "{0}", e);
 		}
 		return employee;
 	}
 
-	
 }
