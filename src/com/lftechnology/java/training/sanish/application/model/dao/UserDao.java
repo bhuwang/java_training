@@ -138,4 +138,20 @@ public class UserDao implements UserImpl {
         }
         return 0;
     }
+
+    @Override public boolean setPassword(User user, String password) {
+        try {
+            String query = "UPDATE users SET password=? WHERE userId=?";
+            preparedStatement = DbConnect.getPreparedStatement(query, password, user.getUserId());
+            int effectedRow = preparedStatement.executeUpdate();
+            DbConnect.closePreparedStatement();
+            if (effectedRow != 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            DbConnect.closePreparedStatement();
+        }
+        return false;
+    }
 }

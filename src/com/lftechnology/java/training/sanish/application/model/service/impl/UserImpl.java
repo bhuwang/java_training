@@ -19,6 +19,7 @@ public interface UserImpl extends CrudService<User> {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public User getUserByUserName(String userName);
+    public boolean setPassword(User user, String password);
 
     /**
      * Set properties of user with supplied result set

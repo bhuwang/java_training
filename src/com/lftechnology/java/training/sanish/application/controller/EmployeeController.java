@@ -42,7 +42,7 @@ public class EmployeeController {
                 } else if (menuSelected == 3) {
                     ownInformationEditPage();
                 } else if (menuSelected == 4) {
-                    // TODO change password
+                    changePasswordPage();
                 } else {
                     LoginController.logoutPage();
                 }
@@ -159,6 +159,35 @@ public class EmployeeController {
                     ownInformationEditPage();
                 } else if (option == 2) {
                     employeeDashboardPage();
+                }
+            } else {
+                LoginController.LoginPage();
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+        } finally {
+            DbConnect.DbClose();
+        }
+    }
+
+    /**
+     * Change password page
+     *
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
+    public static void changePasswordPage() {
+        try (Scanner inputScanner = new Scanner(System.in)) {
+            if (UserLogin.isLogin()) {
+                User user = UserLogin.getCurrentUser();
+                ChangePasswordPage.renderPage(false);
+                EmployeeHelper.changePassword(inputScanner, user);
+                ChangePasswordPage.renderPage(true);
+                int option;
+                option = UserInput.getIntegerNumber(inputScanner, 1, 2);
+                if (option == 1) {
+                    employeeDashboardPage();
+                } else if (option == 2) {
+                    LoginController.logoutPage();
                 }
             } else {
                 LoginController.LoginPage();
