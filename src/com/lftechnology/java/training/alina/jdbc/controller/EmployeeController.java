@@ -163,6 +163,8 @@ public class EmployeeController {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static void updateEmployeeInfo(String keyName, String keyValue, Integer employeeId) {
+        Map<Integer, Object> params = new HashMap<>();
+        Database database = new Database();
         if (keyName == Constants.FULLNAME) {
             sqlQuery = "update employee set fullname=?,modified_at=? where employee_id=?";
         } else if (keyName == Constants.DEPARTMENT) {

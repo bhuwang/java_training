@@ -4,10 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
@@ -25,7 +28,7 @@ public class UserDaoImpl implements UserDao {
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
     /**
-     * Checks whether employee username or password matches. Logins to the system if password matches.
+     * Checks whether employee username/password matches. Logins to the system if password matches.
      * 
      * @param scanner
      *            {@link Scanner}
@@ -38,14 +41,17 @@ public class UserDaoImpl implements UserDao {
         LoginView.displayLoginHeader();
         user = UserService.setLoginInfo(scanner, Constants.USER_LOGIN);
         Boolean loginStatus = false;
+        Map<Integer, Object> params = new HashMap<Integer, Object>();
+        params.put(1, user.getUsername());
+        params.put(2, user.getPassword());
+        params.put(3, Constants.NOT_TERMINATED);
+        params.put(4, Constants.NOT_DELETED);
+        Database database = UserService.setDatabaseParams(params);
         String sql =
                 "SELECT * FROM user u inner join employee e on (u.user_id = e.user_id) where u.username=? and u.password=? and u.is_terminated=? and e.is_deleted=?";
         Connection connection = DbFacade.getDbConnection();
-        PreparedStatement preparedStatement = DbFacade.getPreparedStatement(sql);
-        preparedStatement.setString(1, user.getUsername());
-        preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setBoolean(3, Constants.NOT_TERMINATED);
-        preparedStatement.setBoolean(4, Constants.NOT_DELETED);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
         ResultSet result = preparedStatement.executeQuery();
         if (result.next()) {
             loginStatus = true;
@@ -69,14 +75,15 @@ public class UserDaoImpl implements UserDao {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     private void checkValidUser(Scanner scanner, int userId, Connection connection) throws SQLException {
+        UserService userService = new UserService();
         String sql = "SELECT * FROM employee where user_id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userId);
         ResultSet result = preparedStatement.executeQuery();
         if (result.next()) {
-            UserService.getEmployeeRole(scanner, result);
+            userService.getEmployeeRole(scanner, result);
         } else {
-            LOGGER.log(Level.INFO, "Employee not found");
+            LOGGER.log(Level.INFO, "User not found");
         }
     }
 
@@ -171,17 +178,23 @@ public class UserDaoImpl implements UserDao {
      */
     public boolean checkValidUserByUsername(String username) throws SQLException {
         boolean existUser;
+        Map<Integer, Object> params = new HashMap<Integer, Object>();
+        params.put(1, username);
+        params.put(2, Constants.NOT_TERMINATED);
+        params.put(3, Constants.NOT_DELETED);
+        Database database = UserService.setDatabaseParams(params);
         Connection connection = DbFacade.getDbConnection();
-        String sql = "SELECT * FROM user where username=?";
+        String sql =
+                "SELECT * FROM user u inner join employee e on (e.user_id = u.user_id) where u.username=? and u.is_terminated=? and e.is_deleted=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, username);
+        preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
         ResultSet result = preparedStatement.executeQuery();
         if (result.next()) {
-            LOGGER.log(Level.INFO, "\n=====>\nUsername already exists.\n=====>\n");
             existUser = true;
         } else {
             existUser = false;
         }
         return existUser;
     }
+
 }

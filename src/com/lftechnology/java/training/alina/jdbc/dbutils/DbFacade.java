@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.alina.jdbc.dbutils;
 
-import java.awt.print.PrinterAbortException;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ParameterMetaData;
@@ -25,8 +24,6 @@ public class DbFacade {
     private static final String USER = "root";
     private static final String PASS = "";
     private static Connection connection;
-    private static PreparedStatement preparedStatement;
-    private static ParameterMetaData paramMetaData = null;
 
     /**
      * Connects to database
@@ -46,31 +43,12 @@ public class DbFacade {
         return connection;
     }
 
-    /**
-     * Gets prepared statement connection
-     * 
-     * @param sql
-     *            {@link String}
-     * @return preparedStatement {@link PrinterAbortException}
-     * @throws SQLException
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    public static PreparedStatement getPreparedStatement(String sql) throws SQLException {
-        if (preparedStatement == null) {
-            preparedStatement = connection.prepareStatement(sql);
-        }
-        return preparedStatement;
-    }
-
     /*
-     * Closes db connections
+     * Closes database connections
      */
     public static void closeDbConnection() throws SQLException {
         if (connection != null) {
             connection.close();
-        }
-        if (preparedStatement != null) {
-            preparedStatement.close();
         }
         // connection.setAutoCommit(true);
     }
@@ -107,17 +85,19 @@ public class DbFacade {
     /**
      * Count sql parameters
      * 
+     * @param {@link PreparedStatement}
      * @return {@link Integer} no. of sql params
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    public static int countSqlParameters() throws SQLException {
+    public static int countSqlParameters(PreparedStatement preparedStatement) throws SQLException {
+        ParameterMetaData paramMetaData = null;
         paramMetaData = preparedStatement.getParameterMetaData();
         return paramMetaData.getParameterCount();
     }
 
     /**
-     * Sets value in preparestatement
+     * Sets value in prepared statement
      * 
      * @param database
      *            {@link Database}
@@ -135,5 +115,4 @@ public class DbFacade {
         }
         return preparedStatement;
     }
-
 }

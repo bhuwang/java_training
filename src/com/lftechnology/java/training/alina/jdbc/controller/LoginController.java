@@ -39,7 +39,7 @@ public class LoginController {
     }
 
     /**
-     * Check and display message while user not logged in
+     * Checks and displays message when user fails to log in
      * 
      * @param isLogin
      *            {@link Boolean}
@@ -56,7 +56,7 @@ public class LoginController {
     }
 
     /**
-     * Checks user existence bt username
+     * Checks existence of user by username
      * 
      * @param scanner
      *            {@link Scanner}
@@ -71,6 +71,9 @@ public class LoginController {
     public static boolean checkExistUsername(Scanner scanner, boolean userExist, String username) throws SQLException {
         UserDaoImpl userDao = new UserDaoImpl();
         userExist = userDao.checkValidUserByUsername(username);
+        if (userExist) {
+            LOGGER.log(Level.INFO, "\n=====>\nUsername already exists.\n=====>");
+        }
         return userExist;
     }
 

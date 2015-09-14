@@ -40,7 +40,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             preparedStatement.setBoolean(2, Constants.NOT_DELETED);
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
-                employeeList.add(UserService.map(result));
+                UserService userService = new UserService();
+                employeeList.add(userService.map(result));
             }
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { e });
@@ -118,7 +119,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
             }
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
-                employeeList.add(UserService.map(result));
+                UserService userService = new UserService();
+                employeeList.add(userService.map(result));
             }
 
         } catch (SQLException sqe) {

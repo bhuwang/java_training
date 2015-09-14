@@ -4,10 +4,9 @@ import java.sql.SQLException;
 import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
 
 /**
- * EmployeeManagement consists of functionalities regarding employee management
+ * EmployeeManagement consists of employee management functionalities
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
- *
  */
 public class EmployeeManagement {
 
