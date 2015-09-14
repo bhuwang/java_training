@@ -1,0 +1,44 @@
+package com.lftechnology.java.training.dipak.employeemanagement.controller;
+
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
+import com.lftechnology.java.training.dipak.employeemanagement.domain.User;
+import com.lftechnology.java.training.dipak.employeemanagement.service.LoginService;
+import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFactory;
+
+public class LoginController {
+	private static final Logger LOGGER=Logger.getLogger(LoginController.class.getName());
+	
+	public Employee validateLogin(User u,Scanner sc) {
+		Employee employee=new Employee();
+		
+		try{
+			String userName="";
+			String password="";
+			LoginService ls=ServiceFactory.getLoginService();
+			
+			LOGGER.info("Enter username::");
+			
+			userName=sc.nextLine();
+			
+			u.setUserName(userName);
+			
+			LOGGER.info("Enter password::");
+			
+			password=sc.nextLine();	
+			
+			u.setPassword(password);
+			
+			employee=ls.validateLogin(u);			
+			
+		}catch(Exception e) {
+			LOGGER.log(Level.INFO,"{0}",e);
+		}
+		return employee;
+	}
+
+	
+}
