@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.niraj.ems.services;
+package com.lftechnology.java.training.niraj.ems.enums;
 
 public enum Roles {
     ADMIN("admin"), USER("user");
