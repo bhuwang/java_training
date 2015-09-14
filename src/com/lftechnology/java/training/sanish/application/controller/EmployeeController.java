@@ -35,9 +35,17 @@ public class EmployeeController {
     public static void employeeDashboardPage() {
         try (Scanner inputScanner = new Scanner(System.in)) {
             if (UserLogin.isLogin()) {
+                UserDao userDao = new UserDao();
                 User user = UserLogin.getCurrentUser();
-                EmployeeDashboardPage.renderPage(inputScanner, user);
-                int menuSelected = UserInput.getIntegerNumber(inputScanner, 1, 5);
+                Employee employee = userDao.getEmployee(user);
+                EmployeeDashboardPage.renderPage(inputScanner, user, employee);
+                int menuSelected;
+                if (employee.getRole().equals("Admin")) {
+                    menuSelected = UserInput.getIntegerNumber(inputScanner, 1, 5);
+                } else {
+                    menuSelected = UserInput.getIntegerNumber(inputScanner, 1, 8);
+                }
+
                 if (menuSelected == 1) {
                     employeeListPage();
                 } else if (menuSelected == 2) {
@@ -46,6 +54,17 @@ public class EmployeeController {
                     ownInformationEditPage();
                 } else if (menuSelected == 4) {
                     changePasswordPage();
+                } else if (menuSelected == 5) {
+                    if (employee.getRole().equals("Admin")) {
+                        // TODO
+                    } else {
+                        LoginController.logoutPage();
+                    }
+
+                } else if (menuSelected == 6) {
+                    // TODO
+                } else if (menuSelected == 7) {
+                    // TODO
                 } else {
                     LoginController.logoutPage();
                 }
@@ -70,7 +89,7 @@ public class EmployeeController {
                 UserDao userData = new UserDao();
                 List<User> userList = userData.getAll();
                 List<UserEmployee> userEmployeesList = new ArrayList<UserEmployee>();
-                for(User user : userList){
+                for (User user : userList) {
                     UserEmployee userEmployee = new UserEmployee();
                     Employee employee = userData.getEmployee(user);
                     userEmployee.setUser(user);
@@ -79,11 +98,13 @@ public class EmployeeController {
                 }
                 EmployeeListingPage.renderPage(userEmployeesList);
                 int option;
-                option = UserInput.getIntegerNumber(inputScanner, 1, 2);
+                option = UserInput.getIntegerNumber(inputScanner, 1, 3);
                 if (option == 1) {
                     employeeSearchPage();
                 } else if (option == 2) {
                     employeeDashboardPage();
+                } else {
+                    LoginController.logoutPage();
                 }
             } else {
                 LoginController.LoginPage();
@@ -124,17 +145,18 @@ public class EmployeeController {
     public static void employeeSearchResultPage(String searchKey) {
         try (Scanner inputScanner = new Scanner(System.in)) {
             if (UserLogin.isLogin()) {
-                String condition = "userName=? || email=?";
                 UserDao userDao = new UserDao();
-                List<User> userList = userDao.getAll(condition, searchKey, searchKey);
-                EmployeeSearchResultPage.renderPage(userList);
+                List<UserEmployee> userEmployeeList = userDao.searchEmployee(searchKey);
+                EmployeeSearchResultPage.renderPage(userEmployeeList);
 
                 int option;
-                option = UserInput.getIntegerNumber(inputScanner, 1, 2);
+                option = UserInput.getIntegerNumber(inputScanner, 1, 3);
                 if (option == 1) {
                     employeeSearchPage();
                 } else if (option == 2) {
                     employeeDashboardPage();
+                } else {
+                    LoginController.logoutPage();
                 }
             } else {
                 LoginController.LoginPage();
@@ -154,22 +176,34 @@ public class EmployeeController {
     public static void ownInformationEditPage() {
         try (Scanner inputScanner = new Scanner(System.in)) {
             if (UserLogin.isLogin()) {
-                User user = UserLogin.getCurrentUser();
-                OwnInformationEditPage.renderPage(user, false);
-                EmployeeHelper.changeUserName(inputScanner, user);
-                EmployeeHelper.changeUserEmail(inputScanner, user);
-
                 UserDao userDao = new UserDao();
+                UserEmployee userEmployee = new UserEmployee();
+                User user = UserLogin.getCurrentUser();
+                Employee employee = userDao.getEmployee(user);
+                userEmployee.setUser(user);
+                userEmployee.setEmployee(employee);
+                OwnInformationEditPage.renderPage(userEmployee, false);
+
+                EmployeeHelper.changeUserName(inputScanner, user);
+                EmployeeHelper.changeFullName(inputScanner, employee);
+                EmployeeHelper.changeUserEmail(inputScanner, user);
+                EmployeeHelper.changeAddress(inputScanner, employee);
+
                 UserLogin.setCurrentUser(userDao.findById(user.getUserId()));
                 user = UserLogin.getCurrentUser();
-                OwnInformationEditPage.renderPage(user, true);
+                employee = userDao.getEmployee(user);
+                userEmployee.setUser(user);
+                userEmployee.setEmployee(employee);
+                OwnInformationEditPage.renderPage(userEmployee, true);
 
                 int option;
-                option = UserInput.getIntegerNumber(inputScanner, 1, 2);
+                option = UserInput.getIntegerNumber(inputScanner, 1, 3);
                 if (option == 1) {
                     ownInformationEditPage();
                 } else if (option == 2) {
                     employeeDashboardPage();
+                } else {
+                    LoginController.logoutPage();
                 }
             } else {
                 LoginController.LoginPage();

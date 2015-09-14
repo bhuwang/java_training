@@ -21,7 +21,7 @@ public class ChangePasswordPage {
     public static void renderPage(Boolean showMenu) {
         String pageContent = "\n============================= Change Password Page =========================\n";
         if (showMenu) {
-            pageContent += "\n\n Options :\n"
+            pageContent += "\n\n Page Menu :\n"
                     + " 1. Back To Employee Dashboard\n"
                     + " 2. Logout";
             pageContent += "\n >> type option";

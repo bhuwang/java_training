@@ -25,7 +25,7 @@ public class Employee implements Model<Employee> {
     private String createdAt;
     private String modifiedAt;
 
-    public int getEmployId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 
@@ -57,8 +57,8 @@ public class Employee implements Model<Employee> {
         return modifiedAt;
     }
 
-    public void setEmployId(int employId) {
-        this.employeeId = employId;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public void setUserId(int userId) {
@@ -130,7 +130,7 @@ public class Employee implements Model<Employee> {
 
     @Override public void setResultSetAttributes(ResultSet rs) {
         String[] colWithStringDataType = { "fullName", "address", "department", "role", "createdAt", "modifiedAt" };
-        String[] colWithIntDataType = { "employId", "userId" };
+        String[] colWithIntDataType = { "employeeId", "userId" };
         String[] colWithBooleanDataType = {};
         try {
             ResultSetMetaData metadata = rs.getMetaData();
@@ -153,7 +153,7 @@ public class Employee implements Model<Employee> {
 
     @Override public String toString() {
         return "Employee{" +
-                "employId=" + employeeId +
+                "employeeId=" + employeeId +
                 ", userId=" + userId +
                 ", fullName='" + fullName + '\'' +
                 ", address='" + address + '\'' +

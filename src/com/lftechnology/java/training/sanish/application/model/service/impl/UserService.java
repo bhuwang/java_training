@@ -2,9 +2,11 @@ package com.lftechnology.java.training.sanish.application.model.service.impl;
 
 import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
+import com.lftechnology.java.training.sanish.application.model.domain.UserEmployee;
 import com.lftechnology.java.training.sanish.application.model.service.CrudService;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 /**
  * User service interface
@@ -22,4 +24,5 @@ public interface UserService extends CrudService<User> {
     public User getUserByUserName(String userName);
     public boolean setPassword(User user, String password);
     public Employee getEmployee(User user);
+    public List<UserEmployee> searchEmployee(String searchKey);
 }

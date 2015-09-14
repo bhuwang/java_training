@@ -33,9 +33,9 @@ public class EmployeeDao implements EmployeeService {
         return false;
     }
 
-    @Override public User getUser(Employee employee) {
+    @Override public User getEmployee(Employee employee) {
         try {
-            String query = "SELECT * FROM users WHERE userId=?";
+            String query = "SELECT * FROM employees WHERE userId=?";
             preparedStatement = DbConnect.getPreparedStatement(query, employee.getUserId());
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
@@ -97,7 +97,7 @@ public class EmployeeDao implements EmployeeService {
     @Override public <V> List<Employee> getAll(String condition, V... parameters) {
         List<Employee> employeesList = new ArrayList<Employee>();
         try {
-            String query = "SELECT * FROM users WHERE " + condition;
+            String query = "SELECT * FROM employees WHERE " + condition;
             preparedStatement = DbConnect.getPreparedStatement(query, parameters);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {

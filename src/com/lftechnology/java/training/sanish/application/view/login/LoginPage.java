@@ -1,5 +1,7 @@
 package com.lftechnology.java.training.sanish.application.view.login;
 
+import com.lftechnology.java.training.sanish.application.utility.OutputFormatter;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +22,7 @@ public class LoginPage {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void renderPage(int loginAttempt) {
-        String pageContent = "\n============================= Employee Login Page =========================\n";
+        String pageContent = OutputFormatter.getFormattedPageTitle("Employee Login Page");
         if (loginAttempt > 0) {
             pageContent += "Message : Invalid userName or password. Please try again.";
         }

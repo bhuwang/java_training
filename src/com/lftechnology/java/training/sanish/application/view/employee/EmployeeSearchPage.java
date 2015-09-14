@@ -1,5 +1,7 @@
 package com.lftechnology.java.training.sanish.application.view.employee;
 
+import com.lftechnology.java.training.sanish.application.utility.OutputFormatter;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,8 +19,8 @@ public class EmployeeSearchPage {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void renderPage() {
-        String pageContent = "\n=========================================== Employee Search Page =======================================\n";
-        pageContent +=">> type user name  or email address to search employee:";
+        String pageContent = OutputFormatter.getFormattedPageTitle("Employee Search Page");
+        pageContent +=">> Type search key to search employee:";
         LOGGER.log(Level.INFO, pageContent, new Object[] {});
     }
 }

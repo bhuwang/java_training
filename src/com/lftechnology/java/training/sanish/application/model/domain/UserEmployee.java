@@ -21,7 +21,7 @@ public class UserEmployee {
     }
 
     public int getEmployeeId() {
-        return employee.getEmployId();
+        return employee.getEmployeeId();
     }
 
     public void setUser(User user) {

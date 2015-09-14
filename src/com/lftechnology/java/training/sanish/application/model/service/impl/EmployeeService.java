@@ -12,5 +12,5 @@ import java.sql.ResultSet;
 public interface EmployeeService extends CrudService<Employee> {
     public boolean isAdmin(Employee employee);
     public boolean isUser(Employee employee);
-    public User getUser(Employee employee);
+    public User getEmployee(Employee employee);
 }

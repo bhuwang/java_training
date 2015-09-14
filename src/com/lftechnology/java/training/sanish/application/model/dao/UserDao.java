@@ -3,6 +3,7 @@ package com.lftechnology.java.training.sanish.application.model.dao;
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
+import com.lftechnology.java.training.sanish.application.model.domain.UserEmployee;
 import com.lftechnology.java.training.sanish.application.model.service.impl.UserService;
 
 import java.sql.*;
@@ -134,7 +135,7 @@ public class UserDao implements UserService {
 
     @Override public Employee getEmployee(User user) {
         try {
-            String query = "SELECT * FROM Employees WHERE userId=?";
+            String query = "SELECT * FROM employees WHERE userId=?";
             preparedStatement = DbConnect.getPreparedStatement(query, user.getUserId());
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
@@ -143,6 +144,36 @@ public class UserDao implements UserService {
                 DbConnect.closePreparedStatement();
                 return employee;
             }
+        } catch (SQLException e) {
+            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            DbConnect.closePreparedStatement();
+        }
+        return null;
+    }
+
+    @Override public List<UserEmployee> searchEmployee(String searchKey) {
+        searchKey += "%";
+        List<UserEmployee> userEmployeeList = new ArrayList<UserEmployee>();
+        String query = "SELECT u.userId, u.userName, u.email, u.isTerminated, e.employeeId, e.fullName, e.address, e.department, e.role "
+                + "FROM users AS u LEFT JOIN employees AS e " + "ON (u.userId=e.userId)";
+        try {
+            query +=
+                    " WHERE e.fullName LIKE ? || e.address LIKE ? || e.department LIKE ? || e.role LIKE ? || u.userName LIKE ? || u.email LIKE ?";
+            preparedStatement = DbConnect.getPreparedStatement(query, searchKey, searchKey, searchKey, searchKey, searchKey, searchKey);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                UserEmployee userEmployee = new UserEmployee();
+                User user = new User();
+                user.setResultSetAttributes(rs);
+                Employee employee = new Employee();
+                employee.setResultSetAttributes(rs);
+                userEmployee.setUser(user);
+                userEmployee.setEmployee(employee);
+                userEmployeeList.add(userEmployee);
+            }
+            DbConnect.closePreparedStatement();
+            return userEmployeeList;
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
             DbConnect.closePreparedStatement();
