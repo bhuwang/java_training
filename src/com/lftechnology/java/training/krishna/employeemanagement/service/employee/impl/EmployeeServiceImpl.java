@@ -84,4 +84,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employee;
 	}
 
+	@Override
+	public Employee findById(Integer id) {
+
+		Employee employee = this.employeeDaoImpl.findById(id);
+		return employee;
+	}
+
 }

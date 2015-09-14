@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.lftechnology.java.training.krishna.basics.gpa.Student;
 import com.lftechnology.java.training.krishna.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.krishna.employeemanagement.domain.User;
 import com.lftechnology.java.training.krishna.employeemanagement.service.employee.impl.EmployeeServiceImpl;
 import com.lftechnology.java.training.krishna.employeemanagement.service.user.impl.UserServiceImpl;
+import com.lftechnology.java.training.krishna.employeemanagement.utils.ConstantUtils;
 import com.lftechnology.java.training.krishna.employeemanagement.utils.ValidationUtils;
 
 /**
@@ -60,7 +60,7 @@ public class LoginController {
 	}
 
 	/**
-	 * This method is used to disaplay title of login
+	 * This method is used to display title of login
 	 *
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
@@ -122,21 +122,48 @@ public class LoginController {
 	 */
 	private static void showMainMenu(Scanner scanner, int id) {
 
-		System.out.println(""
-			+ "**   MAIN MENU (Please choose the desired action) *****" + "\n"
-			+ "**   0. Quit OR Logout                               **" + "\n"
-			+ "**   1. Add New User                                 **" + "\n"
-			+ "**   2. Delete User                                  **" + "\n"
-			+ "**   3. Terminated User                              **" + "\n"
-			+ "**   4. Search User                                  **" + "\n"
-			+ "**   5. Edit Information                             **" + "\n"
-			+ "*******************************************************" + "\n");
-		chooseAction(scanner, id);
+		employeeServiceImpl = new EmployeeServiceImpl();
+		Employee employee = employeeServiceImpl.findById(id);
+		if (employee.getRole().equalsIgnoreCase(ConstantUtils.ADMIN_ROLE)) {
+			System.out.println(""
+				+ "**   MAIN MENU (Please choose the desired action) *****"
+				+ "\n"
+				+ "**   1. Add New User                                 **"
+				+ "\n"
+				+ "**   2. Delete User                                  **"
+				+ "\n"
+				+ "**   3. Terminated User                              **"
+				+ "\n"
+				+ "**   4. Quit OR Logout                               **"
+				+ "\n"
+				+ "**   5. Search User                                  **"
+				+ "\n"
+				+ "*******************************************************"
+				+ "\n");
+
+			chooseAdminUserAction(scanner, id);
+		}
+		else {
+			System.out.println(""
+				+ "**   MAIN MENU (Please choose the desired action) *****"
+				+ "\n"
+				+ "**   4. Quit OR Logout                               **"
+				+ "\n"
+				+ "**   5. Search User                                  **"
+				+ "\n"
+				+ "**   6. Edit Information                             **"
+				+ "\n"
+				+ "*******************************************************"
+				+ "\n");
+
+			chooseNormalUserAction(scanner, id);
+		}
 
 	}
 
 	/**
-	 * This method is used to choose action such as add employee, delete user
+	 * This method is used to choose admin user action such as add employee,
+	 * delete user
 	 *
 	 * @param scanner
 	 *            {@link Scanner}
@@ -144,28 +171,58 @@ public class LoginController {
 	 *            {@link int}
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	private static void chooseAction(Scanner scanner, int id) {
+	private static void chooseAdminUserAction(Scanner scanner, int id) {
 
 		int choice = ValidationUtils.numberValidation(scanner);
+
 		switch (choice) {
 		case 1:
 			addEmployee(scanner);
 			break;
 		case 2:
 			deleteUser(scanner);
-
 			break;
 		case 3:
 			terminateUser(scanner);
 			break;
 		case 4:
-			searchEmployee(scanner);
+			authentiateUser(scanner);
 			break;
 		case 5:
+			searchEmployee(scanner);
+			break;
+		case 6:
 			editEmployee(scanner, id);
 			break;
-		case 0:
+		default:
+			System.out.println("Please choose the desired action.\n");
+			break;
+		}
+		showMainMenu(scanner, id);
+	}
+
+	/**
+	 * This method is used to choose normal user action such as search employee
+	 *
+	 * @param scanner
+	 *            {@link Scanner}
+	 * @param id
+	 *            {@link int}
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
+	private static void chooseNormalUserAction(Scanner scanner, int id) {
+
+		int choice = ValidationUtils.numberValidation(scanner);
+
+		switch (choice) {
+		case 4:
 			authentiateUser(scanner);
+			break;
+		case 5:
+			searchEmployee(scanner);
+			break;
+		case 6:
+			editEmployee(scanner, id);
 			break;
 		default:
 			System.out.println("Please choose the desired action.\n");
@@ -274,6 +331,7 @@ public class LoginController {
 		}
 
 	}
+
 	/**
 	 * This method is used to edit employee information
 	 *

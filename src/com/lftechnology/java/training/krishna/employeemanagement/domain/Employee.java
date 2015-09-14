@@ -1,6 +1,12 @@
 
 package com.lftechnology.java.training.krishna.employeemanagement.domain;
 
+/**
+ * This program store employee information
+ * 
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class Employee extends User {
 
 	private String fullname;

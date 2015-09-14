@@ -3,6 +3,12 @@ package com.lftechnology.java.training.krishna.employeemanagement.domain;
 
 import java.sql.Date;
 
+/**
+ * This program store user information
+ * 
+ * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+ * @version 1.0
+ */
 public class User {
 
 	private int id;

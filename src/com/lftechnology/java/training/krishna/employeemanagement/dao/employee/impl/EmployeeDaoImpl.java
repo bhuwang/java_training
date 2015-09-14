@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import com.lftechnology.java.training.krishna.employeemanagement.dao.employee.EmployeeDao;
 import com.lftechnology.java.training.krishna.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.krishna.employeemanagement.jdbc.DbConnectionFactory;
+import com.lftechnology.java.training.krishna.employeemanagement.utils.ConstantUtils;
 
 /**
  * Implementation of employee DAO interface.
@@ -232,7 +233,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		try {
 			preparedStatement =
 				connection.prepareStatement(TERMINATE_USER_QUERY);
-			preparedStatement.setInt(1, 1);
+			preparedStatement.setInt(1, ConstantUtils.INACTIVE);
 			preparedStatement.setDate(2, entity.getModifiedAt());
 			preparedStatement.setString(3, entity.getFullname());
 			int affectedRows = preparedStatement.executeUpdate();

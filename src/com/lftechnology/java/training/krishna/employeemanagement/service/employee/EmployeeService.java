@@ -58,4 +58,15 @@ public interface EmployeeService extends GenericService<Employee> {
 	 */
 	public Employee updateEmployee(
 		int id, String fullname, String department, String address);
+
+	/**
+	 * find employee by id
+	 *
+	 * @param id
+	 *            {@link Integer}
+	 * @return Employee
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
+
+	public Employee findById(Integer id);
 }

@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import com.lftechnology.java.training.krishna.employeemanagement.dao.user.UserDao;
 import com.lftechnology.java.training.krishna.employeemanagement.domain.User;
 import com.lftechnology.java.training.krishna.employeemanagement.jdbc.DbConnectionFactory;
+import com.lftechnology.java.training.krishna.employeemanagement.utils.ConstantUtils;
 
 /**
  * Implementation of user DAO interface.
@@ -44,7 +45,7 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement = connection.prepareStatement(GET_USER_QUERY);
 			preparedStatement.setString(1, entity.getUsername());
 			preparedStatement.setString(2, entity.getPassword());
-			preparedStatement.setInt(3, 0);
+			preparedStatement.setInt(3, ConstantUtils.ACTIVE);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
