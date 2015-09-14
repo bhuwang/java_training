@@ -18,6 +18,6 @@ public class EmployeeEditView {
      */
     public static void displayEmployeeEditMenu() throws SQLException {
         LOGGER.log(Level.INFO, "\n=====================Edit Options===========================\n" + "\n\ta Edit fullname"
-                + "\n\tb Edit department" + "\n\tc Edit Address" + "\n\td Edit Role(user/admin)" + "\n\te Change Password" + "\n\tf Back\n");
+                + "\n\tb Edit department" + "\n\tc Edit Address" + "\n\td Change Password" + "\n\te Back\n");
     }
 }

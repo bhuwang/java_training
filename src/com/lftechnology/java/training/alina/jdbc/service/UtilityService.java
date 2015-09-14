@@ -53,7 +53,7 @@ public class UtilityService {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static char getSelectedMenu(Scanner scanner, String fieldLabel) {
-        String str = UtilityService.getInputData(scanner, "Select an option (a-f) : ");
+        String str = UtilityService.getInputData(scanner, fieldLabel);
         return str.toLowerCase().charAt(0);
     }
 

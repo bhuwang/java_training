@@ -49,7 +49,8 @@ public class DbFacade {
     /**
      * Gets prepared statement connection
      * 
-     * @param sql {@link String}
+     * @param sql
+     *            {@link String}
      * @return preparedStatement {@link PrinterAbortException}
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
@@ -61,6 +62,9 @@ public class DbFacade {
         return preparedStatement;
     }
 
+    /*
+     * Closes db connections
+     */
     public static void closeDbConnection() throws SQLException {
         if (connection != null) {
             connection.close();
@@ -71,6 +75,15 @@ public class DbFacade {
         // connection.setAutoCommit(true);
     }
 
+    /**
+     * Set value on the basis of different instances
+     * 
+     * @param ps
+     * @param args
+     * @return
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static PreparedStatement mapParams(PreparedStatement ps, Object... args) throws SQLException {
         int i = 1;
         for (Object arg : args) {
@@ -91,11 +104,29 @@ public class DbFacade {
         return ps;
     }
 
+    /**
+     * Count sql parameters
+     * 
+     * @return {@link Integer} no. of sql params
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static int countSqlParameters() throws SQLException {
         paramMetaData = preparedStatement.getParameterMetaData();
         return paramMetaData.getParameterCount();
     }
 
+    /**
+     * Sets value in preparestatement
+     * 
+     * @param database
+     *            {@link Database}
+     * @param preparedStatement
+     *            {@link PreparedStatement}
+     * @return {@link PreparedStatement} parameterized value
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static PreparedStatement setParameterizedObjects(Database database, PreparedStatement preparedStatement) throws SQLException {
         if (database.getParameters() != null) {
             for (Integer key : database.getParameters().keySet()) {

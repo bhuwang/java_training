@@ -174,6 +174,7 @@ public class EmployeeController {
         database.setParameters(params);
         database.setSqlQuery(sqlQuery);
         int result = employeeDao.update(database);
+        System.out.println(result);
         if (result > 0) {
             LOGGER.log(Level.INFO, "\n=====>\nSuccessfully updated employee information of ID : {0}.\n=====>\n",
                     new Object[] { employeeId });

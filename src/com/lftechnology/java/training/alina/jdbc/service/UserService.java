@@ -228,7 +228,7 @@ public class UserService {
         char choice = ' ';
         while (choice != Constants.EMPLOYEE_EDIT_EXIT) {
             EmployeeEditView.displayEmployeeEditMenu();
-            choice = UtilityService.getSelectedMenu(scanner, "Select an option (a-f) : ");
+            choice = UtilityService.getSelectedMenu(scanner, "Select an option (a-e) : ");
             getEmployeeEditOptions(scanner, choice, result);
         }
     }
