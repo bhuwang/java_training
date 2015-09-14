@@ -330,6 +330,22 @@ public class LoginController {
 	}
 
 	/**
+	 * This method is used to display edit employee options
+	 *
+	 * @param scanner
+	 *            {@link Scanner}
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
+	private static void editOptions(Scanner scanner) {
+
+		System.out.println("************************************************"
+			+ "\n" + "**   1. Full Name                             **" + "\n"
+			+ "**   2. Department                            **" + "\n"
+			+ "**   3. Address                               **" + "\n"
+			+ "************************************************" + "\n");
+	}
+
+	/**
 	 * This method is used to edit employee information
 	 *
 	 * @param scanner
@@ -341,31 +357,36 @@ public class LoginController {
 	private static void editEmployee(Scanner scanner, int id) {
 
 		System.out.println("Do you want to edit your information? Please choose the options::\n");
-		System.out.println("1. Full Name");
-		System.out.println("2. Department");
-		System.out.println("3. Address");
 		String fullname = null;
 		String department = null;
 		String address = null;
 		String message = null;
-		int choice = ValidationUtils.numberValidation(scanner);
+		int choice = 0;
 		employeeServiceImpl = new EmployeeServiceImpl();
-		switch (choice) {
-		case 1:
-			System.out.println("Please enter the full name::");
-			fullname = ValidationUtils.emptyValidation(scanner, "Full Name");
-			break;
-		case 2:
-			System.out.println("Please enter the department::");
-			department = ValidationUtils.emptyValidation(scanner, "Department");
-			break;
-		case 3:
-			System.out.println("Please enter the address::");
-			address = ValidationUtils.emptyValidation(scanner, "Address");
-			break;
-		default:
-			System.out.println("Please choose the desired action.\n");
-			break;
+		editOptions(scanner);
+		while (true) {
+			choice = ValidationUtils.numberValidation(scanner);
+			if (choice == 1) {
+				System.out.println("Please enter the full name::");
+				fullname =
+					ValidationUtils.emptyValidation(scanner, "Full Name");
+				break;
+			}
+			else if (choice == 2) {
+				System.out.println("Please enter the department::");
+				department =
+					ValidationUtils.emptyValidation(scanner, "Department");
+				break;
+			}
+			else if (choice == 3) {
+				System.out.println("Please enter the address::");
+				address = ValidationUtils.emptyValidation(scanner, "Address");
+				break;
+			}
+			else {
+				System.out.println("Please choose the desired action.\n");
+				editOptions(scanner);
+			}
 		}
 		Employee emp =
 			employeeServiceImpl.updateEmployee(
@@ -385,6 +406,11 @@ public class LoginController {
 
 			System.out.println(message + " is updated successfully.\n");
 		}
+		else {
+			System.out.println("Failed to update " + message + ".\n");
+		}
+		showMainMenu(scanner, id);
+
 	}
 
 	/**
