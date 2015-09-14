@@ -9,7 +9,7 @@ import com.lftechnology.java.training.krishna.employeemanagement.domain.Employee
 import com.lftechnology.java.training.krishna.employeemanagement.domain.User;
 import com.lftechnology.java.training.krishna.employeemanagement.service.employee.impl.EmployeeServiceImpl;
 import com.lftechnology.java.training.krishna.employeemanagement.service.user.impl.UserServiceImpl;
-import com.lftechnology.java.training.krishna.employeemanagement.utils.ConstantUtils;
+import com.lftechnology.java.training.krishna.employeemanagement.utils.Role;
 import com.lftechnology.java.training.krishna.employeemanagement.utils.ValidationUtils;
 
 /**
@@ -124,7 +124,7 @@ public class LoginController {
 
 		employeeServiceImpl = new EmployeeServiceImpl();
 		Employee employee = employeeServiceImpl.findById(id);
-		if (employee.getRole().equalsIgnoreCase(ConstantUtils.ADMIN_ROLE)) {
+		if (employee.getRole().equalsIgnoreCase(Role.Admin.toString())) {
 			System.out.println(""
 				+ "**   MAIN MENU (Please choose the desired action) *****"
 				+ "\n"
@@ -191,9 +191,6 @@ public class LoginController {
 		case 5:
 			searchEmployee(scanner);
 			break;
-		case 6:
-			editEmployee(scanner, id);
-			break;
 		default:
 			System.out.println("Please choose the desired action.\n");
 			break;
@@ -252,8 +249,8 @@ public class LoginController {
 			ValidationUtils.emptyValidation(scanner, "Department");
 		System.out.println("Please enter the address::");
 		String address = ValidationUtils.emptyValidation(scanner, "Address");
-		System.out.println("Please enter the role::");
-		String role = ValidationUtils.emptyValidation(scanner, "Role");
+		System.out.println("Please choose the following role::\n");
+		String role = chooseRole(scanner);
 		employeeServiceImpl = new EmployeeServiceImpl();
 		Employee emp =
 			employeeServiceImpl.saveEmployee(
@@ -388,5 +385,53 @@ public class LoginController {
 
 			System.out.println(message + " is updated successfully.\n");
 		}
+	}
+
+	/**
+	 * This method is used to display employee role
+	 *
+	 * @param scanner
+	 *            {@link Scanner}
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
+	private static void roleOptions(Scanner scanner) {
+
+		System.out.println("***********************************************"
+			+ "\n" + "**   1. Admin                                 **" + "\n"
+			+ "**   2. User                                  **" + "\n"
+			+ "************************************************" + "\n");
+	}
+
+	/**
+	 * This method is used to choose employee role
+	 *
+	 * @param scanner
+	 *            {@link Scanner}
+	 * @return role {@link String}
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
+	private static String chooseRole(Scanner scanner) {
+
+		String role = null;
+		int choice = 0;
+		roleOptions(scanner);
+		while (true) {
+			choice = ValidationUtils.numberValidation(scanner);
+			if (choice == 1) {
+				role = Role.Admin.toString();
+				break;
+			}
+			else if (choice == 2) {
+				role = Role.User.toString();
+				break;
+			}
+			else {
+				System.out.println("Please choose the desired role::\n");
+				roleOptions(scanner);
+			}
+
+		}
+		return role;
+
 	}
 }
