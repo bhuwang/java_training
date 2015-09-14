@@ -4,10 +4,13 @@ import com.lftechnology.java.training.sanish.application.component.EmployeeHelpe
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.component.UserLogin;
 import com.lftechnology.java.training.sanish.application.model.dao.UserDao;
+import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
+import com.lftechnology.java.training.sanish.application.model.domain.UserEmployee;
 import com.lftechnology.java.training.sanish.application.utility.UserInput;
 import com.lftechnology.java.training.sanish.application.view.employee.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -66,7 +69,15 @@ public class EmployeeController {
             if (UserLogin.isLogin()) {
                 UserDao userData = new UserDao();
                 List<User> userList = userData.getAll();
-                EmployeeListingPage.renderPage(userList);
+                List<UserEmployee> userEmployeesList = new ArrayList<UserEmployee>();
+                for(User user : userList){
+                    UserEmployee userEmployee = new UserEmployee();
+                    Employee employee = userData.getEmployee(user);
+                    userEmployee.setUser(user);
+                    userEmployee.setEmployee(employee);
+                    userEmployeesList.add(userEmployee);
+                }
+                EmployeeListingPage.renderPage(userEmployeesList);
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 2);
                 if (option == 1) {

@@ -1,11 +1,16 @@
 package com.lftechnology.java.training.sanish.application.model;
 
+import com.lftechnology.java.training.sanish.application.model.domain.Employee;
+import com.lftechnology.java.training.sanish.application.model.domain.User;
+
+import java.sql.ResultSet;
+
 /**
  * Db model
  *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public interface Model {
+public interface Model <M extends Model>{
     /**
      * Return table name
      *
@@ -37,9 +42,16 @@ public interface Model {
      * Check other model equal with current model
      *
      * @param model {@link Model}
-     * @param <M>   {@link Model}
      * @return {@link Boolean}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public <M extends Model> boolean equals(M model);
+    public boolean equals(M model);
+
+    /**
+     * Set properties of model with supplied result set
+     *
+     * @param rs       {@link ResultSet}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
+    public void  setResultSetAttributes(ResultSet rs);
 }

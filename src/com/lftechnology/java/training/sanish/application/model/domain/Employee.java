@@ -10,38 +10,75 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * User model
+ * Employee model
  *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public class User implements Model<User> {
+public class Employee implements Model<Employee> {
     private static final Logger LOGGER = Logger.getLogger(Employee.class.getName());
+    private int employeeId;
     private int userId;
-    private String userName;
-    private String password;
-    private String email;
-    private boolean isTerminated;
+    private String fullName;
+    private String address;
+    private String department;
+    private String role;
     private String createdAt;
     private String modifiedAt;
+
+    public int getEmployId() {
+        return employeeId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setEmployId(int employId) {
+        this.employeeId = employId;
+    }
 
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setIsTerminated(boolean isTerminated) {
-        this.isTerminated = isTerminated;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setCreatedAt(String createdAt) {
@@ -52,41 +89,13 @@ public class User implements Model<User> {
         this.modifiedAt = modifiedAt;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getModifiedAt() {
-        return modifiedAt;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public boolean isTerminated() {
-        return isTerminated;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
     @Override public String getTable() {
-        return "users";
+        return "employees";
     }
 
     @Override public <V> V getAttribute(String key) {
         try {
-            return (V) User.class.getDeclaredField(key).get(this);
+            return (V) Employee.class.getDeclaredField(key).get(this);
         } catch (NoSuchFieldException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
         } catch (IllegalAccessException e) {
@@ -97,7 +106,7 @@ public class User implements Model<User> {
 
     @Override public <V> void setAttribute(String key, V value) {
         try {
-            User.class.getDeclaredField(key).set(this, value);
+            Employee.class.getDeclaredField(key).set(this, value);
         } catch (NoSuchFieldException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
         } catch (IllegalAccessException e) {
@@ -105,13 +114,13 @@ public class User implements Model<User> {
         }
     }
 
-    @Override public boolean equals(User userModel) {
-        if (userModel == null || getClass() != userModel.getClass()) {
+    @Override public boolean equals(Employee employeeModel) {
+        if (employeeModel == null || getClass() != employeeModel.getClass()) {
             return false;
-        } else if (this == userModel) {
+        } else if (this == employeeModel) {
             return true;
         } else {
-            if (userId == userModel.userId || userName == userModel.userName) {
+            if (employeeId == employeeModel.employeeId || userId == employeeModel.userId) {
                 return true;
             } else {
                 return false;
@@ -120,9 +129,9 @@ public class User implements Model<User> {
     }
 
     @Override public void setResultSetAttributes(ResultSet rs) {
-        String[] colWithStringDataType = { "userName", "password", "email", "createdAt", "modifiedAt" };
-        String[] colWithIntDataType = { "userId" };
-        String[] colWithBooleanDataType = { "isTerminated" };
+        String[] colWithStringDataType = { "fullName", "address", "department", "role", "createdAt", "modifiedAt" };
+        String[] colWithIntDataType = { "employId", "userId" };
+        String[] colWithBooleanDataType = {};
         try {
             ResultSetMetaData metadata = rs.getMetaData();
             int colCount = metadata.getColumnCount();
@@ -143,12 +152,13 @@ public class User implements Model<User> {
     }
 
     @Override public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", isTerminated=" + isTerminated +
+        return "Employee{" +
+                "employId=" + employeeId +
+                ", userId=" + userId +
+                ", fullName='" + fullName + '\'' +
+                ", address='" + address + '\'' +
+                ", department='" + department + '\'' +
+                ", role='" + role + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", modifiedAt='" + modifiedAt + '\'' +
                 '}';

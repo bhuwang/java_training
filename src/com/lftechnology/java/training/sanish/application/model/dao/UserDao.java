@@ -1,12 +1,12 @@
 package com.lftechnology.java.training.sanish.application.model.dao;
 
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
+import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
-import com.lftechnology.java.training.sanish.application.model.service.impl.UserImpl;
+import com.lftechnology.java.training.sanish.application.model.service.impl.UserService;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public class UserDao implements UserImpl {
+public class UserDao implements UserService {
     private static final Logger LOGGER = Logger.getLogger(UserDao.class.getName());
     private static PreparedStatement preparedStatement;
 
@@ -27,7 +27,7 @@ public class UserDao implements UserImpl {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 User user = new User();
-                setResultSetAttributes(user, rs);
+                user.setResultSetAttributes(rs);
                 DbConnect.closePreparedStatement();
                 return user;
             }
@@ -37,29 +37,6 @@ public class UserDao implements UserImpl {
         }
 
         return null;
-    }
-
-    @Override public void setResultSetAttributes(User user, ResultSet rs) {
-        String[] colWithStringDataType = { "userName", "password", "email", "createdAt", "modifiedAt" };
-        String[] colWithIntDataType = { "userId" };
-        String[] colWithBooleanDataType = { "isTerminated" };
-        try {
-            ResultSetMetaData metadata = rs.getMetaData();
-            int colCount = metadata.getColumnCount();
-            String column;
-            for (int i = 1; i <= colCount; i++) {
-                column = metadata.getColumnName(i);
-                if (Arrays.asList(colWithStringDataType).contains(column)) {
-                    user.setAttribute(column, rs.getString(i));
-                } else if (Arrays.asList(colWithIntDataType).contains(column)) {
-                    user.setAttribute(column, rs.getInt(i));
-                } else if (Arrays.asList(colWithBooleanDataType).contains(column)) {
-                    user.setAttribute(column, rs.getBoolean(i));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override public User addNew(User user) {
@@ -74,7 +51,7 @@ public class UserDao implements UserImpl {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 User user = new User();
-                setResultSetAttributes(user, rs);
+                user.setResultSetAttributes(rs);
                 DbConnect.closePreparedStatement();
                 return user;
             }
@@ -93,7 +70,7 @@ public class UserDao implements UserImpl {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 User user = new User();
-                setResultSetAttributes(user, rs);
+                user.setResultSetAttributes(rs);
                 userList.add(user);
             }
             DbConnect.closePreparedStatement();
@@ -113,7 +90,7 @@ public class UserDao implements UserImpl {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 User user = new User();
-                setResultSetAttributes(user, rs);
+                user.setResultSetAttributes(rs);
                 userList.add(user);
             }
             DbConnect.closePreparedStatement();
@@ -153,5 +130,23 @@ public class UserDao implements UserImpl {
             DbConnect.closePreparedStatement();
         }
         return false;
+    }
+
+    @Override public Employee getEmployee(User user) {
+        try {
+            String query = "SELECT * FROM Employees WHERE userId=?";
+            preparedStatement = DbConnect.getPreparedStatement(query, user.getUserId());
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                Employee employee = new Employee();
+                employee.setResultSetAttributes(rs);
+                DbConnect.closePreparedStatement();
+                return employee;
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            DbConnect.closePreparedStatement();
+        }
+        return null;
     }
 }

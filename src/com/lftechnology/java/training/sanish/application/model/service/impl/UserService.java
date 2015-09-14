@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.model.service.impl;
 
+import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
 import com.lftechnology.java.training.sanish.application.model.service.CrudService;
 
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
  *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public interface UserImpl extends CrudService<User> {
+public interface UserService extends CrudService<User> {
     /**
      * Get user by user name
      *
@@ -20,13 +21,5 @@ public interface UserImpl extends CrudService<User> {
      */
     public User getUserByUserName(String userName);
     public boolean setPassword(User user, String password);
-
-    /**
-     * Set properties of user with supplied result set
-     *
-     * @param user {@link User}
-     * @param rs   {@link ResultSet}
-     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
-     */
-    public void setResultSetAttributes(User user, ResultSet rs);
+    public Employee getEmployee(User user);
 }
