@@ -86,12 +86,13 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
     @Override
     public boolean exists(Map<String, String> conditions) throws SQLException {
         int count = getCount(conditions);
+        System.out.println(count);
         return count > 0 ? true : false;
     }
 
     @Override
     public int getCount(Map<String, String> conditions) throws SQLException {
-        return count("user", conditions);
+        return count("users", conditions);
     }
 
     /**
@@ -102,7 +103,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
      * @throws SQLException
      */
     public int getCount() throws SQLException {
-        return count("user");
+        return count("users");
     }
 
     /**

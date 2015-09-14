@@ -178,12 +178,22 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      * @throws SQLException
      */
     public Map<String, String> registerUser(Map<String, String> employeeInfo) throws SQLException {
-        String userId = saveUserInfo(employeeInfo);
+        Map<String, String> userExistsCondition = new LinkedHashMap<String, String>();
         Map<String, String> employeeAfterRegistration = null;
-        if (userId != null) {
-            Employee employee = find(userId);
-            employeeAfterRegistration = employee.getInfo();
+        userExistsCondition.put("username", employeeInfo.get("username"));
+        System.out.println(employeeDao.exists(userExistsCondition));
+
+        if (!employeeDao.exists(userExistsCondition)) {
+            String userId = saveUserInfo(employeeInfo);
+
+            if (userId != null) {
+                Employee employee = find(userId);
+                employeeAfterRegistration = employee.getInfo();
+            }
+        } else {
+            LOGGER.warning(Constants.USER_ALREADY_EXIST);
         }
+
         return employeeAfterRegistration;
 
     }
@@ -198,15 +208,15 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      * @throws SQLException
      * @throws CustomException
      */
-    public Employee addUser(Scanner scanner, Console console) throws SQLException, CustomException {
+    public Employee addUser(Scanner scanner, Console console) throws SQLException {
         Employee employee = new Employee();
         Map<String, String> userRegistrationInfo = getUserRegistrationInfo(scanner, console);
         userRegistrationInfo = registerUser(userRegistrationInfo);
 
-        if (!Utils.isEmpty(userRegistrationInfo.get("username"))) {
+        if (userRegistrationInfo != null && !Utils.isEmpty(userRegistrationInfo.get("username"))) {
             employee = setAttributes(employee, userRegistrationInfo);
         } else {
-            throw new CustomException("Failed to add user. Please try again.");
+            LOGGER.warning(Constants.FAIL_USER_REGISTER);
         }
         return employee;
     }

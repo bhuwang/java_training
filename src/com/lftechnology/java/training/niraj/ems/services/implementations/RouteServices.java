@@ -64,7 +64,6 @@ public class RouteServices {
         LOGGER.info(Constants.AFTER_LOGIN_ADMIN_MENU);
         EmployeeController employeeController = new EmployeeController();
         int userChoice = RouteServices.userInput.getInput(scanner, 1, 5);
-        System.out.println(userChoice);
         switch (userChoice) {
         case 1:
             employeeController.add(employee);

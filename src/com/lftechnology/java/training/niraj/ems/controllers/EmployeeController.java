@@ -45,9 +45,7 @@ public class EmployeeController {
         } catch (InputMismatchException | SQLException se) {
             LOGGER.severe("There was some error. Please try again later.");
             LOGGER.log(Level.SEVERE, "Exception:{0}", se);
-        } catch (CustomException ce) {
-            LOGGER.log(Level.SEVERE, "Failed to add employee : \n {0}", ce);
-            RouteServices.routeAfterLogin(loggedInUser);
+
         }
 
     }
@@ -89,7 +87,6 @@ public class EmployeeController {
         } catch (InputMismatchException | SQLException se) {
             LOGGER.severe("Failed to retrieve the search results. please try again.");
             LOGGER.log(Level.SEVERE, "Exception:{0}", se);
-            RouteServices.routeAfterLogin(employee);
         }
 
     }
@@ -114,7 +111,6 @@ public class EmployeeController {
             RouteServices.routeAfterLogin(employee);
         } catch (CustomException ce) {
             LOGGER.log(Level.SEVERE, "Exception:{0}", ce);
-            RouteServices.routeAfterLogin(employee);
         }
     }
 
