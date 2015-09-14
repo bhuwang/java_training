@@ -133,7 +133,10 @@ public class LoginController {
 		Employee emp =
 			employeeServiceImpl.saveEmployee(
 				username, password, fullname, department, address, role);
-		if (emp.getId() > 0) {
+		if (emp == null) {
+			System.out.println("Username already exists. Please try again.\n");
+		}
+		else if (emp.getId() > 0) {
 			System.out.println(fullname + " is added successfully.\n");
 		}
 

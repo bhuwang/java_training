@@ -17,7 +17,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		this.employeeDaoImpl = new EmployeeDaoImpl();
 	}
 
-
 	@Override
 	public boolean delete(String fullname) {
 
@@ -49,29 +48,33 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String username, String password, String fullname, String department,
 		String address, String role) {
 
-		Employee emp = new Employee();
-		emp.setUsername(username);
-		emp.setPassword(password);
-		emp.setFullname(fullname);
-		emp.setDepartment(department);
-		emp.setAddress(address);
-		emp.setRole(role);
-		emp.setCreatedAt(DateUtils.getCurrentTimeStamp());
-		Employee employee = this.employeeDaoImpl.create(emp);
+		Employee employee = null;
+		boolean isDuplicate = this.employeeDaoImpl.isDuplicate(username);
+		if (!isDuplicate) {
+			Employee emp = new Employee();
+			emp.setUsername(username);
+			emp.setPassword(password);
+			emp.setFullname(fullname);
+			emp.setDepartment(department);
+			emp.setAddress(address);
+			emp.setRole(role);
+			emp.setCreatedAt(DateUtils.getCurrentTimeStamp());
+			employee = this.employeeDaoImpl.create(emp);
+		}
 		return employee;
 	}
 
-
 	@Override
-	public Employee updateEmployee(int id,
-		String fullname, String department, String address) {
+	public Employee updateEmployee(
+		int id, String fullname, String department, String address) {
+
 		Employee emp = new Employee();
 		emp.setId(id);
 		emp.setFullname(fullname);
 		emp.setDepartment(department);
 		emp.setAddress(address);
 		emp.setModifiedAt(DateUtils.getCurrentTimeStamp());
-		Employee employee =this.employeeDaoImpl.update(emp);
+		Employee employee = this.employeeDaoImpl.update(emp);
 		return employee;
 	}
 

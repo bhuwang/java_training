@@ -33,6 +33,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		"UPDATE user SET isTerminated = ?, modifiedAt= ?  WHERE fullname = ?";
 	private static final String SEARCH_BY_ID_QUERY =
 		"SELECT * FROM user WHERE id = ?";
+	private static final String SEARCH_BY_USERNAME_QUERY =
+					"SELECT * FROM user WHERE username = ?";
 
 	@Override
 	public Employee create(Employee entity) {
@@ -243,6 +245,33 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			}
 		}
 		return isTerminated;
+	}
+
+	@Override
+	public boolean isDuplicate(String username) {
+
+		boolean isDuplicate = false;
+		try {
+			preparedStatement = connection.prepareStatement(SEARCH_BY_USERNAME_QUERY);
+			preparedStatement.setString(1, username);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			 if (resultSet.next()) {
+				 isDuplicate = true;
+			 }
+		}
+		catch (SQLException e) {
+			LOGGER.log(
+				Level.SEVERE, "Exception while creating statement: {0}", e);
+		}
+		finally {
+			try {
+				preparedStatement.close();
+			}
+			catch (SQLException e) {
+				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
+			}
+		}
+		return isDuplicate;
 	}
 
 }

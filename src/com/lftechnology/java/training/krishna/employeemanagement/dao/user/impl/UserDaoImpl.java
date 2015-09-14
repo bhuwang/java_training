@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 	private User activeUser;
 
 	private static final String GET_USER_QUERY =
-		"SELECT * FROM user WHERE username = ? and password = ? and isTerminated = ?";
+		"SELECT * FROM user WHERE username = ? AND password = ? AND isTerminated = ?";
 
 	public UserDaoImpl() {
 
