@@ -1,4 +1,4 @@
-package com.lftechnology.java.training.niraj.utils;
+package com.lftechnology.java.training.niraj.ems.utils;
 
 import java.util.Scanner;
 
