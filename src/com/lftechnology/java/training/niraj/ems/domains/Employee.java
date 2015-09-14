@@ -3,9 +3,10 @@ package com.lftechnology.java.training.niraj.ems.domains;
 import java.util.List;
 import java.util.Map;
 
-import com.lftechnology.java.training.niraj.ems.services.Roles;
+import com.lftechnology.java.training.niraj.ems.enums.Roles;
 
 public class Employee extends User {
+
     private String fullname = null;
     private String department = null;
     private String address = null;
@@ -77,6 +78,12 @@ public class Employee extends User {
         employeeInfo.put("address", getAddress());
         employeeInfo.put("role", getRole());
         return employeeInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [fullname=" + fullname + ", department=" + department + ", address=" + address + ", role=" + role + ", username="
+                + username + ", isTerminated=" + isTerminated + ", status=" + status + "]";
     }
 
 }
