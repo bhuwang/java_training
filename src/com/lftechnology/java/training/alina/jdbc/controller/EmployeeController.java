@@ -41,7 +41,7 @@ public class EmployeeController {
         Employee employee = new Employee();
         Connection connection = DbFacade.getDbConnection();
         connection.setAutoCommit(false);
-        user = UserService.setLoginInfo(scanner);
+        user = UserService.setLoginInfo(scanner, Constants.USER_ADD);
         int userId = userDao.addNew(user);
         if (userId != 0) {
             employee = UserService.setEmployeeInfo(scanner, userId);

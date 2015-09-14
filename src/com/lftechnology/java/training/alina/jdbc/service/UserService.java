@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.controller.EmployeeController;
+import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
@@ -29,9 +30,21 @@ public class UserService {
      *            {@link Scanner}
      * @return user {@link User} user info
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException
      */
-    public static User setLoginInfo(Scanner scanner) {
-        user.setUsername(UtilityService.getInputData(scanner, "Enter Username : "));
+    public static User setLoginInfo(Scanner scanner, String actionType) throws SQLException {
+        boolean userExist = false;
+        if (actionType == Constants.USER_LOGIN) {
+            user.setUsername(UtilityService.getInputData(scanner, "Enter Username : "));
+        } else {
+            do {
+                String username = UtilityService.getInputData(scanner, "Enter Username : ");
+                userExist = LoginController.checkExistUsername(scanner, userExist, username);
+                if (!userExist) {
+                    user.setUsername(username);
+                }
+            } while (userExist);
+        }
         user.setPassword(UtilityService.getInputData(scanner, "Enter Password : "));
         user.setTerminated(true);
         user.setCreatedAt(DateTimeService.getCurrentTimeStamp());
@@ -143,7 +156,6 @@ public class UserService {
             if (roleStatus) {
                 employee.setRole(role);
             }
-            System.out.println(employee.getRole());
         } while (!roleStatus);
         employee.setUserId(userId);
         employee.setCreatedAt(DateTimeService.getCurrentTimeStamp());

@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
     public boolean checkEmployeeLogin(Scanner scanner) throws SQLException {
         User user = new User();
         LoginView.displayLoginHeader();
-        user = UserService.setLoginInfo(scanner);
+        user = UserService.setLoginInfo(scanner, Constants.USER_LOGIN);
         Boolean loginStatus = false;
         String sql =
                 "SELECT * FROM user u inner join employee e on (u.user_id = e.user_id) where u.username=? and u.password=? and u.is_terminated=? and e.is_deleted=?";
@@ -162,5 +162,21 @@ public class UserDaoImpl implements UserDao {
     public Integer update(Database db) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public boolean checkValidUserByUsername(String username) throws SQLException {
+        boolean existUser;
+        Connection connection = DbFacade.getDbConnection();
+        String sql = "SELECT * FROM user where username=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, username);
+        ResultSet result = preparedStatement.executeQuery();
+        if (result.next()) {
+            LOGGER.log(Level.INFO, "\n=====>\nUsername already exists.\n=====>\n");
+            existUser = true;
+        } else {
+            existUser = false;
+        }
+        return existUser;
     }
 }

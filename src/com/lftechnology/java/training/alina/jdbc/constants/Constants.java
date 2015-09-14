@@ -14,4 +14,6 @@ public class Constants {
     public static final String ROLE = "role";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
+    public static final String USER_LOGIN = "login";
+    public static final String USER_ADD = "insert";
 }

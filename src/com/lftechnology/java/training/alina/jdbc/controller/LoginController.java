@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.demo.EmployeeManagement;
@@ -42,6 +41,12 @@ public class LoginController {
         } else {
             return true;
         }
+    }
+
+    public static boolean checkExistUsername(Scanner scanner, boolean userExist, String username) throws SQLException {
+        UserDaoImpl userDao = new UserDaoImpl();
+        userExist = userDao.checkValidUserByUsername(username);
+        return userExist;
     }
 
 }
