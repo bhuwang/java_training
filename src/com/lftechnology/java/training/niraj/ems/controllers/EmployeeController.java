@@ -102,7 +102,7 @@ public class EmployeeController {
             Console console = System.console();
             String userList = userService.getUsersList();
             LOGGER.info(userList);
-            userService.TerminateDeleteUser(scanner, console);
+            userService.TerminateDeleteUser(scanner, console, employee);
             RouteServices.routeAfterLogin(employee);
 
         } catch (InputMismatchException | SQLException se) {

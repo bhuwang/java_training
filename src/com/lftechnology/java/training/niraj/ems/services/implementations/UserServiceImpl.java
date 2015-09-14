@@ -367,14 +367,14 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      * @param console
      * @throws SQLException
      */
-    public void TerminateDeleteUser(Scanner scanner, Console console) throws SQLException, CustomException {
+    public void TerminateDeleteUser(Scanner scanner, Console console, Employee loggedInUser) throws SQLException, CustomException {
         Map<String, String> condition = new LinkedHashMap<String, String>();
         condition.put("username", userInput.getInput(scanner, console, Constants.SELECT_USER_EDIT));
         Employee employee = employeeDao.findByAttributes(condition);
         if (employee.getId() == null) {
             LOGGER.warning(Constants.USER_NOT_FOUND);
         } else {
-            editSelectedUser(scanner, console, employee);
+            editSelectedUser(scanner, console, employee, loggedInUser);
         }
 
     }
@@ -389,9 +389,10 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      * @throws SQLException
      * @throws CustomException
      */
-    private void editSelectedUser(Scanner scanner, Console console, Employee employee) throws SQLException, CustomException {
+    private void editSelectedUser(Scanner scanner, Console console, Employee employee, Employee loggedInUser) throws SQLException,
+            CustomException {
         LOGGER.info(Constants.DELETE_TERMINATE_MENU);
-        int selectedAction = userNumInput.getInput(scanner, 1, 2);
+        int selectedAction = userNumInput.getInput(scanner, 1, 3);
         boolean completed;
         switch (selectedAction) {
         case 1:
@@ -410,10 +411,12 @@ public class UserServiceImpl implements CrudService<Employee, String> {
                 LOGGER.severe(Constants.FAIL_DELETE_USER);
             }
             break;
-
+        case 3:
+            RouteServices.routeAfterLogin(loggedInUser);
+            break;
         default:
             LOGGER.severe(Constants.INVALID_INPUT);
-            break;
+            RouteServices.routeAfterLogin(loggedInUser);
         }
     }
 

@@ -24,7 +24,7 @@ public class Constants {
     public static final String LANDING_MENU = "\n\n\t1. Log In \n\t2. Register \n\n";
     public static final String EDIT_SUCCESS = "\n\n\t Successfully updated the profile.\n\n";
     public static final String SELECT_USER_EDIT = "\n\n Select a user by username to terminate / delete : ";
-    public static final String DELETE_TERMINATE_MENU = "\n\n\t1. Terminate User\n\t 2. Delete User\n";
+    public static final String DELETE_TERMINATE_MENU = "\n\n\t1. Terminate User\n\t2. Delete User\n\t3. Back";
     public static final String INVALID_INPUT = "Please provide a valid input";
     public static final String SUCCESS_TERMINATE_USER = "Successfully terminated user";
     public static final String FAIL_TERMINATE_USER = "Failed to terminate user. Please try again.";
