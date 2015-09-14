@@ -5,15 +5,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lftechnology.java.training.niraj.ems.services.Status;
+import com.lftechnology.java.training.niraj.ems.enums.Status;
 
 public class User extends Pojo {
-    private static final String TABLE = "user";
+    private static final String TABLE = "users";
     protected String username = null;
     protected String password = null;
     protected String isTerminated = null;
     protected String status = null;
-
 
     protected List<String> attributeList;
 
@@ -62,6 +61,7 @@ public class User extends Pojo {
 
     private void setAttributeList() {
         this.attributeList = new ArrayList<String>();
+        this.attributeList.add("id");
         this.attributeList.add("username");
         this.attributeList.add("password");
         this.attributeList.add("isTerminated");
