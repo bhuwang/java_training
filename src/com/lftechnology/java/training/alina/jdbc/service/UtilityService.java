@@ -1,10 +1,12 @@
 package com.lftechnology.java.training.alina.jdbc.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 
@@ -40,6 +42,7 @@ public class UtilityService {
                     if (fieldLabel == "Search Employee by fullname, department or address : ") {
                         EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
                         List<Employee> list = employeeDao.findAll();
+                        Collections.sort(list);
                         LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
                     } else {
                         LOGGER.log(Level.WARNING, "Field cannot be empty.");

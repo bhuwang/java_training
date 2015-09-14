@@ -2,12 +2,14 @@ package com.lftechnology.java.training.alina.jdbc.controller;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
@@ -129,6 +131,7 @@ public class EmployeeController {
      */
     public static void getEmployeeList() {
         List<Employee> list = employeeDao.findAll();
+        Collections.sort(list);
         LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
     }
 
@@ -144,6 +147,7 @@ public class EmployeeController {
         String sql =
                 "select * from employee e inner join user u on e.user_id=u.user_id where e.fullname like ? or e.department like ? or e.address like ?";
         List<Employee> list = employeeDao.searchEmployee(sql, searchContent, searchContent, searchContent);
+        Collections.sort(list);
         LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
     }
 

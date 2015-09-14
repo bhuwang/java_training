@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * 
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
-public class Employee extends User {
+public class Employee extends User implements Comparable<Employee> {
     private int employeeId;
     private String fullname;
     private String department;
@@ -97,6 +97,11 @@ public class Employee extends User {
 
     public void setModifiedAt(Timestamp modifiedAt) {
         this.modifiedAt = modifiedAt;
+    }
+
+    @Override
+    public int compareTo(Employee otherEmployee) {
+        return fullname.compareTo(otherEmployee.fullname);
     }
 
     @Override
