@@ -108,6 +108,6 @@ public class Employee extends User implements Comparable<Employee> {
     public String toString() {
         return "Full Name : " + fullname + ", Address : " + address + ", Department : " + department + ", Role : " + role + ", "
                 + super.toString()
-                + "\n===================================================================================================\n";
+                + "\n---------------------------------------------------------------------------------------------------\n";
     }
 }
