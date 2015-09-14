@@ -8,11 +8,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.lftechnology.java.training.alina.jdbc.api.Database;
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
+import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
@@ -160,10 +159,18 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Integer update(Database db) {
-        // TODO Auto-generated method stub
         return null;
     }
 
+    /**
+     * Checks valid user by username
+     * 
+     * @param username
+     *            {@link String}
+     * @return existUser {@link Boolean} users status
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public boolean checkValidUserByUsername(String username) throws SQLException {
         boolean existUser;
         Connection connection = DbFacade.getDbConnection();

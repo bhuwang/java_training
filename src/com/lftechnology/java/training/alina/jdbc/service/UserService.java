@@ -16,6 +16,11 @@ import com.lftechnology.java.training.alina.jdbc.views.AdminView;
 import com.lftechnology.java.training.alina.jdbc.views.EmployeeEditView;
 import com.lftechnology.java.training.alina.jdbc.views.EmployeeView;
 
+/**
+ * UserService consists of all functionalities of user
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ */
 public class UserService {
 
     private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
@@ -50,11 +55,6 @@ public class UserService {
         user.setCreatedAt(DateTimeService.getCurrentTimeStamp());
         user.setModifiedAt(DateTimeService.getCurrentTimeStamp());
         return user;
-    }
-
-    public static Employee setInfo(String value) {
-        employee.setFullname(value);
-        return employee;
     }
 
     /**
@@ -163,6 +163,16 @@ public class UserService {
         return employee;
     }
 
+    /**
+     * Gets role of normal user
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param result
+     *            {@link ResultSet}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     private static void getNormalUserRole(Scanner scanner, ResultSet result) throws SQLException {
         char choice = ' ';
         while (choice != Constants.EMPLOYEE_EXIT) {
@@ -204,6 +214,16 @@ public class UserService {
         }
     }
 
+    /**
+     * Gets employee edit informations
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param result
+     *            {@link ResultSet}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     private static void getEditInfo(Scanner scanner, ResultSet result) throws SQLException {
         char choice = ' ';
         while (choice != Constants.EMPLOYEE_EDIT_EXIT) {
@@ -213,6 +233,18 @@ public class UserService {
         }
     }
 
+    /**
+     * Gets employee edit options
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param choice
+     *            {@link Character}
+     * @param result
+     *            {@link ResultSet}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     private static void getEmployeeEditOptions(Scanner scanner, char choice, ResultSet result) throws SQLException {
         switch (choice) {
         case 'a':

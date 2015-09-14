@@ -5,9 +5,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+/**
+ * InputValidation consists of validations regarding user input data
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ */
 public class InputValidation {
     private static final Logger LOGGER = Logger.getLogger(InputValidation.class.getName());
 
+    /**
+     * Validates if the given value consistd only alphabets
+     * 
+     * @param input
+     *            {@link Scanner}
+     * @param fieldLabel
+     *            {@link String}
+     * @return stringValue {@link String}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static String alphabetValidation(Scanner input, String fieldLabel) {
         LOGGER.log(Level.INFO, fieldLabel);
         String stringValue = input.nextLine();

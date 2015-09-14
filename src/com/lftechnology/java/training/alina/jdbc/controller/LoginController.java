@@ -8,10 +8,22 @@ import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.demo.EmployeeManagement;
 
+/**
+ * LoginController consists of login,logout functionals
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ *
+ */
 public class LoginController {
 
     private static final Logger LOGGER = Logger.getLogger(EmployeeManagement.class.getName());
 
+    /**
+     * User login functionality
+     * 
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public void userLogin() throws SQLException {
         Boolean isLogin = false;
         try (Scanner scanner = new Scanner(System.in)) {
@@ -43,6 +55,19 @@ public class LoginController {
         }
     }
 
+    /**
+     * Checks user existence bt username
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param userExist
+     *            {@link Boolean}
+     * @param username
+     *            {@link String}
+     * @return userExist {@link Boolean} identifies user exists/not
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static boolean checkExistUsername(Scanner scanner, boolean userExist, String username) throws SQLException {
         UserDaoImpl userDao = new UserDaoImpl();
         userExist = userDao.checkValidUserByUsername(username);

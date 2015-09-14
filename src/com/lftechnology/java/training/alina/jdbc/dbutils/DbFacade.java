@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.alina.jdbc.dbutils;
 
+import java.awt.print.PrinterAbortException;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ParameterMetaData;
@@ -9,8 +10,13 @@ import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import com.lftechnology.java.training.alina.jdbc.api.Database;
+import com.lftechnology.java.training.alina.jdbc.domain.Database;
 
+/**
+ * DbFacade consists of database connection related functionalities
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ */
 public class DbFacade {
 
     private static final Logger LOGGER = Logger.getLogger(DbFacade.class.getName());
@@ -22,6 +28,12 @@ public class DbFacade {
     private static PreparedStatement preparedStatement;
     private static ParameterMetaData paramMetaData = null;
 
+    /**
+     * Connects to database
+     * 
+     * @return connection {@link Connection}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static Connection getDbConnection() {
         if (connection == null) {
             try {
@@ -34,6 +46,14 @@ public class DbFacade {
         return connection;
     }
 
+    /**
+     * Gets prepared statement connection
+     * 
+     * @param sql {@link String}
+     * @return preparedStatement {@link PrinterAbortException}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static PreparedStatement getPreparedStatement(String sql) throws SQLException {
         if (preparedStatement == null) {
             preparedStatement = connection.prepareStatement(sql);

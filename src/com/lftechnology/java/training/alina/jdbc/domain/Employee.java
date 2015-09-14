@@ -2,6 +2,11 @@ package com.lftechnology.java.training.alina.jdbc.domain;
 
 import java.sql.Timestamp;
 
+/**
+ * Employee Class consists of Employee parameters
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ */
 public class Employee extends User {
     private int employeeId;
     private String fullname;
@@ -96,8 +101,8 @@ public class Employee extends User {
 
     @Override
     public String toString() {
-        return "Full Name : " + fullname + ", Address : " + address + ", Department : " + department + ", Role : " + role + ", "
-                + super.toString()
+        return "Full Name : %-15s %15s %n" + fullname + ", Address : " + address + ", Department : " + department + ", Role : " + role
+                + ", " + super.toString()
                 + "\n===================================================================================================\n";
     }
 }

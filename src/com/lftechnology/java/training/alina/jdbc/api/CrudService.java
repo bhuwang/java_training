@@ -2,6 +2,15 @@ package com.lftechnology.java.training.alina.jdbc.api;
 
 import java.util.List;
 
+import com.lftechnology.java.training.alina.jdbc.domain.Database;
+
+/**
+ * Consists of crud serives like add,edit,delete,list
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ *
+ * @param <T>
+ */
 public interface CrudService<T> {
     /**
      * Find details based on id

@@ -1,5 +1,11 @@
 package com.lftechnology.java.training.alina.jdbc.constants;
 
+/**
+ * Common constants
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ *
+ */
 public class Constants {
     public static final char ADMIN_EXIT = 'g';
     public static final char EMPLOYEE_EXIT = 'e';

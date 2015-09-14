@@ -8,17 +8,22 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.lftechnology.java.training.alina.jdbc.api.Database;
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
+import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
 import com.lftechnology.java.training.alina.jdbc.service.UserService;
 import com.lftechnology.java.training.alina.jdbc.service.UtilityService;
 
+/**
+ * Employee controller consists of functionalities regarding employee add, list, view ,delete
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ */
 public class EmployeeController {
 
     private static final Logger LOGGER = Logger.getLogger(EmployeeController.class.getName());
@@ -142,6 +147,17 @@ public class EmployeeController {
         LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
     }
 
+    /**
+     * Update employee details
+     * 
+     * @param keyName
+     *            {@link String}
+     * @param keyValue
+     *            {@link String}
+     * @param employeeId
+     *            {@link Integer} id of employee
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static void updateEmployeeInfo(String keyName, String keyValue, Integer employeeId) {
         if (keyName == Constants.FULLNAME) {
             sqlQuery = "update employee set fullname=?,modified_at=? where employee_id=?";

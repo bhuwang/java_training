@@ -2,6 +2,11 @@ package com.lftechnology.java.training.alina.jdbc.domain;
 
 import java.sql.Timestamp;
 
+/**
+ * User Class consists of User parameters
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ */
 public class User {
     private int userId;
     private String username;

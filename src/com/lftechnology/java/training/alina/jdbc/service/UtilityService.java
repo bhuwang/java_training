@@ -5,12 +5,17 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Utility service consists of common functionalities
+ * 
+ * @author Alina Shakya <alinashakya@lftechnology.com>
+ */
 public class UtilityService {
 
     private static final Logger LOGGER = Logger.getLogger(UtilityService.class.getName());
 
     /**
-     * Gets input data
+     * Gets input data,validates empty field
      * 
      * @param scanner
      *            {@link Scanner}
@@ -20,12 +25,23 @@ public class UtilityService {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static String getInputData(Scanner scanner, String fieldLabel) {
-        LOGGER.log(Level.INFO, fieldLabel);
-        while (!scanner.hasNext()) {
-            scanner.nextLine();
-            System.out.println(scanner.nextLine());
+        String fieldValue = null;
+        boolean emptyStatus = true;
+        while (emptyStatus) {
+            LOGGER.log(Level.INFO, fieldLabel);
+            if (!scanner.hasNextLine()) {
+                scanner.nextLine();
+            } else {
+                fieldValue = scanner.nextLine();
+                if (fieldValue.isEmpty()) {
+                    LOGGER.log(Level.WARNING, "Field cannot be empty.");
+                    continue;
+                } else {
+                    emptyStatus = false;
+                }
+            }
         }
-        return scanner.nextLine();
+        return fieldValue;
     }
 
     /**
@@ -41,6 +57,14 @@ public class UtilityService {
         return str.toLowerCase().charAt(0);
     }
 
+    /**
+     * Gets key value from map
+     * 
+     * @param dictionary
+     *            {@link Map}
+     * @return key key value from map
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static String getKeyValue(Map<String, String> dictionary) {
         for (String key : dictionary.keySet()) {
             return key;
@@ -56,7 +80,6 @@ public class UtilityService {
     public final static void clearConsole() {
         try {
             final String operatingSystem = System.getProperty("os.name");
-            System.out.println(operatingSystem);
             if (operatingSystem.contains("Windows")) {
                 Runtime.getRuntime().exec("cls");
             } else {
