@@ -11,8 +11,8 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.lftechnology.java.training.niraj.utils.UserNumInputImpl;
-import com.lftechnology.java.training.niraj.utils.UserStringInputImpl;
+import com.lftechnology.java.training.niraj.ems.utils.UserNumInputImpl;
+import com.lftechnology.java.training.niraj.ems.utils.UserStringInputImpl;
 
 /**
  * Process the linked list
