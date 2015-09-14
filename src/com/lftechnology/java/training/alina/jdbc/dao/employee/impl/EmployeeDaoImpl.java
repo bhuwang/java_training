@@ -112,9 +112,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
             Connection connection = DbFacade.getDbConnection();
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
             for (String content : searchContent) {
-                preparedStatement.setString(1, content);
-                preparedStatement.setString(2, content);
-                preparedStatement.setString(3, content);
+                preparedStatement.setString(1, content + "%");
+                preparedStatement.setString(2, content + "%");
+                preparedStatement.setString(3, content + "%");
             }
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {

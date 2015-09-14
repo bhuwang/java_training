@@ -12,7 +12,6 @@ import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
-import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
 import com.lftechnology.java.training.alina.jdbc.service.UserService;
@@ -24,8 +23,6 @@ import java.sql.PreparedStatement;
 public class UserDaoImpl implements UserDao {
 
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
-    private static Employee employee = new Employee();
-    private static List<User> userList = new ArrayList<User>();
 
     /**
      * Checks whether employee username or password matches. Logins to the system if password matches.
@@ -90,6 +87,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAll() {
+        List<User> userList = new ArrayList<User>();
         User user = new User();
         String sql = "Select * from user";
         try {
@@ -100,7 +98,7 @@ public class UserDaoImpl implements UserDao {
                 user.setUsername(result.getString("username"));
                 user.setTerminated(result.getBoolean("is_terminated"));
                 user.setCreatedAt(result.getTimestamp("created_at"));
-                userList.add(employee);
+                userList.add(user);
             }
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { e });

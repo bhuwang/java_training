@@ -142,7 +142,7 @@ public class EmployeeController {
     public static void searchExistingEmployee(Scanner scanner) {
         String searchContent = UtilityService.getInputData(scanner, "Search Employee by fullname, department or address : ");
         String sql =
-                "select * from employee e inner join user u on e.user_id=u.user_id where e.fullname=? or e.department=? or e.address=?";
+                "select * from employee e inner join user u on e.user_id=u.user_id where e.fullname like ? or e.department like ? or e.address like ?";
         List<Employee> list = employeeDao.searchEmployee(sql, searchContent, searchContent, searchContent);
         LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
     }
@@ -182,5 +182,4 @@ public class EmployeeController {
             LOGGER.log(Level.INFO, "\n=====>\nFailed to update employee information.\n=====>\n");
         }
     }
-
 }

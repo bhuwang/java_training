@@ -101,8 +101,8 @@ public class Employee extends User {
 
     @Override
     public String toString() {
-        return "Full Name : %-15s %15s %n" + fullname + ", Address : " + address + ", Department : " + department + ", Role : " + role
-                + ", " + super.toString()
+        return "Full Name : " + fullname + ", Address : " + address + ", Department : " + department + ", Role : " + role + ", "
+                + super.toString()
                 + "\n===================================================================================================\n";
     }
 }
