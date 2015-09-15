@@ -132,10 +132,15 @@ public class EmployeeController {
     public static void getEmployeeList() {
         List<Employee> list = employeeDao.findAll();
         Collections.sort(list);
-        LOGGER.log(
-                Level.INFO,
-                "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n-----------------------------------------------------------------------------------------------\n{1}",
-                new Object[] { list.size(), list });
+        if (list.size() > 0) {
+            LOGGER.log(
+                    Level.INFO,
+                    "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n-----------------------------------------------------------------------------------------------\n{1}",
+                    new Object[] { list.size(), list });
+        } else {
+            LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0}\n----------------------\nNo Record Found.\n<=====>\n\n",
+                    new Object[] { list.size() });
+        }
     }
 
     /**
