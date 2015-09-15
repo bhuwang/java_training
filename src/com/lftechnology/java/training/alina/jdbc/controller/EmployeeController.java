@@ -80,7 +80,7 @@ public class EmployeeController {
      */
     public static boolean checkMatchedRole(Boolean roleStatus, String role) {
         boolean employeeRoleStatus = roleStatus;
-        if (role.equals(EmployeeRole.ADMIN.role) || role.equals(EmployeeRole.USER.role)) {
+        if (role.equals(EmployeeRole.ADMIN.getRole()) || role.equals(EmployeeRole.USER.getRole())) {
             employeeRoleStatus = true;
         } else {
             LOGGER.log(Level.INFO, "\n=====>\nRole should be user/admin. Please enter valid role\n=====>\n");

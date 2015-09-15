@@ -68,7 +68,7 @@ public class LoginController {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    public static boolean checkExistUsername(boolean userExist, String username) throws SQLException {
+    public static boolean checkExistUsername(String username) throws SQLException {
         UserDaoImpl userDao = new UserDaoImpl();
         boolean checkUserExist = userDao.checkValidUserByUsername(username);
         if (checkUserExist) {

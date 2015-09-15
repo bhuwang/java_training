@@ -45,7 +45,7 @@ public class UserService {
         } else {
             do {
                 String username = UtilityService.getInputData(scanner, "Enter Username : ");
-                userExist = LoginController.checkExistUsername(userExist, username);
+                userExist = LoginController.checkExistUsername(username);
                 if (!userExist) {
                     user.setUsername(username);
                 }
@@ -69,7 +69,7 @@ public class UserService {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public void getEmployeeRole(Scanner scanner, Employee employee) throws SQLException {
-        if (employee.getRole().equals(EmployeeRole.ADMIN.role)) {
+        if (employee.getRole().equals(EmployeeRole.ADMIN.getRole())) {
             getAdminRole(scanner, employee);
         } else {
             getNormalUserRole(scanner, employee);
@@ -108,33 +108,100 @@ public class UserService {
     private void getAdminRoleOptions(Scanner scanner, char option) throws SQLException {
         switch (option) {
         case 'a':
-            LOGGER.log(Level.INFO, "\n========================\nAdd New Employee : \n========================\n");
-            EmployeeController.addNewEmployee(scanner);
+            addEmployee(scanner);
             return;
         case 'b':
-            LOGGER.log(Level.INFO, "\n========================\nDelete an Employee : \n========================\n");
-            EmployeeController.deleteExistingEmployee(scanner);
+            deleteEmployee(scanner);
             return;
         case 'c':
-            LOGGER.log(Level.INFO, "\n========================\nTerminate an Employee : \n========================\n");
-            EmployeeController.terminateExistingEmployee(scanner);
+            terminateEmployee(scanner);
             return;
         case 'd':
-            LOGGER.log(Level.INFO, "\n========================\nView Employee List : \n========================\n");
-            EmployeeController.getEmployeeList();
+            getEmployeeList();
             return;
         case 'e':
-            LOGGER.log(Level.INFO, "\n========================\nSearch an Employee : \n========================\n");
-            EmployeeController.searchExistingEmployee(scanner);
+            searchEmployee(scanner);
             return;
         case 'f':
-            LOGGER.log(Level.INFO, "\n========================\nUser successfully logged out.\n========================\n");
-            UserDaoImpl userDao = new UserDaoImpl();
-            userDao.checkEmployeeLogin(scanner);
+            employeeLogout(scanner);
+            return;
         default:
             LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
             return;
         }
+    }
+
+    /**
+     * Logout employee
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void employeeLogout(Scanner scanner) throws SQLException {
+        LOGGER.log(Level.INFO, "\n========================\nUser successfully logged out.\n========================\n");
+        UserDaoImpl userDao = new UserDaoImpl();
+        userDao.checkEmployeeLogin(scanner);
+    }
+
+    /**
+     * Searches an employee
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void searchEmployee(Scanner scanner) {
+        LOGGER.log(Level.INFO, "\n========================\nSearch an Employee : \n========================\n");
+        EmployeeController.searchExistingEmployee(scanner);
+    }
+
+    /**
+     * Gets employee list
+     * 
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void getEmployeeList() {
+        LOGGER.log(Level.INFO, "\n========================\nView Employee List : \n========================\n");
+        EmployeeController.getEmployeeList();
+    }
+
+    /**
+     * Terminates an employee
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void terminateEmployee(Scanner scanner) {
+        LOGGER.log(Level.INFO, "\n========================\nTerminate an Employee : \n========================\n");
+        EmployeeController.terminateExistingEmployee(scanner);
+    }
+
+    /**
+     * Deletes an employee
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void deleteEmployee(Scanner scanner) {
+        LOGGER.log(Level.INFO, "\n========================\nDelete an Employee : \n========================\n");
+        EmployeeController.deleteExistingEmployee(scanner);
+    }
+
+    /**
+     * Adds new employee
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void addEmployee(Scanner scanner) throws SQLException {
+        LOGGER.log(Level.INFO, "\n========================\nAdd New Employee : \n========================\n");
+        EmployeeController.addNewEmployee(scanner);
     }
 
     /**
@@ -254,31 +321,83 @@ public class UserService {
     private void getEmployeeEditOptions(Scanner scanner, char choice, Employee employee) throws SQLException {
         switch (choice) {
         case 'a':
-            LOGGER.log(Level.INFO, "\n========================\nEdit fullname\n========================\n");
-            employee.setFullname(UtilityService.getInputData(scanner, "Enter new Fullname to Edit : "));
-            EmployeeController.updateEmployeeInfo(Constants.FULLNAME, employee.getFullname(), employee.getEmployeeId());
+            updateEmployeeName(scanner, employee);
             return;
         case 'b':
-            LOGGER.log(Level.INFO, "\n========================\nEdit Department\n========================\n");
-            employee.setDepartment(UtilityService.getInputData(scanner, "Enter new Department to Edit : "));
-            EmployeeController.updateEmployeeInfo(Constants.DEPARTMENT, employee.getDepartment(), employee.getEmployeeId());
+            updateEmployeeDepartment(scanner, employee);
             return;
         case 'c':
-            LOGGER.log(Level.INFO, "\n========================\nEdit Address\n========================\n");
-            employee.setAddress(UtilityService.getInputData(scanner, "Enter new Address to Edit : "));
-            EmployeeController.updateEmployeeInfo(Constants.ADDRESS, employee.getAddress(), employee.getEmployeeId());
+            updateEmployeeAddress(scanner, employee);
             return;
         case 'd':
             getUserPasswordChangeInfo(scanner, employee);
             return;
         case 'e':
-            LOGGER.log(Level.INFO, "\n========================\nBack\n========================\n");
-            getNormalUserRole(scanner, employee);
+            backToNormalUser(scanner, employee);
             return;
         default:
             LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
             return;
         }
+    }
+
+    /**
+     * Updates employee name
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param employee
+     *            {@link Employee}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void updateEmployeeName(Scanner scanner, Employee employee) {
+        LOGGER.log(Level.INFO, "\n========================\nEdit fullname\n========================\n");
+        employee.setFullname(UtilityService.getInputData(scanner, "Enter new Fullname to Edit : "));
+        EmployeeController.updateEmployeeInfo(Constants.FULLNAME, employee.getFullname(), employee.getEmployeeId());
+    }
+
+    /**
+     * Updates employee department
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param employee
+     *            {@link Employee}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void updateEmployeeDepartment(Scanner scanner, Employee employee) {
+        LOGGER.log(Level.INFO, "\n========================\nEdit Department\n========================\n");
+        employee.setDepartment(UtilityService.getInputData(scanner, "Enter new Department to Edit : "));
+        EmployeeController.updateEmployeeInfo(Constants.DEPARTMENT, employee.getDepartment(), employee.getEmployeeId());
+    }
+
+    /**
+     * Updates employee address
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param employee
+     *            {@link Employee}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void updateEmployeeAddress(Scanner scanner, Employee employee) {
+        LOGGER.log(Level.INFO, "\n========================\nEdit Address\n========================\n");
+        employee.setAddress(UtilityService.getInputData(scanner, "Enter new Address to Edit : "));
+        EmployeeController.updateEmployeeInfo(Constants.ADDRESS, employee.getAddress(), employee.getEmployeeId());
+    }
+
+    /**
+     * Gets back to the normal user
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param employee
+     *            {@link Employee}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void backToNormalUser(Scanner scanner, Employee employee) throws SQLException {
+        LOGGER.log(Level.INFO, "\n========================\nBack\n========================\n");
+        getNormalUserRole(scanner, employee);
     }
 
     /**

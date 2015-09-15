@@ -43,13 +43,8 @@ public class UtilityService {
             } else {
                 fieldValue = scanner.nextLine();
                 if (fieldValue.isEmpty()) {
-                    if (fieldLabel == "Search Employee by fullname, department or address : ") {
-                        EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
-                        List<Employee> list = employeeDao.findAll();
-                        Collections.sort(list);
-                        LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
-                    } else {
-                        LOGGER.log(Level.WARNING, "Field cannot be empty.");
+                    boolean displayStatus = checkEmptyField(fieldLabel);
+                    if (!displayStatus) {
                         continue;
                     }
                 } else {
@@ -58,6 +53,28 @@ public class UtilityService {
             }
         }
         return fieldValue;
+    }
+
+    /**
+     * Checks for empty search contexts
+     * 
+     * @param fieldLabel
+     * @return displatStatus {@link Boolean} checks if displayed value or not
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private static boolean checkEmptyField(String fieldLabel) {
+        boolean displayStatus;
+        if (fieldLabel == "Search Employee by fullname, department or address : ") {
+            EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
+            List<Employee> list = employeeDao.findAll();
+            Collections.sort(list);
+            LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
+            displayStatus = true;
+        } else {
+            LOGGER.log(Level.WARNING, "Field cannot be empty.");
+            displayStatus = false;
+        }
+        return displayStatus;
     }
 
     /**
