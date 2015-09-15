@@ -67,16 +67,16 @@ public class UserService {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    public void getEmployeeRole(Scanner scanner, ResultSet result) throws SQLException {
-        if (result.getString("role").equals(Employee.EmployeeRole.ADMIN.role)) {
-            getAdminRole(scanner, result);
+    public void getEmployeeRole(Scanner scanner, Employee employee) throws SQLException {
+        if (employee.getRole().equals(Employee.EmployeeRole.ADMIN.role)) {
+            getAdminRole(scanner, employee);
         } else {
-            getNormalUserRole(scanner, result);
+            getNormalUserRole(scanner, employee);
         }
     }
 
     /**
-     * Gets Admin role functionalities
+     * Gets Admin role functions
      * 
      * @param scanner
      *            {@link Scanner}
@@ -85,10 +85,10 @@ public class UserService {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    private void getAdminRole(Scanner scanner, ResultSet result) throws SQLException {
+    private void getAdminRole(Scanner scanner, Employee employee) throws SQLException {
         char choice = ' ';
         while (choice != Constants.ADMIN_EXIT) {
-            AdminView.displayAdminRoleMenu(result);
+            AdminView.displayAdminRoleMenu(employee);
             choice = UtilityService.getSelectedMenu(scanner, "Select an option (a-f) : ");
             getAdminRoleOptions(scanner, choice);
         }
@@ -175,12 +175,12 @@ public class UserService {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    private void getNormalUserRole(Scanner scanner, ResultSet result) throws SQLException {
+    private void getNormalUserRole(Scanner scanner, Employee employee) throws SQLException {
         char choice = ' ';
         while (choice != Constants.EMPLOYEE_EXIT) {
-            EmployeeView.displayEmployeeRoleMenu(result);
+            EmployeeView.displayEmployeeRoleMenu(employee);
             choice = UtilityService.getSelectedMenu(scanner, "Select an option (a-d) : ");
-            getEmployeeRoleOptions(scanner, choice, result);
+            getEmployeeRoleOptions(scanner, choice, employee);
         }
     }
 
@@ -194,7 +194,7 @@ public class UserService {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      * @throws SQLException
      */
-    private void getEmployeeRoleOptions(Scanner scanner, char choice, ResultSet result) throws SQLException {
+    private void getEmployeeRoleOptions(Scanner scanner, char choice, Employee employee) throws SQLException {
         switch (choice) {
         case 'a':
             LOGGER.log(Level.INFO, "\n========================\nView Employee List : \n========================\n");
@@ -205,8 +205,8 @@ public class UserService {
             EmployeeController.searchExistingEmployee(scanner);
             return;
         case 'c':
-            LOGGER.log(Level.INFO, "\n========================\nEdit Information\n========================\n");
-            getEditInfo(scanner, result);
+            LOGGER.log(Level.INFO, "\n========================\nEdit own Information\n========================\n");
+            getEditInfo(scanner, employee);
         case 'd':
             LOGGER.log(Level.INFO, "\n========================\nUser successfully logged out.\n========================\n");
             UserDaoImpl userDao = new UserDaoImpl();
@@ -227,12 +227,12 @@ public class UserService {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    private void getEditInfo(Scanner scanner, ResultSet result) throws SQLException {
+    private void getEditInfo(Scanner scanner, Employee employee) throws SQLException {
         char choice = ' ';
         while (choice != Constants.EMPLOYEE_EDIT_EXIT) {
             EmployeeEditView.displayEmployeeEditMenu();
             choice = UtilityService.getSelectedMenu(scanner, "Select an option (a-e) : ");
-            getEmployeeEditOptions(scanner, choice, result);
+            getEmployeeEditOptions(scanner, choice, employee);
         }
     }
 
@@ -248,30 +248,29 @@ public class UserService {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    private void getEmployeeEditOptions(Scanner scanner, char choice, ResultSet result) throws SQLException {
-        Employee employee = new Employee();
+    private void getEmployeeEditOptions(Scanner scanner, char choice, Employee employee) throws SQLException {
         switch (choice) {
         case 'a':
             LOGGER.log(Level.INFO, "\n========================\nEdit fullname\n========================\n");
-            employee.setFullname(UtilityService.getInputData(scanner, "Enter Fullname to Edit : "));
-            EmployeeController.updateEmployeeInfo(Constants.FULLNAME, employee.getFullname(), result.getInt("employee_id"));
+            employee.setFullname(UtilityService.getInputData(scanner, "Enter new Fullname to Edit : "));
+            EmployeeController.updateEmployeeInfo(Constants.FULLNAME, employee.getFullname(), employee.getEmployeeId());
             return;
         case 'b':
             LOGGER.log(Level.INFO, "\n========================\nEdit Department\n========================\n");
-            employee.setDepartment(UtilityService.getInputData(scanner, "Enter Department to Edit : "));
-            EmployeeController.updateEmployeeInfo(Constants.DEPARTMENT, employee.getDepartment(), result.getInt("employee_id"));
+            employee.setDepartment(UtilityService.getInputData(scanner, "Enter new Department to Edit : "));
+            EmployeeController.updateEmployeeInfo(Constants.DEPARTMENT, employee.getDepartment(), employee.getEmployeeId());
             return;
         case 'c':
             LOGGER.log(Level.INFO, "\n========================\nEdit Address\n========================\n");
-            employee.setAddress(UtilityService.getInputData(scanner, "Enter Address to Edit : "));
-            EmployeeController.updateEmployeeInfo(Constants.ADDRESS, employee.getAddress(), result.getInt("employee_id"));
+            employee.setAddress(UtilityService.getInputData(scanner, "Enter new Address to Edit : "));
+            EmployeeController.updateEmployeeInfo(Constants.ADDRESS, employee.getAddress(), employee.getEmployeeId());
             return;
         case 'd':
             LOGGER.log(Level.INFO, "\n========================\nChange Password\n========================\n");
             return;
         case 'e':
             LOGGER.log(Level.INFO, "\n========================\nBack\n========================\n");
-            getNormalUserRole(scanner, result);
+            getNormalUserRole(scanner, employee);
             return;
         default:
             LOGGER.log(Level.INFO, "\n========================\nInvalid entry, Please choose from menu option.\n========================\n");
@@ -290,6 +289,8 @@ public class UserService {
      */
     public Employee map(ResultSet result) throws SQLException {
         Employee employee = new Employee();
+        employee.setEmployeeId(result.getInt("employee_id"));
+        employee.setUserId(result.getInt("user_id"));
         employee.setUsername(result.getString("username"));
         employee.setTerminated(result.getBoolean("is_terminated"));
         employee.setCreatedAt(result.getTimestamp("created_at"));

@@ -1,7 +1,6 @@
 package com.lftechnology.java.training.alina.jdbc.api;
 
 import java.util.List;
-
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 
 /**
@@ -20,7 +19,7 @@ public interface CrudService<T> {
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    T findByPk(Integer id);
+    List<T> findByPk(Integer id);
 
     /**
      * Lists all details

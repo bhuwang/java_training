@@ -12,9 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
+import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
+import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
 import com.lftechnology.java.training.alina.jdbc.service.UserService;
@@ -75,20 +77,16 @@ public class UserDaoImpl implements UserDao {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     private void checkValidUser(Scanner scanner, int userId, Connection connection) throws SQLException {
+        EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
         UserService userService = new UserService();
-        String sql = "SELECT * FROM employee where user_id=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, userId);
-        ResultSet result = preparedStatement.executeQuery();
-        if (result.next()) {
-            userService.getEmployeeRole(scanner, result);
-        } else {
-            LOGGER.log(Level.INFO, "User not found");
+        List<Employee> employeeDetails = employeeDao.findByPk(userId);
+        for (Employee employee : employeeDetails) {
+            userService.getEmployeeRole(scanner, employee);
         }
     }
 
     @Override
-    public User findByPk(Integer id) {
+    public List<User> findByPk(Integer id) {
         return null;
     }
 
@@ -138,17 +136,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Boolean delete(String username) {
+    public Boolean delete(String fullname) {
         boolean isDeleted = false;
         String sql =
-                "update user u inner join employee e on u.user_id=e.user_id set u.is_terminated=?,u.modified_at=?,e.modified_at=? where e.fullname=?";
+                "update user u inner join employee e on u.user_id=e.user_id set u.is_terminated=?,u.modified_at=?,e.modified_at=? where (e.fullname=? and u.is_terminated=?)";
         try {
             Connection connection = DbFacade.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setBoolean(1, Constants.TERMINATED);
             preparedStatement.setTimestamp(2, DateTimeService.getCurrentTimeStamp());
             preparedStatement.setTimestamp(3, DateTimeService.getCurrentTimeStamp());
-            preparedStatement.setString(4, username);
+            preparedStatement.setString(4, fullname);
+            preparedStatement.setBoolean(5, Constants.NOT_TERMINATED);
             int result = preparedStatement.executeUpdate();
             isDeleted = (result != 0) ? true : false;
         } catch (SQLException sqe) {

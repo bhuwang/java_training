@@ -76,5 +76,4 @@ public class LoginController {
         }
         return userExist;
     }
-
 }

@@ -20,5 +20,5 @@ public interface EmployeeDao extends CrudService<Employee> {
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    List<Employee> searchEmployee(String sql, String... searchContent);
+    List<Employee> searchEmployee(String... searchContent);
 }

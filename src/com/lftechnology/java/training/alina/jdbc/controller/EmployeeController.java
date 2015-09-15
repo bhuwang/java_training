@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
@@ -31,9 +30,7 @@ public class EmployeeController {
     private static final Logger LOGGER = Logger.getLogger(EmployeeController.class.getName());
     private static UserDaoImpl userDao = new UserDaoImpl();
     private static EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
-    private static Map<Integer, Object> params = new HashMap<>();
     private static String sqlQuery = null;
-    private static Database database = new Database();
 
     /**
      * Adds new employee
@@ -93,7 +90,7 @@ public class EmployeeController {
      */
     public static void deleteExistingEmployee(Scanner scanner) {
         Employee employee = new Employee();
-        employee.setFullname(UtilityService.getInputData(scanner, "Enter fullname : "));
+        employee.setFullname(UtilityService.getInputData(scanner, "Enter fullname to delete : "));
         boolean isDeleted = employeeDao.delete(employee.getFullname());
         if (isDeleted) {
             LOGGER.log(Level.INFO, "\n=====>\nSuccessfully deleted employee with Name {0}.\n=====>\n",
@@ -125,14 +122,17 @@ public class EmployeeController {
     }
 
     /**
-     * Gets Employee lists
+     * Gets Employee lists soreted by alphabetical order
      * 
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static void getEmployeeList() {
         List<Employee> list = employeeDao.findAll();
         Collections.sort(list);
-        LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
+        LOGGER.log(
+                Level.INFO,
+                "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n-------------------------------------------------------------------------------------------------------\n{1}",
+                new Object[] { list.size(), list });
     }
 
     /**
@@ -144,9 +144,7 @@ public class EmployeeController {
      */
     public static void searchExistingEmployee(Scanner scanner) {
         String searchContent = UtilityService.getInputData(scanner, "Search Employee by fullname, department or address : ");
-        String sql =
-                "select * from employee e inner join user u on e.user_id=u.user_id where e.fullname like ? or e.department like ? or e.address like ?";
-        List<Employee> list = employeeDao.searchEmployee(sql, searchContent, searchContent, searchContent);
+        List<Employee> list = employeeDao.searchEmployee(searchContent, searchContent, searchContent);
         Collections.sort(list);
         LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
     }
@@ -180,7 +178,6 @@ public class EmployeeController {
         database.setParameters(params);
         database.setSqlQuery(sqlQuery);
         int result = employeeDao.update(database);
-        System.out.println(result);
         if (result > 0) {
             LOGGER.log(Level.INFO, "\n=====>\nSuccessfully updated employee information of ID : {0}.\n=====>\n",
                     new Object[] { employeeId });
