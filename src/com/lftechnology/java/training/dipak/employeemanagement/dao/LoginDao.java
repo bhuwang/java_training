@@ -20,7 +20,7 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class LoginDao implements UserApi {
-
+	private final String  CONNECTION_FAILED_MESSAGE="Connection Setup Failed";
 	private static final Logger LOGGER =
 		Logger.getLogger(LoginDao.class.getName());
 
@@ -88,7 +88,7 @@ public class LoginDao implements UserApi {
 
 		}
 		else {
-			LOGGER.info("Database Connection failed");
+			LOGGER.info(CONNECTION_FAILED_MESSAGE);
 		}
 		return employee;
 	}

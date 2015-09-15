@@ -11,13 +11,13 @@ import java.util.logging.Logger;
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class DbConnection {
-	
+
 	private static final Logger LOGGER =
 		Logger.getLogger(DbConnection.class.getName());
-	
-	
+
 	private DbConnection() {
 	}
+
 	/**
 	 * <p>This method is used to set database connection.</p>
 	 * 
@@ -25,16 +25,16 @@ public class DbConnection {
 	 */
 	public static Connection setConnection() {
 
-		final String USER_NAME = "root";
-		final String PASSWORD = "liferay";
-		final String URL = "jdbc:mysql://localhost:3306/ems";
+		String userName = "root";
+		String password = "liferay";
+		String url = "jdbc:mysql://localhost:3306/ems";
 
 		Connection connection = null;
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+			connection = DriverManager.getConnection(url, userName, password);
 
 		}
 		catch (ClassNotFoundException e) {

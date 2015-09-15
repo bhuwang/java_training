@@ -19,7 +19,6 @@ import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFa
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class EmployeeController {
-
 	private static final Logger LOGGER =
 		Logger.getLogger(EmployeeController.class.getName());
 
@@ -31,7 +30,7 @@ public class EmployeeController {
 	 * @param sc
 	 * @return count
 	 */
-	public int addEmployee(Employee e, Scanner sc) {
+	public int addEmployee(Employee employee, Scanner sc) {
 
 		String userName = null;
 		String password = null;
@@ -41,60 +40,53 @@ public class EmployeeController {
 		int count = 0;
 		boolean isTerminated = false;
 		UserType role = null;
-		try {
-			for (;;) {
-				try {
-					LOGGER.info("Please enter the employee username::");
-					userName = sc.nextLine();
-					LOGGER.info(
-						"Pleasse enter the password for the password::");
-					password = sc.nextLine();
-					LOGGER.info("please enter the fullname::");
-					fullName = sc.nextLine();
-					LOGGER.info("Please enter the department::");
-					department = sc.nextLine();
-					LOGGER.info("Please enter the address::");
-					address = sc.nextLine();
-					LOGGER.info(
-						"Please enter whether the user is terminated::(true/false)");
-					isTerminated = sc.nextBoolean();
-					LOGGER.info(
-						"Please enter the user type::(ADMIN->1/USER->2)");
-					int role2 = sc.nextInt();
-					if (role2 == 1) {
-						role = UserType.ADMIN;
-					}
-					else if (role2 == 2) {
-						role = UserType.USER;
-					}
-					else {
-						throw new Exception("Invalid value of the User type");
-					}
-
-					break;
+		for (;;) {
+			try {
+				LOGGER.info("Please enter the employee username::");
+				userName = sc.nextLine();
+				LOGGER.info("Pleasse enter the password for the password::");
+				password = sc.nextLine();
+				LOGGER.info("please enter the fullname::");
+				fullName = sc.nextLine();
+				LOGGER.info("Please enter the department::");
+				department = sc.nextLine();
+				LOGGER.info("Please enter the address::");
+				address = sc.nextLine();
+				LOGGER.info(
+					"Please enter whether the user is terminated::(true/false)");
+				isTerminated = sc.nextBoolean();
+				LOGGER.info("Please enter the user type::(ADMIN->1/USER->2)");
+				int role2 = sc.nextInt();
+				if (role2 == 1) {
+					role = UserType.ADMIN;
 				}
-				catch (Exception ex) {
-					LOGGER.log(Level.INFO, "Exception occurred:", ex);
-					LOGGER.info("Please re-enter the values.");
+				else if (role2 == 2) {
+					role = UserType.USER;
+				}
+				else {
+					throw new Exception("Invalid value of the User type");
 				}
 
+				break;
+			}
+			catch (Exception ex) {
+				LOGGER.log(Level.INFO, "Exception occurred: {0}", ex);
+				LOGGER.info("Please re-enter the values.");
 			}
 
-			e.setAddress(address);
-			e.setDepartment(department);
-			e.setFullName(fullName);
-			e.setIsTerminated(isTerminated);
-			e.setUserName(userName);
-			e.setPassword(password);
-			e.setRole(role);
-
-			EmployeeService ed = ServiceFactory.getEmployeeService();
-			count = ed.addEmployee(e);
-
 		}
-		catch (Exception ex) {
-			LOGGER.log(Level.INFO, "Exception type::{0}", ex);
-		}
+
+		employee.setAddress(address);
+		employee.setDepartment(department);
+		employee.setFullName(fullName);
+		employee.setIsTerminated(isTerminated);
+		employee.setUserName(userName);
+		employee.setPassword(password);
+		employee.setRole(role);
+
+		EmployeeService ed = ServiceFactory.getEmployeeService();
+		count = ed.addEmployee(employee);
+
 		return count;
 	}
 
@@ -122,7 +114,7 @@ public class EmployeeController {
 
 		}
 		catch (Exception ex) {
-			LOGGER.log(Level.INFO, "Exception type::{0}", ex);
+			LOGGER.log(Level.INFO, "Exception type: {0}", ex);
 		}
 		return count;
 	}
@@ -160,11 +152,10 @@ public class EmployeeController {
 
 		}
 		catch (Exception ex) {
-			LOGGER.log(Level.INFO, "Exception type::{0}", ex);
+			LOGGER.log(Level.INFO, "Exception type: {0}", ex);
 		}
 		return null;
 	}
-
 
 	/**
 	 * <p>This method takes the input for the fields to be edited and calls
@@ -191,7 +182,6 @@ public class EmployeeController {
 			LOGGER.info("Enter new password::");
 			char[] pwd = cnsl.readPassword();
 			password = String.valueOf(pwd);
-			// password=sc.nextLine();
 
 			LOGGER.info("Enter new fullname::");
 			fullName = sc.nextLine();
@@ -224,7 +214,7 @@ public class EmployeeController {
 
 		}
 		catch (Exception ex) {
-			LOGGER.log(Level.INFO, "Exception type::{0}", ex);
+			LOGGER.log(Level.INFO, "Exception type: {0}", ex);
 		}
 
 		return e;

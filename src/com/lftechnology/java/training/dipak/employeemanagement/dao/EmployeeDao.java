@@ -21,6 +21,7 @@ import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
  */
 public class EmployeeDao implements EmployeeApi {
 
+	private final String CONNECTION_FAILED_MESSAGE = "Connection Setup Failed";
 	private static final Logger LOGGER =
 		Logger.getLogger(EmployeeDao.class.getName());
 
@@ -38,7 +39,7 @@ public class EmployeeDao implements EmployeeApi {
 		Connection con = DbConnection.setConnection();
 		int count = 0;
 		if (con == null) {
-			LOGGER.info("Connection Setup Failed");
+			LOGGER.info(CONNECTION_FAILED_MESSAGE);
 			return count;
 		}
 		PreparedStatement pst = null;
@@ -59,11 +60,13 @@ public class EmployeeDao implements EmployeeApi {
 
 		}
 		catch (MySQLIntegrityConstraintViolationException e1) {
-			LOGGER.log(Level.SEVERE,
-				"User name already exits. Please enter another username. Exception  type:{0}",e1);
+			LOGGER.log(
+				Level.SEVERE,
+				"User name already exits. Please enter another username. Exception  type:{0}",
+				e1);
 		}
 		catch (SQLException sq) {
-			LOGGER.log(Level.SEVERE, "Exception::{0}", sq);
+			LOGGER.log(Level.SEVERE, "Exception: {0}", sq);
 		}
 
 		return count;
@@ -83,7 +86,7 @@ public class EmployeeDao implements EmployeeApi {
 		StringBuilder sql = null;
 		Connection con = DbConnection.setConnection();
 		if (con == null) {
-			LOGGER.info("Connection Setup Failed");
+			LOGGER.info(CONNECTION_FAILED_MESSAGE);
 			return rs;
 		}
 		PreparedStatement pst = null;
@@ -111,9 +114,9 @@ public class EmployeeDao implements EmployeeApi {
 
 		}
 		catch (SQLException e1) {
-			LOGGER.log(Level.SEVERE, "Exception::{0}", e1);
+			LOGGER.log(Level.SEVERE, "Exception: {0}", e1);
 		}
-		
+
 		return rs;
 	}
 
@@ -130,7 +133,7 @@ public class EmployeeDao implements EmployeeApi {
 		Connection con = DbConnection.setConnection();
 		int count = 0;
 		if (con == null) {
-			LOGGER.info("Connection Setup Failed");
+			LOGGER.info(CONNECTION_FAILED_MESSAGE);
 			return count;
 		}
 		PreparedStatement pst = null;
@@ -144,7 +147,7 @@ public class EmployeeDao implements EmployeeApi {
 
 		}
 		catch (SQLException sq) {
-			LOGGER.log(Level.SEVERE, "Exception::{0}", sq);
+			LOGGER.log(Level.SEVERE, "Exception: {0}", sq);
 		}
 
 		return count;
@@ -163,7 +166,7 @@ public class EmployeeDao implements EmployeeApi {
 		Connection con = DbConnection.setConnection();
 		int count = 0;
 		if (con == null) {
-			LOGGER.info("Connection Setup Failed");
+			LOGGER.info(CONNECTION_FAILED_MESSAGE);
 			return e;
 		}
 		PreparedStatement pst = null;

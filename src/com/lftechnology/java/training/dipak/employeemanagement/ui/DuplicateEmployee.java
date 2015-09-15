@@ -4,11 +4,16 @@ package com.lftechnology.java.training.dipak.employeemanagement.ui;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 
 /**
- * <p>This class contains a static method that copies the Employee object to another Employee object.</p>
+ * <p>This class contains a static method that copies the Employee object to
+ * another Employee object.</p>
  * 
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class DuplicateEmployee {
+
+	private DuplicateEmployee() {
+
+	}
 
 	public static Employee duplicateEmployeeObject(Employee e1, Employee e2) {
 

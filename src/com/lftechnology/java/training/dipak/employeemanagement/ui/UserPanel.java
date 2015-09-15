@@ -10,6 +10,7 @@ import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.EmployeeController;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.LogOutController;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
+import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
 /**
  * <p>This class contains method that contains options for the user access.</p>
@@ -39,11 +40,11 @@ public class UserPanel {
 	 * @param employee
 	 * @param sc
 	 */
-	public void displayPanel(Employee employee, Scanner sc) {
+	public void displayPanel(Employee emp, Scanner sc) {
 
 		EmployeeController ec = new EmployeeController();
 		Employee e = new Employee();
-		e = DuplicateEmployee.duplicateEmployeeObject(employee, e);
+		e = DuplicateEmployee.duplicateEmployeeObject(emp, e);
 		for (;;) {
 			try {
 				LOGGER.info("Welcome to the user panel...\n");
@@ -60,22 +61,11 @@ public class UserPanel {
 					LOGGER.info(
 						"" + e.getAddress() + " " + e.getDepartment() + " " +
 							e.getFullName());
-					employee = ec.editEmployeeDetails(employee, sc);
+					emp = ec.editEmployeeDetails(emp, sc);
 					break;
 				case 3:
-
-					LOGGER.info("Are you sure you want to log out?\n");
-					LOGGER.info("yes-->1\t\tno-->2\n");
-					int check = Integer.parseInt(sc.nextLine());
-					if (check == 1) {
-						LogOutController.logOut(e);
-						LOGGER.info("Logout Successful...");
-						return;
-					}
-					else {
-						break;
-					}
-
+					e = LogOutController.logOut(e, sc);
+					break;
 				default:
 					LOGGER.info("Illegal choice. Please re-enter your choice.");
 					break;
@@ -83,7 +73,10 @@ public class UserPanel {
 
 			}
 			catch (Exception ex) {
-				LOGGER.log(Level.INFO, "Exception::{0}", ex.getMessage());
+				LOGGER.log(Level.INFO, "Exception::{0}", ex);
+			}
+			if (UserType.INVALID.equals(e.getRole())) {
+				return;
 			}
 		}
 	}
