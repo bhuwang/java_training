@@ -5,8 +5,8 @@ import java.util.Map;
 
 public abstract class Pojo {
     private String table;
-    public String primaryKey;
-    public String id;
+    private String primaryKey;
+    private String id;
 
     public String getId() {
         return id;

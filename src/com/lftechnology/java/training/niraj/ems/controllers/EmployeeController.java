@@ -8,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lftechnology.java.training.niraj.ems.domains.Employee;
-import com.lftechnology.java.training.niraj.ems.exceptions.CustomException;
 import com.lftechnology.java.training.niraj.ems.services.implementations.RouteServices;
 import com.lftechnology.java.training.niraj.ems.services.implementations.UserServiceImpl;
 import com.lftechnology.java.training.niraj.ems.utils.Constants;
@@ -109,8 +108,6 @@ public class EmployeeController {
             LOGGER.severe(Constants.FAIL_RETRIEVE_USER_LIST);
             LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
             RouteServices.routeAfterLogin(employee);
-        } catch (CustomException ce) {
-            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, ce);
         }
     }
 
