@@ -9,6 +9,11 @@ package com.lftechnology.java.training.krishna.employeemanagement.utils;
  */
 public class DateUtils {
 
+	// constructor
+	private DateUtils() {
+
+	}
+
 	/**
 	 * This method is used to generate date in mysql format.
 	 *

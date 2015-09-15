@@ -42,6 +42,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		"SELECT * FROM user WHERE id = ?";
 	private static final String SEARCH_BY_USERNAME_QUERY =
 		"SELECT * FROM user WHERE username = ?";
+	
+	
+
+	public EmployeeDaoImpl() {
+
+	}
 
 	@Override
 	public Employee create(Employee entity) {

@@ -33,10 +33,18 @@ public class LoginController {
 	public static EmployeeServiceImpl employeeServiceImpl;
 	public static User user;
 
+	
+	//constructor
+	private LoginController() {
+
+	
+	}
+
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
 		authentiateUser(scanner);
+		scanner.close();
 
 	}
 
@@ -275,7 +283,7 @@ public class LoginController {
 
 		List<Employee> empList = new ArrayList<Employee>();
 		System.out.println("Please enter the key::\n");
-		String key = scanner.nextLine();
+		String key = ValidationUtils.keyValidation(scanner);
 		employeeServiceImpl = new EmployeeServiceImpl();
 		empList = employeeServiceImpl.findAll(key);
 		System.out.println("************ Employee List ************\n");
@@ -291,6 +299,7 @@ public class LoginController {
 		System.out.format("+---------------------+---------------------+-----------------------+-----------------------+----------------+%n");
 		System.out.println("\n");
 	}
+
 
 	/**
 	 * This method is used to delete employee using user input

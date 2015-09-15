@@ -25,6 +25,12 @@ public class DbConnectionFactory {
 
 	private static Connection connection = null;
 
+	//constructor
+	private DbConnectionFactory() {
+
+	}
+
+
 	/**
 	 * This method is used to connect database.
 	 *

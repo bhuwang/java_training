@@ -117,4 +117,26 @@ public class ValidationUtils {
 		return username;
 	}
 
+	/**
+	 * Function is used to check whether or not empty search key
+	 *
+	 * @param scanner
+	 *            {@link Scanner}
+	 * @return username {@link String} input value
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 */
+	public static String keyValidation(Scanner scanner) {
+
+		String key = scanner.nextLine();
+		while (true) {
+			if (scanner.hasNextLine()) {
+				key = scanner.nextLine();
+			}
+			else {
+				key = null;
+			}
+			return key;
+		}
+
+	}
 }
