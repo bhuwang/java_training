@@ -76,14 +76,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		catch (SQLException e) {
 			LOGGER.log(
-				Level.SEVERE, "Exception while creating statement: {0}", e);
+				Level.SEVERE, ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
 			try {
 				preparedStatement.close();
 			}
 			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
+				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
 			}
 		}
 		return entity;
@@ -111,14 +111,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		catch (SQLException e) {
 			LOGGER.log(
-				Level.SEVERE, "Exception while creating statement: {0}", e);
+				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
 			try {
 				preparedStatement.close();
 			}
 			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
+				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
 			}
 		}
 		return empList;
@@ -143,14 +143,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		catch (SQLException e) {
 			LOGGER.log(
-				Level.SEVERE, "Exception while creating statement: {0}", e);
+				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
 			try {
 				preparedStatement.close();
 			}
 			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
+				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
 			}
 		}
 		return emp;
@@ -193,14 +193,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		catch (SQLException e) {
 			LOGGER.log(
-				Level.SEVERE, "Exception while creating statement: {0}", e);
+				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
 			try {
 				preparedStatement.close();
 			}
 			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
+				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
 			}
 		}
 		return entity;
@@ -218,14 +218,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		catch (SQLException e) {
 			LOGGER.log(
-				Level.SEVERE, "Exception while creating statement: {0}", e);
+				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
 			try {
 				preparedStatement.close();
 			}
 			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
+				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
 			}
 		}
 		return isDeleted;
@@ -247,14 +247,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		catch (SQLException e) {
 			LOGGER.log(
-				Level.SEVERE, "Exception while creating statement: {0}", e);
+				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
 			try {
 				preparedStatement.close();
 			}
 			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
+				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
 			}
 		}
 		return isTerminated;
@@ -275,14 +275,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		catch (SQLException e) {
 			LOGGER.log(
-				Level.SEVERE, "Exception while creating statement: {0}", e);
+				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
 			try {
 				preparedStatement.close();
 			}
 			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
+				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
 			}
 		}
 		return isDuplicate;

@@ -16,4 +16,6 @@ public class ConstantUtils {
 	public static final String USERNAME = "Username";
 	public static final String ADDRESS = "Address";
 	public static final String DEPARTMENT = "Department";
+	public static final String ERROR_STATEMENT = "Error closing statement: {0}";
+	public static final String EXCEPTION_STATEMENT = "Exception while creating statement: {0}";
 }
