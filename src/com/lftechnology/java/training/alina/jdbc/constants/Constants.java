@@ -22,13 +22,13 @@ public class Constants {
     public static final String SQLEXCEPTION_LOG = "SQLException : {0}";
     public static final String INVALID_ENTRY =
             "\n========================\nInvalid entry, Please choose from menu option.\n========================\n";
-
-    private Constants() {
-
-    }
-
     public static final boolean TERMINATED = true;
     public static final boolean NOT_TERMINATED = false;
     public static final boolean DELETED = true;
     public static final boolean NOT_DELETED = false;
+    
+
+    private Constants() {
+
+    }
 }
