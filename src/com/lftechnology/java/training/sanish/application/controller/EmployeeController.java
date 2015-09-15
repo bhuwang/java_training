@@ -74,7 +74,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 
@@ -112,7 +112,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 
@@ -133,7 +133,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 
@@ -164,7 +164,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 
@@ -211,7 +211,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 
@@ -240,7 +240,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 
@@ -272,7 +272,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 
@@ -318,7 +318,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 
@@ -359,7 +359,7 @@ public class EmployeeController {
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
         } finally {
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
     }
 

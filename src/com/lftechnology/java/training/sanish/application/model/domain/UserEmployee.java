@@ -72,7 +72,7 @@ public class UserEmployee {
             }
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
-            DbConnect.DbClose();
+            DbConnect.dbClose();
         }
 
         return false;

@@ -40,42 +40,53 @@ public class EmployeeDao implements EmployeeService {
     @Override public User getEmployee(Employee employee) {
         try {
             String query = "SELECT * FROM employees WHERE userId=?";
-            preparedStatement = DbConnect.getPreparedStatement(query, employee.getUserId());
+            PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
+            preparedStatement.setInt(1, employee.getUserId());
             ResultSet rs = preparedStatement.executeQuery();
+            User user = null;
             if (rs.next()) {
-                User user = new User();
+                user = new User();
                 user.setResultSetAttributes(rs);
-                DbConnect.closePreparedStatement();
-                return user;
             }
+
+            rs.close();
+            preparedStatement.close();
+            return user;
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
-            DbConnect.closePreparedStatement();
+            DbConnect.dbClose();
         }
         return null;
     }
 
     @Override public int addNew(Employee employee) {
         int lastInsertedId = -1;
-        int affectedRow = 0;
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
             String query = "INSERT INTO employees(userId, fullName, address, department, role, createdAt) VALUES (?, ?, ?, ?, ?, ?)";
-            preparedStatement = DbConnect.getPreparedStatement(query, employee.getUserId(), employee.getFullName(), employee.getAddress(),
-                    employee.getDepartment(), employee.getRole(), dateFormat.format(date));
-            affectedRow = preparedStatement.executeUpdate();
+            PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
+            preparedStatement.setInt(1, employee.getUserId());
+            preparedStatement.setString(2, employee.getFullName());
+            preparedStatement.setString(3, employee.getAddress());
+            preparedStatement.setString(4, employee.getDepartment());
+            preparedStatement.setString(5, employee.getRole());
+            preparedStatement.setString(6, dateFormat.format(date));
+
+            int affectedRow = preparedStatement.executeUpdate();
             if (affectedRow > 0) {
                 ResultSet rs = preparedStatement.getGeneratedKeys();
                 if (rs.next()) {
                     lastInsertedId = rs.getInt(1);
                 }
+                rs.close();
             }
-            DbConnect.closePreparedStatement();
+
+            preparedStatement.close();
             return lastInsertedId;
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
-            DbConnect.closePreparedStatement();
+            DbConnect.dbClose();
         }
         return lastInsertedId;
     }
@@ -83,17 +94,21 @@ public class EmployeeDao implements EmployeeService {
     @Override public Employee findById(Integer pk) {
         try {
             String query = "SELECT * FROM employees WHERE employeeId=?";
-            preparedStatement = DbConnect.getPreparedStatement(query, pk, 0);
+            PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
+            preparedStatement.setInt(1, pk);
             ResultSet rs = preparedStatement.executeQuery();
+            Employee employee = null;
             if (rs.next()) {
-                Employee employee = new Employee();
+                employee = new Employee();
                 employee.setResultSetAttributes(rs);
-                DbConnect.closePreparedStatement();
-                return employee;
             }
+
+            rs.close();
+            preparedStatement.close();
+            return employee;
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
-            DbConnect.closePreparedStatement();
+            DbConnect.dbClose();
         }
         return null;
     }
@@ -102,53 +117,76 @@ public class EmployeeDao implements EmployeeService {
         List<Employee> employeesList = new ArrayList<Employee>();
         try {
             String query = "SELECT * FROM employees";
-            preparedStatement = DbConnect.getPreparedStatement(query, 0);
+            PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Employee employee = new Employee();
                 employee.setResultSetAttributes(rs);
                 employeesList.add(employee);
             }
-            DbConnect.closePreparedStatement();
+
+            rs.close();
+            preparedStatement.close();
             return employeesList;
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
-            DbConnect.closePreparedStatement();
+            DbConnect.dbClose();
         }
-        return null;
+
+        return employeesList;
     }
 
     @Override public <V> List<Employee> getAll(String condition, V... parameters) {
         List<Employee> employeesList = new ArrayList<Employee>();
         try {
             String query = "SELECT * FROM employees WHERE " + condition;
-            preparedStatement = DbConnect.getPreparedStatement(query, parameters);
+            PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
+            try {
+                for (int i = 0; i < parameters.length; i++) {
+                    preparedStatement.setString(i + 1, parameters[i].toString());
+                }
+            } catch (SQLException e) {
+                LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            }
+
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 Employee employee = new Employee();
                 employee.setResultSetAttributes(rs);
                 employeesList.add(employee);
             }
-            DbConnect.closePreparedStatement();
+
+            rs.close();
+            preparedStatement.close();
             return employeesList;
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
-            DbConnect.closePreparedStatement();
+            DbConnect.dbClose();
         }
-        return null;
+
+        return employeesList;
     }
 
     @Override public <V> int update(String condition, String setString, V... parameters) {
         try {
             String query = "UPDATE employees SET " + setString + " WHERE " + condition;
-            preparedStatement = DbConnect.getPreparedStatement(query, parameters);
+            PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
+            try {
+                for (int i = 0; i < parameters.length; i++) {
+                    preparedStatement.setString(i + 1, parameters[i].toString());
+                }
+            } catch (SQLException e) {
+                LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            }
+
             int effectedRow = preparedStatement.executeUpdate();
-            DbConnect.closePreparedStatement();
+            preparedStatement.close();
             return effectedRow;
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
-            DbConnect.closePreparedStatement();
+            DbConnect.dbClose();
         }
+
         return 0;
     }
 }
