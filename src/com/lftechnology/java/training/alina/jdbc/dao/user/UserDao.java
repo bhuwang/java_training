@@ -10,5 +10,15 @@ import com.lftechnology.java.training.alina.jdbc.domain.User;
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public interface UserDao extends CrudService<User> {
+    /**
+     * User searching functionality
+     * 
+     * @param sql
+     *            {@link STRING}
+     * @param searchContent
+     *            {@link STRING}
+     * @return
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     List<User> searchUser(String sql, String... searchContent);
 }

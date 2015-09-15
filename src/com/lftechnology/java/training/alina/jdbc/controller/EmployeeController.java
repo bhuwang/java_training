@@ -215,9 +215,9 @@ public class EmployeeController {
             database.setSqlQuery(sqlQuery);
             int result = employeeDao.update(database);
             if (result > 0) {
-                LOGGER.log(Level.INFO, "\n=====>\nSuccessfully changed password of ID : {0}.\n=====>\n", new Object[] { userId });
+                LOGGER.log(Level.INFO, "\n=====>\nSuccessfully changed password of User ID : {0}.\n=====>\n", new Object[] { userId });
             } else {
-                LOGGER.log(Level.INFO, "\n=====>\nFailed to change password.\n=====>\n");
+                LOGGER.log(Level.INFO, "\n=====>\nFailed to change password of User ID : {0}.\n=====>\n", new Object[] { userId });
             }
         } else {
             LOGGER.log(Level.INFO, "\n=====>\nPassword not matched.\n=====>\n", new Object[] { userId });
