@@ -9,6 +9,7 @@ import com.lftechnology.java.training.krishna.employeemanagement.domain.Employee
 import com.lftechnology.java.training.krishna.employeemanagement.domain.User;
 import com.lftechnology.java.training.krishna.employeemanagement.service.employee.impl.EmployeeServiceImpl;
 import com.lftechnology.java.training.krishna.employeemanagement.service.user.impl.UserServiceImpl;
+import com.lftechnology.java.training.krishna.employeemanagement.utils.ConstantUtils;
 import com.lftechnology.java.training.krishna.employeemanagement.utils.Role;
 import com.lftechnology.java.training.krishna.employeemanagement.utils.ValidationUtils;
 
@@ -153,7 +154,7 @@ public class LoginController {
 		}
 		else {
 			System.out.println(""
-				+ "**   MAIN MENU (Please choose the desired action) *****"
+				+ "**  MAIN MENU ("+ ConstantUtils.DESIRED_ACTION +")*****"
 				+ "\n"
 				+ "**   4. Quit OR Logout                               **"
 				+ "\n"
@@ -200,7 +201,7 @@ public class LoginController {
 			searchEmployee(scanner);
 			break;
 		default:
-			System.out.println("Please choose the desired action.\n");
+			System.out.println(ConstantUtils.DESIRED_ACTION);
 			break;
 		}
 		showMainMenu(scanner, id);
@@ -230,7 +231,7 @@ public class LoginController {
 			editEmployee(scanner, id);
 			break;
 		default:
-			System.out.println("Please choose the desired action.\n");
+			System.out.println(ConstantUtils.DESIRED_ACTION);
 			break;
 		}
 		showMainMenu(scanner, id);
@@ -247,16 +248,16 @@ public class LoginController {
 
 		System.out.println("************ Collecting Employee Information ************\n");
 		System.out.println("Please enter the username::");
-		String username = ValidationUtils.emptyValidation(scanner, "Username");
+		String username = ValidationUtils.emptyValidation(scanner, ConstantUtils.USERNAME);
 		System.out.println("Please enter the password::");
-		String password = ValidationUtils.emptyValidation(scanner, "Password");
+		String password = ValidationUtils.emptyValidation(scanner, ConstantUtils.PASSWORD);
 		System.out.println("Please enter the full name::");
-		String fullname = ValidationUtils.emptyValidation(scanner, "Full Name");
+		String fullname = ValidationUtils.emptyValidation(scanner, ConstantUtils.FULLNAME);
 		System.out.println("Please enter the department::");
 		String department =
-			ValidationUtils.emptyValidation(scanner, "Department");
+			ValidationUtils.emptyValidation(scanner, ConstantUtils.DEPARTMENT);
 		System.out.println("Please enter the address::");
-		String address = ValidationUtils.emptyValidation(scanner, "Address");
+		String address = ValidationUtils.emptyValidation(scanner, ConstantUtils.ADDRESS);
 		System.out.println("Please choose the following role::\n");
 		String role = chooseRole(scanner);
 		employeeServiceImpl = new EmployeeServiceImpl();
@@ -273,7 +274,7 @@ public class LoginController {
 	}
 
 	/**
-	 * This method is used to search employee using user input
+	 * This method is used to search and view employee
 	 *
 	 * @param scanner
 	 *            {@link Scanner}
@@ -311,7 +312,7 @@ public class LoginController {
 	private static void deleteUser(Scanner scanner) {
 
 		System.out.println("Do you want to delete User? Please enter the fullname::\n");
-		String fullname = ValidationUtils.emptyValidation(scanner, "Fullname");
+		String fullname = ValidationUtils.emptyValidation(scanner, ConstantUtils.FULLNAME);
 		employeeServiceImpl = new EmployeeServiceImpl();
 		boolean isDeleted = employeeServiceImpl.delete(fullname);
 		if (isDeleted) {
@@ -329,7 +330,7 @@ public class LoginController {
 	private static void terminateUser(Scanner scanner) {
 
 		System.out.println("Do you want to terminate User? Please enter the fullname::\n");
-		String fullname = ValidationUtils.emptyValidation(scanner, "Fullname");
+		String fullname = ValidationUtils.emptyValidation(scanner, ConstantUtils.FULLNAME);
 		employeeServiceImpl = new EmployeeServiceImpl();
 		boolean isTerminated = employeeServiceImpl.terminate(fullname);
 		if (isTerminated) {
@@ -378,22 +379,22 @@ public class LoginController {
 			if (choice == 1) {
 				System.out.println("Please enter the full name::");
 				fullname =
-					ValidationUtils.emptyValidation(scanner, "Full Name");
+					ValidationUtils.emptyValidation(scanner, ConstantUtils.FULLNAME);
 				break;
 			}
 			else if (choice == 2) {
 				System.out.println("Please enter the department::");
 				department =
-					ValidationUtils.emptyValidation(scanner, "Department");
+					ValidationUtils.emptyValidation(scanner, ConstantUtils.DEPARTMENT);
 				break;
 			}
 			else if (choice == 3) {
 				System.out.println("Please enter the address::");
-				address = ValidationUtils.emptyValidation(scanner, "Address");
+				address = ValidationUtils.emptyValidation(scanner, ConstantUtils.ADDRESS);
 				break;
 			}
 			else {
-				System.out.println("Please choose the desired action.\n");
+				System.out.println(ConstantUtils.DESIRED_ACTION);
 				editOptions(scanner);
 			}
 		}
@@ -402,13 +403,16 @@ public class LoginController {
 				id, fullname, department, address);
 		switch (choice) {
 		case 1:
-			message = "Fullname";
+			message = ConstantUtils.FULLNAME;
 			break;
 		case 2:
-			message = "Department";
+			message = ConstantUtils.DEPARTMENT;
 			break;
 		case 3:
-			message = "Address";
+			message = ConstantUtils.ADDRESS;
+			break;
+		default:
+			message = "";
 			break;
 		}
 		if (emp.getId() > 0) {
@@ -461,7 +465,7 @@ public class LoginController {
 				break;
 			}
 			else {
-				System.out.println("Please choose the desired role::\n");
+				System.out.println(ConstantUtils.DESIRED_ACTION);
 				roleOptions(scanner);
 			}
 
