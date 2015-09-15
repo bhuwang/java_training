@@ -54,8 +54,8 @@ public class RouteServices {
                 }
 
             } catch (InputMismatchException se) {
-                LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
                 LOGGER.warning(Constants.INVALID_INPUT);
+                LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
             }
         } else {
             routeLandingPage();

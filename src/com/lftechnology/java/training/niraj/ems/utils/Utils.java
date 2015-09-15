@@ -12,6 +12,10 @@ import java.util.Map;
  */
 public class Utils {
 
+    private Utils() {
+
+    }
+
     /**
      * Implodes the string for a given delimiter
      * 
@@ -93,5 +97,5 @@ public class Utils {
                 return false;
         }
         return true;
-    }   
+    }
 }
