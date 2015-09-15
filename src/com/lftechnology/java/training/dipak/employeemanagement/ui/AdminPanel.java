@@ -41,11 +41,12 @@ public class AdminPanel {
      * 
      * @param employee
      * @param sc
+     * @throws Throwable
      */
-    public void displayPanel(Employee employee, Scanner sc) {
+    public void displayPanel(Employee employee1, Scanner sc) throws Throwable {
 
         Employee e = new Employee();
-        e = DuplicateEmployee.duplicateEmployeeObject(employee, e);
+        e = DuplicateEmployee.duplicateEmployeeObject(employee1, e);
 
         EmployeeController ec = new EmployeeController();
         for (;;) {
@@ -69,7 +70,7 @@ public class AdminPanel {
                     ec.viewEmployee(e, sc);
                     break;
                 case 4:
-                    employee = ec.editEmployeeDetails(employee, sc);
+                    employee1 = ec.editEmployeeDetails(employee1, sc);
                     break;
                 case 5:
                     e = LogOutController.logOut(e, sc);

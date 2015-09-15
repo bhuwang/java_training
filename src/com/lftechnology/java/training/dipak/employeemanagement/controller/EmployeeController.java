@@ -31,7 +31,7 @@ public class EmployeeController {
      * @param sc
      * @return count
      */
-    public int addEmployee(Employee employee, Scanner sc) {
+    public int addEmployee(Employee employee, Scanner sc) throws Throwable {
 
         String userName = null;
         String password = null;
@@ -62,10 +62,11 @@ public class EmployeeController {
                 } else if (role2 == 2) {
                     role = UserType.USER;
                 } else {
-                    throw new Exception("Invalid value of the User type");
+                    throw new InvalidInputException("Invalid value of the User type");
                 }
-
                 break;
+            } catch (InvalidInputException ie) {
+                LOGGER.log(Level.INFO, exceptionOccurred, ie);
             } catch (Exception ex) {
                 LOGGER.log(Level.INFO, exceptionOccurred, ex);
                 LOGGER.info("Please re-enter the values.");
@@ -163,7 +164,7 @@ public class EmployeeController {
      * @param sc
      * @return e
      */
-    public Employee editEmployeeDetails(Employee e, Scanner sc) {
+    public Employee editEmployeeDetails(Employee emp1, Scanner sc) {
 
         LOGGER.info("Welcome to the edit mode....");
         String userName = null;
@@ -191,30 +192,30 @@ public class EmployeeController {
             address = sc.nextLine();
 
             if (!("".equals(userName))) {
-                e.setUserName(userName);
+                emp1.setUserName(userName);
             }
             if (!("".equals(password))) {
-                e.setPassword(password);
+                emp1.setPassword(password);
             }
             if (!("".equals(fullName))) {
-                e.setFullName(fullName);
+                emp1.setFullName(fullName);
             }
             if (!("".equals(department))) {
-                e.setDepartment(department);
+                emp1.setDepartment(department);
             }
             if (!("".equals(address))) {
-                e.setAddress(address);
+                emp1.setAddress(address);
             }
 
             EmployeeService es = ServiceFactory.getEmployeeService();
 
-            e = es.editEmployeeDetails(e);
+            emp1 = es.editEmployeeDetails(emp1);
 
         } catch (Exception ex) {
             LOGGER.log(Level.INFO, exceptionOccurred, ex);
         }
 
-        return e;
+        return emp1;
     }
 
 }

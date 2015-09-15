@@ -37,7 +37,7 @@ public class MainClass {
         ch.setFormatter(myFormat);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Throwable {
 
         Scanner sc = new Scanner(System.in);
         LoginController lc = new LoginController();

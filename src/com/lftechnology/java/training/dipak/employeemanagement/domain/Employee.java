@@ -2,56 +2,57 @@
 package com.lftechnology.java.training.dipak.employeemanagement.domain;
 
 /**
- * <p>This class extends the user class and defines the attributes of the
- * employee class. This class also includes the getter setter methods.</p>
+ * <p>
+ * This class extends the user class and defines the attributes of the employee class. This class also includes the getter setter methods.
+ * </p>
  * 
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class Employee extends User {
 
-	private String fullName;
-	private String department;
-	private String address;
-	private UserType role;
+    private String fullName;
+    private String department;
+    private String address;
+    private UserType role;
 
-	public String getFullName() {
+    public String getFullName() {
 
-		return fullName;
-	}
+        return fullName;
+    }
 
-	public void setFullName(String fullName) {
+    public void setFullName(String fullName) {
 
-		this.fullName = fullName;
-	}
+        this.fullName = fullName;
+    }
 
-	public String getDepartment() {
+    public String getDepartment() {
 
-		return department;
-	}
+        return department;
+    }
 
-	public void setDepartment(String department) {
+    public void setDepartment(String department) {
 
-		this.department = department;
-	}
+        this.department = department;
+    }
 
-	public String getAddress() {
+    public String getAddress() {
 
-		return address;
-	}
+        return address;
+    }
 
-	public void setAddress(String address) {
+    public void setAddress(String address) {
 
-		this.address = address;
-	}
+        this.address = address;
+    }
 
-	public UserType getRole() {
+    public UserType getRole() {
 
-		return role;
-	}
+        return role;
+    }
 
-	public void setRole(UserType role) {
+    public void setRole(UserType role) {
 
-		this.role = role;
-	}
+        this.role = role;
+    }
 
 }

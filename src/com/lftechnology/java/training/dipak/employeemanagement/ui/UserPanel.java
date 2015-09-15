@@ -45,8 +45,8 @@ public class UserPanel {
     public void displayPanel(Employee emp, Scanner sc) {
 
         EmployeeController ec = new EmployeeController();
-        Employee e = new Employee();
-        e = DuplicateEmployee.duplicateEmployeeObject(emp, e);
+        Employee emp2 = new Employee();
+        emp2 = DuplicateEmployee.duplicateEmployeeObject(emp, emp2);
         for (;;) {
             try {
                 LOGGER.info("Welcome to the user panel...\n");
@@ -57,14 +57,13 @@ public class UserPanel {
                 int choice = Math.abs(Integer.parseInt(sc.nextLine()));
                 switch (choice) {
                 case 1:
-                    ec.viewEmployee(e, sc);
+                    ec.viewEmployee(emp2, sc);
                     break;
                 case 2:
-                    LOGGER.info("" + e.getAddress() + " " + e.getDepartment() + " " + e.getFullName());
                     emp = ec.editEmployeeDetails(emp, sc);
                     break;
                 case 3:
-                    e = LogOutController.logOut(e, sc);
+                    emp2 = LogOutController.logOut(emp2, sc);
                     break;
                 default:
                     LOGGER.info("Illegal choice. Please re-enter your choice.");
@@ -74,7 +73,7 @@ public class UserPanel {
             } catch (Exception ex) {
                 LOGGER.log(Level.INFO, "Exception::{0}", ex);
             }
-            if (UserType.INVALID.equals(e.getRole())) {
+            if (UserType.INVALID.equals(emp2.getRole())) {
                 return;
             }
         }
