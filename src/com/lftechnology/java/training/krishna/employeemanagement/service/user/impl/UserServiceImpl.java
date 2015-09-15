@@ -1,6 +1,7 @@
 
 package com.lftechnology.java.training.krishna.employeemanagement.service.user.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.lftechnology.java.training.krishna.employeemanagement.dao.user.impl.UserDaoImpl;
@@ -26,24 +27,21 @@ public class UserServiceImpl implements UserService {
 	public User login(String username, String password) {
 
 		User user = new User();
-		user.setUsername(username);;
+		user.setUsername(username);
 		user.setPassword(password);
-		User userAuthenticate = this.userDaoImpl.authenticate(user);
-		return userAuthenticate;
+		return  this.userDaoImpl.authenticate(user);
 	}
 
 
 	@Override
 	public List<User> findAll(String key) {
-
-		// TODO Auto-generated method stub
-		return null;
+		List<User> user = new ArrayList<User>();
+		return user;
 	}
 
 	@Override
 	public boolean delete(String fullname) {
 
-		// TODO Auto-generated method stub
 		return false;
 	}
 

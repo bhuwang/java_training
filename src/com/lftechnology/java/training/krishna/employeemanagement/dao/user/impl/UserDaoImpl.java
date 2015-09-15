@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,35 +73,31 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User create(User entity) {
 
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public User update(User entity) {
 
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public User findById(Integer id) {
 
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<User> findAll(String key) {
 
-		// TODO Auto-generated method stub
-		return null;
+		List<User> user = new ArrayList<User>();
+		return user;
 	}
 
 	@Override
 	public boolean delete(User entity) {
 
-		// TODO Auto-generated method stub
 		return false;
 	}
 

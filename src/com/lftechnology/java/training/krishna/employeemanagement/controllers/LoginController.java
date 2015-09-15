@@ -76,11 +76,11 @@ public class LoginController {
 	private static void showLoginTitle() {
 
 		System.out.println("\n"
-			+ "****************************************************" + "\n"
-			+ "**                                                **" + "\n"
-			+ "**              Login                             **" + "\n"
-			+ "**                                                **" + "\n"
-			+ "****************************************************" + "\n");
+			+ "*********************************************" + "\n"
+			+ "**                                         **" + "\n"
+			+ "**              Login                      **" + "\n"
+			+ "**                                         **" + "\n"
+			+ "*********************************************" + "\n");
 	}
 
 	/**
@@ -346,7 +346,7 @@ public class LoginController {
 	 *            {@link Scanner}
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	private static void editOptions(Scanner scanner) {
+	private static void editOptions() {
 
 		System.out.println("*****************************************"
 			+ "\n" + "**   1. Full Name                             **" + "\n"
@@ -373,7 +373,7 @@ public class LoginController {
 		String message = null;
 		int choice = 0;
 		employeeServiceImpl = new EmployeeServiceImpl();
-		editOptions(scanner);
+		editOptions();
 		while (true) {
 			choice = ValidationUtils.numberValidation(scanner);
 			if (choice == 1) {
@@ -395,7 +395,7 @@ public class LoginController {
 			}
 			else {
 				System.out.println(ConstantUtils.DESIRED_ACTION +"\n");
-				editOptions(scanner);
+				editOptions();
 			}
 		}
 		Employee emp =

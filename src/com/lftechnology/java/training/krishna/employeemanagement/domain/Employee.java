@@ -14,22 +14,11 @@ public class Employee extends User {
 	private String address;
 	private String role;
 
-	
+	//constructor
 	public Employee() {
 
 	}
 
-	public Employee(
-		int id, String username, String password, int isTerminated,
-		java.sql.Date createdAt, java.sql.Date modifiedAt, String fullname,
-		String department, String address, String role) {
-
-		super(id, username, password, isTerminated, createdAt, modifiedAt);
-		this.fullname = fullname;
-		this.department = department;
-		this.address = address;
-		this.role = role;
-	}
 
 	public String getFullname() {
 
