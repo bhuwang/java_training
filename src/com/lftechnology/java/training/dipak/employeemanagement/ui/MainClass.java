@@ -13,61 +13,57 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.User;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
 /**
- * <p>This class contains a main method. Hence the execution takes place from
- * that method.</p>
+ * <p>
+ * This class contains a main method. Hence the execution takes place from that method.
+ * </p>
  * 
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class MainClass {
-	
-	private static final Logger LOGGER =
-		Logger.getLogger(MainClass.class.getName());
-	
-	private MainClass() {
-	}
-	static {
-		ConsoleHandler ch = new ConsoleHandler();
-		ch.setLevel(Level.FINEST);
-		LOGGER.addHandler(ch);
-		LOGGER.setUseParentHandlers(false);
 
-		LoggerFormatter myFormat = new LoggerFormatter();
+    private static final Logger LOGGER = Logger.getLogger(MainClass.class.getName());
 
-		ch.setFormatter(myFormat);
-	}
+    private MainClass() {
+    }
 
-	public static void main(String[] args) {
+    static {
+        ConsoleHandler ch = new ConsoleHandler();
+        ch.setLevel(Level.FINEST);
+        LOGGER.addHandler(ch);
+        LOGGER.setUseParentHandlers(false);
 
-		Scanner sc = new Scanner(System.in);
-		LoginController lc = new LoginController();
+        LoggerFormatter myFormat = new LoggerFormatter();
 
-		for (;;) {
-			LOGGER.info("......Welcome to Employee Management System.....\n");
+        ch.setFormatter(myFormat);
+    }
 
-			Employee employee = lc.validateLogin(new User(), sc);
+    public static void main(String[] args) {
 
-			if (employee.getId() == 0) {
-				LOGGER.info("Login Failed. Invalid username or password.\n");
-			}
-			else if (employee.getId() == -1) {
-				LOGGER.info("Invalid username format.");
-			}
-			else {
-				LOGGER.log(
-					Level.INFO, "Login Successsful. Welcome {0}\n",
-					employee.getFullName());
-				if (employee.getRole().equals(UserType.ADMIN)) {
-					AdminPanel ap = new AdminPanel();
-					ap.displayPanel(employee, sc);
-				}
-				else {
-					UserPanel up = new UserPanel();
-					up.displayPanel(employee, sc);
-				}
-			}
+        Scanner sc = new Scanner(System.in);
+        LoginController lc = new LoginController();
 
-		}
+        for (;;) {
+            LOGGER.info("......Welcome to Employee Management System.....\n");
 
-	}
+            Employee employee = lc.validateLogin(new User(), sc);
+
+            if (employee.getId() == 0) {
+                LOGGER.info("Login Failed. Invalid username or password.\n");
+            } else if (employee.getId() == -1) {
+                LOGGER.info("Invalid username format.");
+            } else {
+                LOGGER.log(Level.INFO, "Login Successsful. Welcome {0}\n", employee.getFullName());
+                if (employee.getRole().equals(UserType.ADMIN)) {
+                    AdminPanel ap = new AdminPanel();
+                    ap.displayPanel(employee, sc);
+                } else {
+                    UserPanel up = new UserPanel();
+                    up.displayPanel(employee, sc);
+                }
+            }
+
+        }
+
+    }
 
 }

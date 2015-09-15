@@ -14,82 +14,76 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.User;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
 /**
- * <p>This class contains method that interact with database to check whether
- * the username and password entered is valid or not.</p>
+ * <p>
+ * This class contains method that interact with database to check whether the username and password entered is valid or not.
+ * </p>
  * 
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class LoginDao implements UserApi {
-	private final String  CONNECTION_FAILED_MESSAGE="Connection Setup Failed";
-	private static final Logger LOGGER =
-		Logger.getLogger(LoginDao.class.getName());
+    private String connectionFailedMessage = "Connection Setup Failed";
+    private static final Logger LOGGER = Logger.getLogger(LoginDao.class.getName());
 
-	/**
-	 * <p>This method checks whether the username and password is valid or not
-	 * and if the user is terminated or not. If all conditions are met then it
-	 * returns a result set then the employee object is set with the result set.
-	 * This object is returned.</p>
-	 * 
-	 * @param u
-	 * @return employee
-	 */
-	@Override
-	public Employee validateLogin(User u) {
+    /**
+     * <p>
+     * This method checks whether the username and password is valid or not and if the user is terminated or not. If all conditions are met
+     * then it returns a result set then the employee object is set with the result set. This object is returned.
+     * </p>
+     * 
+     * @param u
+     * @return employee
+     */
+    @Override
+    public Employee validateLogin(User u) {
 
-		Employee employee = new Employee();
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
+        Employee employee = new Employee();
+        Connection con = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
 
-		con = DbConnection.setConnection();
+        con = DbConnection.setConnection();
 
-		String sql =
-			"select * from employee where username= ? and password= ? and isTerminated=false";
+        String sql = "select * from employee where username= ? and password= ? and isTerminated=false";
 
-		if (con != null) {
-			try {
-				pst = con.prepareStatement(sql);
+        if (con != null) {
+            try {
+                pst = con.prepareStatement(sql);
 
-				pst.setString(1, u.getUserName());
-				pst.setString(2, u.getPassword());
+                pst.setString(1, u.getUserName());
+                pst.setString(2, u.getPassword());
 
-				rs = pst.executeQuery();
+                rs = pst.executeQuery();
 
-				if (rs.next()) {
-					employee.setId(rs.getInt("eid"));
-					employee.setUserName(rs.getString("username"));
-					employee.setPassword(rs.getString("password"));
-					employee.setAddress(rs.getString("address"));
-					employee.setIsTerminated(rs.getBoolean("isTerminated"));
-					employee.setDepartment(rs.getString("department"));
-					employee.setFullName(rs.getString("fullname"));
-					UserType ut = UserType.valueOf(rs.getString("role"));
-					employee.setRole(ut);
+                if (rs.next()) {
+                    employee.setId(rs.getInt("eid"));
+                    employee.setUserName(rs.getString("username"));
+                    employee.setPassword(rs.getString("password"));
+                    employee.setAddress(rs.getString("address"));
+                    employee.setIsTerminated(rs.getBoolean("isTerminated"));
+                    employee.setDepartment(rs.getString("department"));
+                    employee.setFullName(rs.getString("fullname"));
+                    UserType ut = UserType.valueOf(rs.getString("role"));
+                    employee.setRole(ut);
 
-				}
-				else {
-					employee.setId(0);
-				}
+                } else {
+                    employee.setId(0);
+                }
 
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.INFO, "{0}", e);
-			}
-			finally {
-				try {
-					con.close();
-					pst.close();
-					rs.close();
-				}
-				catch (SQLException e) {
-					LOGGER.log(Level.INFO, "{0}", e);
-				}
-			}
+            } catch (SQLException e) {
+                LOGGER.log(Level.INFO, "{0}", e);
+            } finally {
+                try {
+                    con.close();
+                    pst.close();
+                    rs.close();
+                } catch (SQLException e) {
+                    LOGGER.log(Level.INFO, "{0}", e);
+                }
+            }
 
-		}
-		else {
-			LOGGER.info(CONNECTION_FAILED_MESSAGE);
-		}
-		return employee;
-	}
+        } else {
+            LOGGER.info(connectionFailedMessage);
+        }
+        return employee;
+    }
 }

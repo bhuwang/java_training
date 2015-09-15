@@ -13,211 +13,208 @@ import com.lftechnology.java.training.dipak.employeemanagement.service.EmployeeS
 import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFactory;
 
 /**
- * <p> This class is used to take the data from the user based on the various
- * functionalities provided by its member function.</p>
+ * <p>
+ * This class is used to take the data from the user based on the various functionalities provided by its member function.
+ * </p>
  * 
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class EmployeeController {
-	private static final Logger LOGGER =
-		Logger.getLogger(EmployeeController.class.getName());
 
-	/**
-	 * This method takes the input from the console and sets the employee object
-	 * and calls the addEmployee method in service layer.
-	 * 
-	 * @param e
-	 * @param sc
-	 * @return count
-	 */
-	public int addEmployee(Employee employee, Scanner sc) {
+    private String exceptionOccurred = "Exception: {0}";
+    private static final Logger LOGGER = Logger.getLogger(EmployeeController.class.getName());
 
-		String userName = null;
-		String password = null;
-		String fullName = null;
-		String department = null;
-		String address = null;
-		int count = 0;
-		boolean isTerminated = false;
-		UserType role = null;
-		for (;;) {
-			try {
-				LOGGER.info("Please enter the employee username::");
-				userName = sc.nextLine();
-				LOGGER.info("Pleasse enter the password for the password::");
-				password = sc.nextLine();
-				LOGGER.info("please enter the fullname::");
-				fullName = sc.nextLine();
-				LOGGER.info("Please enter the department::");
-				department = sc.nextLine();
-				LOGGER.info("Please enter the address::");
-				address = sc.nextLine();
-				LOGGER.info(
-					"Please enter whether the user is terminated::(true/false)");
-				isTerminated = sc.nextBoolean();
-				LOGGER.info("Please enter the user type::(ADMIN->1/USER->2)");
-				int role2 = sc.nextInt();
-				if (role2 == 1) {
-					role = UserType.ADMIN;
-				}
-				else if (role2 == 2) {
-					role = UserType.USER;
-				}
-				else {
-					throw new Exception("Invalid value of the User type");
-				}
+    /**
+     * This method takes the input from the console and sets the employee object and calls the addEmployee method in service layer.
+     * 
+     * @param e
+     * @param sc
+     * @return count
+     */
+    public int addEmployee(Employee employee, Scanner sc) {
 
-				break;
-			}
-			catch (Exception ex) {
-				LOGGER.log(Level.INFO, "Exception occurred: {0}", ex);
-				LOGGER.info("Please re-enter the values.");
-			}
+        String userName = null;
+        String password = null;
+        String fullName = null;
+        String department = null;
+        String address = null;
+        int count = 0;
+        boolean isTerminated = false;
+        UserType role = null;
+        for (;;) {
+            try {
+                LOGGER.info("Please enter the employee username::");
+                userName = sc.nextLine();
+                LOGGER.info("Pleasse enter the password for the password::");
+                password = sc.nextLine();
+                LOGGER.info("please enter the fullname::");
+                fullName = sc.nextLine();
+                LOGGER.info("Please enter the department::");
+                department = sc.nextLine();
+                LOGGER.info("Please enter the address::");
+                address = sc.nextLine();
+                LOGGER.info("Please enter whether the user is terminated::(true/false)");
+                isTerminated = sc.nextBoolean();
+                LOGGER.info("Please enter the user type::(ADMIN->1/USER->2)");
+                int role2 = sc.nextInt();
+                if (role2 == 1) {
+                    role = UserType.ADMIN;
+                } else if (role2 == 2) {
+                    role = UserType.USER;
+                } else {
+                    throw new Exception("Invalid value of the User type");
+                }
 
-		}
+                break;
+            } catch (Exception ex) {
+                LOGGER.log(Level.INFO, exceptionOccurred, ex);
+                LOGGER.info("Please re-enter the values.");
+            }
 
-		employee.setAddress(address);
-		employee.setDepartment(department);
-		employee.setFullName(fullName);
-		employee.setIsTerminated(isTerminated);
-		employee.setUserName(userName);
-		employee.setPassword(password);
-		employee.setRole(role);
+        }
 
-		EmployeeService ed = ServiceFactory.getEmployeeService();
-		count = ed.addEmployee(employee);
+        employee.setAddress(address);
+        employee.setDepartment(department);
+        employee.setFullName(fullName);
+        employee.setIsTerminated(isTerminated);
+        employee.setUserName(userName);
+        employee.setPassword(password);
+        employee.setRole(role);
 
-		return count;
-	}
+        EmployeeService ed = ServiceFactory.getEmployeeService();
+        count = ed.addEmployee(employee);
 
-	/**
-	 * <p>This method takes the name of the employee to be terminated and call
-	 * terminateEmployee method in service layer. This method returns the number
-	 * of employees terminated.</p>
-	 * 
-	 * @param e
-	 * @param sc
-	 * @return count
-	 */
-	public int terminateEmployee(Employee e, Scanner sc) {
+        return count;
+    }
 
-		String fullName = null;
-		int count = 0;
-		try {
-			LOGGER.info("Please enter the employee fullname::");
-			fullName = sc.nextLine();
-			e.setFullName(fullName);
+    /**
+     * <p>
+     * This method takes the name of the employee to be terminated and call terminateEmployee method in service layer. This method returns
+     * the number of employees terminated.
+     * </p>
+     * 
+     * @param e
+     * @param sc
+     * @return count
+     */
+    public int terminateEmployee(Employee em, Scanner sc) {
 
-			EmployeeService ed = ServiceFactory.getEmployeeService();
+        String fullName = null;
+        int count = 0;
+        try {
+            LOGGER.info("Please enter the employee fullname::");
+            fullName = sc.nextLine();
+            em.setFullName(fullName);
 
-			ed.terminateEmployee(e);
+            EmployeeService ed = ServiceFactory.getEmployeeService();
 
-		}
-		catch (Exception ex) {
-			LOGGER.log(Level.INFO, "Exception type: {0}", ex);
-		}
-		return count;
-	}
+            ed.terminateEmployee(em);
 
-	/**
-	 * <p>This method takes the input for the filters and calls the viewEmployee
-	 * method. </p>
-	 * 
-	 * @param e
-	 * @param sc
-	 * @return
-	 */
-	public ResultSet viewEmployee(Employee e, Scanner sc) {
+        } catch (Exception ex) {
+            LOGGER.log(Level.INFO, exceptionOccurred, ex);
+        }
+        return count;
+    }
 
-		String fullName = null;
-		String department = null;
-		String address = null;
-		try {
-			LOGGER.info("Please enter the employee fullname::");
-			fullName = sc.nextLine();
+    /**
+     * <p>
+     * This method takes the input for the filters and calls the viewEmployee method.
+     * </p>
+     * 
+     * @param e
+     * @param sc
+     * @return
+     */
+    public ResultSet viewEmployee(Employee empl, Scanner sc) {
 
-			LOGGER.info("Please enter the department::");
-			department = sc.nextLine();
+        String fullName = null;
+        String department = null;
+        String address = null;
+        try {
+            LOGGER.info("Please enter the employee fullname::");
+            fullName = sc.nextLine();
 
-			LOGGER.info("Please enter the address::");
-			address = sc.nextLine();
+            LOGGER.info("Please enter the department::");
+            department = sc.nextLine();
 
-			e.setFullName(fullName);
-			e.setAddress(address);
-			e.setDepartment(department);
+            LOGGER.info("Please enter the address::");
+            address = sc.nextLine();
 
-			EmployeeService ed = ServiceFactory.getEmployeeService();
+            empl.setFullName(fullName);
+            empl.setAddress(address);
+            empl.setDepartment(department);
 
-			ed.viewEmployee(e);
+            EmployeeService ed = ServiceFactory.getEmployeeService();
 
-		}
-		catch (Exception ex) {
-			LOGGER.log(Level.INFO, "Exception type: {0}", ex);
-		}
-		return null;
-	}
+            ed.viewEmployee(empl);
 
-	/**
-	 * <p>This method takes the input for the fields to be edited and calls
-	 * editEmployeeDetails in service layer.</p>
-	 * 
-	 * @param e
-	 * @param sc
-	 * @return e
-	 */
-	public Employee editEmployeeDetails(Employee e, Scanner sc) {
+        } catch (Exception ex) {
+            LOGGER.log(Level.INFO, exceptionOccurred, ex);
+        }
+        return null;
+    }
 
-		LOGGER.info("Welcome to the edit mode....");
-		String userName = null;
-		String password = null;
-		String fullName = null;
-		String department = null;
-		String address = null;
-		Console cnsl = null;
-		try {
-			cnsl = System.console();
-			LOGGER.info("Enter new username::");
-			userName = sc.nextLine();
+    /**
+     * <p>
+     * This method takes the input for the fields to be edited and calls editEmployeeDetails in service layer.
+     * </p>
+     * 
+     * @param e
+     * @param sc
+     * @return e
+     */
+    public Employee editEmployeeDetails(Employee e, Scanner sc) {
 
-			LOGGER.info("Enter new password::");
-			char[] pwd = cnsl.readPassword();
-			password = String.valueOf(pwd);
+        LOGGER.info("Welcome to the edit mode....");
+        String userName = null;
+        String password = null;
+        String fullName = null;
+        String department = null;
+        String address = null;
+        Console cnsl = null;
+        try {
+            cnsl = System.console();
+            LOGGER.info("Enter new username::");
+            userName = sc.nextLine();
 
-			LOGGER.info("Enter new fullname::");
-			fullName = sc.nextLine();
+            LOGGER.info("Enter new password::");
+            char[] pwd = cnsl.readPassword();
+            password = String.valueOf(pwd);
 
-			LOGGER.info("Enter new department::");
-			department = sc.nextLine();
+            LOGGER.info("Enter new fullname::");
+            fullName = sc.nextLine();
 
-			LOGGER.info("Enter new address::");
-			address = sc.nextLine();
+            LOGGER.info("Enter new department::");
+            department = sc.nextLine();
 
-			if (!("".equals(userName))) {
-				e.setUserName(userName);
-			}
-			if (!("".equals(password))) {
-				e.setPassword(password);
-			}
-			if (!("".equals(fullName))) {
-				e.setFullName(fullName);
-			}
-			if (!("".equals(department))) {
-				e.setDepartment(department);
-			}
-			if (!("".equals(address))) {
-				e.setAddress(address);
-			}
+            LOGGER.info("Enter new address::");
+            address = sc.nextLine();
 
-			EmployeeService es = ServiceFactory.getEmployeeService();
+            if (!("".equals(userName))) {
+                e.setUserName(userName);
+            }
+            if (!("".equals(password))) {
+                e.setPassword(password);
+            }
+            if (!("".equals(fullName))) {
+                e.setFullName(fullName);
+            }
+            if (!("".equals(department))) {
+                e.setDepartment(department);
+            }
+            if (!("".equals(address))) {
+                e.setAddress(address);
+            }
 
-			e = es.editEmployeeDetails(e);
+            EmployeeService es = ServiceFactory.getEmployeeService();
 
-		}
-		catch (Exception ex) {
-			LOGGER.log(Level.INFO, "Exception type: {0}", ex);
-		}
+            e = es.editEmployeeDetails(e);
 
-		return e;
-	}
+        } catch (Exception ex) {
+            LOGGER.log(Level.INFO, exceptionOccurred, ex);
+        }
+
+        return e;
+    }
 
 }
