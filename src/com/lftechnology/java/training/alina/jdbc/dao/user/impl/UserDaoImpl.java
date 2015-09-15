@@ -86,8 +86,25 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findByPk(Integer id) {
-        return null;
+    public List<User> findByPk(Integer userId) {
+        List<User> userList = new ArrayList<User>();
+        Map<Integer, Object> params = new HashMap<Integer, Object>();
+        params.put(1, userId);
+        Database database = UserService.setDatabaseParams(params);
+        String sql = "Select * from user where user_id=?) ";
+        try {
+            Connection connection = DbFacade.getDbConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
+            ResultSet result = preparedStatement.executeQuery();
+            while (result.next()) {
+                UserService userService = new UserService();
+                userList.add(userService.map(result));
+            }
+        } catch (SQLException sqe) {
+            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+        }
+        return userList;
     }
 
     @Override

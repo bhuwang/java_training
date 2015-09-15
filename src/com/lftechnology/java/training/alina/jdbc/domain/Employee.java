@@ -18,15 +18,6 @@ public class Employee extends User implements Comparable<Employee> {
     private Timestamp createdAt;
     private Timestamp modifiedAt;
 
-    public enum EmployeeRole {
-        ADMIN("admin"), USER("user");
-        public String role;
-
-        private EmployeeRole(String role) {
-            this.role = role;
-        }
-    }
-
     public int getEmployeeId() {
         return employeeId;
     }

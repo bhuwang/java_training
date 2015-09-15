@@ -13,6 +13,7 @@ import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
+import com.lftechnology.java.training.alina.jdbc.domain.EmployeeRole;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.views.AdminView;
 import com.lftechnology.java.training.alina.jdbc.views.EmployeeEditView;
@@ -68,7 +69,7 @@ public class UserService {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public void getEmployeeRole(Scanner scanner, Employee employee) throws SQLException {
-        if (employee.getRole().equals(Employee.EmployeeRole.ADMIN.role)) {
+        if (employee.getRole().equals(EmployeeRole.ADMIN.role)) {
             getAdminRole(scanner, employee);
         } else {
             getNormalUserRole(scanner, employee);

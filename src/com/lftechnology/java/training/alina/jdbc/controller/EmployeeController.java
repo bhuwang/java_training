@@ -9,12 +9,14 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
+import com.lftechnology.java.training.alina.jdbc.domain.EmployeeRole;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
 import com.lftechnology.java.training.alina.jdbc.service.UserService;
@@ -72,7 +74,7 @@ public class EmployeeController {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static boolean checkMatchedRole(Scanner scanner, Boolean roleStatus, String role) {
-        if (role.equals(Employee.EmployeeRole.ADMIN.role) || role.equals(Employee.EmployeeRole.USER.role)) {
+        if (role.equals(EmployeeRole.ADMIN.role) || role.equals(EmployeeRole.USER.role)) {
             roleStatus = true;
         } else {
             LOGGER.log(Level.INFO, "\n=====>\nRole should be user/admin. Please enter valid role\n=====>\n");
