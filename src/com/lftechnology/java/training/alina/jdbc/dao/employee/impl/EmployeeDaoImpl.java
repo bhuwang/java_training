@@ -75,7 +75,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         String sql = "Insert into employee (fullname,department,address,role,user_id,created_at) values (?,?,?,?,?,?)";
         try {
             Connection connection = DbFacade.getDbConnection();
-            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, employee.getFullname());
             preparedStatement.setString(2, employee.getDepartment());
             preparedStatement.setString(3, employee.getAddress());
