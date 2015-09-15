@@ -1,11 +1,15 @@
 package com.lftechnology.java.training.sanish.application.component;
 
+import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.model.dao.EmployeeDao;
 import com.lftechnology.java.training.sanish.application.model.dao.UserDao;
 import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
+import com.lftechnology.java.training.sanish.application.model.domain.UserEmployee;
 import com.lftechnology.java.training.sanish.application.utility.UserInput;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -286,5 +290,68 @@ public class EmployeeHelper {
                 }
             }
         }
+    }
+
+    public static UserEmployee addNewEmployee(Scanner inputScanner) {
+        String message = "\n >> Type user name : ";
+        LOGGER.log(Level.INFO, message);
+        String userName = UserInput.getString(inputScanner);
+        message = "\n >> Type password : ";
+        LOGGER.log(Level.INFO, message);
+        String password = UserInput.getString(inputScanner);
+        message = "\n >> Type employee full name : ";
+        LOGGER.log(Level.INFO, message);
+        String fullName = UserInput.getAlphabeticWords(inputScanner);
+        message = "\n >> Type email : ";
+        LOGGER.log(Level.INFO, message);
+        String email = UserInput.getEmail(inputScanner);
+        message = "\n >> Type address : ";
+        LOGGER.log(Level.INFO, message);
+        String address = UserInput.getAlphabeticWords(inputScanner);
+        message = "\n >> Type department : ";
+        LOGGER.log(Level.INFO, message);
+        String department = UserInput.getAlphabeticWords(inputScanner);
+        message = "\n >> Type role 1:User 2:Admin : ";
+        LOGGER.log(Level.INFO, message);
+        String role = UserInput.getUserRole(inputScanner);
+
+        try {
+            UserEmployee userEmployee = new UserEmployee();
+            Connection dbConnect = DbConnect.getDbConnection();
+            dbConnect.setAutoCommit(false);
+            UserDao userDao = new UserDao();
+            User user = new User();
+            user.setAttribute("userName", userName);
+            user.setAttribute("password", password);
+            user.setAttribute("email", email);
+            int userId = userDao.addNew(user);
+            if (userId != -1) {
+                user.setAttribute("userId", userId);
+                userEmployee.setUser(user);
+                EmployeeDao employeeDao = new EmployeeDao();
+                Employee employee = new Employee();
+                employee.setAttribute("userId", userId);
+                employee.setAttribute("fullName", fullName);
+                employee.setAttribute("address", address);
+                employee.setAttribute("department", department);
+                employee.setAttribute("role", role);
+                int imployeeId = employeeDao.addNew(employee);
+                if (imployeeId != -1) {
+                    dbConnect.commit();
+                    employee.setEmployeeId(imployeeId);
+                    userEmployee.setEmployee(employee);
+                    return  userEmployee;
+                } else {
+                    dbConnect.rollback();
+                }
+            } else {
+                dbConnect.rollback();
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            DbConnect.DbClose();
+        }
+
+        return null;
     }
 }

@@ -20,7 +20,7 @@ public interface CrudService<T extends Model> {
      * @return {@link Model}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public T addNew(T t);
+    public int addNew(T t);
 
     /**
      * Return result set by primary key value

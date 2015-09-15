@@ -7,8 +7,10 @@ import com.lftechnology.java.training.sanish.application.model.domain.UserEmploy
 import com.lftechnology.java.training.sanish.application.model.service.impl.UserService;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,9 +42,30 @@ public class UserDao implements UserService {
         return null;
     }
 
-    @Override public User addNew(User user) {
-        // TODO add new user
-        return null;
+    @Override public int addNew(User user) {
+        int lastInsertedId = -1;
+        int affectedRow = 0;
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            String query = "INSERT INTO users(userName, password, email, createdAt) VALUES (?, ?, ?, ?)";
+            preparedStatement =
+                    DbConnect.getPreparedStatement(query, user.getUserName(), user.getPassword(), user.getEmail(), dateFormat.format(date));
+            affectedRow = preparedStatement.executeUpdate();
+
+            if (affectedRow > 0) {
+                ResultSet rs = preparedStatement.getGeneratedKeys();
+                if (rs.next()) {
+                    lastInsertedId = rs.getInt(1);
+                }
+            }
+            DbConnect.closePreparedStatement();
+            return lastInsertedId;
+        } catch (SQLException e) {
+            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            DbConnect.closePreparedStatement();
+        }
+        return lastInsertedId;
     }
 
     @Override public User findById(Integer pk) {

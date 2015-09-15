@@ -54,7 +54,7 @@ public class UserInput {
      */
     public static String getString(Scanner scanner) {
         String inputString = "";
-        String pattern = "[a-zA-Z1-9!@#$%^&*.]+";
+        String pattern = "[a-zA-Z1-9!@#$%^&*._,]+";
         boolean checkNextInput = true;
         while (checkNextInput) {
             if (!scanner.hasNext()) {
@@ -74,6 +74,52 @@ public class UserInput {
         return inputString;
     }
 
+    public static String getEmail(Scanner scanner){
+        String email = "";
+        String emailPattern = "[a-z]+@[a-z]+(.[a-z])+";
+        while (true) {
+            if (!scanner.hasNext()) {
+                scanner.next();
+            } else {
+                email = scanner.next();
+                if (email.isEmpty()) {
+                    continue;
+                } else if (!email.matches(emailPattern)) {
+                    LOGGER.log(Level.WARNING, "Invalid email address, Please type again : ");
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return email;
+    }
+
+    public static String getUserRole(Scanner scanner) {
+        String role = "User";
+        int intNum = 1;
+        while (true) {
+            if (!scanner.hasNextInt()) {
+                LOGGER.log(Level.WARNING, "Please enter valid number : ");
+                scanner.next();
+            } else {
+                intNum = scanner.nextInt();
+                if(intNum == 1){
+                    role = "User";
+                    break;
+                }else if(intNum == 2){
+                    role = "Admin";
+                    break;
+                }else{
+                    LOGGER.log(Level.WARNING, "Please provide valid number, 1 : User 2: Admin : ");
+                }
+            }
+
+        }
+
+        return role;
+    }
+
     /**
      * Scan alphabetic words form console and return
      *
@@ -83,7 +129,7 @@ public class UserInput {
      */
     public static String getAlphabeticWords(Scanner scanner) {
         String inputWords = "";
-        String pattern = "[a-zA-Z]+[a-z A-Z]*";
+        String pattern = "[a-zA-Z]+[a-z ,A-Z]*";
         boolean checkNextInput = true;
         while (checkNextInput) {
             if (!scanner.hasNextLine()) {

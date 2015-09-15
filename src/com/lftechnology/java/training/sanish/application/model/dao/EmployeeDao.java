@@ -8,7 +8,10 @@ import com.lftechnology.java.training.sanish.application.model.service.impl.Empl
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,16 +22,17 @@ import java.util.logging.Logger;
 public class EmployeeDao implements EmployeeService {
     private static final Logger LOGGER = Logger.getLogger(EmployeeDao.class.getName());
     private static PreparedStatement preparedStatement;
+
     @Override public boolean isAdmin(Employee employee) {
-        if(employee.getRole() == "Admin"){
-            return  true;
+        if (employee.getRole() == "Admin") {
+            return true;
         }
         return false;
     }
 
     @Override public boolean isUser(Employee employee) {
-        if(employee.getRole() == "User"){
-            return  true;
+        if (employee.getRole() == "User") {
+            return true;
         }
         return false;
     }
@@ -51,9 +55,29 @@ public class EmployeeDao implements EmployeeService {
         return null;
     }
 
-    @Override public Employee addNew(Employee employee) {
-        // TODO add new employee
-        return null;
+    @Override public int addNew(Employee employee) {
+        int lastInsertedId = -1;
+        int affectedRow = 0;
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            String query = "INSERT INTO employees(userId, fullName, address, department, role, createdAt) VALUES (?, ?, ?, ?, ?, ?)";
+            preparedStatement = DbConnect.getPreparedStatement(query, employee.getUserId(), employee.getFullName(), employee.getAddress(),
+                    employee.getDepartment(), employee.getRole(), dateFormat.format(date));
+            affectedRow = preparedStatement.executeUpdate();
+            if (affectedRow > 0) {
+                ResultSet rs = preparedStatement.getGeneratedKeys();
+                if (rs.next()) {
+                    lastInsertedId = rs.getInt(1);
+                }
+            }
+            DbConnect.closePreparedStatement();
+            return lastInsertedId;
+        } catch (SQLException e) {
+            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            DbConnect.closePreparedStatement();
+        }
+        return lastInsertedId;
     }
 
     @Override public Employee findById(Integer pk) {

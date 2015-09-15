@@ -56,13 +56,13 @@ public class EmployeeController {
                     changePasswordPage();
                 } else if (menuSelected == 5) {
                     if (employee.getRole().equals("Admin")) {
-                        // TODO
+                        addEmployeePage();
                     } else {
                         LoginController.logoutPage();
                     }
 
                 } else if (menuSelected == 6) {
-                    // TODO
+                    editEmployeePage();
                 } else if (menuSelected == 7) {
                     // TODO
                 } else {
@@ -232,6 +232,58 @@ public class EmployeeController {
                 if (option == 1) {
                     employeeDashboardPage();
                 } else if (option == 2) {
+                    LoginController.logoutPage();
+                }
+            } else {
+                LoginController.LoginPage();
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+        } finally {
+            DbConnect.DbClose();
+        }
+    }
+
+    public static void addEmployeePage() {
+        try (Scanner inputScanner = new Scanner(System.in)) {
+            if (UserLogin.isLogin()) {
+                User user = UserLogin.getCurrentUser();
+                AddEmployeePage.renderPage(false, null);
+                UserEmployee userEmployee = EmployeeHelper.addNewEmployee(inputScanner);
+                AddEmployeePage.renderPage(true, userEmployee);
+                int option;
+                option = UserInput.getIntegerNumber(inputScanner, 1, 3);
+                if (option == 1) {
+                    addEmployeePage();
+                } else if (option == 2) {
+                    employeeDashboardPage();
+                } else {
+                    LoginController.logoutPage();
+                }
+            } else {
+                LoginController.LoginPage();
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+        } finally {
+            DbConnect.DbClose();
+        }
+    }
+
+    public static void editEmployeePage() {
+        try (Scanner inputScanner = new Scanner(System.in)) {
+            if (UserLogin.isLogin()) {
+                User user = UserLogin.getCurrentUser();
+                EditEmployeePage.renderPage(false);
+
+                //EditEmployeePage.renderPage(true);
+                int option;
+                option = UserInput.getIntegerNumber(inputScanner, 1, 3);
+                if (option == 1) {
+                    employeeDashboardPage();
+                } else if (option == 2) {
+                    editEmployeePage();
+                } else {
                     LoginController.logoutPage();
                 }
             } else {
