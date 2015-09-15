@@ -47,7 +47,9 @@ public class AdminPanel {
 
         Employee e = new Employee();
         e = DuplicateEmployee.duplicateEmployeeObject(employee1, e);
-
+        Employee e2=new Employee();
+        e2=DuplicateEmployee.duplicateEmployeeObject(e, e2);
+        
         EmployeeController ec = new EmployeeController();
         for (;;) {
             try {
@@ -61,21 +63,19 @@ public class AdminPanel {
                 int choice = Math.abs(Integer.parseInt(sc.nextLine()));
                 switch (choice) {
                 case 1:
-                    ec.addEmployee(e, sc);
+                    ec.addEmployee(employee1, sc);
                     break;
                 case 2:
-                    ec.terminateEmployee(e, sc);
+                    ec.terminateEmployee(employee1, sc);
                     break;
                 case 3:
-                    ec.viewEmployee(e, sc);
+                    ec.viewEmployee(employee1, sc);
                     break;
                 case 4:
-                    e = ec.editEmployeeDetails(employee1, sc);
-                    employee1 = e;
+                    e2 = ec.editEmployeeDetails(e, sc);
                     break;
                 case 5:
-                    employee1 = LogOutController.logOut(e, sc);
-                    e = employee1;
+                    e = LogOutController.logOut(employee1, sc);
                     break;
 
                 default:

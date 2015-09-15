@@ -205,13 +205,12 @@ public class EmployeeController {
 
             EmployeeService es = ServiceFactory.getEmployeeService();
 
-            e = es.editEmployeeDetails(emp1);
+            return es.editEmployeeDetails(emp1);
 
         } catch (Exception ex) {
             LOGGER.log(Level.INFO, exceptionOccurred, ex);
         }
-
-        return e;
+        return emp1;
     }
 
 }

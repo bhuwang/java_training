@@ -47,6 +47,10 @@ public class UserPanel {
         EmployeeController ec = new EmployeeController();
         Employee emp2 = new Employee();
         emp2 = DuplicateEmployee.duplicateEmployeeObject(emp, emp2);
+        
+        Employee e2=new Employee();
+        e2=DuplicateEmployee.duplicateEmployeeObject(emp2, e2);
+        
         for (;;) {
             try {
                 LOGGER.info("Welcome to the user panel...\n");
@@ -60,11 +64,10 @@ public class UserPanel {
                     ec.viewEmployee(emp2, sc);
                     break;
                 case 2:
-                    emp = ec.editEmployeeDetails(emp, sc);
+                    e2 = ec.editEmployeeDetails(emp2, sc);
                     break;
                 case 3:
-                    emp = LogOutController.logOut(emp2, sc);
-                    emp2 = emp;
+                    emp2 = LogOutController.logOut(emp, sc);
                     break;
                 default:
                     LOGGER.info("Illegal choice. Please re-enter your choice.");
