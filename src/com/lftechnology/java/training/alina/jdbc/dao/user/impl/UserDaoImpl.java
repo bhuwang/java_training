@@ -101,6 +101,7 @@ public class UserDaoImpl implements UserDao {
                 UserService userService = new UserService();
                 userList.add(userService.map(result));
             }
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
@@ -122,6 +123,7 @@ public class UserDaoImpl implements UserDao {
                 user.setCreatedAt(result.getTimestamp("created_at"));
                 userList.add(user);
             }
+            preparedStatement.close();
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { e });
         }
@@ -145,6 +147,7 @@ public class UserDaoImpl implements UserDao {
                     user.setUserId(rs.getInt(1));
                 }
             }
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
@@ -166,6 +169,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setBoolean(5, Constants.NOT_TERMINATED);
             int result = preparedStatement.executeUpdate();
             isDeleted = (result != 0) ? true : false;
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
@@ -209,6 +213,7 @@ public class UserDaoImpl implements UserDao {
         } else {
             existUser = false;
         }
+        preparedStatement.close();
         return existUser;
     }
 

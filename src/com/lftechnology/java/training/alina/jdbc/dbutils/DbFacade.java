@@ -50,7 +50,6 @@ public class DbFacade {
         if (connection != null) {
             connection.close();
         }
-        // connection.setAutoCommit(true);
     }
 
     /**

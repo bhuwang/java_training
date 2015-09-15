@@ -43,6 +43,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 UserService userService = new UserService();
                 employeeList.add(userService.map(result));
             }
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
@@ -64,6 +65,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 UserService userService = new UserService();
                 employeeList.add(userService.map(result));
             }
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
@@ -89,6 +91,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                     employee.setEmployeeId(rs.getInt(1));
                 }
             }
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
@@ -103,6 +106,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             PreparedStatement preparedStatement = connection.prepareStatement(database.getSqlQuery());
             preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
             resultSet = preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
@@ -122,6 +126,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             preparedStatement.setBoolean(4, Constants.NOT_DELETED);
             int result = preparedStatement.executeUpdate();
             isDeleted = (result != 0) ? true : false;
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
@@ -132,7 +137,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public List<Employee> searchEmployee(String... searchContent) {
         List<Employee> employeeList = new ArrayList<Employee>();
         String sql =
-                "select * from employee e inner join user u on e.user_id=u.user_id where e.fullname like ? or e.department like ? or e.address like ?";
+                "select * from employee e inner join user u on e.user_id=u.user_id where (e.fullname like ? or e.department like ? or e.address like ?) and (u.is_terminated=? or e.is_deleted=?)";
         try {
             Connection connection = DbFacade.getDbConnection();
             PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
@@ -140,12 +145,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 preparedStatement.setString(1, content + "%");
                 preparedStatement.setString(2, content + "%");
                 preparedStatement.setString(3, content + "%");
+                preparedStatement.setBoolean(4, Constants.NOT_TERMINATED);
+                preparedStatement.setBoolean(5, Constants.NOT_DELETED);
             }
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
                 UserService userService = new UserService();
                 employeeList.add(userService.map(result));
             }
+            preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
