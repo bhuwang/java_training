@@ -8,10 +8,6 @@ package com.lftechnology.java.training.alina.jdbc.constants;
  */
 public class Constants {
 
-    private Constants() {
-
-    }
-
     public static final char ADMIN_EXIT = 'g';
     public static final char EMPLOYEE_EXIT = 'e';
     public static final char EMPLOYEE_EDIT_EXIT = 'f';
@@ -30,4 +26,8 @@ public class Constants {
     public static final String SQLEXCEPTION_LOG = "SQLException : {0}";
     public static final String INVALID_ENTRY =
             "\n========================\nInvalid entry, Please choose from menu option.\n========================\n";
+
+    private Constants() {
+
+    }
 }

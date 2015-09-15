@@ -20,10 +20,14 @@ public class DbFacade {
 
     private static final Logger LOGGER = Logger.getLogger(DbFacade.class.getName());
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://127.0.0.1/employee_mgmt?rewriteBatchedStatements=true";
+    private static final String DB_URL = "jdbc:mysql://localhost/employee_mgmt?rewriteBatchedStatements=true";
     private static final String USER = "root";
     private static final String PASS = "";
     private static Connection connection;
+
+    private DbFacade() {
+
+    }
 
     /**
      * Connects to database
@@ -65,7 +69,7 @@ public class DbFacade {
         int i = 1;
         for (Object arg : args) {
             if (arg instanceof Date) {
-
+                ps.setDate(i++, (Date) arg);
             } else if (arg instanceof Integer) {
                 ps.setInt(i++, (Integer) arg);
             } else if (arg instanceof Long) {

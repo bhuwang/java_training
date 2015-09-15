@@ -10,6 +10,10 @@ import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
  */
 public class EmployeeManagement {
 
+    private EmployeeManagement() {
+
+    }
+
     public static void main(String[] args) throws SQLException {
         LoginController loginController = new LoginController();
         loginController.userLogin();
