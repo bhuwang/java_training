@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lftechnology.java.training.niraj.ems.domains.Employee;
+import com.lftechnology.java.training.niraj.ems.enums.Operators;
 import com.lftechnology.java.training.niraj.ems.enums.Roles;
 import com.lftechnology.java.training.niraj.ems.enums.Status;
 import com.lftechnology.java.training.niraj.ems.exceptions.CustomException;
@@ -39,7 +40,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
         Employee employee = new Employee();
         Map<String, String> condition = new LinkedHashMap<String, String>();
         condition.put(employee.getPrimaryKey(), s);
-        List<Map<String, String>> resultList = findQuery(conn, employee, condition);
+        List<Map<String, String>> resultList = findQuery(conn, employee, condition, Operators.AND);
         parseEmployeeObject(resultList, employee);
         return employee;
     }
@@ -47,7 +48,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
     @Override
     public Employee findByAttributes(Map<String, String> conditions) throws SQLException {
         Employee employee = new Employee();
-        List<Map<String, String>> resultList = findQuery(conn, employee, conditions);
+        List<Map<String, String>> resultList = findQuery(conn, employee, conditions, Operators.AND);
         parseEmployeeObject(resultList, employee);
         return employee;
     }
@@ -82,7 +83,21 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
         Employee employee = new Employee();
         Employee searchResult;
         List<Employee> employeeList = new ArrayList<Employee>();
-        List<Map<String, String>> results = findQuery(conn, employee, conditions);
+        List<Map<String, String>> results = findQuery(conn, employee, conditions, Operators.AND);
+        for (Map<String, String> result : results) {
+            searchResult = new Employee();
+            setEmployeeObject(result, searchResult);
+            employeeList.add(searchResult);
+        }
+        return employeeList;
+    }
+
+    @Override
+    public List<Employee> findAll(Map<String, String> conditions, Operators operator) throws SQLException {
+        Employee employee = new Employee();
+        Employee searchResult;
+        List<Employee> employeeList = new ArrayList<Employee>();
+        List<Map<String, String>> results = findQuery(conn, employee, conditions, operator);
         for (Map<String, String> result : results) {
             searchResult = new Employee();
             setEmployeeObject(result, searchResult);
@@ -100,7 +115,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
 
     @Override
     public int getCount(Map<String, String> conditions) throws SQLException {
-        return count("users", conditions);
+        return count(conn, "users", conditions, Operators.AND);
     }
 
     /**
@@ -111,7 +126,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
      * @throws SQLException
      */
     public int getCount() throws SQLException {
-        return count("users");
+        return count(conn, "users");
     }
 
     /**

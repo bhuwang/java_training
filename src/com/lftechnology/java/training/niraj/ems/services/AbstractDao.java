@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lftechnology.java.training.niraj.ems.domains.Pojo;
+import com.lftechnology.java.training.niraj.ems.enums.Operators;
 import com.lftechnology.java.training.niraj.ems.utils.DbFacade;
 
 public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S> {
@@ -35,6 +36,19 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @throws SQLException
      */
     public abstract List<T> findAll(Map<String, String> conditions) throws SQLException;
+
+    /**
+     * Find all the records for a particular condition
+     * 
+     * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+     * @param conditions
+     *            {@link Map} of conditions
+     * @param operator
+     *            {@link Operators}
+     * @return {@link List} of {@link Object} of the found records
+     * @throws SQLException
+     */
+    public abstract List<T> findAll(Map<String, String> conditions, Operators operator) throws SQLException;
 
     /**
      * Find all records of a table
@@ -124,10 +138,11 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return {@link List} of {@link Map} of found records
      * @throws SQLException
      */
-    protected List<Map<String, String>> findQuery(Connection connection, T t, Map<String, String> conditions) throws SQLException {
+    protected List<Map<String, String>> findQuery(Connection connection, T t, Map<String, String> conditions, Operators operator)
+            throws SQLException {
         String[] attributes = {};
         List<Map<String, String>> resultList = null;
-        try (PreparedStatement stmt = DbFacade.createSelectStatement(connection, t.getTable(), attributes, conditions);) {
+        try (PreparedStatement stmt = DbFacade.createSelectStatement(connection, t.getTable(), attributes, conditions, operator);) {
             ResultSet result = null;
             result = stmt.executeQuery();
 
@@ -205,8 +220,8 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return int number of rows
      * @throws SQLException
      */
-    private int getRowCount(Connection connection, String table, Map<String, String> conditions) throws SQLException {
-        try (PreparedStatement stmt = DbFacade.createCountStatement(connection, table, conditions)) {
+    private int getRowCount(Connection connection, String table, Map<String, String> conditions, Operators operator) throws SQLException {
+        try (PreparedStatement stmt = DbFacade.createCountStatement(connection, table, conditions, operator)) {
             int rowCount = 0;
             ResultSet result = stmt.executeQuery();
             while (result.next()) {
@@ -255,14 +270,9 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return
      * @throws SQLException
      */
-    public int count(String table, Map<String, String> conditions) throws SQLException {
+    public int count(Connection connection, String table, Map<String, String> conditions, Operators operator) throws SQLException {
         int count = 0;
-
-        try (Connection connection = DbFacade.getConnection()) {
-            count = getRowCount(connection, table, conditions);
-        } catch (SQLException se) {
-            throw new SQLException(se);
-        }
+        count = getRowCount(connection, table, conditions, operator);
         return count;
 
     }
@@ -275,14 +285,9 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return
      * @throws SQLException
      */
-    public int count(String table) throws SQLException {
+    public int count(Connection connection, String table) throws SQLException {
         int count = 0;
-
-        try (Connection connection = DbFacade.getConnection()) {
-            count = getRowCount(connection, table);
-        } catch (SQLException se) {
-            throw new SQLException(se);
-        }
+        count = getRowCount(connection, table);
         return count;
     }
 

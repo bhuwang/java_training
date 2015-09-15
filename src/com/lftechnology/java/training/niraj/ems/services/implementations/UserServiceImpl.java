@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 import com.lftechnology.java.training.niraj.ems.domains.Employee;
+import com.lftechnology.java.training.niraj.ems.enums.Operators;
 import com.lftechnology.java.training.niraj.ems.enums.Roles;
 import com.lftechnology.java.training.niraj.ems.enums.Status;
 import com.lftechnology.java.training.niraj.ems.exceptions.CustomException;
@@ -306,9 +307,14 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      */
     public String searchUser(Scanner scanner, Console console) throws SQLException {
         Map<String, String> searchCondition = new LinkedHashMap<String, String>();
-        searchCondition.put("username", userInput.getInput(scanner, console, Constants.SEARCH_BY_USERNAME));
+        String username = userInput.getInput(scanner, console, Constants.SEARCH_BY_USERNAME);
+        searchCondition.put("username", username);
+        searchCondition.put("fullname", username);
+        searchCondition.put("department", username);
+        searchCondition.put("address", username);
+        searchCondition.put(Constants.OPERATOR, "AND");
         searchCondition.put("status", Status.ACTIVE.getStatus());
-        List<Employee> searchResults = employeeDao.findAll(searchCondition);
+        List<Employee> searchResults = employeeDao.findAll(searchCondition, Operators.OR);
         if (searchResults.size() == 0) {
             return Constants.USER_NOT_FOUND;
         }

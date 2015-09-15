@@ -10,6 +10,8 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.lftechnology.java.training.niraj.ems.enums.Operators;
+
 /**
  * Utility class related to database
  * 
@@ -60,11 +62,33 @@ public class DbFacade {
      * @throws SQLException
      */
     public static PreparedStatement createSelectStatement(Connection connection, String table, String[] attributes,
+            Map<String, String> conditions, Operators operator) throws SQLException {
+
+        StringBuilder query = new StringBuilder();
+        query.append(DbFacade.addSelectClause(attributes, table));
+        query.append(DbFacade.addWhereClause(conditions, operator));
+        PreparedStatement stmt = connection.prepareStatement(query.toString());
+        return setStatementParameters(stmt, conditions);
+
+    }
+
+    /**
+     * Create select statement
+     * 
+     * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+     * @param connection
+     * @param table
+     * @param attributes
+     * @param conditions
+     * @return
+     * @throws SQLException
+     */
+    public static PreparedStatement createSelectStatement(Connection connection, String table, String[] attributes,
             Map<String, String> conditions) throws SQLException {
 
         StringBuilder query = new StringBuilder();
         query.append(DbFacade.addSelectClause(attributes, table));
-        query.append(DbFacade.addWhereClause(conditions));
+        query.append(DbFacade.addWhereClause(conditions, Operators.AND));
         PreparedStatement stmt = connection.prepareStatement(query.toString());
         return setStatementParameters(stmt, conditions);
 
@@ -80,12 +104,12 @@ public class DbFacade {
      * @return
      * @throws SQLException
      */
-    public static PreparedStatement createCountStatement(Connection connection, String table, Map<String, String> conditions)
-            throws SQLException {
+    public static PreparedStatement createCountStatement(Connection connection, String table, Map<String, String> conditions,
+            Operators operator) throws SQLException {
         StringBuilder query = new StringBuilder();
         query.append(Constants.SELECT_COUNT_QUERY);
         query.append(table);
-        query.append(DbFacade.addWhereClause(conditions));
+        query.append(DbFacade.addWhereClause(conditions, operator));
 
         PreparedStatement stmt = connection.prepareStatement(query.toString());
         return setStatementParameters(stmt, conditions);
@@ -158,7 +182,31 @@ public class DbFacade {
             values.remove("id");
         }
         query.append(addUpdateClause(table, values));
-        query.append(addWhereClause(conditions));
+        query.append(addWhereClause(conditions, Operators.AND));
+        PreparedStatement stmt = connection.prepareStatement(query.toString());
+        return setStatementParametersWithWhereClause(stmt, values, conditions);
+
+    }
+
+    /**
+     * Creates update statement with conditions
+     * 
+     * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+     * @param connection
+     * @param table
+     * @param values
+     * @param conditions
+     * @return
+     * @throws SQLException
+     */
+    public static PreparedStatement createUpdateStatement(Connection connection, String table, Map<String, String> values,
+            Map<String, String> conditions, Operators operator) throws SQLException {
+        StringBuilder query = new StringBuilder();
+        if (values.containsKey("id")) {
+            values.remove("id");
+        }
+        query.append(addUpdateClause(table, values));
+        query.append(addWhereClause(conditions, operator));
         PreparedStatement stmt = connection.prepareStatement(query.toString());
         return setStatementParametersWithWhereClause(stmt, values, conditions);
 
@@ -214,15 +262,34 @@ public class DbFacade {
      * @param conditions
      * @return
      */
-    private static String addWhereClause(Map<String, String> conditions) {
+    private static String addWhereClause(Map<String, String> conditions, Operators operator) {
         StringBuilder query = new StringBuilder();
         query.append(" WHERE ");
 
+        int i = 0;
+        boolean isOperator;
+        String previousKey = "";
+        String currentKey;
         for (Map.Entry<String, String> entry : conditions.entrySet()) {
-            query.append(entry.getKey());
-            query.append("=? AND ");
+            currentKey = entry.getKey();
+            isOperator = currentKey.equals(Constants.OPERATOR);
+            if (i != 0) {
+                if (isOperator) {
+                    query.append(entry.getValue());
+                } else if (!previousKey.equals(Constants.OPERATOR)) {
+                    query.append(operator.getOperator());
+                }
+                query.append(" ");
+            }
+            if (!isOperator) {
+                query.append(entry.getKey());
+                query.append("=? ");
+            }
+            previousKey = currentKey;
+
+            i++;
         }
-        return Utils.trimEnd(query.toString(), "AND ");
+        return Utils.trimEnd(query.toString(), operator.getOperator() + " ");
     }
 
     /**
@@ -269,6 +336,9 @@ public class DbFacade {
             throws SQLException {
 
         int i = 1;
+        if (parameters.containsKey(Constants.OPERATOR)) {
+            parameters.remove(Constants.OPERATOR);
+        }
         for (Map.Entry<String, String> entry : parameters.entrySet()) {
             statement.setString(i, entry.getValue());
             i++;
