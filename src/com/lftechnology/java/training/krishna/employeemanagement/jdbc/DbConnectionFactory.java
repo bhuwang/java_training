@@ -3,9 +3,12 @@ package com.lftechnology.java.training.krishna.employeemanagement.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.lftechnology.java.training.krishna.employeemanagement.utils.ConstantUtils;
 
 /**
  * This program is used to connect database.
@@ -24,12 +27,12 @@ public class DbConnectionFactory {
 	public static final String PASSWORD = "";
 
 	private static Connection connection = null;
+	private static PreparedStatement preparedStatement;
 
-	//constructor
+	// constructor
 	private DbConnectionFactory() {
 
 	}
-
 
 	/**
 	 * This method is used to connect database.
@@ -56,6 +59,24 @@ public class DbConnectionFactory {
 		}
 		return connection;
 
+	}
+	/**
+	 * This method is used to close prepared statement.
+	 *
+	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
+	 * @version 1.0
+	 */
+	public static void closePreparedStatement() {
+
+		try {
+
+			if (preparedStatement != null) {
+				preparedStatement.close();
+			}
+		}
+		catch (SQLException e) {
+			LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
+		}
 	}
 
 }

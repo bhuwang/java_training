@@ -64,12 +64,7 @@ public class UserDaoImpl implements UserDao {
 				Level.SEVERE, "Exception while creating statement: {0}", e);
 		}
 		finally {
-			try {
-				preparedStatement.close();
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, "Error closing statement: {0}", e);
-			}
+			DbConnectionFactory.closePreparedStatement();
 		}
 		return activeUser;
 	}

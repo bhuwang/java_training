@@ -79,12 +79,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				Level.SEVERE, ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
-			try {
-				preparedStatement.close();
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
-			}
+			DbConnectionFactory.closePreparedStatement();
 		}
 		return entity;
 	}
@@ -114,12 +109,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
-			try {
-				preparedStatement.close();
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
-			}
+			DbConnectionFactory.closePreparedStatement();
 		}
 		return empList;
 	}
@@ -146,12 +136,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
-			try {
-				preparedStatement.close();
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
-			}
+			DbConnectionFactory.closePreparedStatement();
 		}
 		return emp;
 	}
@@ -196,12 +181,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
-			try {
-				preparedStatement.close();
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
-			}
+			DbConnectionFactory.closePreparedStatement();
 		}
 		return entity;
 	}
@@ -221,12 +201,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
-			try {
-				preparedStatement.close();
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
-			}
+			DbConnectionFactory.closePreparedStatement();
 		}
 		return isDeleted;
 
@@ -250,12 +225,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
-			try {
-				preparedStatement.close();
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
-			}
+			DbConnectionFactory.closePreparedStatement();
 		}
 		return isTerminated;
 	}
@@ -278,12 +248,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				Level.SEVERE,  ConstantUtils.EXCEPTION_STATEMENT, e);
 		}
 		finally {
-			try {
-				preparedStatement.close();
-			}
-			catch (SQLException e) {
-				LOGGER.log(Level.SEVERE, ConstantUtils.ERROR_STATEMENT, e);
-			}
+			DbConnectionFactory.closePreparedStatement();
 		}
 		return isDuplicate;
 	}

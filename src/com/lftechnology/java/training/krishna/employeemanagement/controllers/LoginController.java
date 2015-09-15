@@ -30,9 +30,9 @@ import com.lftechnology.java.training.krishna.employeemanagement.utils.Validatio
  */
 public class LoginController {
 
-	public static UserServiceImpl userServiceImpl;
-	public static EmployeeServiceImpl employeeServiceImpl;
-	public static User user;
+	private static UserServiceImpl userServiceImpl;
+	private static EmployeeServiceImpl employeeServiceImpl;
+	private static User user;
 
 	
 	//constructor
@@ -76,11 +76,11 @@ public class LoginController {
 	private static void showLoginTitle() {
 
 		System.out.println("\n"
-			+ "*******************************************************" + "\n"
-			+ "**                                                   **" + "\n"
-			+ "**              Login                                **" + "\n"
-			+ "**                                                   **" + "\n"
-			+ "*******************************************************" + "\n");
+			+ "****************************************************" + "\n"
+			+ "**                                                **" + "\n"
+			+ "**              Login                             **" + "\n"
+			+ "**                                                **" + "\n"
+			+ "****************************************************" + "\n");
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class LoginController {
 		Employee employee = employeeServiceImpl.findById(id);
 		if (employee.getRole().equalsIgnoreCase(Role.Admin.toString())) {
 			System.out.println(""
-				+ "**   MAIN MENU (Please choose the desired action) *****"
+				+ "**   MAIN MENU ("+ConstantUtils.DESIRED_ACTION +") ****"
 				+ "\n"
 				+ "**   1. Add New User                                 **"
 				+ "\n"
@@ -154,15 +154,15 @@ public class LoginController {
 		}
 		else {
 			System.out.println(""
-				+ "**  MAIN MENU ("+ ConstantUtils.DESIRED_ACTION +")*****"
+				+ "** MAIN MENU ("+ConstantUtils.DESIRED_ACTION +") ***"
 				+ "\n"
-				+ "**   4. Quit OR Logout                               **"
+				+ "**   4. Quit OR Logout                            **"
 				+ "\n"
-				+ "**   5. Search User                                  **"
+				+ "**   5. Search User                               **"
 				+ "\n"
-				+ "**   6. Edit Information                             **"
+				+ "**   6. Edit Information                          **"
 				+ "\n"
-				+ "*******************************************************"
+				+ "****************************************************"
 				+ "\n");
 
 			chooseNormalUserAction(scanner, id);
@@ -201,7 +201,7 @@ public class LoginController {
 			searchEmployee(scanner);
 			break;
 		default:
-			System.out.println(ConstantUtils.DESIRED_ACTION);
+			System.out.println(ConstantUtils.DESIRED_ACTION +"\n");
 			break;
 		}
 		showMainMenu(scanner, id);
@@ -231,7 +231,7 @@ public class LoginController {
 			editEmployee(scanner, id);
 			break;
 		default:
-			System.out.println(ConstantUtils.DESIRED_ACTION);
+			System.out.println(ConstantUtils.DESIRED_ACTION +"\n");
 			break;
 		}
 		showMainMenu(scanner, id);
@@ -348,11 +348,11 @@ public class LoginController {
 	 */
 	private static void editOptions(Scanner scanner) {
 
-		System.out.println("************************************************"
+		System.out.println("*****************************************"
 			+ "\n" + "**   1. Full Name                             **" + "\n"
 			+ "**   2. Department                            **" + "\n"
 			+ "**   3. Address                               **" + "\n"
-			+ "************************************************" + "\n");
+			+ "******************************************" + "\n");
 	}
 
 	/**
@@ -394,7 +394,7 @@ public class LoginController {
 				break;
 			}
 			else {
-				System.out.println(ConstantUtils.DESIRED_ACTION);
+				System.out.println(ConstantUtils.DESIRED_ACTION +"\n");
 				editOptions(scanner);
 			}
 		}
@@ -429,11 +429,9 @@ public class LoginController {
 	/**
 	 * This method is used to display employee role
 	 *
-	 * @param scanner
-	 *            {@link Scanner}
 	 * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
 	 */
-	private static void roleOptions(Scanner scanner) {
+	private static void roleOptions() {
 
 		System.out.println("***********************************************"
 			+ "\n" + "**   1. Admin                                 **" + "\n"
@@ -453,7 +451,7 @@ public class LoginController {
 
 		String role = null;
 		int choice = 0;
-		roleOptions(scanner);
+		roleOptions();
 		while (true) {
 			choice = ValidationUtils.numberValidation(scanner);
 			if (choice == 1) {
@@ -465,8 +463,8 @@ public class LoginController {
 				break;
 			}
 			else {
-				System.out.println(ConstantUtils.DESIRED_ACTION);
-				roleOptions(scanner);
+				System.out.println(ConstantUtils.DESIRED_ACTION +"\n");
+				roleOptions();
 			}
 
 		}
