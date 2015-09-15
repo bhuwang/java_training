@@ -7,6 +7,10 @@ public class LoginView {
 
     private static final Logger LOGGER = Logger.getLogger(LoginView.class.getName());
 
+    private LoginView() {
+
+    }
+
     public static void displayLoginHeader() {
         LOGGER.log(Level.INFO, "\n==============================\nLOGIN PAGE\n==============================\n");
     }

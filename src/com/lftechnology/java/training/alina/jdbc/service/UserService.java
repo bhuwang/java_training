@@ -155,7 +155,7 @@ public class UserService {
         Boolean roleStatus = false;
         do {
             String role = UtilityService.getInputData(scanner, "Enter role (user/admin): ");
-            roleStatus = EmployeeController.checkMatchedRole(scanner, roleStatus, role);
+            roleStatus = EmployeeController.checkMatchedRole(roleStatus, role);
             if (roleStatus) {
                 employee.setRole(role);
             }

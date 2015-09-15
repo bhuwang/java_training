@@ -19,6 +19,10 @@ public class UtilityService {
 
     private static final Logger LOGGER = Logger.getLogger(UtilityService.class.getName());
 
+    private UtilityService() {
+
+    }
+
     /**
      * Gets input data,validates empty field
      * 

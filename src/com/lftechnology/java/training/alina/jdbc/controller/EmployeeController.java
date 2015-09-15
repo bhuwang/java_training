@@ -74,14 +74,15 @@ public class EmployeeController {
      * @return roleStatus {@link Boolean} role status as admin/user
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    public static boolean checkMatchedRole(Scanner scanner, Boolean roleStatus, String role) {
+    public static boolean checkMatchedRole(Boolean roleStatus, String role) {
+        boolean employeeRoleStatus = roleStatus;
         if (role.equals(EmployeeRole.ADMIN.role) || role.equals(EmployeeRole.USER.role)) {
-            roleStatus = true;
+            employeeRoleStatus = true;
         } else {
             LOGGER.log(Level.INFO, "\n=====>\nRole should be user/admin. Please enter valid role\n=====>\n");
-            roleStatus = false;
+            employeeRoleStatus = false;
         }
-        return roleStatus;
+        return employeeRoleStatus;
     }
 
     /**

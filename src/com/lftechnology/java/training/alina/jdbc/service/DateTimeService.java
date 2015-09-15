@@ -8,6 +8,11 @@ import java.sql.Timestamp;
  * @author Alina Shakya <alinashakya@lftechnology.com>
  */
 public class DateTimeService {
+
+    private DateTimeService() {
+
+    }
+
     public static Timestamp getCurrentTimeStamp() {
         java.util.Date today = new java.util.Date();
         return new Timestamp(today.getTime());

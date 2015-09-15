@@ -142,10 +142,8 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setTimestamp(4, user.getCreatedAt());
             int result = preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
-            if (result > 0) {
-                if (rs.next()) {
-                    user.setUserId(rs.getInt(1));
-                }
+            if (result > 0 && rs.next()) {
+                user.setUserId(rs.getInt(1));
             }
             preparedStatement.close();
         } catch (SQLException sqe) {

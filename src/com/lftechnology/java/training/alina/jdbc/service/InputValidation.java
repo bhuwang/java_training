@@ -13,6 +13,10 @@ import java.util.regex.Pattern;
 public class InputValidation {
     private static final Logger LOGGER = Logger.getLogger(InputValidation.class.getName());
 
+    private InputValidation() {
+
+    }
+
     /**
      * Validates if the given value consistd only alphabets
      * 

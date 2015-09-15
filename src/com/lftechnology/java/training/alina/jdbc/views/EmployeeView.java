@@ -11,6 +11,10 @@ public class EmployeeView {
 
     private static final Logger LOGGER = Logger.getLogger(EmployeeView.class.getName());
 
+    private EmployeeView() {
+
+    }
+
     /**
      * Prints menu for Admin Role
      * 
