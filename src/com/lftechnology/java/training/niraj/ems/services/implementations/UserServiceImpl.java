@@ -63,7 +63,6 @@ public class UserServiceImpl implements CrudService<Employee, String> {
         credentials.put(Constants.PASSWORD, password);
         credentials.put(Constants.STATUS, Status.ACTIVE.getStatus());
         credentials.put(Constants.IS_TERMINATED, Status.INACTIVE.getStatus());
-
         return employeeDao.findByAttributes(credentials);
     }
 
@@ -89,40 +88,44 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      * 
      * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
      * @param id
-     * @return
      * @throws SQLException
-     * @throws CustomException
      */
-    public boolean terminateEmployee(String id) throws SQLException, CustomException {
+    public void terminateEmployee(String id) throws SQLException {
         Employee employee = employeeDao.find(id);
         boolean isTerminated = false;
         if (employee != null) {
             employee.setIsTerminated(Status.ACTIVE);
             isTerminated = employeeDao.update(employee);
+            if (isTerminated) {
+                LOGGER.info(Constants.SUCCESS_TERMINATE_USER);
+            } else {
+                LOGGER.severe(Constants.FAIL_TERMINATE_USER);
+            }
         } else {
-            throw new CustomException(Constants.EMPLOYEE_NOT_FOUND);
+            LOGGER.warning(Constants.EMPLOYEE_NOT_FOUND);
         }
-        return isTerminated;
     }
 
     /**
      * Deletes user
      * 
      * @param id
-     * @return
      * @throws SQLException
-     * @throws CustomException
      */
-    public boolean delete(String id) throws SQLException, CustomException {
+    public void delete(String id) throws SQLException {
         Employee employee = employeeDao.find(id);
         boolean isDeleted = false;
         if (employee != null) {
             employee.setStatus(Status.INACTIVE);
             isDeleted = employeeDao.update(employee);
+            if (isDeleted) {
+                LOGGER.info(Constants.SUCCESS_DELETE_USER);
+            } else {
+                LOGGER.severe(Constants.FAIL_DELETE_USER);
+            }
         } else {
-            throw new CustomException(Constants.EMPLOYEE_NOT_FOUND);
+            LOGGER.warning(Constants.EMPLOYEE_NOT_FOUND);
         }
-        return isDeleted;
     }
 
     /**
@@ -371,14 +374,14 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      * @param console
      * @throws SQLException
      */
-    public void TerminateDeleteUser(Scanner scanner, Console console, Employee loggedInUser) throws SQLException, CustomException {
+    public void TerminateDeleteUser(Scanner scanner, Console console, Employee loggedInUser) throws SQLException {
         Map<String, String> condition = new LinkedHashMap<String, String>();
         condition.put(Constants.USERNAME, userInput.getInput(scanner, console, Constants.SELECT_USER_EDIT));
         Employee employee = employeeDao.findByAttributes(condition);
         if (employee.getId() == null) {
             LOGGER.warning(Constants.USER_NOT_FOUND);
         } else {
-            editSelectedUser(scanner, console, employee, loggedInUser);
+            editSelectedUser(scanner, employee, loggedInUser);
         }
 
     }
@@ -391,29 +394,16 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      * @param console
      * @param employee
      * @throws SQLException
-     * @throws CustomException
      */
-    private void editSelectedUser(Scanner scanner, Console console, Employee employee, Employee loggedInUser) throws SQLException,
-            CustomException {
+    private void editSelectedUser(Scanner scanner, Employee employee, Employee loggedInUser) throws SQLException {
         LOGGER.info(Constants.DELETE_TERMINATE_MENU);
         int selectedAction = userNumInput.getInput(scanner, 1, 3);
-        boolean completed;
         switch (selectedAction) {
         case 1:
-            completed = terminateEmployee(employee.getId());
-            if (completed) {
-                LOGGER.info(Constants.SUCCESS_TERMINATE_USER);
-            } else {
-                LOGGER.severe(Constants.FAIL_TERMINATE_USER);
-            }
+            terminateEmployee(employee.getId());
             break;
         case 2:
-            completed = delete(employee.getId());
-            if (completed) {
-                LOGGER.info(Constants.SUCCESS_DELETE_USER);
-            } else {
-                LOGGER.severe(Constants.FAIL_DELETE_USER);
-            }
+            delete(employee.getId());
             break;
         case 3:
             RouteServices.routeAfterLogin(loggedInUser);

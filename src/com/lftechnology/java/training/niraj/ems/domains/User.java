@@ -9,17 +9,22 @@ import com.lftechnology.java.training.niraj.ems.enums.Status;
 
 public class User extends Pojo {
     private static final String TABLE = "users";
-    protected String username = null;
-    protected String password = null;
-    protected String isTerminated = null;
-    protected String status = null;
+    protected String username;
+    protected String password;
+    protected String isTerminated;
+    protected String status;
 
     protected List<String> attributeList;
 
     public User() {
         super();
-        super.setTable(TABLE);
+        setTable(TABLE);
         super.setPrimaryKey("id");
+        super.setId(null);
+        setUsername(null);
+        setPassword(null);
+        setIsTerminated(Status.INACTIVE);
+        setStatus(Status.ACTIVE);
         setAttributeList();
     }
 

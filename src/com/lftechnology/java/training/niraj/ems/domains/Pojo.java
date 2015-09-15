@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Pojo {
-    public String table;
+    private String table;
     public String primaryKey;
-    public String id = null;
+    public String id;
 
     public String getId() {
         return id;

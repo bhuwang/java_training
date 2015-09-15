@@ -78,23 +78,15 @@ public class UserStringInputImpl implements UserStringInput {
         LOGGER.info(message);
         String[] choices = null;
         String input;
-        List<String> choiceList = new ArrayList<String>();
+        List<String> choiceList;
         while (true) {
             input = scanner.nextLine();
             if (input.isEmpty()) {
                 LOGGER.warning(message);
             } else {
                 choices = input.split(",");
-                boolean isValid = true;
-                for (int i = 0; i < choices.length; i++) {
-                    String choice = choices[i].trim();
-                    if (!Utils.isInteger(choice, 10) && Integer.parseInt(choice) < min && Integer.parseInt(choice) > max) {
-                        isValid = false;
-                    } else {
-                        choiceList.add(choice);
-                    }
-                }
-                if (!isValid) {
+                choiceList = validateChoices(choices, min, max);
+                if (choiceList == null) {
                     LOGGER.warning(message);
                 } else {
                     break;
@@ -103,6 +95,29 @@ public class UserStringInputImpl implements UserStringInput {
         }
         return choiceList;
 
+    }
+
+    /**
+     * Validates choices made by the user
+     * 
+     * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+     * @param choices
+     * @param min
+     * @param max
+     * @return
+     */
+    private List<String> validateChoices(String[] choices, int min, int max) {
+        List<String> choiceList = new ArrayList<String>();
+        for (int i = 0; i < choices.length; i++) {
+            String choice = choices[i].trim();
+            if (!Utils.isInteger(choice, 10) && Integer.parseInt(choice) < min && Integer.parseInt(choice) > max) {
+                choiceList = null;
+                break;
+            } else {
+                choiceList.add(choice);
+            }
+        }
+        return choiceList;
     }
 
     public String getPassword(Console console) {

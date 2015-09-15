@@ -7,15 +7,19 @@ import com.lftechnology.java.training.niraj.ems.enums.Roles;
 
 public class Employee extends User {
 
-    private String fullname = null;
-    private String department = null;
-    private String address = null;
-    private String role = null;
+    private String fullname;
+    private String department;
+    private String address;
+    private String role;
 
     private List<String> attributeList;
 
     public Employee() {
         super();
+        setFullname(null);
+        setDepartment(null);
+        setAddress(null);
+        setRole(Roles.USER);
         this.setAttributeList();
     }
 
