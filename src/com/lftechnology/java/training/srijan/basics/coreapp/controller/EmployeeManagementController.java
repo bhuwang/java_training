@@ -1,4 +1,5 @@
 package com.lftechnology.java.training.srijan.basics.coreapp.controller;
+
 import com.lftechnology.java.training.srijan.basics.coreapp.domain.Employee;
 import com.lftechnology.java.training.srijan.basics.coreapp.domain.UserRole;
 import com.lftechnology.java.training.srijan.basics.coreapp.service.EmployeeServiceImpl;
@@ -15,18 +16,18 @@ public class EmployeeManagementController {
 	Employee employee;
 	Employee e = new Employee();
 	EmployeeServiceImpl employeeServiceImpl = ServiceFactory.getEmployeeService();
-	public EmployeeManagementController(){
+
+	public EmployeeManagementController() {
 	}
-	
-	public UserRole save(String userName,String password){
+
+	public UserRole save(String userName, String password) {
 		e.setUserName(userName);
 		e.setPassword(password);
 		return employeeServiceImpl.save(e);
 	}
-	
-	public void adminUserOptionHandler(int adminChoice){
-		
-		switch(adminChoice){
+
+	public void adminUserOptionHandler(int adminChoice) {
+		switch (adminChoice) {
 		case 1:
 			Employee employeeDetails = inputUserInfo(e);
 			employeeServiceImpl.addEmployee(employeeDetails);
@@ -34,7 +35,7 @@ public class EmployeeManagementController {
 		case 2:
 			employees = employeeServiceImpl.viewAllUser(e);
 			LOGGER.log(Level.INFO, "{0}", employees);
-			LOGGER.log(Level.INFO,"Choose id of an Employee you want to Edit");
+			LOGGER.log(Level.INFO, "Choose id of an Employee you want to Edit");
 			int employeeIdToEdit = editAndTerminateEmployee();
 			employee = employeeServiceImpl.findById(employeeIdToEdit);
 			LOGGER.log(Level.INFO, "{0}", employee);
@@ -42,7 +43,7 @@ public class EmployeeManagementController {
 			employeeServiceImpl.updateEmployee(editEmployeeDetails);
 			break;
 		case 3:
-			LOGGER.log(Level.INFO,"Choose id of an Employee you want to terminate");
+			LOGGER.log(Level.INFO, "Choose id of an Employee you want to terminate");
 			int terminateEmployee = editAndTerminateEmployee();
 			employeeServiceImpl.terminate(terminateEmployee);
 			break;
@@ -57,8 +58,8 @@ public class EmployeeManagementController {
 			break;
 		}
 	}
-	
-	public Employee inputUserInfo(Employee e){
+
+	public Employee inputUserInfo(Employee e) {
 		Scanner input = null;
 		int choiceUserRole = 0;
 		int userStatus = 0;
@@ -67,7 +68,7 @@ public class EmployeeManagementController {
 		String department = "";
 		String address = "";
 		String password = "";
-		try{
+		try {
 			input = new Scanner(System.in);
 			LOGGER.log(Level.INFO, "Enter Username*:");
 			username = input.nextLine();
@@ -84,9 +85,9 @@ public class EmployeeManagementController {
 			LOGGER.log(Level.INFO, "Enter password*");
 			password = input.nextLine();
 			e.setPassword(password);
-			LOGGER.log(Level.INFO,"Enter User Role*:\n1.ADMIN\n2.NORMAL\n3.Default: NORMAL");
+			LOGGER.log(Level.INFO, "Enter User Role*:\n1.ADMIN\n2.NORMAL\n3.Default: NORMAL");
 			choiceUserRole = input.nextInt();
-			switch(choiceUserRole){
+			switch (choiceUserRole) {
 			case 1:
 				e.setUserRole(UserRole.ADMIN);
 				System.out.println(e.getUserRole());
@@ -95,13 +96,13 @@ public class EmployeeManagementController {
 				e.setUserRole(UserRole.USER);
 				break;
 			default:
-				LOGGER.log(Level.INFO,"please choose right option,Default Normal user assigned");
+				LOGGER.log(Level.INFO, "please choose right option,Default Normal user assigned");
 				e.setUserRole(UserRole.USER);
 				break;
 			}
 			LOGGER.log(Level.INFO, "User status:\n0.Not terminated\n1.Terminated\n2.Default: Not Terminated");
 			userStatus = input.nextInt();
-			switch(userStatus){
+			switch (userStatus) {
 			case 0:
 				e.setIsTerminated(false);
 				break;
@@ -109,21 +110,20 @@ public class EmployeeManagementController {
 				e.setIsTerminated(true);
 				break;
 			default:
-				LOGGER.log(Level.INFO,"Wrong option, User has been default assigned to Not Terminated");
+				LOGGER.log(Level.INFO, "Wrong option, User has been default assigned to Not Terminated");
 				e.setIsTerminated(false);
 				break;
 			}
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			LOGGER.log(Level.INFO, "Exception", ex);
-		}finally{
+		} finally {
 			input.close();
 		}
 		return e;
 	}
-	
-	
-	public void normalUserOptionHandler(int normalUserChoice,String userName){
-		switch(normalUserChoice){
+
+	public void normalUserOptionHandler(int normalUserChoice, String userName) {
+		switch (normalUserChoice) {
 		case 1:
 			employees = employeeServiceImpl.viewAllUser(e);
 			LOGGER.log(Level.INFO, "{0}", employees);
@@ -132,7 +132,7 @@ public class EmployeeManagementController {
 			employee = employeeServiceImpl.findUserByUserName(userName);
 			LOGGER.log(Level.INFO, "{0}", employee);
 			Employee changedProfileDetails = changeProfile();
-			employeeServiceImpl.updateProfile(changedProfileDetails,employee);
+			employeeServiceImpl.updateProfile(changedProfileDetails, employee);
 			break;
 		default:
 			LOGGER.log(Level.INFO, "Please choose option properly,Default view all user block");
@@ -141,28 +141,28 @@ public class EmployeeManagementController {
 			break;
 		}
 	}
-	
-	public int editAndTerminateEmployee(){
+
+	public int editAndTerminateEmployee() {
 		Scanner input = null;
 		int employeeIdToEdit = 0;
-		try{
+		try {
 			input = new Scanner(System.in);
 			employeeIdToEdit = input.nextInt();
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			LOGGER.log(Level.INFO, "Exception", ex);
-		}finally{
+		} finally {
 			input.close();
 		}
 		return employeeIdToEdit;
 	}
-	
-	public Employee changeProfile(){
+
+	public Employee changeProfile() {
 		Scanner input = null;
 		String username = "";
 		String fullname = "";
 		String department = "";
 		String address = "";
-		try{
+		try {
 			input = new Scanner(System.in);
 			LOGGER.log(Level.INFO, "Enter Username:");
 			username = input.nextLine();
@@ -176,9 +176,9 @@ public class EmployeeManagementController {
 			LOGGER.log(Level.INFO, "Enter Address:");
 			address = input.nextLine();
 			e.setAddress(address);
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			LOGGER.log(Level.INFO, "Exception{0}", ex);
-		}finally{
+		} finally {
 			input.close();
 		}
 		return e;
