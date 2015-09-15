@@ -1,6 +1,6 @@
 package com.lftechnology.java.training.sanish.application.component;
 
-import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
+import com.lftechnology.java.training.niraj.fibonacci.Constant;
 import com.lftechnology.java.training.sanish.application.model.dao.EmployeeDao;
 import com.lftechnology.java.training.sanish.application.model.dao.UserDao;
 import com.lftechnology.java.training.sanish.application.model.domain.Employee;
@@ -8,8 +8,6 @@ import com.lftechnology.java.training.sanish.application.model.domain.User;
 import com.lftechnology.java.training.sanish.application.model.domain.UserEmployee;
 import com.lftechnology.java.training.sanish.application.utility.UserInput;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +20,9 @@ import java.util.logging.Logger;
 public class EmployeeHelper {
     private static final Logger LOGGER = Logger.getLogger(EmployeeHelper.class.getName());
 
+    private EmployeeHelper() {
+    }
+
     /**
      * Change user name of user
      *
@@ -30,26 +31,26 @@ public class EmployeeHelper {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void changeUserName(Scanner inputScanner, User user) {
-        String message = "\n UserName : " + user.getUserName() + "\n" + ">> Change userName ? n/y :";
+        String message = "\n" + Constants.USER_NAME_LABEL + user.getUserName() + "\n>>" + Constants.CHANGE_USER_NAME_CONFORM_MSG;
         LOGGER.log(Level.INFO, message);
         String edit = UserInput.getString(inputScanner);
-        if (edit.equals("yes") || edit.equals("y")) {
+        if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String userName;
             String SetStatement;
             String whereCondition = "userId=?";
             UserDao userDao = new UserDao();
             while (updateRow == 0) {
-                message = "\n >> Type new userName : ";
+                message = "\n >> " + Constants.TYPE_USER_NAME_LABEL;
                 LOGGER.log(Level.INFO, message);
                 userName = UserInput.getString(inputScanner);
                 SetStatement = "userName=?";
                 updateRow = userDao.update(whereCondition, SetStatement, userName, user.getUserId());
                 if (updateRow == 0) {
-                    message = "\n Error Message: Fail to update userName. Try again? n/y";
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_USER_NAME_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
                     edit = UserInput.getString(inputScanner);
-                    if (!edit.equals("y") && !edit.equals("yes")) {
+                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                         break;
                     }
                 }
@@ -65,26 +66,26 @@ public class EmployeeHelper {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void changeUserEmail(Scanner inputScanner, User user) {
-        String message = "\n User Email : " + user.getEmail() + "\n" + ">> Change user email ? n/y :";
+        String message = "\n" + Constants.USER_EMAIL_LABEL + user.getEmail() + "\n>>" + Constants.CHANGE_EMAIL_CONFORM_MSG;
         LOGGER.log(Level.INFO, message);
         String edit = UserInput.getString(inputScanner);
-        if (edit.equals("y") || edit.equals("yes")) {
+        if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String email;
             String SetStatement;
             String whereCondition = "userId=?";
             UserDao userDao = new UserDao();
             while (updateRow == 0) {
-                message = "\n >> Type new email : ";
+                message = "\n >>" + Constants.TYPE_EMAIL_LABEL;
                 LOGGER.log(Level.INFO, message);
                 email = UserInput.getString(inputScanner);
                 SetStatement = "email=?";
                 updateRow = userDao.update(whereCondition, SetStatement, email, user.getUserId());
                 if (updateRow == 0) {
-                    message = "\n Error Message: Fail to update user email. Try again? n/y";
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_EMAIL_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
                     edit = UserInput.getString(inputScanner);
-                    if (!edit.equals("y") && !edit.equals("yes")) {
+                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                         break;
                     }
                 }
@@ -93,33 +94,33 @@ public class EmployeeHelper {
     }
 
     /**
-     * Change email of user
+     * Change full name of user
      *
      * @param inputScanner {@link Scanner}
      * @param employee     {@link Employee}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void changeFullName(Scanner inputScanner, Employee employee) {
-        String message = "\n User Full Name : " + employee.getFullName() + "\n" + ">> Change full name ? n/y :";
+        String message = "\n" + Constants.USER_FULL_NAME_LABEL + employee.getFullName() + "\n>>" + Constants.CHANGE_FULL_NAME_CONFORM_MSG;
         LOGGER.log(Level.INFO, message);
         String edit = UserInput.getString(inputScanner);
-        if (edit.equals("y") || edit.equals("yes")) {
+        if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String fullName;
             String SetStatement;
             String whereCondition = "employeeId=?";
             EmployeeDao employeeDao = new EmployeeDao();
             while (updateRow == 0) {
-                message = "\n >> Type new full name : ";
+                message = "\n >>" + Constants.TYPE_FULL_NAME_LABEL;
                 LOGGER.log(Level.INFO, message);
                 fullName = UserInput.getAlphabeticWords(inputScanner);
                 SetStatement = "fullName=?";
                 updateRow = employeeDao.update(whereCondition, SetStatement, fullName, employee.getEmployeeId());
                 if (updateRow == 0) {
-                    message = "\n Error Message: Fail to update user full name. Try again? n/y";
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_FULL_NAME_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
                     edit = UserInput.getString(inputScanner);
-                    if (!edit.equals("y") && !edit.equals("yes")) {
+                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                         break;
                     }
                 }
@@ -128,33 +129,33 @@ public class EmployeeHelper {
     }
 
     /**
-     * Change email of user
+     * Change address of user
      *
      * @param inputScanner {@link Scanner}
      * @param employee     {@link Employee}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void changeAddress(Scanner inputScanner, Employee employee) {
-        String message = "\n User Address : " + employee.getAddress() + "\n" + ">> Change user address ? n/y :";
+        String message = "\n" + Constants.USER_ADDRESS_LABEL + employee.getAddress() + "\n>>" + Constants.CHANGE_ADDRESS_CONFORM_MSG;
         LOGGER.log(Level.INFO, message);
         String edit = UserInput.getString(inputScanner);
-        if (edit.equals("y") || edit.equals("yes")) {
+        if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String address;
             String SetStatement;
             String whereCondition = "employeeId=?";
             EmployeeDao employeeDao = new EmployeeDao();
             while (updateRow == 0) {
-                message = "\n >> Type new address : ";
+                message = "\n >>" + Constants.TYPE_ADDRESS_LABEL;
                 LOGGER.log(Level.INFO, message);
                 address = UserInput.getAlphabeticWords(inputScanner);
                 SetStatement = "address=?";
                 updateRow = employeeDao.update(whereCondition, SetStatement, address, employee.getEmployeeId());
                 if (updateRow == 0) {
-                    message = "\n Error Message: Fail to update user address. Try again? n/y";
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ADDRESS_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
                     edit = UserInput.getString(inputScanner);
-                    if (!edit.equals("y") && !edit.equals("yes")) {
+                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                         break;
                     }
                 }
@@ -163,33 +164,34 @@ public class EmployeeHelper {
     }
 
     /**
-     * Change email of user
+     * Change department of user
      *
      * @param inputScanner {@link Scanner}
      * @param employee     {@link Employee}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void changeDepartment(Scanner inputScanner, Employee employee) {
-        String message = "\n User Department : " + employee.getDepartment() + "\n" + ">> Change user department ? n/y :";
+        String message =
+                "\n" + Constants.USER_DEPARTMENT_LABEL + employee.getDepartment() + "\n>>" + Constants.CHANGE_DEPARTMENT_CONFORM_MSG;
         LOGGER.log(Level.INFO, message);
         String edit = UserInput.getString(inputScanner);
-        if (edit.equals("y") || edit.equals("yes")) {
+        if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String department;
             String SetStatement;
             String whereCondition = "employeeId=?";
             EmployeeDao employeeDao = new EmployeeDao();
             while (updateRow == 0) {
-                message = "\n >> Type new department : ";
+                message = "\n >>" + Constants.TYPE_DEPARTMENT_LABEL;
                 LOGGER.log(Level.INFO, message);
                 department = UserInput.getAlphabeticWords(inputScanner);
                 SetStatement = "department=?";
                 updateRow = employeeDao.update(whereCondition, SetStatement, department, employee.getEmployeeId());
                 if (updateRow == 0) {
-                    message = "\n Error Message: Fail to update user department. Try again? n/y";
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_DEPARTMENT_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
                     edit = UserInput.getString(inputScanner);
-                    if (!edit.equals("y") && !edit.equals("yes")) {
+                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                         break;
                     }
                 }
@@ -198,42 +200,42 @@ public class EmployeeHelper {
     }
 
     /**
-     * Change email of user
+     * Change role of user
      *
      * @param inputScanner {@link Scanner}
      * @param employee     {@link Employee}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void changeRole(Scanner inputScanner, Employee employee) {
-        String message = "\n User Role : " + employee.getRole() + "\n" + ">> Change user role ? n/y :";
+        String message = "\n" + Constants.USER_ROLE_LABEL + employee.getRole() + "\n>>" + Constants.CHANGE_ROLE_CONFORM_MSG;
         LOGGER.log(Level.INFO, message);
         String edit = UserInput.getString(inputScanner);
-        if (edit.equals("y") || edit.equals("yes")) {
+        if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String role;
             String SetStatement;
             String whereCondition = "employeeId=?";
             EmployeeDao employeeDao = new EmployeeDao();
             while (updateRow == 0) {
-                message = "\n >> Type new role : ";
+                message = "\n >>" + Constants.TYPE_ROLE_LABEL;
                 LOGGER.log(Level.INFO, message);
                 role = UserInput.getString(inputScanner);
-                if (role.equals("Admin") || role.equals("User")) {
+                if (role.equals(Constants.ADMIN_ROLE) || role.equals(Constants.USER_ROLE)) {
                     SetStatement = "role=?";
                     updateRow = employeeDao.update(whereCondition, SetStatement, role, employee.getEmployeeId());
                     if (updateRow == 0) {
-                        message = "\n Error Message: Fail to update user role. Try again? n/y";
+                        message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ROLE_MSG + Constants.TRY_AGAIN_MSG;
                         LOGGER.log(Level.INFO, message);
                         edit = UserInput.getString(inputScanner);
-                        if (!edit.equals("y") && !edit.equals("yes")) {
+                        if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                             break;
                         }
                     }
                 } else {
-                    message = "\n Error Message: Invalid role, role should be Admin or User. Try again? n/y";
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.INVALID_ROLE_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
                     edit = UserInput.getString(inputScanner);
-                    if (!edit.equals("y") && !edit.equals("yes")) {
+                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                         break;
                     }
                 }
@@ -243,7 +245,7 @@ public class EmployeeHelper {
     }
 
     /**
-     * Change email of user
+     * Change password of user
      *
      * @param inputScanner {@link Scanner}
      * @param user         {@link User}
@@ -253,13 +255,13 @@ public class EmployeeHelper {
         Boolean changePassword = true;
         UserDao userDao = new UserDao();
         while (changePassword) {
-            String message = "\n >> Type Old Password : ";
+            String message = "\n >>" + Constants.TYPE_OLD_PASSWORD_LABEL;
             LOGGER.log(Level.INFO, message);
             String oldPassword = UserInput.getString(inputScanner);
-            message = "\n >> Type New Password : ";
+            message = "\n >>" + Constants.TYPE_NEW_PASSWORD_LABEL;
             LOGGER.log(Level.INFO, message);
             String newPassword = UserInput.getString(inputScanner);
-            message = "\n >> Retype New Password : ";
+            message = "\n >>" + Constants.TYPE_RE_PASSWORD_LABEL;
             LOGGER.log(Level.INFO, message);
             String confirmPassword = UserInput.getString(inputScanner);
             if (newPassword.equals(confirmPassword)) {
@@ -267,25 +269,24 @@ public class EmployeeHelper {
                     if (oldPassword.equals(user.getPassword())) {
                         if (userDao.setPassword(user, newPassword)) {
                             changePassword = false;
-                            message = "Successfully password change.";
-                            LOGGER.log(Level.INFO, message);
+                            LOGGER.log(Level.INFO, Constants.SUCCESS_PASSWORD_CHANGE_MSG);
                         } else {
-                            message = "Fail to change password. Try again? n/y";
+                            message = Constants.FAIL_CHANGE_PASSWORD_MSG + Constants.TRY_AGAIN_MSG;
                             LOGGER.log(Level.WARNING, message);
                         }
                     }
                 } else {
-                    message = "Old password not match. Try again? n/y";
+                    message = Constants.OLD_PASSWORD_NOT_MATCH_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.WARNING, message);
                 }
             } else {
-                message = "New password & confirm password not match. Try again? n/y";
+                message = Constants.PASSWORD_NOT_MATCH_MSG + Constants.TRY_AGAIN_MSG;
                 LOGGER.log(Level.WARNING, message);
             }
 
             if (changePassword) {
                 String edit = UserInput.getString(inputScanner);
-                if (!edit.equals("y") && !edit.equals("yes")) {
+                if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                     changePassword = false;
                 }
             }
@@ -305,17 +306,17 @@ public class EmployeeHelper {
         String message;
         UserDao userDao = new UserDao();
         while (true) {
-            message = "\n >> Type User Id : ";
+            message = "\n >>" + Constants.TYPE_USER_ID_LABEL;
             LOGGER.log(Level.INFO, message);
             userId = UserInput.getIntegerNumber(inputScanner, -1, -1);
             user = userDao.findById(userId);
             if (user != null) {
                 return userId;
             } else {
-                message = "User not exist. Try again? n/y";
+                message = Constants.USER_NOT_EXIST_MSG + Constants.TRY_AGAIN_MSG;
                 LOGGER.log(Level.WARNING, message);
                 String edit = UserInput.getString(inputScanner);
-                if (!edit.equals("y") && !edit.equals("yes")) {
+                if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
                     break;
                 }
             }
@@ -334,37 +335,37 @@ public class EmployeeHelper {
     public static UserEmployee addNewEmployee(Scanner inputScanner) {
         User user = new User();
         Employee employee = new Employee();
-        String message = "\n >> Type user name : ";
+        String message = "\n >>" + Constants.TYPE_USER_NAME_LABEL;
         LOGGER.log(Level.INFO, message);
         String userName = UserInput.getString(inputScanner);
         user.setAttribute("userName", userName);
 
-        message = "\n >> Type password : ";
+        message = "\n >> " + Constants.TYPE_PASSWORD_LABEL;
         LOGGER.log(Level.INFO, message);
         String password = UserInput.getString(inputScanner);
         user.setAttribute("password", password);
 
-        message = "\n >> Type employee full name : ";
+        message = "\n >>" + Constants.TYPE_FULL_NAME_LABEL;
         LOGGER.log(Level.INFO, message);
         String fullName = UserInput.getAlphabeticWords(inputScanner);
         employee.setAttribute("fullName", fullName);
 
-        message = "\n >> Type email : ";
+        message = "\n >>" + Constants.TYPE_EMAIL_LABEL;
         LOGGER.log(Level.INFO, message);
         String email = UserInput.getEmail(inputScanner);
         user.setAttribute("email", email);
 
-        message = "\n >> Type address : ";
+        message = "\n >> " + Constants.TYPE_ADDRESS_LABEL;
         LOGGER.log(Level.INFO, message);
         String address = UserInput.getAlphabeticWords(inputScanner);
         employee.setAttribute("address", address);
 
-        message = "\n >> Type department : ";
+        message = "\n >>" + Constants.TYPE_DEPARTMENT_LABEL;
         LOGGER.log(Level.INFO, message);
         String department = UserInput.getAlphabeticWords(inputScanner);
         employee.setAttribute("department", department);
 
-        message = "\n >> Type role 1:User 2:Admin : ";
+        message = "\n >>" + Constants.TYPE_ROLE_LABEL;
         LOGGER.log(Level.INFO, message);
         String role = UserInput.getUserRole(inputScanner);
         employee.setAttribute("role", role);

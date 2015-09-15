@@ -1,8 +1,5 @@
 package com.lftechnology.java.training.sanish.application.model;
 
-import com.lftechnology.java.training.sanish.application.model.domain.Employee;
-import com.lftechnology.java.training.sanish.application.model.domain.User;
-
 import java.sql.ResultSet;
 
 /**

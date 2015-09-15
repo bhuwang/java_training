@@ -1,6 +1,6 @@
 package com.lftechnology.java.training.sanish.application.view.employee;
 
-import com.lftechnology.java.training.sanish.application.model.domain.User;
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.model.domain.UserEmployee;
 import com.lftechnology.java.training.sanish.application.utility.OutputFormatter;
 
@@ -9,28 +9,34 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by sanish on 9/11/15.
+ * Render employee search result page
+ *
+ * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class EmployeeSearchResultPage {
     private static final Logger LOGGER = Logger.getLogger(EmployeeSearchResultPage.class.getName());
 
+    private EmployeeSearchResultPage() {
+    }
+
     /**
      * Render employee search result page
      *
+     * @param userEmployeeList {@link List<UserEmployee>}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void renderPage(List<UserEmployee> userEmployeeList) {
-        String pageContent = OutputFormatter.getFormattedPageTitle("Employee Search Page");
+        String pageContent = OutputFormatter.getFormattedPageTitle(Constants.EMPLOYEE_SEARCH_PAGE);
         pageContent += "\n Search User list \n";
-        if(userEmployeeList.size() > 0){
+        if (userEmployeeList.size() > 0) {
             pageContent += "\n " +
-                    OutputFormatter.getStringForListCol("User Id", 10) +
-                    OutputFormatter.getStringForListCol("User Name", 30) +
-                    OutputFormatter.getStringForListCol("Full Name", 30) +
-                    OutputFormatter.getStringForListCol("Email", 30) +
-                    OutputFormatter.getStringForListCol("Address", 30) +
-                    OutputFormatter.getStringForListCol("Department", 30) +
-                    OutputFormatter.getStringForListCol("Role", 30) + "\n";
+                    OutputFormatter.getStringForListCol(Constants.USER_ID, 10) +
+                    OutputFormatter.getStringForListCol(Constants.USER_NAME, 30) +
+                    OutputFormatter.getStringForListCol(Constants.FULL_NAME, 30) +
+                    OutputFormatter.getStringForListCol(Constants.EMAIL, 30) +
+                    OutputFormatter.getStringForListCol(Constants.ADDRESS, 30) +
+                    OutputFormatter.getStringForListCol(Constants.DEPARTMENT, 30) +
+                    OutputFormatter.getStringForListCol(Constants.ROLE, 30) + "\n";
             pageContent += "\n-------------------------------------------------------------------------------------------------------------"
                     + "---------------------------------------------------------------------------------------------------------------\n";
             for (UserEmployee userEmployee : userEmployeeList) {
@@ -43,12 +49,15 @@ public class EmployeeSearchResultPage {
                         OutputFormatter.getStringForListCol(userEmployee.getEmployee().getDepartment(), 30) +
                         OutputFormatter.getStringForListCol(userEmployee.getEmployee().getRole(), 30) + "\n";
             }
-        }else{
-            pageContent += " Record not found.";
+        } else {
+            pageContent += Constants.RECORD_NOT_FOUND_MSG;
         }
 
-        pageContent += "\n\n Options :\n 1. Search Employee\n 2. Back To Employee Dashboard\n 3. Logout";
-        pageContent += "\n >> type option";
-        LOGGER.log(Level.INFO, pageContent, new Object[] {});
+        pageContent +=
+                "\n\n" + Constants.PAGE_MENU_LABEL + "\n 1." + Constants.SEARCH_EMPLOYEE_MENU + "\n 2." + Constants.BACK_DASHBOARD_MENU
+                        + "\n 3." + Constants.LOGOUT_MENU;
+        pageContent += "\n >>" + Constants.TYPE_OPTION_LABEL;
+
+        LOGGER.log(Level.INFO, pageContent);
     }
 }

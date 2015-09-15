@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.controller;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.component.EmployeeHelper;
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.component.UserLogin;
@@ -38,14 +39,14 @@ public class EmployeeController {
                 UserDao userDao = new UserDao();
                 User user = UserLogin.getCurrentUser();
                 Employee employee = userDao.getEmployee(user);
-                EmployeeDashboardPage.renderPage(inputScanner, user, employee);
+                EmployeeDashboardPage.renderPage(employee);
+
                 int menuSelected;
-                if (employee.getRole().equals("Admin")) {
+                if (employee.getRole().equals(Constants.ADMIN_ROLE)) {
                     menuSelected = UserInput.getIntegerNumber(inputScanner, 1, 8);
                 } else {
                     menuSelected = UserInput.getIntegerNumber(inputScanner, 1, 5);
                 }
-
                 if (menuSelected == 1) {
                     employeeListPage();
                 } else if (menuSelected == 2) {
@@ -55,7 +56,7 @@ public class EmployeeController {
                 } else if (menuSelected == 4) {
                     changePasswordPage();
                 } else if (menuSelected == 5) {
-                    if (employee.getRole().equals("Admin")) {
+                    if (employee.getRole().equals(Constants.ADMIN_ROLE)) {
                         addEmployeePage();
                     } else {
                         LoginController.logoutPage();
@@ -72,7 +73,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }
@@ -97,6 +98,7 @@ public class EmployeeController {
                     userEmployeesList.add(userEmployee);
                 }
                 EmployeeListingPage.renderPage(userEmployeesList);
+
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 3);
                 if (option == 1) {
@@ -110,7 +112,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }
@@ -131,7 +133,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }
@@ -162,7 +164,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }
@@ -209,7 +211,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }
@@ -227,6 +229,7 @@ public class EmployeeController {
                 ChangePasswordPage.renderPage(false);
                 EmployeeHelper.changePassword(inputScanner, user);
                 ChangePasswordPage.renderPage(true);
+
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 2);
                 if (option == 1) {
@@ -238,12 +241,17 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }
     }
 
+    /**
+     * Add employee page
+     *
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
     public static void addEmployeePage() {
         try (Scanner inputScanner = new Scanner(System.in)) {
             if (UserLogin.isLogin()) {
@@ -251,10 +259,9 @@ public class EmployeeController {
                 Boolean showMenu = false;
                 AddEmployeePage.renderPage(showMenu, null, message);
                 UserEmployee userEmployee = EmployeeHelper.addNewEmployee(inputScanner);
-                if(userEmployee != null){
-                    message = "Successfully new employee added.";
+                if (userEmployee != null) {
                     showMenu = true;
-                    AddEmployeePage.renderPage(showMenu, userEmployee, message);
+                    AddEmployeePage.renderPage(showMenu, userEmployee, Constants.SUCCESS_ADD_EMPLOYEE_MSG);
                 }
 
                 int option;
@@ -270,12 +277,17 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }
     }
 
+    /**
+     * Edit employee page
+     *
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
     public static void editEmployeePage() {
         try (Scanner inputScanner = new Scanner(System.in)) {
             if (UserLogin.isLogin()) {
@@ -283,7 +295,7 @@ public class EmployeeController {
                 UserEmployee userEmployee = new UserEmployee();
                 EditEmployeePage.renderPage(userEmployee, false);
                 int userId = EmployeeHelper.getUserId(inputScanner);
-                if(userId != -1){
+                if (userId != -1) {
                     User user = userDao.findById(userId);
                     Employee employee = userDao.getEmployee(user);
                     userEmployee.setUser(user);
@@ -316,12 +328,17 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }
     }
 
+    /**
+     * Terminate user page
+     *
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
     public static void terminateEmployeePage() {
         try (Scanner inputScanner = new Scanner(System.in)) {
             String message = "";
@@ -329,16 +346,16 @@ public class EmployeeController {
                 UserDao userDao = new UserDao();
                 TerminateEmployeePage.renderPage(false, message);
                 int userId = EmployeeHelper.getUserId(inputScanner);
-                if(userId != -1){
+                if (userId != -1) {
                     User user = userDao.findById(userId);
-                    if(EmployeeHelper.terminateConformation(inputScanner, user)){
-                        if(userDao.terminateUser(user)){
-                            message = "User terminate successfully.";
-                        }else{
-                            message = "Fail to terminate user successfully.";
+                    if (EmployeeHelper.terminateConformation(inputScanner, user)) {
+                        if (userDao.terminateUser(user)) {
+                            message = Constants.SUCCESS_TERMINATE_MSG;
+                        } else {
+                            message = Constants.FAIL_TERMINATE_MSG;
                         }
-                    }else{
-                        message = "Cancel terminate user.";
+                    } else {
+                        message = Constants.CANCEL_TERMINATE_MSG;
                     }
 
                     TerminateEmployeePage.renderPage(true, message);
@@ -357,7 +374,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }

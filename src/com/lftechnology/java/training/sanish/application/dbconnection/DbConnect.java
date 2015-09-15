@@ -1,7 +1,8 @@
 package com.lftechnology.java.training.sanish.application.dbconnection;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
+
 import java.sql.*;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,10 +38,10 @@ public abstract class DbConnect {
                     connection = DriverManager.getConnection(DB_URL, USER, PASS);
                     return connection;
                 } catch (SQLException e) {
-                    LOGGER.log(Level.WARNING, "Exception : {1}", new Object[] { e });
+                    LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
                 }
             } catch (ClassNotFoundException e) {
-                LOGGER.log(Level.WARNING, "Exception : {1}", new Object[] { e });
+                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             }
 
             return null;
@@ -58,7 +59,7 @@ public abstract class DbConnect {
                 connection.close();
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {1}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         }
     }
 }

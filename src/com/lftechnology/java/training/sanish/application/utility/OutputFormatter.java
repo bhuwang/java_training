@@ -5,9 +5,21 @@ import com.lftechnology.java.training.sanish.application.model.dao.UserDao;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
 
 /**
- * Created by sanish on 9/11/15.
+ * Output formatter helper
+ *
+ * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class OutputFormatter {
+    private OutputFormatter() {
+    }
+
+    /**
+     * Set page title
+     *
+     * @param title {@link String }
+     * @return {@link String}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
     public static String getFormattedPageTitle(String title) {
         User currentUser = UserLogin.getCurrentUser();
         String pageTitle = "\n==========================================================================================  " + title
@@ -21,6 +33,15 @@ public class OutputFormatter {
         return pageTitle;
     }
 
+    /**
+     * Return table column text
+     *
+     * @param value
+     * @param colSize {@link Integer}
+     * @param <V>
+     * @return {@link String }
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
     public static <V> String getStringForListCol(V value, int colSize) {
         String colValue = value.toString();
         int colValueLength = colValue.length();
@@ -31,6 +52,7 @@ public class OutputFormatter {
         for (int i = 0; i < diffInLength; i++) {
             colValue += " ";
         }
+
         return colValue + "\t";
     }
 }

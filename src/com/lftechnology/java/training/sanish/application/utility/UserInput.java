@@ -1,5 +1,7 @@
 package com.lftechnology.java.training.sanish.application.utility;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
+
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,17 +31,17 @@ public class UserInput {
         boolean checkNextInput = true;
         while (checkNextInput) {
             if (!scanner.hasNextInt()) {
-                LOGGER.log(Level.WARNING, "Please enter valid number : ");
+                LOGGER.log(Level.WARNING, Constants.ENTER_VALID_NUMBER_MSG);
                 scanner.next();
             } else {
                 intNum = scanner.nextInt();
-                if(min != -1 && max != -1){
+                if (min != -1 && max != -1) {
                     if (intNum < min || intNum > max) {
-                        LOGGER.log(Level.WARNING, "Please enter number within range ({0}-{1}) : ", new Object[] { min, max });
+                        LOGGER.log(Level.WARNING, Constants.ENTER_NUMBER_RANGE_MSG + "({0}-{1}) : ", new Object[] { min, max });
                     } else {
                         checkNextInput = false;
                     }
-                }else{
+                } else {
                     checkNextInput = false;
                 }
             }
@@ -68,7 +70,7 @@ public class UserInput {
                 if (inputString.isEmpty()) {
                     continue;
                 } else if (!inputString.matches(pattern)) {
-                    LOGGER.log(Level.WARNING, "Invalid, Please type again : ");
+                    LOGGER.log(Level.WARNING, Constants.INVALID_MSG);
                 } else {
                     checkNextInput = false;
                 }
@@ -78,7 +80,14 @@ public class UserInput {
         return inputString;
     }
 
-    public static String getEmail(Scanner scanner){
+    /**
+     * Scan email form console and return string
+     *
+     * @param {@link Scanner}
+     * @return {@link String}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
+    public static String getEmail(Scanner scanner) {
         String email = "";
         String emailPattern = "[a-z][a-z_1-9]+@[a-z]+(.[a-z])+";
         while (true) {
@@ -89,7 +98,7 @@ public class UserInput {
                 if (email.isEmpty()) {
                     continue;
                 } else if (!email.matches(emailPattern)) {
-                    LOGGER.log(Level.WARNING, "Invalid email address, Please type again : ");
+                    LOGGER.log(Level.WARNING, Constants.INVALID_EMAIL_MSG);
                 } else {
                     break;
                 }
@@ -99,23 +108,30 @@ public class UserInput {
         return email;
     }
 
+    /**
+     * Scan user role number
+     *
+     * @param {@link Scanner}
+     * @return {@link String}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
     public static String getUserRole(Scanner scanner) {
-        String role = "User";
+        String role;
         int intNum = 1;
         while (true) {
             if (!scanner.hasNextInt()) {
-                LOGGER.log(Level.WARNING, "Please enter valid number : ");
+                LOGGER.log(Level.WARNING, Constants.INVALID_MSG);
                 scanner.next();
             } else {
                 intNum = scanner.nextInt();
-                if(intNum == 1){
-                    role = "User";
+                if (intNum == 1) {
+                    role = Constants.USER_ROLE;
                     break;
-                }else if(intNum == 2){
-                    role = "Admin";
+                } else if (intNum == 2) {
+                    role = Constants.ADMIN_ROLE;
                     break;
-                }else{
-                    LOGGER.log(Level.WARNING, "Please provide valid number, 1 : User 2: Admin : ");
+                } else {
+                    LOGGER.log(Level.WARNING, Constants.INVALID_ROLE_NUM_MSG);
                 }
             }
 
@@ -143,7 +159,7 @@ public class UserInput {
                 if (inputWords.isEmpty()) {
                     continue;
                 } else if (!inputWords.matches(pattern)) {
-                    LOGGER.log(Level.WARNING, "Invalid name, Please type again : ");
+                    LOGGER.log(Level.WARNING, Constants.INVALID_MSG);
                 } else {
                     checkNextInput = false;
                 }

@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.model.domain;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.model.Model;
 
 import java.sql.ResultSet;
@@ -97,10 +98,11 @@ public class Employee implements Model<Employee> {
         try {
             return (V) Employee.class.getDeclaredField(key).get(this);
         } catch (NoSuchFieldException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } catch (IllegalAccessException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         }
+
         return null;
     }
 
@@ -108,9 +110,9 @@ public class Employee implements Model<Employee> {
         try {
             Employee.class.getDeclaredField(key).set(this, value);
         } catch (NoSuchFieldException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } catch (IllegalAccessException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         }
     }
 
@@ -147,7 +149,7 @@ public class Employee implements Model<Employee> {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         }
     }
 

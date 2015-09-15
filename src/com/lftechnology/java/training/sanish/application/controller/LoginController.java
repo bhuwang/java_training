@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.controller;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.component.UserLogin;
 import com.lftechnology.java.training.sanish.application.view.login.LoginPage;
@@ -37,7 +38,7 @@ public class LoginController {
                 EmployeeController.employeeDashboardPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", e.getMessage());
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } finally {
             DbConnect.dbClose();
         }

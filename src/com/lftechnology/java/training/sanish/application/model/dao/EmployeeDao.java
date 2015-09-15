@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.model.dao;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
@@ -17,27 +18,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by sanish on 9/14/15.
+ * Employee data access object
+ *
+ * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class EmployeeDao implements EmployeeService {
     private static final Logger LOGGER = Logger.getLogger(EmployeeDao.class.getName());
-    private static PreparedStatement preparedStatement;
 
     @Override public boolean isAdmin(Employee employee) {
-        if (employee.getRole() == "Admin") {
+        if (employee.getRole() == Constants.ADMIN_ROLE) {
             return true;
         }
+
         return false;
     }
 
     @Override public boolean isUser(Employee employee) {
-        if (employee.getRole() == "User") {
+        if (employee.getRole() == Constants.USER_ROLE) {
             return true;
         }
+
         return false;
     }
 
-    @Override public User getEmployee(Employee employee) {
+    @Override public User getUser(Employee employee) {
         try {
             String query = "SELECT * FROM employees WHERE userId=?";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
@@ -53,7 +57,7 @@ public class EmployeeDao implements EmployeeService {
             preparedStatement.close();
             return user;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
         return null;
@@ -62,7 +66,7 @@ public class EmployeeDao implements EmployeeService {
     @Override public int addNew(Employee employee) {
         int lastInsertedId = -1;
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
             Date date = new Date();
             String query = "INSERT INTO employees(userId, fullName, address, department, role, createdAt) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
@@ -85,7 +89,7 @@ public class EmployeeDao implements EmployeeService {
             preparedStatement.close();
             return lastInsertedId;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
         return lastInsertedId;
@@ -107,7 +111,7 @@ public class EmployeeDao implements EmployeeService {
             preparedStatement.close();
             return employee;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
         return null;
@@ -129,7 +133,7 @@ public class EmployeeDao implements EmployeeService {
             preparedStatement.close();
             return employeesList;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -146,7 +150,7 @@ public class EmployeeDao implements EmployeeService {
                     preparedStatement.setString(i + 1, parameters[i].toString());
                 }
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             }
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -160,7 +164,7 @@ public class EmployeeDao implements EmployeeService {
             preparedStatement.close();
             return employeesList;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -176,14 +180,14 @@ public class EmployeeDao implements EmployeeService {
                     preparedStatement.setString(i + 1, parameters[i].toString());
                 }
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             }
 
             int effectedRow = preparedStatement.executeUpdate();
             preparedStatement.close();
             return effectedRow;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 

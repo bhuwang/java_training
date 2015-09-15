@@ -18,7 +18,10 @@ public class UserLogin {
     private static String userName;
     private static String password;
     private static boolean isLogin = false;
-    private static User currentUser;
+    private static User currentUser = null;
+
+    private UserLogin() {
+    }
 
     public static User getCurrentUser() {
         return currentUser;
@@ -65,9 +68,9 @@ public class UserLogin {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void getCredential(Scanner inputScanner) {
-        LOGGER.log(Level.INFO, "User Name :");
+        LOGGER.log(Level.INFO, Constants.TYPE_USER_NAME_LABEL);
         userName = UserInput.getString(inputScanner);
-        LOGGER.log(Level.INFO, "Password :");
+        LOGGER.log(Level.INFO, Constants.TYPE_PASSWORD_LABEL);
         password = UserInput.getString(inputScanner);
     }
 
@@ -82,6 +85,7 @@ public class UserLogin {
         if (userName.equals(user.getUserName()) && password.equals(user.getPassword())) {
             return true;
         }
+
         return false;
     }
 

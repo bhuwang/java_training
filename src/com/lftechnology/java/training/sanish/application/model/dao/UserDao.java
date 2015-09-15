@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.model.dao;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
@@ -39,7 +40,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return user;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -71,7 +72,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return lastInsertedId;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -95,7 +96,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return user;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -120,7 +121,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return userList;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -137,7 +138,7 @@ public class UserDao implements UserService {
                     preparedStatement.setString(i + 1, parameters[i].toString());
                 }
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             }
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -150,7 +151,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return userList;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -166,14 +167,14 @@ public class UserDao implements UserService {
                     preparedStatement.setString(i + 1, parameters[i].toString());
                 }
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             }
 
             int effectedRow = preparedStatement.executeUpdate();
             preparedStatement.close();
             return effectedRow;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -192,7 +193,7 @@ public class UserDao implements UserService {
                 return true;
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -216,7 +217,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return employee;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -253,7 +254,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return userEmployeeList;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 
@@ -272,7 +273,7 @@ public class UserDao implements UserService {
                 return true;
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
             DbConnect.dbClose();
         }
 

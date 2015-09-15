@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.model.domain;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.model.Model;
 
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class User implements Model<User> {
-    private static final Logger LOGGER = Logger.getLogger(Employee.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
     private int userId;
     private String userName;
     private String password;
@@ -88,9 +89,9 @@ public class User implements Model<User> {
         try {
             return (V) User.class.getDeclaredField(key).get(this);
         } catch (NoSuchFieldException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } catch (IllegalAccessException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         }
         return null;
     }
@@ -99,9 +100,9 @@ public class User implements Model<User> {
         try {
             User.class.getDeclaredField(key).set(this, value);
         } catch (NoSuchFieldException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         } catch (IllegalAccessException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         }
     }
 
@@ -138,7 +139,7 @@ public class User implements Model<User> {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
         }
     }
 

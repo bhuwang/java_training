@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.view.login;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.utility.OutputFormatter;
 
 import java.util.logging.Level;
@@ -11,10 +12,10 @@ import java.util.logging.Logger;
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public class LoginPage {
+    private static final Logger LOGGER = Logger.getLogger(LoginPage.class.getName());
+
     private LoginPage() {
     }
-
-    private static final Logger LOGGER = Logger.getLogger(LoginPage.class.getName());
 
     /**
      * Render employee login page
@@ -22,10 +23,11 @@ public class LoginPage {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void renderPage(int loginAttempt) {
-        String pageContent = OutputFormatter.getFormattedPageTitle("Employee Login Page");
+        String pageContent = OutputFormatter.getFormattedPageTitle(Constants.LOGIN_PAGE);
         if (loginAttempt > 0) {
-            pageContent += "Message : Invalid userName or password. Please try again.";
+            pageContent += Constants.ERROR_MSG_LABEL + Constants.INVALID_EMAIL_PASSWORD_MSG;
         }
+
         LOGGER.log(Level.INFO, pageContent);
     }
 }
