@@ -91,8 +91,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> findAll(String key) {
 
-		List<User> user = new ArrayList<User>();
-		return user;
+		return new ArrayList<User>();
 	}
 
 	@Override
