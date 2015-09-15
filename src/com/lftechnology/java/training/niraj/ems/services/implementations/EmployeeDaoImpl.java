@@ -11,7 +11,6 @@ import com.lftechnology.java.training.niraj.ems.domains.Employee;
 import com.lftechnology.java.training.niraj.ems.enums.Operators;
 import com.lftechnology.java.training.niraj.ems.enums.Roles;
 import com.lftechnology.java.training.niraj.ems.enums.Status;
-import com.lftechnology.java.training.niraj.ems.exceptions.CustomException;
 import com.lftechnology.java.training.niraj.ems.services.AbstractDao;
 import com.lftechnology.java.training.niraj.ems.utils.DbFacade;
 
@@ -54,11 +53,11 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
     }
 
     @Override
-    public boolean update(Employee t) throws SQLException, CustomException {
+    public boolean update(Employee t) throws SQLException {
         if (t.getId() != null) {
             return updateQuery(conn, t) > 0 ? true : false;
         } else {
-            throw new CustomException("Invalid Employee Object");
+            return false;
         }
     }
 
@@ -68,7 +67,6 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
         Employee searchResult;
         List<Employee> employeeList = new ArrayList<Employee>();
         List<Map<String, String>> results = findQuery(conn, employee);
-        System.out.println(results);
         for (Map<String, String> result : results) {
             searchResult = new Employee();
             setEmployeeObject(result, searchResult);
@@ -109,7 +107,6 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
     @Override
     public boolean exists(Map<String, String> conditions) throws SQLException {
         int count = getCount(conditions);
-        System.out.println(count);
         return count > 0 ? true : false;
     }
 

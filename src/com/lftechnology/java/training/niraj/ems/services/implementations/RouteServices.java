@@ -11,7 +11,6 @@ import com.lftechnology.java.training.niraj.ems.domains.Employee;
 import com.lftechnology.java.training.niraj.ems.enums.Roles;
 import com.lftechnology.java.training.niraj.ems.utils.Constants;
 import com.lftechnology.java.training.niraj.ems.utils.UserNumInputImpl;
-import com.lftechnology.java.training.niraj.ems.utils.Utils;
 
 public class RouteServices {
     private static final Logger LOGGER = Logger.getLogger(RouteServices.class.getName());
@@ -23,7 +22,6 @@ public class RouteServices {
 
     public static void routeLandingPage() {
         try (Scanner scanner = new Scanner(System.in)) {
-            Utils.clearConsole();
             LoginController loginController = new LoginController();
             LOGGER.info(Constants.LANDING_MENU);
             int userChoice = RouteServices.userInput.getInput(scanner, 1, 2);
@@ -47,7 +45,6 @@ public class RouteServices {
 
     public static void routeAfterLogin(Employee employee) {
         if (employee != null) {
-            Utils.clearConsole();
             try (Scanner scanner = new Scanner(System.in)) {
                 String role = employee.getRole();
                 if (role.equals(Roles.ADMIN.getRole())) {
@@ -57,6 +54,7 @@ public class RouteServices {
                 }
 
             } catch (InputMismatchException se) {
+                LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
                 LOGGER.warning(Constants.INVALID_INPUT);
             }
         } else {

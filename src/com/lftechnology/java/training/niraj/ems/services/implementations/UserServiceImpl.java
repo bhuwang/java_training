@@ -43,7 +43,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
     }
 
     @Override
-    public boolean update(Employee t) throws SQLException,CustomException {
+    public boolean update(Employee t) throws SQLException {
         return employeeDao.update(t);
 
     }
@@ -63,9 +63,8 @@ public class UserServiceImpl implements CrudService<Employee, String> {
         credentials.put(Constants.PASSWORD, password);
         credentials.put(Constants.STATUS, Status.ACTIVE.getStatus());
         credentials.put(Constants.IS_TERMINATED, Status.INACTIVE.getStatus());
-        Employee employee = employeeDao.findByAttributes(credentials);
 
-        return employee;
+        return employeeDao.findByAttributes(credentials);
     }
 
     /**
@@ -182,7 +181,6 @@ public class UserServiceImpl implements CrudService<Employee, String> {
         Map<String, String> userExistsCondition = new LinkedHashMap<String, String>();
         Map<String, String> employeeAfterRegistration = null;
         userExistsCondition.put(Constants.USERNAME, employeeInfo.get(Constants.USERNAME));
-        System.out.println(employeeDao.exists(userExistsCondition));
 
         if (!employeeDao.exists(userExistsCondition)) {
             String userId = saveUserInfo(employeeInfo);
@@ -315,7 +313,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
         searchCondition.put(Constants.OPERATOR, Operators.AND.getOperator());
         searchCondition.put(Constants.STATUS, Status.ACTIVE.getStatus());
         List<Employee> searchResults = employeeDao.findAll(searchCondition, Operators.OR);
-        if (searchResults.size() == 0) {
+        if (searchResults.isEmpty()) {
             return Constants.USER_NOT_FOUND;
         }
         return getFormattedSearchResults(searchResults);
@@ -348,7 +346,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
         Map<String, String> searchCondition = new LinkedHashMap<String, String>();
         searchCondition.put(Constants.STATUS, Status.ACTIVE.getStatus());
         List<Employee> searchResults = employeeDao.findAll(searchCondition);
-        if (searchResults.size() == 0) {
+        if (searchResults.isEmpty()) {
             return Constants.USER_NOT_FOUND;
         }
         return getFormattedSearchResults(searchResults);

@@ -5,8 +5,8 @@ import com.lftechnology.java.training.niraj.ems.utils.Constants;
 public enum Status {
     ACTIVE("1"), INACTIVE("0");
 
-    private final String ISACTIVE = "Yes";
-    private final String ISINACTIVE = "No";
+    private static final String ISACTIVE = "Yes";
+    private static final String ISINACTIVE = "No";
     private final String isActive;
 
     private Status(String isActive) {
