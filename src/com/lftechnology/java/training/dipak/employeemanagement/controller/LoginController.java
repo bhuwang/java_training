@@ -51,8 +51,6 @@ public class LoginController {
 
 			password = String.valueOf(pwd);
 
-			// password=sc.nextLine();
-
 			u.setPassword(password);
 
 			employee = ls.validateLogin(u);

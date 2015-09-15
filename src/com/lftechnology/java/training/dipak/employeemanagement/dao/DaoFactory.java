@@ -8,7 +8,10 @@ package com.lftechnology.java.training.dipak.employeemanagement.dao;
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class DaoFactory {
-
+	
+	private DaoFactory() {
+		
+	}
 	/**
 	 * <p>This method creates the object of the EmployeeDao class.</p>
 	 * 

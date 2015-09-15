@@ -55,14 +55,12 @@ public class EmployeeDao implements EmployeeApi {
 			pst.setString(6, e.getAddress());
 			pst.setString(7, e.getRole().toString());
 
-			System.out.println(pst);
-
 			count = pst.executeUpdate();
 
 		}
 		catch (MySQLIntegrityConstraintViolationException e1) {
-			LOGGER.severe(
-				"User name already exits. Please enter another username.");
+			LOGGER.log(Level.SEVERE,
+				"User name already exits. Please enter another username. Exception  type:{0}",e1);
 		}
 		catch (SQLException sq) {
 			LOGGER.log(Level.SEVERE, "Exception::{0}", sq);
@@ -91,17 +89,17 @@ public class EmployeeDao implements EmployeeApi {
 		PreparedStatement pst = null;
 
 		sql = new StringBuilder("select * from employee where 1=1 ");
-		if (!e.getFullName().equals("")) {
+		if (!"".equals(e.getFullName())) {
 			sql.append("and fullname='");
 			sql.append(e.getFullName());
 			sql.append("'");
 		}
-		if (!e.getAddress().equals("")) {
+		if (!"".equals(e.getAddress())) {
 			sql.append(" and address='");
 			sql.append(e.getAddress());
 			sql.append("'");
 		}
-		if (!e.getDepartment().equals("")) {
+		if (!"".equals(e.getDepartment())) {
 			sql.append(" and department='");
 			sql.append(e.getDepartment());
 			sql.append("'");
@@ -115,61 +113,9 @@ public class EmployeeDao implements EmployeeApi {
 		catch (SQLException e1) {
 			LOGGER.log(Level.SEVERE, "Exception::{0}", e1);
 		}
-
-		// sql="select * from employee where fullname=? and department=? and
-		// address=?";
-		//
-		// try {
-		// pst=con.prepareStatement(sql);
-		// if(!e.getFullName().equals("")) {
-		// pst.setString(1, e.getFullName());
-		// }else {
-		// pst.setString(1, "?");
-		// }
-		// if(!e.getAddress().equals("")) {
-		// pst.setString(3, e.getAddress());
-		// }else {
-		// pst.setString(3, "?");
-		// }
-		// if(!e.getDepartment().equals("")) {
-		// pst.setString(2, e.getDepartment());
-		// }else {
-		// pst.setString(2, "?");
-		// }
-		//
-		// System.out.println(pst);
-		//
-		// rs=pst.executeQuery();
-		//
-		// }catch(SQLException sq) {
-		// LOGGER.log(Level.SEVERE,"Exception::{0}",sq);
-		// }
-
+		
 		return rs;
 	}
-
-	// @Override
-	// public int deleteEmployee(Employee e) {
-	// Connection con=DbConnection.setConnection();
-	// int count=0;
-	// if(con==null) {
-	// LOGGER.info("Connection Setup Failed");
-	// return count;
-	// }
-	// PreparedStatement pst = null;
-	// String sql="delete from employee where username=?";
-	// try {
-	// pst=con.prepareStatement(sql);
-	//
-	// pst.setString(1, e.getFullName());
-	//
-	// count=pst.executeUpdate();
-	// }catch(SQLException sq) {
-	// LOGGER.log(Level.INFO,"Exception::{0}",sq);
-	// }
-	//
-	// return count;
-	// }
 
 	/**
 	 * <p>This method terminates the employee present in the database based on

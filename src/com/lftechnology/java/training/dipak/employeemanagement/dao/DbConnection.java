@@ -11,10 +11,13 @@ import java.util.logging.Logger;
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class DbConnection {
-
+	
 	private static final Logger LOGGER =
 		Logger.getLogger(DbConnection.class.getName());
-
+	
+	
+	private DbConnection() {
+	}
 	/**
 	 * <p>This method is used to set database connection.</p>
 	 * 
@@ -22,9 +25,9 @@ public class DbConnection {
 	 */
 	public static Connection setConnection() {
 
-		String USER_NAME = "root";
-		String PASSWORD = "liferay";
-		String URL = "jdbc:mysql://localhost:3306/ems";
+		final String USER_NAME = "root";
+		final String PASSWORD = "liferay";
+		final String URL = "jdbc:mysql://localhost:3306/ems";
 
 		Connection connection = null;
 

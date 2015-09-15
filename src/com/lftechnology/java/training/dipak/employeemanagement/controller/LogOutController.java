@@ -11,7 +11,9 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
  */
 
 public class LogOutController {
-
+	private LogOutController() {
+		
+	}
 	/**
 	 * <p>This method changes the values of the employee object by emptying the
 	 * fields or placing random values.</p>

@@ -19,10 +19,12 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class MainClass {
-
+	
 	private static final Logger LOGGER =
 		Logger.getLogger(MainClass.class.getName());
-
+	
+	private MainClass() {
+	}
 	static {
 		ConsoleHandler ch = new ConsoleHandler();
 		ch.setLevel(Level.FINEST);

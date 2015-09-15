@@ -29,7 +29,6 @@ public interface EmployeeApi {
 	 */
 	public ResultSet viewEmployee(Employee e);
 
-	// public int deleteEmployee(Employee e);
 	/**
 	 * <p> This method is used to terminate users from the database.</p>
 	 * 

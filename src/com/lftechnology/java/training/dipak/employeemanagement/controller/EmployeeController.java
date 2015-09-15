@@ -165,34 +165,6 @@ public class EmployeeController {
 		return null;
 	}
 
-	// public int deleteEmployee(Employee e,Scanner sc) {
-	// String fullName=null;
-	// String department=null;
-	// String address=null;
-	// int count=0;
-	// try {
-	//
-	// LOGGER.info("Please enter the employee username::");
-	// fullName=sc.nextLine();
-	//
-	// LOGGER.info("Please enter the department::");
-	// department=sc.nextLine();
-	// LOGGER.info("Please enter the address::");
-	// address=sc.nextLine();
-	//
-	// e.setFullName(fullName);
-	// e.setAddress(address);
-	// e.setDepartment(department);
-	//
-	// EmployeeService ed=ServiceFactory.getEmployeeService();
-	//
-	// count=ed.deleteEmployee(e);
-	//
-	// }catch(Exception ex) {
-	// LOGGER.log(Level.INFO,"Exception type::{0}",ex);
-	// }
-	// return count;
-	// }
 
 	/**
 	 * <p>This method takes the input for the fields to be edited and calls
@@ -230,19 +202,19 @@ public class EmployeeController {
 			LOGGER.info("Enter new address::");
 			address = sc.nextLine();
 
-			if (!(userName.equals(""))) {
+			if (!("".equals(userName))) {
 				e.setUserName(userName);
 			}
-			if (!(password.equals(""))) {
+			if (!("".equals(password))) {
 				e.setPassword(password);
 			}
-			if (!(fullName.equals(""))) {
+			if (!("".equals(fullName))) {
 				e.setFullName(fullName);
 			}
-			if (!(department.equals(""))) {
+			if (!("".equals(department))) {
 				e.setDepartment(department);
 			}
-			if (!(address.equals(""))) {
+			if (!("".equals(address))) {
 				e.setAddress(address);
 			}
 

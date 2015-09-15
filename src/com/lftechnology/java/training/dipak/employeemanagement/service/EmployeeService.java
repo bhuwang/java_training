@@ -117,23 +117,6 @@ public class EmployeeService implements EmployeeApi {
 		return null;
 	}
 
-	// @Override
-	// public int deleteEmployee(Employee e) {
-	// EmployeeDao ed = DaoFactory.getEmployeeDao();
-	//
-	// int numberOfDeletedUsers=0;
-	//
-	// ed.deleteEmployee(e);
-	//
-	// if(numberOfDeletedUsers==0) {
-	// LOGGER.info("No users were deleted. Please check the fullname again.");
-	// }else {
-	// LOGGER.log(Level.INFO,"Number of users
-	// deleted={0}",numberOfDeletedUsers);
-	// }
-	// return numberOfDeletedUsers;
-	// }
-
 	/**
 	 * <p>This method calls the terminateEmployee method present in the DAO
 	 * layer and prints the number of employees terminated.</p>
@@ -170,13 +153,13 @@ public class EmployeeService implements EmployeeApi {
 	 * @return e
 	 */
 	@Override
-	public Employee editEmployeeDetails(Employee e) {
+	public Employee editEmployeeDetails(Employee employee) {
 
 		EmployeeDao ed = DaoFactory.getEmployeeDao();
 
-		e = ed.editEmployeeDetails(e);
+		employee = ed.editEmployeeDetails(employee);
 
-		return e;
+		return employee;
 	}
 
 }
