@@ -2,6 +2,7 @@ package com.lftechnology.java.training.niraj.ems.services.implementations;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lftechnology.java.training.niraj.ems.controllers.EmployeeController;
@@ -37,8 +38,9 @@ public class RouteServices {
                 LOGGER.warning(Constants.INVALID_INPUT);
                 break;
             }
-        } catch (InputMismatchException se) {
+        } catch (InputMismatchException ie) {
             LOGGER.warning(Constants.INVALID_INPUT);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, ie);
         }
 
     }

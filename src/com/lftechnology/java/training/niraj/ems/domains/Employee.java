@@ -71,7 +71,6 @@ public class Employee extends User {
 
     @Override
     public Map<String, String> getInfo() {
-        // TODO Auto-generated method stub
         Map<String, String> employeeInfo = super.getInfo();
         employeeInfo.put("fullname", getFullname());
         employeeInfo.put("department", getDepartment());

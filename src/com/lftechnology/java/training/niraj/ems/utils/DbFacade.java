@@ -42,9 +42,9 @@ public class DbFacade {
             Class.forName(DB_DRIVER);
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (ClassNotFoundException ce) {
-            LOGGER.log(Level.SEVERE, "Class not found exception: \n {0}", ce);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, ce);
         } catch (SQLException se) {
-            LOGGER.log(Level.SEVERE, "SQL Exception:\n{0}", se);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
         }
 
         return connection;
@@ -130,8 +130,7 @@ public class DbFacade {
         query.append(Constants.SELECT_COUNT_QUERY);
         query.append(table);
 
-        PreparedStatement stmt = connection.prepareStatement(query.toString());
-        return stmt;
+        return connection.prepareStatement(query.toString());
     }
 
     /**
@@ -178,8 +177,8 @@ public class DbFacade {
     public static PreparedStatement createUpdateStatement(Connection connection, String table, Map<String, String> values,
             Map<String, String> conditions) throws SQLException {
         StringBuilder query = new StringBuilder();
-        if (values.containsKey("id")) {
-            values.remove("id");
+        if (values.containsKey(Constants.ID)) {
+            values.remove(Constants.ID);
         }
         query.append(addUpdateClause(table, values));
         query.append(addWhereClause(conditions, Operators.AND));
@@ -202,8 +201,8 @@ public class DbFacade {
     public static PreparedStatement createUpdateStatement(Connection connection, String table, Map<String, String> values,
             Map<String, String> conditions, Operators operator) throws SQLException {
         StringBuilder query = new StringBuilder();
-        if (values.containsKey("id")) {
-            values.remove("id");
+        if (values.containsKey(Constants.ID)) {
+            values.remove(Constants.ID);
         }
         query.append(addUpdateClause(table, values));
         query.append(addWhereClause(conditions, operator));
@@ -227,7 +226,7 @@ public class DbFacade {
         query.append(" SET ");
         for (Entry<String, String> entry : values.entrySet()) {
             String key = entry.getKey();
-            if (!key.equals("id")) {
+            if (key != null && !key.equals(Constants.ID)) {
                 query.append(key);
                 query.append("=?, ");
             }

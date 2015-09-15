@@ -1,5 +1,9 @@
 package com.lftechnology.java.training.niraj.ems.services;
 
+import java.sql.SQLException;
+
+import com.lftechnology.java.training.niraj.ems.exceptions.CustomException;
+
 public interface CrudService<T, S> {
 
     /**
@@ -10,7 +14,7 @@ public interface CrudService<T, S> {
      * @return
      * @throws Exception
      */
-    public T save(T t) throws Exception;
+    public T save(T t) throws SQLException;
 
     /**
      * Finds a record
@@ -20,7 +24,7 @@ public interface CrudService<T, S> {
      * @return
      * @throws Exception
      */
-    public T find(S s) throws Exception;
+    public T find(S s) throws SQLException;
 
     /**
      * Updates a record
@@ -30,5 +34,5 @@ public interface CrudService<T, S> {
      * @return
      * @throws Exception
      */
-    public boolean update(T t) throws Exception;
+    public boolean update(T t) throws SQLException,CustomException;
 }

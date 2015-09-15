@@ -9,9 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lftechnology.java.training.niraj.ems.domains.Employee;
-import com.lftechnology.java.training.niraj.ems.exceptions.CustomException;
 import com.lftechnology.java.training.niraj.ems.services.implementations.RouteServices;
 import com.lftechnology.java.training.niraj.ems.services.implementations.UserServiceImpl;
+import com.lftechnology.java.training.niraj.ems.utils.Constants;
 
 public class LoginController {
     private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
@@ -32,21 +32,22 @@ public class LoginController {
             do {
                 if (attempt != 0) {
                     int attemptLeft = 3 - attempt;
-                    LOGGER.log(Level.WARNING, "\n\n\nYou have {0} attempts left\n\n", attemptLeft);
+                    LOGGER.log(Level.WARNING, Constants.LOGIN_ATTEMPTS, attemptLeft);
                 }
                 credentials = userService.getUserCredentials(scanner, console);
-                employee = userService.login(credentials.get("username"), credentials.get("password"));
+                employee = userService.login(credentials.get(Constants.USERNAME), credentials.get(Constants.PASSWORD));
                 isAuthenticated = employee.getId() != null ? true : false;
                 attempt++;
             } while (attempt < 3 && !isAuthenticated);
             if (isAuthenticated) {
                 RouteServices.routeAfterLogin(employee);
             } else {
-                LOGGER.severe("Incorrect username or password. Exiting the program");
+                LOGGER.severe(Constants.INVALID_CREDENTIALS);
             }
         } catch (InputMismatchException | SQLException se) {
-            se.printStackTrace();
-            LOGGER.severe("There was some error. Please try again later.");
+
+            LOGGER.severe(Constants.UNHANDLED_EXCEPTION);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
             RouteServices.routeLandingPage();
         }
 
@@ -59,17 +60,17 @@ public class LoginController {
             Map<String, String> userRegistrationInfo = userService.getUserRegistrationInfo(scanner, console);
             userRegistrationInfo = userService.registerUser(userRegistrationInfo);
             if (userRegistrationInfo != null) {
-                employee = userService.login(userRegistrationInfo.get("username"), userRegistrationInfo.get("password"));
+                employee = userService.login(userRegistrationInfo.get(Constants.USERNAME), userRegistrationInfo.get(Constants.PASSWORD));
             }
             if (employee != null) {
                 RouteServices.routeAfterLogin(employee);
             } else {
-                throw new CustomException("Failed to register employee.");
+                LOGGER.severe(Constants.REGISTER_USER_FAIL);
+                RouteServices.routeLandingPage();
             }
-        } catch (InputMismatchException | SQLException | CustomException se) {
-            se.printStackTrace();
-            LOGGER.severe("There was some error. Please try again later.");
-            RouteServices.routeLandingPage();
+        } catch (InputMismatchException | SQLException se) {
+            LOGGER.severe(Constants.UNHANDLED_EXCEPTION);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
         }
     }
 

@@ -34,4 +34,39 @@ public class Constants {
     public static final String USER_ALREADY_EXIST = "User already exists";
     public static final String FAIL_USER_REGISTER = "Failed to register user. Please try again";
     public static final String OPERATOR = "operator";
+    public static final String ACTIVE = "1";
+    public static final String INACTIVE = "0";
+    public static final String USERNAME = "username";
+    public static final String FULLNAME = "fullname";
+    public static final String ADDRESS = "address";
+    public static final String DEPARTMENT = "department";
+    public static final String PASSWORD = "password";
+    public static final String IS_TERMINATED = "isTerminated";
+    public static final String STATUS = "status";
+    public static final String ID = "id";
+    public static final String ROLE = "role";
+    public static final String EXCEPTION_LOG = "Exception {0}";
+    public static final String UNHANDLED_EXCEPTION = "There was some error. Please try again later.";
+    public static final String INVALID_CREDENTIALS = "Incorrect username or password. Exiting the program";
+    public static final String REGISTER_USER_FAIL = "Failed to register employee.";
+    public static final String LOGIN_ATTEMPTS = "\n\n\nYou have {0} attempts left\n\n";
+    public static final String ADD_USER_SUCCESS = "Successfully added the user {0}";
+    public static final String FAIL_RETRIEVE_USER_LIST = "Failed to retrieve the search results. please try again.";
+    public static final String ROW_COUNT = "rowCount";
+    public static final String AND_OPERATOR = "AND";
+    public static final String OR_OPERATOR = "OR";
+    public static final String EMPLOYEE_NOT_FOUND = "Employee not found";
+    public static final String ROR = "ROR";
+    public static final String PHP = "PHP";
+    public static final String JAVA = "Java";
+    public static final String ADMINISTRATION = "Administration";
+    public static final String DEVOPS = "Devops";
+    public static final String IOS = "iOS";
+    public static final String ANDROID = "Android";
+    public static final String OPERATIONS = "Operations";
+
+    private Constants() {
+
+    }
+
 }

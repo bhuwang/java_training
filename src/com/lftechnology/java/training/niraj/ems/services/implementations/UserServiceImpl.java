@@ -43,7 +43,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
     }
 
     @Override
-    public boolean update(Employee t) throws Exception {
+    public boolean update(Employee t) throws SQLException,CustomException {
         return employeeDao.update(t);
 
     }
@@ -59,10 +59,10 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      */
     public Employee login(String username, String password) throws SQLException {
         Map<String, String> credentials = new LinkedHashMap<String, String>();
-        credentials.put("username", username);
-        credentials.put("password", password);
-        credentials.put("status", Status.ACTIVE.getStatus());
-        credentials.put("isTerminated", Status.INACTIVE.getStatus());
+        credentials.put(Constants.USERNAME, username);
+        credentials.put(Constants.PASSWORD, password);
+        credentials.put(Constants.STATUS, Status.ACTIVE.getStatus());
+        credentials.put(Constants.IS_TERMINATED, Status.INACTIVE.getStatus());
         Employee employee = employeeDao.findByAttributes(credentials);
 
         return employee;
@@ -101,7 +101,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
             employee.setIsTerminated(Status.ACTIVE);
             isTerminated = employeeDao.update(employee);
         } else {
-            throw new CustomException("Employee not found");
+            throw new CustomException(Constants.EMPLOYEE_NOT_FOUND);
         }
         return isTerminated;
     }
@@ -121,7 +121,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
             employee.setStatus(Status.INACTIVE);
             isDeleted = employeeDao.update(employee);
         } else {
-            throw new CustomException("Employee not found");
+            throw new CustomException(Constants.EMPLOYEE_NOT_FOUND);
         }
         return isDeleted;
     }
@@ -137,19 +137,19 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      */
     public Map<String, String> getUserRegistrationInfo(Scanner scanner, Console console) {
         Map<String, String> userRegistrationInfo = new LinkedHashMap<String, String>();
-        userRegistrationInfo.put("fullname", userInput.getInput(scanner, console, Constants.FULLNAME_LABEL));
-        userRegistrationInfo.put("username", userInput.getInput(scanner, console, Constants.USERNAME_LABEL));
-        userRegistrationInfo.put("password", userInput.getInput(scanner, console, Constants.PASSWORD_LABEL));
-        userRegistrationInfo.put("address", userInput.getInput(scanner, console, Constants.ADDRESS_LABEL));
+        userRegistrationInfo.put(Constants.FULLNAME, userInput.getInput(scanner, console, Constants.FULLNAME_LABEL));
+        userRegistrationInfo.put(Constants.USERNAME, userInput.getInput(scanner, console, Constants.USERNAME_LABEL));
+        userRegistrationInfo.put(Constants.PASSWORD, userInput.getInput(scanner, console, Constants.PASSWORD_LABEL));
+        userRegistrationInfo.put(Constants.ADDRESS, userInput.getInput(scanner, console, Constants.ADDRESS_LABEL));
         LOGGER.info(Constants.DEPARTMENT_LABEL);
         int department = userNumInput.getInput(scanner, 1, 8);
-        userRegistrationInfo.put("department", getDepartmentById(department));
+        userRegistrationInfo.put(Constants.DEPARTMENT, getDepartmentById(department));
         LOGGER.info(Constants.ROLE_LABEL);
         int role = userNumInput.getInput(scanner, 1, 2);
         if (role == 1) {
-            userRegistrationInfo.put("role", Roles.ADMIN.getRole());
+            userRegistrationInfo.put(Constants.ROLE, Roles.ADMIN.getRole());
         } else {
-            userRegistrationInfo.put("role", Roles.USER.getRole());
+            userRegistrationInfo.put(Constants.ROLE, Roles.USER.getRole());
         }
 
         return userRegistrationInfo;
@@ -165,8 +165,8 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      */
     public Map<String, String> getUserCredentials(Scanner scanner, Console console) {
         Map<String, String> credentials = new LinkedHashMap<String, String>();
-        credentials.put("username", userInput.getInput(scanner, console, Constants.USERNAME_LABEL));
-        credentials.put("password", userInput.getInput(scanner, console, Constants.PASSWORD_LABEL));
+        credentials.put(Constants.USERNAME, userInput.getInput(scanner, console, Constants.USERNAME_LABEL));
+        credentials.put(Constants.PASSWORD, userInput.getInput(scanner, console, Constants.PASSWORD_LABEL));
         return credentials;
     }
 
@@ -181,7 +181,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
     public Map<String, String> registerUser(Map<String, String> employeeInfo) throws SQLException {
         Map<String, String> userExistsCondition = new LinkedHashMap<String, String>();
         Map<String, String> employeeAfterRegistration = null;
-        userExistsCondition.put("username", employeeInfo.get("username"));
+        userExistsCondition.put(Constants.USERNAME, employeeInfo.get(Constants.USERNAME));
         System.out.println(employeeDao.exists(userExistsCondition));
 
         if (!employeeDao.exists(userExistsCondition)) {
@@ -214,7 +214,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
         Map<String, String> userRegistrationInfo = getUserRegistrationInfo(scanner, console);
         userRegistrationInfo = registerUser(userRegistrationInfo);
 
-        if (userRegistrationInfo != null && !Utils.isEmpty(userRegistrationInfo.get("username"))) {
+        if (userRegistrationInfo != null && !Utils.isEmpty(userRegistrationInfo.get(Constants.USERNAME))) {
             employee = setAttributes(employee, userRegistrationInfo);
         } else {
             LOGGER.warning(Constants.FAIL_USER_REGISTER);
@@ -233,28 +233,28 @@ public class UserServiceImpl implements CrudService<Employee, String> {
         String department;
         switch (id) {
         case 2:
-            department = "ROR";
+            department = Constants.ROR;
             break;
         case 3:
-            department = "PHP";
+            department = Constants.PHP;
             break;
         case 4:
-            department = "Devops";
+            department = Constants.DEVOPS;
             break;
         case 5:
-            department = "Android";
+            department = Constants.DEVOPS;
             break;
         case 6:
-            department = "iOS";
+            department = Constants.IOS;
             break;
         case 7:
-            department = "Administration";
+            department = Constants.ADMINISTRATION;
             break;
         case 8:
-            department = "Operations";
+            department = Constants.OPERATIONS;
             break;
         default:
-            department = "Java";
+            department = Constants.JAVA;
             break;
         }
         return department;
@@ -273,11 +273,11 @@ public class UserServiceImpl implements CrudService<Employee, String> {
                 userInfo.put(attribute, null);
             }
         }
-        if (userInfo.get("status") == null) {
-            userInfo.put("status", Status.ACTIVE.getStatus());
+        if (userInfo.get(Constants.STATUS) == null) {
+            userInfo.put(Constants.STATUS, Status.ACTIVE.getStatus());
         }
-        if (userInfo.get("isTerminated") == null) {
-            userInfo.put("isTerminated", Status.INACTIVE.getStatus());
+        if (userInfo.get(Constants.IS_TERMINATED) == null) {
+            userInfo.put(Constants.IS_TERMINATED, Status.INACTIVE.getStatus());
         }
     }
 
@@ -308,12 +308,12 @@ public class UserServiceImpl implements CrudService<Employee, String> {
     public String searchUser(Scanner scanner, Console console) throws SQLException {
         Map<String, String> searchCondition = new LinkedHashMap<String, String>();
         String username = userInput.getInput(scanner, console, Constants.SEARCH_BY_USERNAME);
-        searchCondition.put("username", username);
-        searchCondition.put("fullname", username);
-        searchCondition.put("department", username);
-        searchCondition.put("address", username);
-        searchCondition.put(Constants.OPERATOR, "AND");
-        searchCondition.put("status", Status.ACTIVE.getStatus());
+        searchCondition.put(Constants.USERNAME, username);
+        searchCondition.put(Constants.FULLNAME, username);
+        searchCondition.put(Constants.DEPARTMENT, username);
+        searchCondition.put(Constants.ADDRESS, username);
+        searchCondition.put(Constants.OPERATOR, Operators.AND.getOperator());
+        searchCondition.put(Constants.STATUS, Status.ACTIVE.getStatus());
         List<Employee> searchResults = employeeDao.findAll(searchCondition, Operators.OR);
         if (searchResults.size() == 0) {
             return Constants.USER_NOT_FOUND;
@@ -346,7 +346,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      */
     public String getUsersList() throws SQLException {
         Map<String, String> searchCondition = new LinkedHashMap<String, String>();
-        searchCondition.put("status", Status.ACTIVE.getStatus());
+        searchCondition.put(Constants.STATUS, Status.ACTIVE.getStatus());
         List<Employee> searchResults = employeeDao.findAll(searchCondition);
         if (searchResults.size() == 0) {
             return Constants.USER_NOT_FOUND;
@@ -375,7 +375,7 @@ public class UserServiceImpl implements CrudService<Employee, String> {
      */
     public void TerminateDeleteUser(Scanner scanner, Console console, Employee loggedInUser) throws SQLException, CustomException {
         Map<String, String> condition = new LinkedHashMap<String, String>();
-        condition.put("username", userInput.getInput(scanner, console, Constants.SELECT_USER_EDIT));
+        condition.put(Constants.USERNAME, userInput.getInput(scanner, console, Constants.SELECT_USER_EDIT));
         Employee employee = employeeDao.findByAttributes(condition);
         if (employee.getId() == null) {
             LOGGER.warning(Constants.USER_NOT_FOUND);
@@ -440,18 +440,18 @@ public class UserServiceImpl implements CrudService<Employee, String> {
         for (String choice : choices) {
             switch (choice) {
             case "2":
-                editInfo.put("address", userInput.getInput(scanner, console, Constants.ADDRESS_LABEL));
+                editInfo.put(Constants.ADDRESS, userInput.getInput(scanner, console, Constants.ADDRESS_LABEL));
                 break;
             case "3":
                 LOGGER.info(Constants.DEPARTMENT_LABEL);
                 int department = userNumInput.getInput(scanner, 1, 8);
-                editInfo.put("department", getDepartmentById(department));
+                editInfo.put(Constants.DEPARTMENT, getDepartmentById(department));
                 break;
             case "4":
-                editInfo.put("password", userInput.getInput(scanner, console, Constants.PASSWORD_LABEL));
+                editInfo.put(Constants.PASSWORD, userInput.getInput(scanner, console, Constants.PASSWORD_LABEL));
                 break;
             default:
-                editInfo.put("fullname", userInput.getInput(scanner, console, Constants.FULLNAME_LABEL));
+                editInfo.put(Constants.FULLNAME, userInput.getInput(scanner, console, Constants.FULLNAME_LABEL));
                 break;
             }
         }

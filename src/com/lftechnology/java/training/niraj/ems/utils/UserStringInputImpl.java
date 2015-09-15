@@ -68,9 +68,7 @@ public class UserStringInputImpl implements UserStringInput {
 
     public List<String> getMultipleChoices(Scanner scanner, Console console, String message, int min, int max) {
         List<String> choices = null;
-        if (console != null) {
-            // todo for console
-        } else {
+        if (console == null) {
             choices = getMultipleChoices(scanner, message, min, max);
         }
         return choices;
@@ -110,8 +108,7 @@ public class UserStringInputImpl implements UserStringInput {
     public String getPassword(Console console) {
         char[] password = console.readPassword("Password: ");
         Arrays.fill(password, ' ');
-        String pass = Arrays.toString(password);
-        return pass;
+        return Arrays.toString(password);
     }
 
 }

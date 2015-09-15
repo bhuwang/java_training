@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.lftechnology.java.training.niraj.ems.domains.Pojo;
 import com.lftechnology.java.training.niraj.ems.enums.Operators;
+import com.lftechnology.java.training.niraj.ems.utils.Constants;
 import com.lftechnology.java.training.niraj.ems.utils.DbFacade;
 
 public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S> {
@@ -225,7 +226,7 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
             int rowCount = 0;
             ResultSet result = stmt.executeQuery();
             while (result.next()) {
-                rowCount = result.getInt("rowCount");
+                rowCount = result.getInt(Constants.ROW_COUNT);
             }
             return rowCount;
         } catch (SQLException se) {
@@ -252,7 +253,7 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
             int rowCount = 0;
             ResultSet result = stmt.executeQuery();
             while (result.next()) {
-                rowCount = result.getInt("rowCount");
+                rowCount = result.getInt(Constants.ROW_COUNT);
             }
             return rowCount;
         } catch (SQLException se) {
@@ -302,7 +303,7 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
     protected int updateQuery(Connection connection, T t) throws SQLException {
         int affectedRows = 0;
         Map<String, String> condition = new LinkedHashMap<String, String>();
-        condition.put("id", t.getId());
+        condition.put(t.getPrimaryKey(), t.getId());
         try (PreparedStatement stmt = DbFacade.createUpdateStatement(connection, t.getTable(), t.getInfo(), condition)) {
             affectedRows = stmt.executeUpdate();
         } catch (SQLException se) {

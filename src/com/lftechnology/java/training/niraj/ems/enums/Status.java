@@ -1,10 +1,12 @@
 package com.lftechnology.java.training.niraj.ems.enums;
 
+import com.lftechnology.java.training.niraj.ems.utils.Constants;
+
 public enum Status {
     ACTIVE("1"), INACTIVE("0");
 
-    private final String IS_ACTIVE = "Yes";
-    private final String IS_INACTIVE = "No";
+    private final String ISACTIVE = "Yes";
+    private final String ISINACTIVE = "No";
     private final String isActive;
 
     private Status(String isActive) {
@@ -16,10 +18,10 @@ public enum Status {
     }
 
     public String getStatusString() {
-        if (isActive.equals("1")) {
-            return IS_ACTIVE;
+        if (isActive != null && isActive.equals(Constants.ACTIVE)) {
+            return ISACTIVE;
         } else {
-            return IS_INACTIVE;
+            return ISINACTIVE;
         }
     }
 }

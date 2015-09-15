@@ -39,12 +39,12 @@ public class EmployeeController {
             Console console = System.console();
             Employee employee = userService.addUser(scanner, console);
             if (employee.getId() != null) {
-                LOGGER.log(Level.INFO, "Successfully added the user {0}", employee.getFullname());
+                LOGGER.log(Level.INFO, Constants.ADD_USER_SUCCESS, employee.getFullname());
             }
             RouteServices.routeAfterLogin(loggedInUser);
         } catch (InputMismatchException | SQLException se) {
-            LOGGER.severe("There was some error. Please try again later.");
-            LOGGER.log(Level.SEVERE, "Exception:{0}", se);
+            LOGGER.severe(Constants.UNHANDLED_EXCEPTION);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
 
         }
 
@@ -66,7 +66,7 @@ public class EmployeeController {
             LOGGER.info(Constants.EDIT_SUCCESS);
             RouteServices.routeAfterLogin(employee);
         } catch (InputMismatchException | SQLException se) {
-            LOGGER.log(Level.SEVERE, "Exception: {0}", se);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
         }
 
     }
@@ -85,8 +85,8 @@ public class EmployeeController {
             LOGGER.info(searchResult);
             RouteServices.routeAfterLogin(employee);
         } catch (InputMismatchException | SQLException se) {
-            LOGGER.severe("Failed to retrieve the search results. please try again.");
-            LOGGER.log(Level.SEVERE, "Exception:{0}", se);
+            LOGGER.severe(Constants.FAIL_RETRIEVE_USER_LIST);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
         }
 
     }
@@ -106,11 +106,11 @@ public class EmployeeController {
             RouteServices.routeAfterLogin(employee);
 
         } catch (InputMismatchException | SQLException se) {
-            LOGGER.severe("Failed to retrieve the user lists. please try again.");
-            LOGGER.log(Level.SEVERE, "Exception:{0}", se);
+            LOGGER.severe(Constants.FAIL_RETRIEVE_USER_LIST);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, se);
             RouteServices.routeAfterLogin(employee);
         } catch (CustomException ce) {
-            LOGGER.log(Level.SEVERE, "Exception:{0}", ce);
+            LOGGER.log(Level.SEVERE, Constants.EXCEPTION_LOG, ce);
         }
     }
 
@@ -121,7 +121,6 @@ public class EmployeeController {
      */
     public void logout() {
         LOGGER.info(Constants.GOODBYE_MSG);
-        System.exit(0);
     }
 
 }
