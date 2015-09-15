@@ -45,7 +45,7 @@ public class UserService {
         } else {
             do {
                 String username = UtilityService.getInputData(scanner, "Enter Username : ");
-                userExist = LoginController.checkExistUsername(scanner, userExist, username);
+                userExist = LoginController.checkExistUsername(userExist, username);
                 if (!userExist) {
                     user.setUsername(username);
                 }

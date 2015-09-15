@@ -68,12 +68,12 @@ public class LoginController {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    public static boolean checkExistUsername(Scanner scanner, boolean userExist, String username) throws SQLException {
+    public static boolean checkExistUsername(boolean userExist, String username) throws SQLException {
         UserDaoImpl userDao = new UserDaoImpl();
-        userExist = userDao.checkValidUserByUsername(username);
-        if (userExist) {
+        boolean checkUserExist = userDao.checkValidUserByUsername(username);
+        if (checkUserExist) {
             LOGGER.log(Level.INFO, "\n=====>\nUsername already exists.\n=====>");
         }
-        return userExist;
+        return checkUserExist;
     }
 }
