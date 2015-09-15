@@ -11,7 +11,7 @@ import com.lftechnology.java.training.krishna.employeemanagement.jdbc.MigrationU
 import com.lftechnology.java.training.krishna.employeemanagement.service.employee.impl.EmployeeServiceImpl;
 import com.lftechnology.java.training.krishna.employeemanagement.service.user.impl.UserServiceImpl;
 import com.lftechnology.java.training.krishna.employeemanagement.utils.ConstantUtils;
-import com.lftechnology.java.training.krishna.employeemanagement.utils.Role;
+import com.lftechnology.java.training.krishna.employeemanagement.utils.UserRole;
 import com.lftechnology.java.training.krishna.employeemanagement.utils.ValidationUtils;
 
 /**
@@ -135,7 +135,7 @@ public class LoginController {
 
 		employeeServiceImpl = new EmployeeServiceImpl();
 		Employee employee = employeeServiceImpl.findById(id);
-		if (employee.getRole().equalsIgnoreCase(Role.ADMIN.getRole().toString())) {
+		if (employee.getRole().equalsIgnoreCase(UserRole.ADMIN.getRole().toString())) {
 			System.out.println("" + "**   MAIN MENU (" +
 				ConstantUtils.DESIRED_ACTION + ") ****" + "\n" +
 				"**   1. Add New User                                 **" +
@@ -460,11 +460,11 @@ public class LoginController {
 		while (true) {
 			choice = ValidationUtils.numberValidation(scanner);
 			if (choice == 1) {
-				role = Role.ADMIN.getRole().toString();
+				role = UserRole.ADMIN.getRole().toString();
 				break;
 			}
 			else if (choice == 2) {
-				role = Role.USER.getRole().toString();
+				role = UserRole.USER.getRole().toString();
 				break;
 			}
 			else {

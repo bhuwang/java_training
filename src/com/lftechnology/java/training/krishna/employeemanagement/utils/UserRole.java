@@ -7,12 +7,12 @@ package com.lftechnology.java.training.krishna.employeemanagement.utils;
  * @author Krishna Timilsina <krishnatimilsina@lftechnology.com>
  * @version 1.0
  */
-public enum Role {
+public enum UserRole {
 	ADMIN("Admin"), USER("User");
 
 	private String role;
 
-	private Role(String role) {
+	private UserRole(String role) {
 
 		this.role = role;
 	}
