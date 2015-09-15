@@ -48,13 +48,14 @@ public class EmployeeController {
         Connection connection = DbFacade.getDbConnection();
         connection.setAutoCommit(false);
         user = UserService.setLoginInfo(scanner, Constants.USER_ADD);
-        int userId = userDao.addNew(user);
-        if (userId != 0) {
-            employee = UserService.setEmployeeInfo(scanner, userId);
-            int employeeId = employeeDao.addNew(employee);
-            if (employeeId != 0) {
+        userDao.addNew(user);
+        if (user.getUserId() != 0) {
+            employee = UserService.setEmployeeInfo(scanner, user.getUserId());
+            employeeDao.addNew(employee);
+            if (employee.getEmployeeId() != 0) {
                 connection.commit();
-                LOGGER.log(Level.INFO, "\n=====>\nSuccessfully added new employee of ID : {0}.\n=====>\n", new Object[] { employeeId });
+                LOGGER.log(Level.INFO, "\n=====>\nSuccessfully added new employee of ID : {0}.\n=====>\n",
+                        new Object[] { employee.getEmployeeId() });
             } else {
                 LOGGER.log(Level.INFO, "\n=====>\nFailed to add new employee.\n=====>\n");
             }

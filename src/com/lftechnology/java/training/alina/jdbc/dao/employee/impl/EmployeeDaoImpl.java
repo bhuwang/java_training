@@ -23,7 +23,6 @@ import com.lftechnology.java.training.alina.jdbc.service.UserService;
 public class EmployeeDaoImpl implements EmployeeDao {
 
     private static final Logger LOGGER = Logger.getLogger(EmployeeDaoImpl.class.getName());
-    private static int employeeId = 0;
 
     @Override
     public List<Employee> findByPk(Integer userId) {
@@ -72,7 +71,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Integer addNew(Employee employee) {
+    public Employee addNew(Employee employee) {
         String sql = "Insert into employee (fullname,department,address,role,user_id,created_at) values (?,?,?,?,?,?)";
         try {
             Connection connection = DbFacade.getDbConnection();
@@ -87,13 +86,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (result > 0) {
                 if (rs.next()) {
-                    employeeId = rs.getInt(1);
+                    employee.setEmployeeId(rs.getInt(1));
                 }
             }
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
-        return employeeId;
+        return employee;
     }
 
     @Override

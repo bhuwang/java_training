@@ -36,7 +36,7 @@ public interface CrudService<T> {
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    Integer addNew(T t);
+    T addNew(T t);
 
     /**
      * Update record

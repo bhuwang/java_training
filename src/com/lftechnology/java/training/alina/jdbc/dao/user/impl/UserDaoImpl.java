@@ -129,8 +129,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Integer addNew(User user) {
-        int employeeId = 0;
+    public User addNew(User user) {
         String sql = "Insert into user (username,password,is_terminated,created_at) values (?,?,?,?)";
         try {
             Connection connection = DbFacade.getDbConnection();
@@ -143,13 +142,13 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (result > 0) {
                 if (rs.next()) {
-                    employeeId = rs.getInt(1);
+                    user.setUserId(rs.getInt(1));
                 }
             }
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
         }
-        return employeeId;
+        return user;
     }
 
     @Override
