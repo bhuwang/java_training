@@ -188,4 +188,36 @@ public class EmployeeController {
             LOGGER.log(Level.INFO, "\n=====>\nFailed to update employee information.\n=====>\n");
         }
     }
+
+    /**
+     * Change user password functionality
+     * 
+     * @param newPassword
+     *            {@link String}
+     * @param confirmPassword
+     *            {@link String}
+     * @param userId
+     *            {@link Integer} user id
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    public static void changeUserPassword(String newPassword, String confirmPassword, int userId) {
+        Map<Integer, Object> params = new HashMap<>();
+        Database database = new Database();
+        String sqlQuery = "update user set password=?,modified_at=? where user_id=?";
+        if (newPassword.equals(confirmPassword)) {
+            params.put(1, newPassword);
+            params.put(2, DateTimeService.getCurrentTimeStamp());
+            params.put(3, userId);
+            database.setParameters(params);
+            database.setSqlQuery(sqlQuery);
+            int result = employeeDao.update(database);
+            if (result > 0) {
+                LOGGER.log(Level.INFO, "\n=====>\nSuccessfully changed password of ID : {0}.\n=====>\n", new Object[] { userId });
+            } else {
+                LOGGER.log(Level.INFO, "\n=====>\nFailed to change password.\n=====>\n");
+            }
+        } else {
+            LOGGER.log(Level.INFO, "\n=====>\nPassword not matched.\n=====>\n", new Object[] { userId });
+        }
+    }
 }

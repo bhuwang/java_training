@@ -268,6 +268,11 @@ public class UserService {
             return;
         case 'd':
             LOGGER.log(Level.INFO, "\n========================\nChange Password\n========================\n");
+            employee.setPassword(UtilityService.getInputData(scanner, "Enter new password : "));
+            String newPassword = employee.getPassword();
+            employee.setPassword(UtilityService.getInputData(scanner, "Confirm password : "));
+            String confirmPassword = employee.getPassword();
+            EmployeeController.changeUserPassword(newPassword, confirmPassword, employee.getUserId());
             return;
         case 'e':
             LOGGER.log(Level.INFO, "\n========================\nBack\n========================\n");

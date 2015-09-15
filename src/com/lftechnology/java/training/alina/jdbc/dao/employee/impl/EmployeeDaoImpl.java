@@ -102,7 +102,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
             Connection connection = DbFacade.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(database.getSqlQuery());
             preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
-            System.out.println(preparedStatement);
             resultSet = preparedStatement.executeUpdate();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
