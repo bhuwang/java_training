@@ -48,11 +48,12 @@ public class UserDao implements UserService {
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
-            String query = "INSERT INTO users(userName, password, email, createdAt) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO users(userName, password, email, createdAt, isTerminated) VALUES (?, ?, ?, ?, ?)";
             preparedStatement =
-                    DbConnect.getPreparedStatement(query, user.getUserName(), user.getPassword(), user.getEmail(), dateFormat.format(date));
+                    DbConnect.getPreparedStatement(query, user.getUserName(), user.getPassword(), user.getEmail(),
+                            dateFormat.format(date));
+            preparedStatement.setBoolean(5, false);
             affectedRow = preparedStatement.executeUpdate();
-
             if (affectedRow > 0) {
                 ResultSet rs = preparedStatement.getGeneratedKeys();
                 if (rs.next()) {
@@ -202,5 +203,25 @@ public class UserDao implements UserService {
             DbConnect.closePreparedStatement();
         }
         return null;
+    }
+
+    @Override public boolean terminateUser(User user) {
+        try {
+            String query = "UPDATE users SET isTerminated=? WHERE userId=?";
+            preparedStatement = DbConnect.getPreparedStatement(query);
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setInt(2, user.getUserId());
+            System.out.println(preparedStatement);
+            int effectedRow = preparedStatement.executeUpdate();
+            DbConnect.closePreparedStatement();
+            if(effectedRow > 0){
+                return  true;
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            DbConnect.closePreparedStatement();
+        }
+
+        return false;
     }
 }

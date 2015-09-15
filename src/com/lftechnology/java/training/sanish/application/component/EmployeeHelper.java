@@ -292,66 +292,110 @@ public class EmployeeHelper {
         }
     }
 
+    /**
+     * Get user id & check user exist
+     *
+     * @param inputScanner {@link Scanner}
+     * @return {@link Boolean}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
+    public static int getUserId(Scanner inputScanner) {
+        User user;
+        int userId;
+        String message;
+        UserDao userDao = new UserDao();
+        while (true) {
+            message = "\n >> Type User Id : ";
+            LOGGER.log(Level.INFO, message);
+            userId = UserInput.getIntegerNumber(inputScanner, -1, -1);
+            user = userDao.findById(userId);
+            if (user != null) {
+                return userId;
+            } else {
+                message = "User not exist. Try again? n/y";
+                LOGGER.log(Level.WARNING, message);
+                String edit = UserInput.getString(inputScanner);
+                if (!edit.equals("y") && !edit.equals("yes")) {
+                    break;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * Add new Employee
+     *
+     * @param inputScanner {@link Scanner}
+     * @return {@link UserEmployee}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
     public static UserEmployee addNewEmployee(Scanner inputScanner) {
+        User user = new User();
+        Employee employee = new Employee();
         String message = "\n >> Type user name : ";
         LOGGER.log(Level.INFO, message);
         String userName = UserInput.getString(inputScanner);
+        user.setAttribute("userName", userName);
+
         message = "\n >> Type password : ";
         LOGGER.log(Level.INFO, message);
         String password = UserInput.getString(inputScanner);
+        user.setAttribute("password", password);
+
         message = "\n >> Type employee full name : ";
         LOGGER.log(Level.INFO, message);
         String fullName = UserInput.getAlphabeticWords(inputScanner);
+        employee.setAttribute("fullName", fullName);
+
         message = "\n >> Type email : ";
         LOGGER.log(Level.INFO, message);
         String email = UserInput.getEmail(inputScanner);
+        user.setAttribute("email", email);
+
         message = "\n >> Type address : ";
         LOGGER.log(Level.INFO, message);
         String address = UserInput.getAlphabeticWords(inputScanner);
+        employee.setAttribute("address", address);
+
         message = "\n >> Type department : ";
         LOGGER.log(Level.INFO, message);
         String department = UserInput.getAlphabeticWords(inputScanner);
+        employee.setAttribute("department", department);
+
         message = "\n >> Type role 1:User 2:Admin : ";
         LOGGER.log(Level.INFO, message);
         String role = UserInput.getUserRole(inputScanner);
+        employee.setAttribute("role", role);
 
-        try {
-            UserEmployee userEmployee = new UserEmployee();
-            Connection dbConnect = DbConnect.getDbConnection();
-            dbConnect.setAutoCommit(false);
-            UserDao userDao = new UserDao();
-            User user = new User();
-            user.setAttribute("userName", userName);
-            user.setAttribute("password", password);
-            user.setAttribute("email", email);
-            int userId = userDao.addNew(user);
-            if (userId != -1) {
-                user.setAttribute("userId", userId);
-                userEmployee.setUser(user);
-                EmployeeDao employeeDao = new EmployeeDao();
-                Employee employee = new Employee();
-                employee.setAttribute("userId", userId);
-                employee.setAttribute("fullName", fullName);
-                employee.setAttribute("address", address);
-                employee.setAttribute("department", department);
-                employee.setAttribute("role", role);
-                int imployeeId = employeeDao.addNew(employee);
-                if (imployeeId != -1) {
-                    dbConnect.commit();
-                    employee.setEmployeeId(imployeeId);
-                    userEmployee.setEmployee(employee);
-                    return  userEmployee;
-                } else {
-                    dbConnect.rollback();
-                }
-            } else {
-                dbConnect.rollback();
-            }
-        } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
-            DbConnect.DbClose();
+        UserEmployee userEmployee = new UserEmployee();
+        userEmployee.setUser(user);
+        userEmployee.setEmployee(employee);
+
+        if (userEmployee.saveUserEmployee()) {
+            return userEmployee;
         }
 
         return null;
+    }
+
+    /**
+     * Ask conformation before terminate user
+     *
+     * @param inputScanner {@link Scanner}
+     * @param user         {@link User} user for terminate
+     * @return {@link Boolean}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
+    public static boolean terminateConformation(Scanner inputScanner, User user) {
+        String message = "\n>>" + Constants.TERMINATE_USER_CONFORM_MSG + user.getUserName() + Constants.YES_NO_MSG;
+        LOGGER.log(Level.WARNING, message);
+        String edit = UserInput.getString(inputScanner);
+        if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
+            return true;
+        }
+
+        return false;
     }
 }

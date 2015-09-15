@@ -33,9 +33,13 @@ public class UserInput {
                 scanner.next();
             } else {
                 intNum = scanner.nextInt();
-                if (intNum < min || intNum > max) {
-                    LOGGER.log(Level.WARNING, "Please enter number within range ({0}-{1}) : ", new Object[] { min, max });
-                } else {
+                if(min != -1 && max != -1){
+                    if (intNum < min || intNum > max) {
+                        LOGGER.log(Level.WARNING, "Please enter number within range ({0}-{1}) : ", new Object[] { min, max });
+                    } else {
+                        checkNextInput = false;
+                    }
+                }else{
                     checkNextInput = false;
                 }
             }
@@ -76,7 +80,7 @@ public class UserInput {
 
     public static String getEmail(Scanner scanner){
         String email = "";
-        String emailPattern = "[a-z]+@[a-z]+(.[a-z])+";
+        String emailPattern = "[a-z][a-z_1-9]+@[a-z]+(.[a-z])+";
         while (true) {
             if (!scanner.hasNext()) {
                 scanner.next();

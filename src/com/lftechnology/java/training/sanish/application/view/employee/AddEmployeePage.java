@@ -21,10 +21,10 @@ public class AddEmployeePage {
      * @param showMenu {@link Boolean}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public static void renderPage(Boolean showMenu, UserEmployee userEmployee) {
+    public static void renderPage(Boolean showMenu, UserEmployee userEmployee, String message) {
         String pageContent = OutputFormatter.getFormattedPageTitle("Add Employee Page");
         if (showMenu) {
-            pageContent += "\nMessage : Successfully new employee added. \n";
+            pageContent += "\nMessage : " + message;
             pageContent += "Details: :\n" + " User Id : " + userEmployee.getUser().getUserId() + "\n User Name : " +
                     userEmployee.getUser().getUserName() + "\n Full Name : " + userEmployee.getEmployee().getFullName() +
                     "\n Email : " + userEmployee.getUser().getEmail() + "\n Address : " + userEmployee.getEmployee().getAddress() +

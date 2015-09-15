@@ -25,4 +25,5 @@ public interface UserService extends CrudService<User> {
     public boolean setPassword(User user, String password);
     public Employee getEmployee(User user);
     public List<UserEmployee> searchEmployee(String searchKey);
+    public boolean terminateUser(User user);
 }
