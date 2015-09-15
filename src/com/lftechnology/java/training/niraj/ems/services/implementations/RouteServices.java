@@ -10,6 +10,7 @@ import com.lftechnology.java.training.niraj.ems.domains.Employee;
 import com.lftechnology.java.training.niraj.ems.enums.Roles;
 import com.lftechnology.java.training.niraj.ems.utils.Constants;
 import com.lftechnology.java.training.niraj.ems.utils.UserNumInputImpl;
+import com.lftechnology.java.training.niraj.ems.utils.Utils;
 
 public class RouteServices {
     private static final Logger LOGGER = Logger.getLogger(RouteServices.class.getName());
@@ -21,6 +22,7 @@ public class RouteServices {
 
     public static void routeLandingPage() {
         try (Scanner scanner = new Scanner(System.in)) {
+            Utils.clearConsole();
             LoginController loginController = new LoginController();
             LOGGER.info(Constants.LANDING_MENU);
             int userChoice = RouteServices.userInput.getInput(scanner, 1, 2);
@@ -32,17 +34,18 @@ public class RouteServices {
                 loginController.register();
                 break;
             default:
-                LOGGER.warning("Please select a valid option");
+                LOGGER.warning(Constants.INVALID_INPUT);
                 break;
             }
         } catch (InputMismatchException se) {
-            LOGGER.warning("Please select a valid input");
+            LOGGER.warning(Constants.INVALID_INPUT);
         }
 
     }
 
     public static void routeAfterLogin(Employee employee) {
         if (employee != null) {
+            Utils.clearConsole();
             try (Scanner scanner = new Scanner(System.in)) {
                 String role = employee.getRole();
                 if (role.equals(Roles.ADMIN.getRole())) {
@@ -52,7 +55,7 @@ public class RouteServices {
                 }
 
             } catch (InputMismatchException se) {
-                LOGGER.warning("Please select a valid input");
+                LOGGER.warning(Constants.INVALID_INPUT);
             }
         } else {
             routeLandingPage();
@@ -81,7 +84,7 @@ public class RouteServices {
             employeeController.logout();
             break;
         default:
-            LOGGER.warning("Please select a valid option");
+            LOGGER.warning(Constants.INVALID_INPUT);
             break;
         }
     }
@@ -101,7 +104,7 @@ public class RouteServices {
             employeeController.logout();
             break;
         default:
-            LOGGER.warning("Please select a valid option");
+            LOGGER.warning(Constants.INVALID_INPUT);
             break;
         }
     }

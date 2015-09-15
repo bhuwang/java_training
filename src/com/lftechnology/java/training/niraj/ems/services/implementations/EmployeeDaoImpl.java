@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.niraj.ems.services.implementations;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -11,17 +12,24 @@ import com.lftechnology.java.training.niraj.ems.enums.Roles;
 import com.lftechnology.java.training.niraj.ems.enums.Status;
 import com.lftechnology.java.training.niraj.ems.exceptions.CustomException;
 import com.lftechnology.java.training.niraj.ems.services.AbstractDao;
+import com.lftechnology.java.training.niraj.ems.utils.DbFacade;
 
 public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
+
+    private static Connection conn;
+
+    public EmployeeDaoImpl() {
+        conn = DbFacade.getConnection();
+    }
 
     @Override
     public Employee save(Employee t) throws SQLException {
         if (t.getId() == null) {
-            int id = insertQuery(t);
+            int id = insertQuery(conn, t);
             t.setId(String.valueOf(id));
 
         } else {
-            updateQuery(t);
+            updateQuery(conn, t);
         }
         return t;
     }
@@ -31,7 +39,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
         Employee employee = new Employee();
         Map<String, String> condition = new LinkedHashMap<String, String>();
         condition.put(employee.getPrimaryKey(), s);
-        List<Map<String, String>> resultList = findQuery(employee, condition);
+        List<Map<String, String>> resultList = findQuery(conn, employee, condition);
         parseEmployeeObject(resultList, employee);
         return employee;
     }
@@ -39,7 +47,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
     @Override
     public Employee findByAttributes(Map<String, String> conditions) throws SQLException {
         Employee employee = new Employee();
-        List<Map<String, String>> resultList = findQuery(employee, conditions);
+        List<Map<String, String>> resultList = findQuery(conn, employee, conditions);
         parseEmployeeObject(resultList, employee);
         return employee;
     }
@@ -47,7 +55,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
     @Override
     public boolean update(Employee t) throws SQLException, CustomException {
         if (t.getId() != null) {
-            return updateQuery(t) > 0 ? true : false;
+            return updateQuery(conn, t) > 0 ? true : false;
         } else {
             throw new CustomException("Invalid Employee Object");
         }
@@ -58,7 +66,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
         Employee employee = new Employee();
         Employee searchResult;
         List<Employee> employeeList = new ArrayList<Employee>();
-        List<Map<String, String>> results = findQuery(employee);
+        List<Map<String, String>> results = findQuery(conn, employee);
         System.out.println(results);
         for (Map<String, String> result : results) {
             searchResult = new Employee();
@@ -74,7 +82,7 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
         Employee employee = new Employee();
         Employee searchResult;
         List<Employee> employeeList = new ArrayList<Employee>();
-        List<Map<String, String>> results = findQuery(employee, conditions);
+        List<Map<String, String>> results = findQuery(conn, employee, conditions);
         for (Map<String, String> result : results) {
             searchResult = new Employee();
             setEmployeeObject(result, searchResult);
@@ -131,28 +139,18 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
         }
         if (userInfo.containsKey("role")) {
             String role = userInfo.get("role");
-            if (role.equals(Roles.ADMIN.getRole())) {
-                employee.setRole(Roles.ADMIN);
-            } else {
-                employee.setRole(Roles.USER);
-            }
+            employee.setRole(getRole(role));
         }
         if (userInfo.containsKey("isTerminated")) {
             String isTerminated = userInfo.get("isTerminated");
-            if (isTerminated.equals(Status.ACTIVE.getStatus())) {
-                employee.setIsTerminated(Status.ACTIVE);
-            } else {
-                employee.setIsTerminated(Status.INACTIVE);
-            }
+            employee.setIsTerminated(getStatus(isTerminated));
+
         }
         if (userInfo.containsKey("status")) {
             String status = userInfo.get("status");
-            if (status.equals(Status.INACTIVE.getStatus())) {
-                employee.setStatus(Status.INACTIVE);
-            } else {
-                employee.setStatus(Status.ACTIVE);
-            }
+            employee.setStatus(getStatus(status));
         }
+
         if (userInfo.containsKey("username")) {
             employee.setUsername(userInfo.get("username"));
         }
@@ -168,6 +166,38 @@ public class EmployeeDaoImpl extends AbstractDao<Employee, String> {
     private void parseEmployeeObject(List<Map<String, String>> resultList, Employee employee) {
         for (Map<String, String> result : resultList) {
             setEmployeeObject(result, employee);
+        }
+    }
+
+    /**
+     * Gets status
+     * 
+     * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology>
+     * @param status
+     *            String
+     * @return {@link Status}
+     */
+    private Status getStatus(String status) {
+        if (status.equals(Status.INACTIVE.getStatus())) {
+            return Status.INACTIVE;
+        } else {
+            return Status.ACTIVE;
+        }
+    }
+
+    /**
+     * Get Role
+     * 
+     * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+     * @param role
+     *            String
+     * @return {@link Roles}
+     */
+    private Roles getRole(String role) {
+        if (role.equals(Roles.ADMIN.getRole())) {
+            return Roles.ADMIN;
+        } else {
+            return Roles.USER;
         }
     }
 

@@ -34,13 +34,15 @@ public class DbFacade {
      * @return
      * @throws SQLException
      */
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName(DB_DRIVER);
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (ClassNotFoundException ce) {
             LOGGER.log(Level.SEVERE, "Class not found exception: \n {0}", ce);
+        } catch (SQLException se) {
+            LOGGER.log(Level.SEVERE, "SQL Exception:\n{0}", se);
         }
 
         return connection;

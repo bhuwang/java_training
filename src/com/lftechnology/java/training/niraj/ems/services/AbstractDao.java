@@ -76,14 +76,13 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return {@link List} of {@link Map} of found records
      * @throws SQLException
      */
-    protected List<Map<String, String>> findQuery(T t, S s) throws SQLException {
+    protected List<Map<String, String>> findQuery(Connection connection, T t, S s) throws SQLException {
         String[] attributes = {};
 
         List<Map<String, String>> resultList = null;
         Map<String, String> conditions = new LinkedHashMap<String, String>();
         conditions.put(t.getPrimaryKey(), (String) s);
-        try (Connection connection = DbFacade.getConnection();
-                PreparedStatement stmt = DbFacade.createSelectStatement(connection, t.getTable(), attributes, conditions);) {
+        try (PreparedStatement stmt = DbFacade.createSelectStatement(connection, t.getTable(), attributes, conditions);) {
             ResultSet result = null;
             result = stmt.executeQuery();
             resultList = parseResult(t, result);
@@ -101,12 +100,11 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return
      * @throws SQLException
      */
-    protected List<Map<String, String>> findQuery(T t) throws SQLException {
+    protected List<Map<String, String>> findQuery(Connection connection, T t) throws SQLException {
         String[] attributes = {};
 
         List<Map<String, String>> resultList = null;
-        try (Connection connection = DbFacade.getConnection();
-                PreparedStatement stmt = DbFacade.createSelectStatement(connection, t.getTable(), attributes);) {
+        try (PreparedStatement stmt = DbFacade.createSelectStatement(connection, t.getTable(), attributes);) {
             ResultSet result = null;
             result = stmt.executeQuery();
             resultList = parseResult(t, result);
@@ -126,11 +124,10 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return {@link List} of {@link Map} of found records
      * @throws SQLException
      */
-    protected List<Map<String, String>> findQuery(T t, Map<String, String> conditions) throws SQLException {
+    protected List<Map<String, String>> findQuery(Connection connection, T t, Map<String, String> conditions) throws SQLException {
         String[] attributes = {};
         List<Map<String, String>> resultList = null;
-        try (Connection connection = DbFacade.getConnection();
-                PreparedStatement stmt = DbFacade.createSelectStatement(connection, t.getTable(), attributes, conditions);) {
+        try (PreparedStatement stmt = DbFacade.createSelectStatement(connection, t.getTable(), attributes, conditions);) {
             ResultSet result = null;
             result = stmt.executeQuery();
 
@@ -149,11 +146,10 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return int insert row id
      * @throws SQLException
      */
-    protected int insertQuery(T t) throws SQLException {
+    protected int insertQuery(Connection connection, T t) throws SQLException {
         Map<String, String> info = t.getInfo();
         int insertedId = 0;
-        try (Connection connection = DbFacade.getConnection();
-                PreparedStatement stmt = DbFacade.createInsertStatement(connection, t.getTable(), info)) {
+        try (PreparedStatement stmt = DbFacade.createInsertStatement(connection, t.getTable(), info)) {
             int affectedRows = stmt.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Failed to add information to table:" + t.getTable());
@@ -298,12 +294,11 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * @return
      * @throws SQLException
      */
-    protected int updateQuery(T t) throws SQLException {
+    protected int updateQuery(Connection connection, T t) throws SQLException {
         int affectedRows = 0;
         Map<String, String> condition = new LinkedHashMap<String, String>();
         condition.put("id", t.getId());
-        try (Connection connection = DbFacade.getConnection();
-                PreparedStatement stmt = DbFacade.createUpdateStatement(connection, t.getTable(), t.getInfo(), condition)) {
+        try (PreparedStatement stmt = DbFacade.createUpdateStatement(connection, t.getTable(), t.getInfo(), condition)) {
             affectedRows = stmt.executeUpdate();
         } catch (SQLException se) {
             throw new SQLException(se);
@@ -315,15 +310,17 @@ public abstract class AbstractDao<T extends Pojo, S> implements CrudService<T, S
      * Updates the table with the updated information for a particular condition
      * 
      * @author Niraj Rajbhandari <nirajrajbhandari@lftechnology.com>
+     * 
+     * @param connection
+     *            {@link Connection}
      * @param t
      * @param conditions
      * @return
      * @throws SQLException
      */
-    protected int updateQuery(T t, Map<String, String> conditions) throws SQLException {
+    protected int updateQuery(Connection connection, T t, Map<String, String> conditions) throws SQLException {
         int affectedRows = 0;
-        try (Connection connection = DbFacade.getConnection();
-                PreparedStatement stmt = DbFacade.createUpdateStatement(connection, t.getTable(), t.getInfo(), conditions);) {
+        try (PreparedStatement stmt = DbFacade.createUpdateStatement(connection, t.getTable(), t.getInfo(), conditions);) {
             affectedRows = stmt.executeUpdate();
         } catch (SQLException se) {
             throw new SQLException(se);
