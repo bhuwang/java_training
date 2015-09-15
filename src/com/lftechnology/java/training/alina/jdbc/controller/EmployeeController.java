@@ -34,6 +34,10 @@ public class EmployeeController {
     private static EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
     private static String sqlQuery = null;
 
+    private EmployeeController() {
+
+    }
+
     /**
      * Adds new employee
      * 
@@ -133,7 +137,7 @@ public class EmployeeController {
     public static void getEmployeeList() {
         List<Employee> list = employeeDao.findAll();
         Collections.sort(list);
-        if (list.size() > 0) {
+        if (!list.isEmpty()) {
             LOGGER.log(
                     Level.INFO,
                     "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n-----------------------------------------------------------------------------------------------\n{1}",
@@ -155,7 +159,7 @@ public class EmployeeController {
         String searchContent = UtilityService.getInputData(scanner, "Search Employee by fullname, department or address : ");
         List<Employee> list = employeeDao.searchEmployee(searchContent, searchContent, searchContent);
         Collections.sort(list);
-        if (list.size() > 0) {
+        if (!list.isEmpty()) {
             LOGGER.log(
                     Level.INFO,
                     "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n-----------------------------------------------------------------------------------------------\n{1}",

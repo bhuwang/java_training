@@ -8,6 +8,10 @@ import java.util.logging.Logger;
 public class EmployeeEditView {
     private static final Logger LOGGER = Logger.getLogger(EmployeeEditView.class.getName());
 
+    private EmployeeEditView() {
+
+    }
+
     /**
      * Prints menu for Employee Edit
      * 

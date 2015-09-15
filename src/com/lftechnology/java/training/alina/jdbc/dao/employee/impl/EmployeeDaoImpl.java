@@ -45,7 +45,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             }
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return employeeList;
     }
@@ -67,7 +67,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             }
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return employeeList;
     }
@@ -86,14 +86,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
             preparedStatement.setTimestamp(6, employee.getCreatedAt());
             int result = preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
-            if (result > 0) {
-                if (rs.next()) {
-                    employee.setEmployeeId(rs.getInt(1));
-                }
+            if (result > 0 && rs.next()) {
+                employee.setEmployeeId(rs.getInt(1));
             }
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return employee;
     }
@@ -108,7 +106,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             resultSet = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return resultSet;
     }
@@ -128,7 +126,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             isDeleted = (result != 0) ? true : false;
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return isDeleted;
     }
@@ -155,7 +153,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             }
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return employeeList;
     }

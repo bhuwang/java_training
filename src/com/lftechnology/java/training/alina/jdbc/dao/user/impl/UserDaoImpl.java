@@ -57,7 +57,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet result = preparedStatement.executeQuery();
         if (result.next()) {
             loginStatus = true;
-            checkValidUser(scanner, result.getInt("user_id"), connection);
+            checkValidUser(scanner, result.getInt("user_id"));
         } else {
             loginStatus = false;
         }
@@ -76,7 +76,7 @@ public class UserDaoImpl implements UserDao {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    private void checkValidUser(Scanner scanner, int userId, Connection connection) throws SQLException {
+    private void checkValidUser(Scanner scanner, int userId) throws SQLException {
         EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
         UserService userService = new UserService();
         List<Employee> employeeDetails = employeeDao.findByPk(userId);
@@ -103,7 +103,7 @@ public class UserDaoImpl implements UserDao {
             }
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return userList;
     }
@@ -125,7 +125,7 @@ public class UserDaoImpl implements UserDao {
             }
             preparedStatement.close();
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { e });
         }
         return userList;
     }
@@ -147,7 +147,7 @@ public class UserDaoImpl implements UserDao {
             }
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return user;
     }
@@ -169,7 +169,7 @@ public class UserDaoImpl implements UserDao {
             isDeleted = (result != 0) ? true : false;
             preparedStatement.close();
         } catch (SQLException sqe) {
-            LOGGER.log(Level.WARNING, "SQLException : {0}", new Object[] { sqe });
+            LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
         }
         return isDeleted;
     }
@@ -214,5 +214,4 @@ public class UserDaoImpl implements UserDao {
         preparedStatement.close();
         return existUser;
     }
-
 }

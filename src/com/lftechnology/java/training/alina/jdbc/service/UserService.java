@@ -110,7 +110,7 @@ public class UserService {
         case 'a':
             LOGGER.log(Level.INFO, "\n========================\nAdd New Employee : \n========================\n");
             EmployeeController.addNewEmployee(scanner);
-            break;
+            return;
         case 'b':
             LOGGER.log(Level.INFO, "\n========================\nDelete an Employee : \n========================\n");
             EmployeeController.deleteExistingEmployee(scanner);
@@ -132,7 +132,7 @@ public class UserService {
             UserDaoImpl userDao = new UserDaoImpl();
             userDao.checkEmployeeLogin(scanner);
         default:
-            LOGGER.log(Level.INFO, "\n========================\nInvalid entry, Please choose from menu option.\n========================\n");
+            LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
             return;
         }
     }
@@ -200,7 +200,7 @@ public class UserService {
         case 'a':
             LOGGER.log(Level.INFO, "\n========================\nView Employee List : \n========================\n");
             EmployeeController.getEmployeeList();
-            break;
+            return;
         case 'b':
             LOGGER.log(Level.INFO, "\n========================\nSearch an Employee : \n========================\n");
             EmployeeController.searchExistingEmployee(scanner);
@@ -208,12 +208,14 @@ public class UserService {
         case 'c':
             LOGGER.log(Level.INFO, "\n========================\nEdit own Information\n========================\n");
             getEditInfo(scanner, employee);
+            return;
         case 'd':
             LOGGER.log(Level.INFO, "\n========================\nUser successfully logged out.\n========================\n");
             UserDaoImpl userDao = new UserDaoImpl();
             userDao.checkEmployeeLogin(scanner);
+            return;
         default:
-            LOGGER.log(Level.INFO, "\n========================\nInvalid entry, Please choose from menu option.\n========================\n");
+            LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
             return;
         }
     }
@@ -267,21 +269,34 @@ public class UserService {
             EmployeeController.updateEmployeeInfo(Constants.ADDRESS, employee.getAddress(), employee.getEmployeeId());
             return;
         case 'd':
-            LOGGER.log(Level.INFO, "\n========================\nChange Password\n========================\n");
-            employee.setPassword(UtilityService.getInputData(scanner, "Enter new password : "));
-            String newPassword = employee.getPassword();
-            employee.setPassword(UtilityService.getInputData(scanner, "Confirm password : "));
-            String confirmPassword = employee.getPassword();
-            EmployeeController.changeUserPassword(newPassword, confirmPassword, employee.getUserId());
+            getUserPasswordChangeInfo(scanner, employee);
             return;
         case 'e':
             LOGGER.log(Level.INFO, "\n========================\nBack\n========================\n");
             getNormalUserRole(scanner, employee);
             return;
         default:
-            LOGGER.log(Level.INFO, "\n========================\nInvalid entry, Please choose from menu option.\n========================\n");
+            LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
             return;
         }
+    }
+
+    /**
+     * Get details of user password, changes user password functionality
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param employee
+     *            {@link Employee}
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    private void getUserPasswordChangeInfo(Scanner scanner, Employee employee) {
+        LOGGER.log(Level.INFO, "\n========================\nChange Password\n========================\n");
+        employee.setPassword(UtilityService.getInputData(scanner, "Enter new password : "));
+        String newPassword = employee.getPassword();
+        employee.setPassword(UtilityService.getInputData(scanner, "Confirm password : "));
+        String confirmPassword = employee.getPassword();
+        EmployeeController.changeUserPassword(newPassword, confirmPassword, employee.getUserId());
     }
 
     /**
