@@ -161,7 +161,6 @@ public class EmployeeController {
      * @return e
      */
     public Employee editEmployeeDetails(Employee emp1, Scanner sc) {
-        Employee e = null;
         LOGGER.info("Welcome to the edit mode....");
         String userName = null;
         String password = null;
