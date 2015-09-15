@@ -135,7 +135,7 @@ public class LoginController {
 
 		employeeServiceImpl = new EmployeeServiceImpl();
 		Employee employee = employeeServiceImpl.findById(id);
-		if (employee.getRole().equalsIgnoreCase(Role.Admin.toString())) {
+		if (employee.getRole().equalsIgnoreCase(Role.ADMIN.getRole().toString())) {
 			System.out.println("" + "**   MAIN MENU (" +
 				ConstantUtils.DESIRED_ACTION + ") ****" + "\n" +
 				"**   1. Add New User                                 **" +
@@ -460,11 +460,11 @@ public class LoginController {
 		while (true) {
 			choice = ValidationUtils.numberValidation(scanner);
 			if (choice == 1) {
-				role = Role.Admin.toString();
+				role = Role.ADMIN.getRole().toString();
 				break;
 			}
 			else if (choice == 2) {
-				role = Role.User.toString();
+				role = Role.USER.getRole().toString();
 				break;
 			}
 			else {

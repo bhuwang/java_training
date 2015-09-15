@@ -14,11 +14,10 @@ public class Employee extends User {
 	private String address;
 	private String role;
 
-	//constructor
+	// constructor
 	public Employee() {
 
 	}
-
 
 	public String getFullname() {
 
@@ -60,8 +59,6 @@ public class Employee extends User {
 		this.role = role;
 	}
 
-
-
 	@Override
 	public String toString() {
 
@@ -79,12 +76,8 @@ public class Employee extends User {
 
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result =
-			prime * result + ((department == null) ? 0 : department.hashCode());
 		result =
 			prime * result + ((fullname == null) ? 0 : fullname.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
 
@@ -98,29 +91,11 @@ public class Employee extends User {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		}
-		else if (!address.equals(other.address))
-			return false;
-		if (department == null) {
-			if (other.department != null)
-				return false;
-		}
-		else if (!department.equals(other.department))
-			return false;
 		if (fullname == null) {
 			if (other.fullname != null)
 				return false;
 		}
 		else if (!fullname.equals(other.fullname))
-			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		}
-		else if (!role.equals(other.role))
 			return false;
 		return true;
 	}

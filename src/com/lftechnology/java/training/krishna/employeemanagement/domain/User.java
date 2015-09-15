@@ -109,14 +109,6 @@ public class User {
 		final int prime = 31;
 		int result = 1;
 		result =
-			prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-		result = prime * result + id;
-		result = prime * result + isTerminated;
-		result =
-			prime * result + ((modifiedAt == null) ? 0 : modifiedAt.hashCode());
-		result =
-			prime * result + ((password == null) ? 0 : password.hashCode());
-		result =
 			prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -131,28 +123,6 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (createdAt == null) {
-			if (other.createdAt != null)
-				return false;
-		}
-		else if (!createdAt.equals(other.createdAt))
-			return false;
-		if (id != other.id)
-			return false;
-		if (isTerminated != other.isTerminated)
-			return false;
-		if (modifiedAt == null) {
-			if (other.modifiedAt != null)
-				return false;
-		}
-		else if (!modifiedAt.equals(other.modifiedAt))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		}
-		else if (!password.equals(other.password))
-			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
