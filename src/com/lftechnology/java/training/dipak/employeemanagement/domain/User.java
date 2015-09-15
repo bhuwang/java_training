@@ -1,6 +1,12 @@
 
 package com.lftechnology.java.training.dipak.employeemanagement.domain;
 
+/**
+ * <p>This class defines attributes that are necessary for the login
+ * condition.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class User {
 
 	private int id;

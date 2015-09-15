@@ -13,11 +13,26 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.User;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
+/**
+ * <p>This class contains method that interact with database to check whether
+ * the username and password entered is valid or not.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class LoginDao implements UserApi {
 
 	private static final Logger LOGGER =
 		Logger.getLogger(LoginDao.class.getName());
 
+	/**
+	 * <p>This method checks whether the username and password is valid or not
+	 * and if the user is terminated or not. If all conditions are met then it
+	 * returns a result set then the employee object is set with the result set.
+	 * This object is returned.</p>
+	 * 
+	 * @param u
+	 * @return employee
+	 */
 	@Override
 	public Employee validateLogin(User u) {
 

@@ -13,11 +13,25 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
+/**
+ * <p>This class implements the EmployeeApi and has definition to all the
+ * overwritten methods.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class EmployeeDao implements EmployeeApi {
 
 	private static final Logger LOGGER =
 		Logger.getLogger(EmployeeDao.class.getName());
 
+	/**
+	 * <p>This method is used to add a row in database. The data is obtained
+	 * from the Employee object. This method returns the number of rows affected
+	 * in the database</p>
+	 * 
+	 * @param e
+	 * @return count
+	 */
 	@Override
 	public int addEmployee(Employee e) {
 
@@ -57,6 +71,13 @@ public class EmployeeDao implements EmployeeApi {
 		return count;
 	}
 
+	/**
+	 * <p>This method is used to view records present in database. The filters
+	 * are used for filtering the records. It return the result set.</p>
+	 * 
+	 * @param e
+	 * @return rs
+	 */
 	@Override
 	public ResultSet viewEmployee(Employee e) {
 
@@ -150,6 +171,13 @@ public class EmployeeDao implements EmployeeApi {
 	// return count;
 	// }
 
+	/**
+	 * <p>This method terminates the employee present in the database based on
+	 * the fullname. This method returns the number of employees terminated.</p>
+	 * 
+	 * @param e
+	 * @return count
+	 */
 	@Override
 	public int terminateEmployee(Employee e) {
 
@@ -176,6 +204,13 @@ public class EmployeeDao implements EmployeeApi {
 		return count;
 	}
 
+	/**
+	 * <p>This method edits the data of the current user in the database and
+	 * returns the number of rows affected.</p>
+	 * 
+	 * @param e
+	 * @return e
+	 */
 	@Override
 	public Employee editEmployeeDetails(Employee e) {
 

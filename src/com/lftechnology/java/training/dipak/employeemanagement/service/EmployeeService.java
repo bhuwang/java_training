@@ -14,11 +14,25 @@ import com.lftechnology.java.training.dipak.employeemanagement.dao.EmployeeDao;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
+/**
+ * <p>This class implements the EmployeeApi interface and hence has all the
+ * overwritten methods.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class EmployeeService implements EmployeeApi {
 
 	private static final Logger LOGGER =
 		Logger.getLogger(EmployeeService.class.getName());
 
+	/**
+	 * <p>This method checks whether the fields which are not supposed to be
+	 * empty are empty or not. Returns if they empty with a message else calls
+	 * the addEmployee in DAO layer.</p>
+	 * 
+	 * @param e
+	 * @return numberOfUserInserted
+	 */
 	@Override
 	public int addEmployee(Employee e) {
 
@@ -60,6 +74,13 @@ public class EmployeeService implements EmployeeApi {
 		return numberOfUserInserted;
 	}
 
+	/**
+	 * <p>This method calls the viewEmployee in DAO layer and displays the
+	 * result set obtained.</p>
+	 * 
+	 * @param e
+	 * @return
+	 */
 	@Override
 	public ResultSet viewEmployee(Employee e) {
 
@@ -113,6 +134,13 @@ public class EmployeeService implements EmployeeApi {
 	// return numberOfDeletedUsers;
 	// }
 
+	/**
+	 * <p>This method calls the terminateEmployee method present in the DAO
+	 * layer and prints the number of employees terminated.</p>
+	 * 
+	 * @param e
+	 * @return numberOfTerminatedUsers
+	 */
 	@Override
 	public int terminateEmployee(Employee e) {
 
@@ -135,6 +163,12 @@ public class EmployeeService implements EmployeeApi {
 
 	}
 
+	/**
+	 * <p>This method calls editEmployeeDetails method present in DAO layer.</p>
+	 * 
+	 * @param e
+	 * @return e
+	 */
 	@Override
 	public Employee editEmployeeDetails(Employee e) {
 

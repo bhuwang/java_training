@@ -7,8 +7,21 @@ import com.lftechnology.java.training.dipak.employeemanagement.dao.LoginDao;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.User;
 
+/**
+ * <p>This class implements the UserApi hence overwrite the methods present in
+ * it.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class LoginService implements UserApi {
 
+	/**
+	 * <p>This method validates whether the user inputted values follows the
+	 * allowed format or not.</p>
+	 * 
+	 * @param u
+	 * @return employee
+	 */
 	@Override
 	public Employee validateLogin(User u) {
 

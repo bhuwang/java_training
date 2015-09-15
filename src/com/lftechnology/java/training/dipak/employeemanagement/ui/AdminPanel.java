@@ -11,6 +11,11 @@ import com.lftechnology.java.training.dipak.employeemanagement.controller.Employ
 import com.lftechnology.java.training.dipak.employeemanagement.controller.LogOutController;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 
+/**
+ * <p>This class contains method that contains options for the admin access.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class AdminPanel {
 
 	private static final Logger LOGGER =
@@ -27,6 +32,13 @@ public class AdminPanel {
 		ch.setFormatter(myFormat);
 	}
 
+	/**
+	 * <p>This method allows the admin to choose the operations that can be
+	 * performed by an admin.</p>
+	 * 
+	 * @param employee
+	 * @param sc
+	 */
 	public void displayPanel(Employee employee, Scanner sc) {
 
 		Employee e = new Employee();

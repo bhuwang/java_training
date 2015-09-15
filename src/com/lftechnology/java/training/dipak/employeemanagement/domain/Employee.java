@@ -1,6 +1,12 @@
 
 package com.lftechnology.java.training.dipak.employeemanagement.domain;
 
+/**
+ * <p>This class extends the user class and defines the attributes of the
+ * employee class. This class also includes the getter setter methods.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class Employee extends User {
 
 	private String fullName;

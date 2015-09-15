@@ -5,11 +5,21 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * <p>This class has a static method for establishing database connection.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class DbConnection {
 
 	private static final Logger LOGGER =
 		Logger.getLogger(DbConnection.class.getName());
 
+	/**
+	 * <p>This method is used to set database connection.</p>
+	 * 
+	 * @return connection
+	 */
 	public static Connection setConnection() {
 
 		String USER_NAME = "root";

@@ -12,11 +12,25 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 import com.lftechnology.java.training.dipak.employeemanagement.service.EmployeeService;
 import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFactory;
 
+/**
+ * <p> This class is used to take the data from the user based on the various
+ * functionalities provided by its member function.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
 public class EmployeeController {
 
 	private static final Logger LOGGER =
 		Logger.getLogger(EmployeeController.class.getName());
 
+	/**
+	 * This method takes the input from the console and sets the employee object
+	 * and calls the addEmployee method in service layer.
+	 * 
+	 * @param e
+	 * @param sc
+	 * @return count
+	 */
 	public int addEmployee(Employee e, Scanner sc) {
 
 		String userName = null;
@@ -84,6 +98,15 @@ public class EmployeeController {
 		return count;
 	}
 
+	/**
+	 * <p>This method takes the name of the employee to be terminated and call
+	 * terminateEmployee method in service layer. This method returns the number
+	 * of employees terminated.</p>
+	 * 
+	 * @param e
+	 * @param sc
+	 * @return count
+	 */
 	public int terminateEmployee(Employee e, Scanner sc) {
 
 		String fullName = null;
@@ -104,6 +127,14 @@ public class EmployeeController {
 		return count;
 	}
 
+	/**
+	 * <p>This method takes the input for the filters and calls the viewEmployee
+	 * method. </p>
+	 * 
+	 * @param e
+	 * @param sc
+	 * @return
+	 */
 	public ResultSet viewEmployee(Employee e, Scanner sc) {
 
 		String fullName = null;
@@ -163,6 +194,14 @@ public class EmployeeController {
 	// return count;
 	// }
 
+	/**
+	 * <p>This method takes the input for the fields to be edited and calls
+	 * editEmployeeDetails in service layer.</p>
+	 * 
+	 * @param e
+	 * @param sc
+	 * @return e
+	 */
 	public Employee editEmployeeDetails(Employee e, Scanner sc) {
 
 		LOGGER.info("Welcome to the edit mode....");

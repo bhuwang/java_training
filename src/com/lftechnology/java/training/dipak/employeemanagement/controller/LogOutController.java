@@ -4,8 +4,21 @@ package com.lftechnology.java.training.dipak.employeemanagement.controller;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
+/**
+ * <p>This class is used to provide logout functionality.</p>
+ * 
+ * @author Dipak Thapa<dipakthapa@lftechnology.com>
+ */
+
 public class LogOutController {
 
+	/**
+	 * <p>This method changes the values of the employee object by emptying the
+	 * fields or placing random values.</p>
+	 * 
+	 * @param e
+	 * @return e
+	 */
 	public static Employee logOut(Employee e) {
 
 		e.setId(0);
