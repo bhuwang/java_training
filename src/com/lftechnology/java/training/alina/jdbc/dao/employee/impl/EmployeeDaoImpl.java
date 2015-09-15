@@ -138,7 +138,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 "select * from employee e inner join user u on e.user_id=u.user_id where (e.fullname like ? or e.department like ? or e.address like ?) and (u.is_terminated=? or e.is_deleted=?)";
         try {
             Connection connection = DbFacade.getDbConnection();
-            PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             for (String content : searchContent) {
                 preparedStatement.setString(1, content + "%");
                 preparedStatement.setString(2, content + "%");

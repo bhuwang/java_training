@@ -93,7 +93,7 @@ public class UtilityService {
      * 
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    public final static void clearConsole() {
+    public static final void clearConsole() {
         try {
             final String operatingSystem = System.getProperty("os.name");
             if (operatingSystem.contains("Windows")) {
