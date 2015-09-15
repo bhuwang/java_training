@@ -28,15 +28,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		Employee emp = new Employee();
 		emp.setFullname(fullname);
-		boolean isDeleted = this.employeeDaoImpl.delete(emp);
-		return isDeleted;
+		return this.employeeDaoImpl.delete(emp);
 	}
 
 	@Override
 	public List<Employee> findAll(String key) {
 
-		List<Employee> empList = this.employeeDaoImpl.findAll(key);
-		return empList;
+		return this.employeeDaoImpl.findAll(key);
 	}
 
 	@Override
@@ -45,8 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee emp = new Employee();
 		emp.setFullname(fullname);
 		emp.setModifiedAt(DateUtils.getCurrentTimeStamp());
-		boolean isTerminated = this.employeeDaoImpl.terminate(emp);
-		return isTerminated;
+		return this.employeeDaoImpl.terminate(emp);
 	}
 
 	@Override
@@ -80,15 +77,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		emp.setDepartment(department);
 		emp.setAddress(address);
 		emp.setModifiedAt(DateUtils.getCurrentTimeStamp());
-		Employee employee = this.employeeDaoImpl.update(emp);
-		return employee;
+		return this.employeeDaoImpl.update(emp);
 	}
 
 	@Override
 	public Employee findById(Integer id) {
 
-		Employee employee = this.employeeDaoImpl.findById(id);
-		return employee;
+		return this.employeeDaoImpl.findById(id);
 	}
 
 }

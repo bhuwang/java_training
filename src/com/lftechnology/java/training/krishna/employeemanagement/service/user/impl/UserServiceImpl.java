@@ -29,14 +29,13 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
-		return  this.userDaoImpl.authenticate(user);
+		return this.userDaoImpl.authenticate(user);
 	}
-
 
 	@Override
 	public List<User> findAll(String key) {
-		List<User> user = new ArrayList<User>();
-		return user;
+
+		return new ArrayList<User>();
 	}
 
 	@Override
@@ -44,6 +43,5 @@ public class UserServiceImpl implements UserService {
 
 		return false;
 	}
-
 
 }
