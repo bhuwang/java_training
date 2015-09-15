@@ -63,7 +63,8 @@ public class UserPanel {
                     emp = ec.editEmployeeDetails(emp, sc);
                     break;
                 case 3:
-                    emp2 = LogOutController.logOut(emp2, sc);
+                    emp = LogOutController.logOut(emp2, sc);
+                    emp2 = emp;
                     break;
                 default:
                     LOGGER.info("Illegal choice. Please re-enter your choice.");

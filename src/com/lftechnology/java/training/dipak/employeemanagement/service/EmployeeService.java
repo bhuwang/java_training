@@ -138,13 +138,11 @@ public class EmployeeService implements EmployeeApi {
      * @return e
      */
     @Override
-    public Employee editEmployeeDetails(Employee editEmployee) {
+    public Employee editEmployeeDetails(Employee employee) {
 
         EmployeeDao ed = DaoFactory.getEmployeeDao();
 
-        editEmployee = ed.editEmployeeDetails(editEmployee);
-
-        return editEmployee;
+        return ed.editEmployeeDetails(employee);
     }
 
 }

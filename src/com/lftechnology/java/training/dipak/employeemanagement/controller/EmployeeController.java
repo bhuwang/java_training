@@ -31,7 +31,7 @@ public class EmployeeController {
      * @param sc
      * @return count
      */
-    public int addEmployee(Employee employee, Scanner sc) throws Throwable {
+    public int addEmployee(Employee employee, Scanner sc) {
 
         String userName = null;
         String password = null;
@@ -61,12 +61,8 @@ public class EmployeeController {
                     role = UserType.ADMIN;
                 } else if (role2 == 2) {
                     role = UserType.USER;
-                } else {
-                    throw new InvalidInputException("Invalid value of the User type");
                 }
                 break;
-            } catch (InvalidInputException ie) {
-                LOGGER.log(Level.INFO, exceptionOccurred, ie);
             } catch (Exception ex) {
                 LOGGER.log(Level.INFO, exceptionOccurred, ex);
                 LOGGER.info("Please re-enter the values.");
@@ -165,7 +161,7 @@ public class EmployeeController {
      * @return e
      */
     public Employee editEmployeeDetails(Employee emp1, Scanner sc) {
-
+        Employee e = null;
         LOGGER.info("Welcome to the edit mode....");
         String userName = null;
         String password = null;
@@ -209,13 +205,13 @@ public class EmployeeController {
 
             EmployeeService es = ServiceFactory.getEmployeeService();
 
-            emp1 = es.editEmployeeDetails(emp1);
+            e = es.editEmployeeDetails(emp1);
 
         } catch (Exception ex) {
             LOGGER.log(Level.INFO, exceptionOccurred, ex);
         }
 
-        return emp1;
+        return e;
     }
 
 }
