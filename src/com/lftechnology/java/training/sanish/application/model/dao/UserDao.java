@@ -136,13 +136,10 @@ public class UserDao implements UserService {
         try {
             String query = "SELECT * FROM users WHERE " + condition;
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
-            try {
-                for (int i = 0; i < parameters.length; i++) {
-                    preparedStatement.setString(i + 1, parameters[i].toString());
-                }
-            } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
+            for (int i = 0; i < parameters.length; i++) {
+                preparedStatement.setString(i + 1, parameters[i].toString());
             }
+
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 User user = new User();
@@ -165,12 +162,8 @@ public class UserDao implements UserService {
         try {
             String query = "UPDATE users SET " + setString + " WHERE " + condition;
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
-            try {
-                for (int i = 0; i < parameters.length; i++) {
-                    preparedStatement.setString(i + 1, parameters[i].toString());
-                }
-            } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
+            for (int i = 0; i < parameters.length; i++) {
+                preparedStatement.setString(i + 1, parameters[i].toString());
             }
 
             int effectedRow = preparedStatement.executeUpdate();
@@ -232,7 +225,7 @@ public class UserDao implements UserService {
     @Override public List<UserEmployee> searchEmployee(String searchKey) {
         List<UserEmployee> userEmployeeList = new ArrayList<UserEmployee>();
         try {
-            String key = searchKey+"%";
+            String key = searchKey + "%";
             String query =
                     "SELECT u.userId, u.userName, u.email, u.isTerminated, e.employeeId, e.fullName, e.address, e.department, e.role "
                             + "FROM users AS u LEFT JOIN employees AS e " + "ON (u.userId=e.userId) " + "WHERE e.fullName LIKE ? || "

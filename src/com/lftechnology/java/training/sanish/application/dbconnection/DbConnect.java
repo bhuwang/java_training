@@ -36,13 +36,11 @@ public abstract class DbConnect {
         } else {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                try {
-                    connection = DriverManager.getConnection(DB_URL, USER, PASS);
-                    return connection;
-                } catch (SQLException e) {
-                    LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
-                }
+                connection = DriverManager.getConnection(DB_URL, USER, PASS);
+                return connection;
             } catch (ClassNotFoundException e) {
+                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
+            } catch (SQLException e) {
                 LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             }
 

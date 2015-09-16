@@ -29,10 +29,16 @@ public class PageMenu {
             EmployeeController.ownInformationEditPage();
         } else if (menuSelected == 4) {
             EmployeeController.changePasswordPage();
-        } else if (menuSelected == 5 && employee.getRole().equals(Constants.ADMIN_ROLE)) {
-            EmployeeController.addEmployeePage();
         } else if (menuSelected == 5 && employee.getRole().equals(Constants.USER_ROLE)) {
             LoginController.logoutPage();
+        } else {
+            adminDashboardMenu(menuSelected);
+        }
+    }
+
+    public static void adminDashboardMenu(int menuSelected) {
+        if (menuSelected == 5) {
+            EmployeeController.addEmployeePage();
         } else if (menuSelected == 6) {
             EmployeeController.editEmployeePage();
         } else if (menuSelected == 7) {

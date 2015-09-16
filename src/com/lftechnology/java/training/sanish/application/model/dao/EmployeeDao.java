@@ -145,12 +145,8 @@ public class EmployeeDao implements EmployeeService {
         try {
             String query = "SELECT * FROM employees WHERE " + condition;
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
-            try {
-                for (int i = 0; i < parameters.length; i++) {
-                    preparedStatement.setString(i + 1, parameters[i].toString());
-                }
-            } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
+            for (int i = 0; i < parameters.length; i++) {
+                preparedStatement.setString(i + 1, parameters[i].toString());
             }
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -175,12 +171,8 @@ public class EmployeeDao implements EmployeeService {
         try {
             String query = "UPDATE employees SET " + setString + " WHERE " + condition;
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
-            try {
-                for (int i = 0; i < parameters.length; i++) {
-                    preparedStatement.setString(i + 1, parameters[i].toString());
-                }
-            } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
+            for (int i = 0; i < parameters.length; i++) {
+                preparedStatement.setString(i + 1, parameters[i].toString());
             }
 
             int effectedRow = preparedStatement.executeUpdate();
