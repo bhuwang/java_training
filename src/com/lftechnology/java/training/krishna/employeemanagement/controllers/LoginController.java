@@ -461,11 +461,11 @@ public class LoginController {
 			choice = ValidationUtils.numberValidation(scanner);
 			if (choice == 1) {
 				role = UserRole.ADMIN.getRole().toString();
-				break;
+				return role;
 			}
 			else if (choice == 2) {
 				role = UserRole.USER.getRole().toString();
-				break;
+				return role;
 			}
 			else {
 				System.out.println(ConstantUtils.DESIRED_ACTION + "\n");
@@ -473,7 +473,6 @@ public class LoginController {
 			}
 
 		}
-		return role;
 
 	}
 }
