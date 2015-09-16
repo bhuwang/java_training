@@ -58,10 +58,9 @@ public class EmployeeController {
             employeeDao.addNew(employee);
             if (employee.getEmployeeId() != 0) {
                 connection.commit();
-                LOGGER.log(Level.INFO, "\n=====>\nSuccessfully added new employee of ID : {0}.\n=====>\n",
-                        new Object[] { employee.getEmployeeId() });
+                LOGGER.log(Level.INFO, Constants.SUCCESS_ADD_EMPLOYEE, new Object[] { employee.getEmployeeId() });
             } else {
-                LOGGER.log(Level.INFO, "\n=====>\nFailed to add new employee.\n=====>\n");
+                LOGGER.log(Level.INFO, Constants.FAIL_ADD_EMPLOYEE);
             }
         }
     }
@@ -83,7 +82,7 @@ public class EmployeeController {
         if (role.equals(EmployeeRole.ADMIN.getRole()) || role.equals(EmployeeRole.USER.getRole())) {
             employeeRoleStatus = true;
         } else {
-            LOGGER.log(Level.INFO, "\n=====>\nRole should be user/admin. Please enter valid role\n=====>\n");
+            LOGGER.log(Level.INFO, Constants.ROLE_USER_ADMIN);
             employeeRoleStatus = false;
         }
         return employeeRoleStatus;
@@ -98,14 +97,12 @@ public class EmployeeController {
      */
     public static void deleteExistingEmployee(Scanner scanner) {
         Employee employee = new Employee();
-        employee.setFullname(UtilityService.getInputData(scanner, "Enter fullname to delete : "));
+        employee.setFullname(UtilityService.getInputData(scanner, Constants.ENTER_FULLNAME));
         boolean isDeleted = employeeDao.delete(employee.getFullname());
         if (isDeleted) {
-            LOGGER.log(Level.INFO, "\n=====>\nSuccessfully deleted employee with Name {0}.\n=====>\n",
-                    new Object[] { employee.getFullname() });
+            LOGGER.log(Level.INFO, Constants.SUCCESS_DELETE_EMPLOYEE, new Object[] { employee.getFullname() });
         } else {
-            LOGGER.log(Level.WARNING, "\n=====>\nFailed to delete an employee with Name {0}.\n=====>\n",
-                    new Object[] { employee.getFullname() });
+            LOGGER.log(Level.WARNING, Constants.FAIL_DELETE_EMPLOYEE, new Object[] { employee.getFullname() });
         }
     }
 
@@ -118,14 +115,12 @@ public class EmployeeController {
      */
     public static void terminateExistingEmployee(Scanner scanner) {
         Employee employee = new Employee();
-        employee.setFullname(UtilityService.getInputData(scanner, "Enter fullname : "));
+        employee.setFullname(UtilityService.getInputData(scanner, Constants.ENTER_FULLNAME));
         boolean isDeleted = userDao.delete(employee.getFullname());
         if (isDeleted) {
-            LOGGER.log(Level.INFO, "\n=====>\nSuccessfully terminated employee with Name {0}.\n=====>\n",
-                    new Object[] { employee.getFullname() });
+            LOGGER.log(Level.INFO, Constants.SUCCESS_TERMINATE_USER, new Object[] { employee.getFullname() });
         } else {
-            LOGGER.log(Level.WARNING, "\n=====>\nFailed to terminate an employee with Name {0}.\n=====>\n",
-                    new Object[] { employee.getFullname() });
+            LOGGER.log(Level.WARNING, Constants.FAIL_TERMINATE_USER, new Object[] { employee.getFullname() });
         }
     }
 
@@ -138,13 +133,9 @@ public class EmployeeController {
         List<Employee> list = employeeDao.findAll();
         Collections.sort(list);
         if (!list.isEmpty()) {
-            LOGGER.log(
-                    Level.INFO,
-                    "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n-----------------------------------------------------------------------------------------------\n{1}",
-                    new Object[] { list.size(), list });
+            LOGGER.log(Level.INFO, Constants.EMPLOYEE_NUMBER, new Object[] { list.size(), list });
         } else {
-            LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0}\n----------------------\nNo Record Found.\n<=====>\n\n",
-                    new Object[] { list.size() });
+            LOGGER.log(Level.INFO, Constants.EMPTY_EMPLOYEE_NUMBER, new Object[] { list.size() });
         }
     }
 
@@ -156,17 +147,13 @@ public class EmployeeController {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static void searchExistingEmployee(Scanner scanner) {
-        String searchContent = UtilityService.getInputData(scanner, "Search Employee by fullname, department or address : ");
+        String searchContent = UtilityService.getInputData(scanner, Constants.SEARCH_EMPLOYEE_CRITERIA);
         List<Employee> list = employeeDao.searchEmployee(searchContent, searchContent, searchContent);
         Collections.sort(list);
         if (!list.isEmpty()) {
-            LOGGER.log(
-                    Level.INFO,
-                    "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n-----------------------------------------------------------------------------------------------\n{1}",
-                    new Object[] { list.size(), list });
+            LOGGER.log(Level.INFO, Constants.EMPLOYEE_NUMBER, new Object[] { list.size(), list });
         } else {
-            LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0}\n----------------------\nNo Record Found.\n<=====>\n\n",
-                    new Object[] { list.size() });
+            LOGGER.log(Level.INFO, Constants.EMPTY_EMPLOYEE_NUMBER, new Object[] { list.size() });
         }
     }
 
@@ -200,10 +187,9 @@ public class EmployeeController {
         database.setSqlQuery(sqlQuery);
         int result = employeeDao.update(database);
         if (result > 0) {
-            LOGGER.log(Level.INFO, "\n=====>\nSuccessfully updated employee information of ID : {0}.\n=====>\n",
-                    new Object[] { employeeId });
+            LOGGER.log(Level.INFO, Constants.EMPLOYEE_UPDATE_SUCCESS, new Object[] { employeeId });
         } else {
-            LOGGER.log(Level.INFO, "\n=====>\nFailed to update employee information.\n=====>\n");
+            LOGGER.log(Level.INFO, Constants.EMPLOYEE_FAIL_SUCCESS);
         }
     }
 
@@ -230,12 +216,12 @@ public class EmployeeController {
             database.setSqlQuery(sqlQuery);
             int result = employeeDao.update(database);
             if (result > 0) {
-                LOGGER.log(Level.INFO, "\n=====>\nSuccessfully changed password of User ID : {0}.\n=====>\n", new Object[] { userId });
+                LOGGER.log(Level.INFO, Constants.SUCCESS_CHANGE_PASSWORD, new Object[] { userId });
             } else {
-                LOGGER.log(Level.INFO, "\n=====>\nFailed to change password of User ID : {0}.\n=====>\n", new Object[] { userId });
+                LOGGER.log(Level.INFO, Constants.FAIL_CHANGE_PASSWORD, new Object[] { userId });
             }
         } else {
-            LOGGER.log(Level.INFO, "\n=====>\nPassword not matched.\n=====>\n", new Object[] { userId });
+            LOGGER.log(Level.INFO, Constants.PASSWORD_MISSMATCH, new Object[] { userId });
         }
     }
 }

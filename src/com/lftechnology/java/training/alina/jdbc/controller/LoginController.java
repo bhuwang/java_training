@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.demo.EmployeeManagement;
@@ -48,7 +50,7 @@ public class LoginController {
      */
     private static boolean checkNotLogin(Boolean isLogin) {
         if (!isLogin) {
-            LOGGER.log(Level.INFO, "\n=====>\nInvalid Username or Password. Please try again.\n=====>\n");
+            LOGGER.log(Level.INFO, Constants.INVALID_USERNAME_PASSWORD);
             return false;
         } else {
             return true;
@@ -72,7 +74,7 @@ public class LoginController {
         UserDaoImpl userDao = new UserDaoImpl();
         boolean checkUserExist = userDao.checkValidUserByUsername(username);
         if (checkUserExist) {
-            LOGGER.log(Level.INFO, "\n=====>\nUsername already exists.\n=====>");
+            LOGGER.log(Level.INFO, Constants.USERNAME_ALREADY_EXISTS);
         }
         return checkUserExist;
     }

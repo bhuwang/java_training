@@ -5,6 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+import com.lftechnology.java.training.alina.jdbc.constants.Constants;
+
 /**
  * InputValidation consists of validations regarding user input data
  * 
@@ -31,7 +33,7 @@ public class InputValidation {
         LOGGER.log(Level.INFO, fieldLabel);
         String stringValue = input.nextLine();
         if (!Pattern.matches("[a-zA-Z]+", stringValue)) {
-            LOGGER.log(Level.INFO, "Please provide a valid username.");
+            LOGGER.log(Level.INFO, Constants.ENTER_VALID_USERNAME);
             stringValue = input.nextLine();
         }
         return stringValue;
@@ -53,7 +55,7 @@ public class InputValidation {
         do {
             LOGGER.log(Level.INFO, fieldLabel);
             while (!input.hasNextInt()) {
-                LOGGER.log(Level.INFO, "Please enter valid number : ");
+                LOGGER.log(Level.INFO, Constants.ENTER_VALID_NUMBER);
                 input.nextLine();
             }
             fieldValue = Integer.parseInt(input.nextLine());
@@ -73,7 +75,7 @@ public class InputValidation {
      */
     private static boolean isValidNumber(int fieldValue, int minValue) {
         if (fieldValue < minValue) {
-            LOGGER.log(Level.INFO, "Please enter number greater than 0 : ");
+            LOGGER.log(Level.INFO, Constants.NUMBER_LIMIT);
             return false;
         } else {
             return true;

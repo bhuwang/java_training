@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 
@@ -64,14 +65,14 @@ public class UtilityService {
      */
     private static boolean checkEmptyField(String fieldLabel) {
         boolean displayStatus;
-        if (fieldLabel == "Search Employee by fullname, department or address : ") {
+        if (fieldLabel == Constants.SEARCH_EMPLOYEE_CRITERIA) {
             EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
             List<Employee> list = employeeDao.findAll();
             Collections.sort(list);
-            LOGGER.log(Level.INFO, "\n<=====>\nNumber of Employee : {0} \n<=====>\n\n{1}", new Object[] { list.size(), list });
+            LOGGER.log(Level.INFO, Constants.EMPLOYEE_NUMBER, new Object[] { list.size(), list });
             displayStatus = true;
         } else {
-            LOGGER.log(Level.WARNING, "Field cannot be empty.");
+            LOGGER.log(Level.WARNING, Constants.FIELD_NOT_EMPTY);
             displayStatus = false;
         }
         return displayStatus;
@@ -119,7 +120,7 @@ public class UtilityService {
                 Runtime.getRuntime().exec("clear");
             }
         } catch (final Exception e) {
-            LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_MESSAGE, new Object[] { e });
         }
     }
 }
