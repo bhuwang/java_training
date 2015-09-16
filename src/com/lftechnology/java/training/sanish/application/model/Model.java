@@ -3,8 +3,9 @@ package com.lftechnology.java.training.sanish.application.model;
 import java.sql.ResultSet;
 
 /**
- * Db model
+ * Db model interface
  *
+ * @param <M> {@link Model}
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
 public interface Model <M extends Model>{

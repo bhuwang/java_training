@@ -89,9 +89,9 @@ public class User implements Model<User> {
         try {
             return (V) User.class.getDeclaredField(key).get(this);
         } catch (NoSuchFieldException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } catch (IllegalAccessException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         }
         return null;
     }
@@ -100,9 +100,9 @@ public class User implements Model<User> {
         try {
             User.class.getDeclaredField(key).set(this, value);
         } catch (NoSuchFieldException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } catch (IllegalAccessException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         }
     }
 
@@ -121,7 +121,7 @@ public class User implements Model<User> {
     }
 
     @Override public void setResultSetAttributes(ResultSet rs) {
-        String[] colWithStringDataType = { "userName", "password", "email", "createdAt", "modifiedAt" };
+        String[] colWithStringDataType = { "userName", "password", "email", "createdAt", "modifiedAt"};
         String[] colWithIntDataType = { "userId" };
         String[] colWithBooleanDataType = { "isTerminated" };
         try {
@@ -139,7 +139,7 @@ public class User implements Model<User> {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         }
     }
 

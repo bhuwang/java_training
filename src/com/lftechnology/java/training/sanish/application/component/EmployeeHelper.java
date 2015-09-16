@@ -1,6 +1,5 @@
 package com.lftechnology.java.training.sanish.application.component;
 
-import com.lftechnology.java.training.niraj.fibonacci.Constant;
 import com.lftechnology.java.training.sanish.application.model.dao.EmployeeDao;
 import com.lftechnology.java.training.sanish.application.model.dao.UserDao;
 import com.lftechnology.java.training.sanish.application.model.domain.Employee;
@@ -8,6 +7,9 @@ import com.lftechnology.java.training.sanish.application.model.domain.User;
 import com.lftechnology.java.training.sanish.application.model.domain.UserEmployee;
 import com.lftechnology.java.training.sanish.application.utility.UserInput;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,8 +46,10 @@ public class EmployeeHelper {
                 message = "\n >> " + Constants.TYPE_USER_NAME_LABEL;
                 LOGGER.log(Level.INFO, message);
                 userName = UserInput.getString(inputScanner);
-                SetStatement = "userName=?";
-                updateRow = userDao.update(whereCondition, SetStatement, userName, user.getUserId());
+                SetStatement = "userName=?, modifiedAt=?";
+                DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+                Date date = new Date();
+                updateRow = userDao.update(whereCondition, SetStatement, userName, dateFormat.format(date), user.getUserId());
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_USER_NAME_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
@@ -79,8 +83,10 @@ public class EmployeeHelper {
                 message = "\n >>" + Constants.TYPE_EMAIL_LABEL;
                 LOGGER.log(Level.INFO, message);
                 email = UserInput.getString(inputScanner);
-                SetStatement = "email=?";
-                updateRow = userDao.update(whereCondition, SetStatement, email, user.getUserId());
+                DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+                Date date = new Date();
+                SetStatement = "email=?, modifiedAt=?";
+                updateRow = userDao.update(whereCondition, SetStatement, email, dateFormat.format(date), user.getUserId());
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_EMAIL_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
@@ -114,8 +120,10 @@ public class EmployeeHelper {
                 message = "\n >>" + Constants.TYPE_FULL_NAME_LABEL;
                 LOGGER.log(Level.INFO, message);
                 fullName = UserInput.getAlphabeticWords(inputScanner);
-                SetStatement = "fullName=?";
-                updateRow = employeeDao.update(whereCondition, SetStatement, fullName, employee.getEmployeeId());
+                DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+                Date date = new Date();
+                SetStatement = "fullName=?, modifiedAt=?";
+                updateRow = employeeDao.update(whereCondition, SetStatement, fullName, dateFormat.format(date), employee.getEmployeeId());
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_FULL_NAME_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
@@ -149,8 +157,10 @@ public class EmployeeHelper {
                 message = "\n >>" + Constants.TYPE_ADDRESS_LABEL;
                 LOGGER.log(Level.INFO, message);
                 address = UserInput.getAlphabeticWords(inputScanner);
-                SetStatement = "address=?";
-                updateRow = employeeDao.update(whereCondition, SetStatement, address, employee.getEmployeeId());
+                DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+                Date date = new Date();
+                SetStatement = "address=?, modifiedAt=?";
+                updateRow = employeeDao.update(whereCondition, SetStatement, address, dateFormat.format(date), employee.getEmployeeId());
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ADDRESS_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
@@ -185,8 +195,10 @@ public class EmployeeHelper {
                 message = "\n >>" + Constants.TYPE_DEPARTMENT_LABEL;
                 LOGGER.log(Level.INFO, message);
                 department = UserInput.getAlphabeticWords(inputScanner);
-                SetStatement = "department=?";
-                updateRow = employeeDao.update(whereCondition, SetStatement, department, employee.getEmployeeId());
+                DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+                Date date = new Date();
+                SetStatement = "department=?, modifiedAt=?";
+                updateRow = employeeDao.update(whereCondition, SetStatement, department, dateFormat.format(date), employee.getEmployeeId());
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_DEPARTMENT_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.INFO, message);
@@ -221,8 +233,10 @@ public class EmployeeHelper {
                 LOGGER.log(Level.INFO, message);
                 role = UserInput.getString(inputScanner);
                 if (role.equals(Constants.ADMIN_ROLE) || role.equals(Constants.USER_ROLE)) {
-                    SetStatement = "role=?";
-                    updateRow = employeeDao.update(whereCondition, SetStatement, role, employee.getEmployeeId());
+                    DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+                    Date date = new Date();
+                    SetStatement = "role=?, modifiedAt=?";
+                    updateRow = employeeDao.update(whereCondition, SetStatement, role, dateFormat.format(date), employee.getEmployeeId());
                     if (updateRow == 0) {
                         message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ROLE_MSG + Constants.TRY_AGAIN_MSG;
                         LOGGER.log(Level.INFO, message);
@@ -294,10 +308,10 @@ public class EmployeeHelper {
     }
 
     /**
-     * Get user id & check user exist
+     * Get user id & check user exist, if user exit return userId else return -1
      *
      * @param inputScanner {@link Scanner}
-     * @return {@link Boolean}
+     * @return {@link Integer}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static int getUserId(Scanner inputScanner) {
@@ -338,37 +352,37 @@ public class EmployeeHelper {
         String message = "\n >>" + Constants.TYPE_USER_NAME_LABEL;
         LOGGER.log(Level.INFO, message);
         String userName = UserInput.getString(inputScanner);
-        user.setAttribute("userName", userName);
+        user.setUserName(userName);
 
-        message = "\n >> " + Constants.TYPE_PASSWORD_LABEL;
+        message = "\n >>" + Constants.TYPE_PASSWORD_LABEL;
         LOGGER.log(Level.INFO, message);
         String password = UserInput.getString(inputScanner);
-        user.setAttribute("password", password);
+        user.setPassword(password);
 
         message = "\n >>" + Constants.TYPE_FULL_NAME_LABEL;
         LOGGER.log(Level.INFO, message);
         String fullName = UserInput.getAlphabeticWords(inputScanner);
-        employee.setAttribute("fullName", fullName);
+        employee.setFullName(fullName);
 
         message = "\n >>" + Constants.TYPE_EMAIL_LABEL;
         LOGGER.log(Level.INFO, message);
         String email = UserInput.getEmail(inputScanner);
-        user.setAttribute("email", email);
+        user.setEmail(email);
 
         message = "\n >> " + Constants.TYPE_ADDRESS_LABEL;
         LOGGER.log(Level.INFO, message);
         String address = UserInput.getAlphabeticWords(inputScanner);
-        employee.setAttribute("address", address);
+        employee.setAddress(address);
 
         message = "\n >>" + Constants.TYPE_DEPARTMENT_LABEL;
         LOGGER.log(Level.INFO, message);
         String department = UserInput.getAlphabeticWords(inputScanner);
-        employee.setAttribute("department", department);
+        employee.setDepartment(department);
 
         message = "\n >>" + Constants.TYPE_ROLE_LABEL;
         LOGGER.log(Level.INFO, message);
         String role = UserInput.getUserRole(inputScanner);
-        employee.setAttribute("role", role);
+        employee.setRole(role);
 
         UserEmployee userEmployee = new UserEmployee();
         userEmployee.setUser(user);

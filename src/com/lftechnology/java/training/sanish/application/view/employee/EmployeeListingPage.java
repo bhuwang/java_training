@@ -54,7 +54,7 @@ public class EmployeeListingPage {
         }
 
         pageContent +=
-                "\n\n" + Constants.PAGE_MENU_LABEL + "\n 1. " + Constants.SEARCH_EMPLOYEE_MENU + "\n 2." + Constants.BACK_DASHBOARD_MENU
+                "\n\n" + Constants.PAGE_MENU_LABEL + "\n 1." + Constants.SEARCH_EMPLOYEE_MENU + "\n 2." + Constants.BACK_DASHBOARD_MENU
                         + "\n 3." + Constants.LOGOUT_MENU;
         pageContent += "\n >>" + Constants.TYPE_OPTION_LABEL;
 

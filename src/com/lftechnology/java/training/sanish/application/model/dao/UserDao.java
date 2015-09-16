@@ -7,11 +7,14 @@ import com.lftechnology.java.training.sanish.application.model.domain.User;
 import com.lftechnology.java.training.sanish.application.model.domain.UserEmployee;
 import com.lftechnology.java.training.sanish.application.model.service.impl.UserService;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,7 +43,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return user;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -50,7 +53,7 @@ public class UserDao implements UserService {
     @Override public int addNew(User user) {
         int lastInsertedId = -1;
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
             Date date = new Date();
             String query = "INSERT INTO users(userName, password, email, createdAt, isTerminated) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
@@ -72,7 +75,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return lastInsertedId;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -96,7 +99,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return user;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -104,7 +107,7 @@ public class UserDao implements UserService {
     }
 
     @Override public List<User> getAll() {
-        List<User> userList = new ArrayList<User>();
+        List<User> userList = new ArrayList<>();
         try {
             String query = "SELECT * FROM users WHERE isTerminated=?";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
@@ -121,7 +124,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return userList;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -138,7 +141,7 @@ public class UserDao implements UserService {
                     preparedStatement.setString(i + 1, parameters[i].toString());
                 }
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             }
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -151,7 +154,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return userList;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -167,14 +170,14 @@ public class UserDao implements UserService {
                     preparedStatement.setString(i + 1, parameters[i].toString());
                 }
             } catch (SQLException e) {
-                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+                LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             }
 
             int effectedRow = preparedStatement.executeUpdate();
             preparedStatement.close();
             return effectedRow;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -183,17 +186,20 @@ public class UserDao implements UserService {
 
     @Override public boolean setPassword(User user, String password) {
         try {
-            String query = "UPDATE users SET password=? WHERE userId=?";
+            DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+            Date date = new Date();
+            String query = "UPDATE users SET password=?, modifiedAt=? WHERE userId=?";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
             preparedStatement.setString(1, password);
-            preparedStatement.setInt(2, user.getUserId());
+            preparedStatement.setString(2, dateFormat.format(date));
+            preparedStatement.setInt(3, user.getUserId());
             int effectedRow = preparedStatement.executeUpdate();
             preparedStatement.close();
             if (effectedRow != 0) {
                 return true;
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -217,7 +223,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return employee;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -254,7 +260,7 @@ public class UserDao implements UserService {
             preparedStatement.close();
             return userEmployeeList;
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
@@ -263,17 +269,20 @@ public class UserDao implements UserService {
 
     @Override public boolean terminateUser(User user) {
         try {
-            String query = "UPDATE users SET isTerminated=? WHERE userId=?";
+            DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+            Date date = new Date();
+            String query = "UPDATE users SET isTerminated=?, modifiedAt=? WHERE userId=?";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
             preparedStatement.setBoolean(1, true);
-            preparedStatement.setInt(2, user.getUserId());
+            preparedStatement.setString(2, dateFormat.format(date));
+            preparedStatement.setInt(3, user.getUserId());
             int effectedRow = preparedStatement.executeUpdate();
             preparedStatement.close();
             if (effectedRow > 0) {
                 return true;
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 

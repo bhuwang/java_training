@@ -60,7 +60,7 @@ public class UserInput {
      */
     public static String getString(Scanner scanner) {
         String inputString = "";
-        String pattern = "[a-zA-Z1-9!@#$%^&*._,]+";
+        String pattern = "[a-zA-Z1-9!@#$%^&*/._,]+";
         boolean checkNextInput = true;
         while (checkNextInput) {
             if (!scanner.hasNext()) {
@@ -89,7 +89,7 @@ public class UserInput {
      */
     public static String getEmail(Scanner scanner) {
         String email = "";
-        String emailPattern = "[a-z][a-z_1-9]+@[a-z]+(.[a-z])+";
+        String emailPattern = "[a-z][a-z_/+1-9]+@[a-z]+(/.[a-z]{2,})+";
         while (true) {
             if (!scanner.hasNext()) {
                 scanner.next();

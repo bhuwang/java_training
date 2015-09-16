@@ -73,7 +73,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }
@@ -112,7 +112,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }
@@ -133,7 +133,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }
@@ -142,6 +142,7 @@ public class EmployeeController {
     /**
      * Employee search result page
      *
+     * @param searchKey {@link String}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void employeeSearchResultPage(String searchKey) {
@@ -164,7 +165,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }
@@ -211,7 +212,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }
@@ -241,7 +242,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }
@@ -277,7 +278,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }
@@ -328,7 +329,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }
@@ -374,7 +375,7 @@ public class EmployeeController {
                 LoginController.LoginPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }

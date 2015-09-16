@@ -27,7 +27,7 @@ public class OutputFormatter {
         if (currentUser != null) {
             UserDao userDao = new UserDao();
             String role = userDao.getEmployee(currentUser).getRole();
-            pageTitle += "Login as > " + currentUser.getUserName() + " (" + role + ")\n\n";
+            pageTitle += "Login as > " + currentUser.getUserName() + " (" + role + ")\n";
         }
 
         return pageTitle;
@@ -37,7 +37,7 @@ public class OutputFormatter {
      * Return table column text
      *
      * @param value
-     * @param colSize {@link Integer}
+     * @param colSize {@link Integer} column size
      * @param <V>
      * @return {@link String }
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>

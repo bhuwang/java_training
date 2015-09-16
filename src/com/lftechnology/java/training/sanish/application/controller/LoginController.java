@@ -38,7 +38,7 @@ public class LoginController {
                 EmployeeController.employeeDashboardPage();
             }
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } finally {
             DbConnect.dbClose();
         }

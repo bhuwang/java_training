@@ -98,9 +98,9 @@ public class Employee implements Model<Employee> {
         try {
             return (V) Employee.class.getDeclaredField(key).get(this);
         } catch (NoSuchFieldException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } catch (IllegalAccessException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         }
 
         return null;
@@ -110,9 +110,9 @@ public class Employee implements Model<Employee> {
         try {
             Employee.class.getDeclaredField(key).set(this, value);
         } catch (NoSuchFieldException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         } catch (IllegalAccessException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         }
     }
 
@@ -134,12 +134,15 @@ public class Employee implements Model<Employee> {
         String[] colWithStringDataType = { "fullName", "address", "department", "role", "createdAt", "modifiedAt" };
         String[] colWithIntDataType = { "employeeId", "userId" };
         String[] colWithBooleanDataType = {};
+        String column = "";
         try {
             ResultSetMetaData metadata = rs.getMetaData();
             int colCount = metadata.getColumnCount();
-            String column;
+
             for (int i = 1; i <= colCount; i++) {
+
                 column = metadata.getColumnName(i);
+
                 if (Arrays.asList(colWithStringDataType).contains(column)) {
                     setAttribute(column, rs.getString(i));
                 } else if (Arrays.asList(colWithIntDataType).contains(column)) {
@@ -149,7 +152,7 @@ public class Employee implements Model<Employee> {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", e);
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
         }
     }
 

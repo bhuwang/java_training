@@ -34,7 +34,7 @@ public interface CrudService<T extends Model> {
     /**
      * Return all data set
      *
-     * @return {@link ResultSet}
+     * @return {@link List<Model>}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     List<T> getAll();
@@ -42,18 +42,19 @@ public interface CrudService<T extends Model> {
     /**
      * Return all data set with specific condition
      *
-     * @param condition {@link String}
+     * @param condition  {@link String}
      * @param parameters list of parameters
-     * @return {@link ResultSet}
+     * @return {@link List<Model>}
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     <V> List<T> getAll(String condition, V... parameters);
 
     /**
      * Update database table row
+     *
      * @param setStatement {@link String} set statement of query
-     * @param condition {@link String} condition statement of query
-     * @param parameters list of parameters
+     * @param condition    {@link String} condition statement of query
+     * @param parameters   list of parameters
      * @param <V>
      * @return {@link Integer} number of row affected
      */

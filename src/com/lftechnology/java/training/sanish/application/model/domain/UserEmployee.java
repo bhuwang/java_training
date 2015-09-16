@@ -1,5 +1,6 @@
 package com.lftechnology.java.training.sanish.application.model.domain;
 
+import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.model.dao.EmployeeDao;
 import com.lftechnology.java.training.sanish.application.model.dao.UserDao;
@@ -71,7 +72,7 @@ public class UserEmployee {
                 dbConnect.rollback();
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.WARNING, "Exception : {0}", new Object[] { e });
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
             DbConnect.dbClose();
         }
 
