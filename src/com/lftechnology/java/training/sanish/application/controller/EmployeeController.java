@@ -296,9 +296,10 @@ public class EmployeeController {
                 if (userId != -1) {
                     UserDao userDao = new UserDao();
                     User user = userDao.findById(userId);
-                    EmployeeHelper.terminateUser(inputScanner, user);
-
+                    message = EmployeeHelper.terminateUser(inputScanner, user);
                     TerminateEmployeePage.renderPage(true, message);
+                }else{
+                    TerminateEmployeePage.renderPage(true, Constants.USER_NOT_EXIST_MSG);
                 }
 
                 int option;

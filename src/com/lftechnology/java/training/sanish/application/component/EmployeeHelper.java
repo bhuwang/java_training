@@ -54,6 +54,8 @@ public class EmployeeHelper {
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_USER_NAME_MSG;
                     doChange = conformRetry(inputScanner, message);
+                }else{
+                    doChange = false;
                 }
             }
         }
@@ -101,6 +103,8 @@ public class EmployeeHelper {
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_EMAIL_MSG;
                     doChange = conformRetry(inputScanner, message);
+                }else{
+                    doChange = false;
                 }
             }
         }
@@ -135,6 +139,8 @@ public class EmployeeHelper {
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_FULL_NAME_MSG;
                     doChange = conformRetry(inputScanner, message);
+                }else{
+                    doChange = false;
                 }
             }
         }
@@ -169,6 +175,8 @@ public class EmployeeHelper {
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ADDRESS_MSG;
                     doChange = conformRetry(inputScanner, message);
+                }else{
+                    doChange = false;
                 }
             }
         }
@@ -204,6 +212,8 @@ public class EmployeeHelper {
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_DEPARTMENT_MSG;
                     doChange = conformRetry(inputScanner, message);
+                }else{
+                    doChange = false;
                 }
             }
         }
@@ -244,6 +254,8 @@ public class EmployeeHelper {
                 if (updateRow == 0) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ROLE_MSG;
                     doChange = conformRetry(inputScanner, message);
+                }else{
+                    doChange = false;
                 }
 
             }

@@ -56,16 +56,16 @@ public class Constants {
     public static final String TYPE_USER_ID_LABEL = " \n>> Type User Id : ";
     public static final String TYPE_USER_NAME_LABEL = " \n>> Type userName : ";
     public static final String TYPE_EMAIL_LABEL = " \n>> Type email : ";
-    public static final String TYPE_FULL_NAME_LABEL = " \n>>Type full name : ";
-    public static final String TYPE_ADDRESS_LABEL = " \n>>Type address : ";
-    public static final String TYPE_DEPARTMENT_LABEL = " \n>>Type department : ";
-    public static final String TYPE_ROLE_LABEL = " \n>>Type role 1-User 2-Admin : ";
-    public static final String TYPE_PASSWORD_LABEL = " \n>>Type Password : ";
-    public static final String TYPE_OLD_PASSWORD_LABEL = " \n>>Type Old Password : ";
-    public static final String TYPE_NEW_PASSWORD_LABEL = " \n>>Type New Password : ";
-    public static final String TYPE_RE_PASSWORD_LABEL = " \n>>Retype New Password : ";
-    public static final String TYPE_OPTION_LABEL = " \n>>Type Option : ";
-    public static final String TYPE_SEARCH_KEY = " \n>>Type search key to search employee : ";
+    public static final String TYPE_FULL_NAME_LABEL = " \n>> Type full name : ";
+    public static final String TYPE_ADDRESS_LABEL = " \n>> Type address : ";
+    public static final String TYPE_DEPARTMENT_LABEL = " \n>> Type department : ";
+    public static final String TYPE_ROLE_LABEL = " \n>> Type role 1-User 2-Admin : ";
+    public static final String TYPE_PASSWORD_LABEL = " \n>> Type Password : ";
+    public static final String TYPE_OLD_PASSWORD_LABEL = " \n>> Type Old Password : ";
+    public static final String TYPE_NEW_PASSWORD_LABEL = " \n>> Type New Password : ";
+    public static final String TYPE_RE_PASSWORD_LABEL = " \n>> Retype New Password : ";
+    public static final String TYPE_OPTION_LABEL = " Type Option : ";
+    public static final String TYPE_SEARCH_KEY = " Type search key to search employee : ";
 
     public static final String SUCCESS_PASSWORD_CHANGE_MSG = " Successfully password change. ";
     public static final String SUCCESS_ADD_EMPLOYEE_MSG = " Successfully new employee added. ";
