@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
-import com.lftechnology.java.training.dipak.employeemanagement.ui.MainClass;
 
 /**
  * <p>
@@ -46,7 +45,6 @@ public class LogOutController {
             e.setFullName("");
             e.setIsTerminated(true);
             LOGGER.info("Logout Successful...");
-            MainClass.isLoggedIn = false;
         }
 
         return e;

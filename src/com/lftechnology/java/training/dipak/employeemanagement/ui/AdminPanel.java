@@ -10,6 +10,7 @@ import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.EmployeeController;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.LogOutController;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
+import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
 /**
  * <p>
@@ -43,7 +44,7 @@ public class AdminPanel {
      * @throws Throwable
      */
     public void displayPanel(Employee employee1, Scanner sc) {
-        MainClass.isLoggedIn = true;
+        boolean isLoggedIn = true;
         Employee e = new Employee();
         e = DuplicateEmployee.duplicateEmployeeObject(employee1, e);
         Employee e2 = new Employee();
@@ -75,6 +76,9 @@ public class AdminPanel {
                     break;
                 case 5:
                     e = LogOutController.logOut(employee1, sc);
+                    if (UserType.INVALID.equals(e.getRole())) {
+                        isLoggedIn = false;
+                    }
                     break;
 
                 default:
@@ -85,7 +89,7 @@ public class AdminPanel {
                 LOGGER.log(Level.INFO, "{0}", ex);
             }
 
-        } while (MainClass.isLoggedIn);
+        } while (isLoggedIn);
 
     }
 }

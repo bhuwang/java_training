@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.User;
+import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 import com.lftechnology.java.training.dipak.employeemanagement.service.LoginService;
 import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFactory;
-import com.lftechnology.java.training.dipak.employeemanagement.ui.MainClass;
 
 /**
  * <p>
@@ -75,10 +75,9 @@ public class LoginController {
 
                 employee = ls.validateLogin(u);
 
-                MainClass.isRunApplicationAgain = true;
-
             } else {
-                MainClass.isRunApplicationAgain = false;
+                employee.setRole(UserType.INVALID);
+
                 LOGGER.info("\n Exiting the application.\n\n");
 
             }
@@ -86,7 +85,7 @@ public class LoginController {
         } catch (Exception e) {
             LOGGER.log(Level.INFO, "{0}", e);
         } finally {
-            if (!MainClass.isRunApplicationAgain) {
+            if (UserType.INVALID.equals(employee.getRole())) {
                 sc.close();
             }
         }

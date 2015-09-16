@@ -10,6 +10,7 @@ import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.EmployeeController;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.LogOutController;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
+import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
 /**
  * <p>
@@ -42,7 +43,7 @@ public class UserPanel {
      * @param sc
      */
     public void displayPanel(Employee emp, Scanner sc) {
-        MainClass.isLoggedIn = true;
+        boolean isLoggedIn = true;
         EmployeeController ec = new EmployeeController();
         Employee emp2 = new Employee();
         emp2 = DuplicateEmployee.duplicateEmployeeObject(emp, emp2);
@@ -67,6 +68,9 @@ public class UserPanel {
                     break;
                 case 3:
                     emp2 = LogOutController.logOut(emp, sc);
+                    if (UserType.INVALID.equals(emp2.getRole())) {
+                        isLoggedIn = false;
+                    }
                     break;
                 default:
                     LOGGER.info("Illegal choice. Please re-enter your choice.");
@@ -76,6 +80,6 @@ public class UserPanel {
             } catch (Exception ex) {
                 LOGGER.log(Level.INFO, "Exception::{0}", ex);
             }
-        } while (MainClass.isLoggedIn);
+        } while (isLoggedIn);
     }
 }

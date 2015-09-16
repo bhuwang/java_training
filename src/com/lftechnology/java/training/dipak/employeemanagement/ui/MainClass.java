@@ -22,8 +22,6 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 public class MainClass {
 
     private static final Logger LOGGER = Logger.getLogger(MainClass.class.getName());
-    public static boolean isRunApplicationAgain = true;
-    public static boolean isLoggedIn = true;
 
     private MainClass() {
     }
@@ -45,7 +43,7 @@ public class MainClass {
         LoginController lc = new LoginController();
         Employee employee = lc.validateLogin(new User(), sc);
 
-        while (isRunApplicationAgain) {
+        while (!UserType.INVALID.equals(employee.getRole())) {
 
             if (employee.getId() == 0) {
                 LOGGER.info("Login Failed. Invalid username or password.\n");
