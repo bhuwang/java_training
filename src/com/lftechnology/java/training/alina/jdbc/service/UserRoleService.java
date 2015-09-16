@@ -14,6 +14,10 @@ public class UserRoleService {
 
     private static final Logger LOGGER = Logger.getLogger(UserRoleService.class.getName());
 
+    private UserRoleService() {
+
+    }
+
     /**
      * Adds new employee
      * 
