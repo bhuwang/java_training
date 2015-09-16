@@ -21,7 +21,7 @@ public abstract class DbConnect {
     private static final Logger LOGGER = Logger.getLogger(DbConnect.class.getName());
     private static Connection connection;
 
-    public DbConnect() {
+    private DbConnect() {
     }
 
     /**

@@ -50,12 +50,10 @@ public class UserLogin {
         getCredential(inputScanner);
         UserDao userDao = new UserDao();
         User user = userDao.getUserByUserName(userName);
-        if (user != null) {
-            if (validateUser(user)) {
-                isLogin = true;
-                currentUser = user;
-                return true;
-            }
+        if (user != null && validateUser(user)) {
+            isLogin = true;
+            currentUser = user;
+            return true;
         }
 
         return false;

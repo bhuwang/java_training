@@ -5,10 +5,9 @@ import java.sql.ResultSet;
 /**
  * Db model interface
  *
- * @param <M> {@link Model}
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public interface Model <M extends Model>{
+public interface Model{
     /**
      * Return table name
      *

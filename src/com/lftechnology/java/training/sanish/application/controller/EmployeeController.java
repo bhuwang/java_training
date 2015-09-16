@@ -2,6 +2,7 @@ package com.lftechnology.java.training.sanish.application.controller;
 
 import com.lftechnology.java.training.sanish.application.component.Constants;
 import com.lftechnology.java.training.sanish.application.component.EmployeeHelper;
+import com.lftechnology.java.training.sanish.application.component.PageMenu;
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.component.UserLogin;
 import com.lftechnology.java.training.sanish.application.model.dao.UserDao;
@@ -47,25 +48,8 @@ public class EmployeeController {
                 } else {
                     menuSelected = UserInput.getIntegerNumber(inputScanner, 1, 5);
                 }
-                if (menuSelected == 1) {
-                    employeeListPage();
-                } else if (menuSelected == 2) {
-                    employeeSearchPage();
-                } else if (menuSelected == 3) {
-                    ownInformationEditPage();
-                } else if (menuSelected == 4) {
-                    changePasswordPage();
-                } else if (menuSelected == 5 && employee.getRole().equals(Constants.ADMIN_ROLE)) {
-                    addEmployeePage();
-                } else if (menuSelected == 5 && employee.getRole().equals(Constants.USER_ROLE)) {
-                    LoginController.logoutPage();
-                } else if (menuSelected == 6) {
-                    editEmployeePage();
-                } else if (menuSelected == 7) {
-                    terminateEmployeePage();
-                } else {
-                    LoginController.logoutPage();
-                }
+
+                PageMenu.dashboardMenu(menuSelected, employee);
             } else {
                 LoginController.loginPage();
             }
@@ -98,13 +82,7 @@ public class EmployeeController {
 
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 3);
-                if (option == 1) {
-                    employeeSearchPage();
-                } else if (option == 2) {
-                    employeeDashboardPage();
-                } else {
-                    LoginController.logoutPage();
-                }
+                PageMenu.employeeListPageMenu(option);
             } else {
                 LoginController.loginPage();
             }
@@ -151,13 +129,7 @@ public class EmployeeController {
 
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 3);
-                if (option == 1) {
-                    employeeSearchPage();
-                } else if (option == 2) {
-                    employeeDashboardPage();
-                } else {
-                    LoginController.logoutPage();
-                }
+                PageMenu.employeeListPageMenu(option);
             } else {
                 LoginController.loginPage();
             }
@@ -198,13 +170,7 @@ public class EmployeeController {
 
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 3);
-                if (option == 1) {
-                    ownInformationEditPage();
-                } else if (option == 2) {
-                    employeeDashboardPage();
-                } else {
-                    LoginController.logoutPage();
-                }
+                PageMenu.employeeOwnPageMenu(option);
             } else {
                 LoginController.loginPage();
             }
@@ -230,11 +196,7 @@ public class EmployeeController {
 
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 2);
-                if (option == 1) {
-                    employeeDashboardPage();
-                } else if (option == 2) {
-                    LoginController.logoutPage();
-                }
+                PageMenu.changePasswordPageMenu(option);
             } else {
                 LoginController.loginPage();
             }
@@ -264,13 +226,7 @@ public class EmployeeController {
 
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 3);
-                if (option == 1) {
-                    addEmployeePage();
-                } else if (option == 2) {
-                    employeeDashboardPage();
-                } else {
-                    LoginController.logoutPage();
-                }
+                PageMenu.addEmployeePageMenu(option);
             } else {
                 LoginController.loginPage();
             }
@@ -315,13 +271,7 @@ public class EmployeeController {
 
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 3);
-                if (option == 1) {
-                    editEmployeePage();
-                } else if (option == 2) {
-                    employeeDashboardPage();
-                } else {
-                    LoginController.logoutPage();
-                }
+                PageMenu.editEmployeePageMenu(option);
             } else {
                 LoginController.loginPage();
             }
@@ -353,13 +303,7 @@ public class EmployeeController {
 
                 int option;
                 option = UserInput.getIntegerNumber(inputScanner, 1, 3);
-                if (option == 1) {
-                    employeeListPage();
-                } else if (option == 2) {
-                    employeeDashboardPage();
-                } else {
-                    LoginController.logoutPage();
-                }
+                PageMenu.terminatePageMenu(option);
             } else {
                 LoginController.loginPage();
             }

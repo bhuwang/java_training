@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class EmployeeHelper {
     private static final Logger LOGGER = Logger.getLogger(EmployeeHelper.class.getName());
-
+    private static final String EMPLOYEE_ID_STATEMENT  = "employeeId=?";
     private EmployeeHelper() {
     }
 
@@ -69,7 +69,7 @@ public class EmployeeHelper {
     public static boolean conformRetry(Scanner inputScanner, String message) {
         LOGGER.log(Level.INFO, message + Constants.TRY_AGAIN_MSG);
         String edit = UserInput.getString(inputScanner);
-        return (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION));
+        return edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION);
     }
 
     /**
@@ -91,7 +91,7 @@ public class EmployeeHelper {
             String whereCondition = "userId=?";
             UserDao userDao = new UserDao();
             while (doChange) {
-                message = "\n >>" + Constants.TYPE_EMAIL_LABEL;
+                message = Constants.TYPE_EMAIL_LABEL;
                 LOGGER.log(Level.INFO, message);
                 email = UserInput.getString(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
@@ -122,10 +122,10 @@ public class EmployeeHelper {
             String fullName;
             String setStatement;
             Boolean doChange = true;
-            String whereCondition = "employeeId=?";
+            String whereCondition = EMPLOYEE_ID_STATEMENT;
             EmployeeDao employeeDao = new EmployeeDao();
             while (doChange) {
-                message = "\n >>" + Constants.TYPE_FULL_NAME_LABEL;
+                message = Constants.TYPE_FULL_NAME_LABEL;
                 LOGGER.log(Level.INFO, message);
                 fullName = UserInput.getAlphabeticWords(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
@@ -156,10 +156,10 @@ public class EmployeeHelper {
             String address;
             String setStatement;
             Boolean doChange = true;
-            String whereCondition = "employeeId=?";
+            String whereCondition = EMPLOYEE_ID_STATEMENT;
             EmployeeDao employeeDao = new EmployeeDao();
             while (doChange) {
-                message = "\n >>" + Constants.TYPE_ADDRESS_LABEL;
+                message = Constants.TYPE_ADDRESS_LABEL;
                 LOGGER.log(Level.INFO, message);
                 address = UserInput.getAlphabeticWords(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
@@ -191,10 +191,10 @@ public class EmployeeHelper {
             String department;
             String setStatement;
             Boolean doChange = true;
-            String whereCondition = "employeeId=?";
+            String whereCondition = EMPLOYEE_ID_STATEMENT;
             EmployeeDao employeeDao = new EmployeeDao();
             while (doChange) {
-                message = "\n >>" + Constants.TYPE_DEPARTMENT_LABEL;
+                message = Constants.TYPE_DEPARTMENT_LABEL;
                 LOGGER.log(Level.INFO, message);
                 department = UserInput.getAlphabeticWords(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
@@ -225,23 +225,24 @@ public class EmployeeHelper {
             String role;
             String setStatement;
             Boolean doChange = true;
-            String whereCondition = "employeeId=?";
+            String whereCondition = EMPLOYEE_ID_STATEMENT;
             EmployeeDao employeeDao = new EmployeeDao();
             while (doChange) {
-                message = "\n >>" + Constants.TYPE_ROLE_LABEL;
+                message = Constants.TYPE_ROLE_LABEL;
                 LOGGER.log(Level.INFO, message);
                 role = UserInput.getString(inputScanner);
-                if (role.equals(Constants.ADMIN_ROLE) || role.equals(Constants.USER_ROLE)) {
-                    DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
-                    Date date = new Date();
-                    setStatement = "role=?, modifiedAt=?";
-                    updateRow = employeeDao.update(whereCondition, setStatement, role, dateFormat.format(date), employee.getEmployeeId());
-                    if (updateRow == 0) {
-                        message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ROLE_MSG;
-                        doChange = conformRetry(inputScanner, message);
-                    }
-                } else {
+                if (!role.equals(Constants.ADMIN_ROLE) && !role.equals(Constants.USER_ROLE)) {
                     message = "\n" + Constants.ERROR_MSG_LABEL + Constants.INVALID_ROLE_MSG;
+                    doChange = conformRetry(inputScanner, message);
+                    continue;
+                }
+
+                DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
+                Date date = new Date();
+                setStatement = "role=?, modifiedAt=?";
+                updateRow = employeeDao.update(whereCondition, setStatement, role, dateFormat.format(date), employee.getEmployeeId());
+                if (updateRow == 0) {
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ROLE_MSG;
                     doChange = conformRetry(inputScanner, message);
                 }
 
@@ -257,29 +258,22 @@ public class EmployeeHelper {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static void changePassword(Scanner inputScanner, User user) {
-        Boolean changePassword = true;
+        Boolean doChange = true;
         UserDao userDao = new UserDao();
-        while (changePassword) {
-            String message = "\n >>" + Constants.TYPE_OLD_PASSWORD_LABEL;
+        while (doChange) {
+            String message = Constants.TYPE_OLD_PASSWORD_LABEL;
             LOGGER.log(Level.INFO, message);
             String oldPassword = UserInput.getString(inputScanner);
-            message = "\n >>" + Constants.TYPE_NEW_PASSWORD_LABEL;
+            message = Constants.TYPE_NEW_PASSWORD_LABEL;
             LOGGER.log(Level.INFO, message);
             String newPassword = UserInput.getString(inputScanner);
-            message = "\n >>" + Constants.TYPE_RE_PASSWORD_LABEL;
+            message = Constants.TYPE_RE_PASSWORD_LABEL;
             LOGGER.log(Level.INFO, message);
             String confirmPassword = UserInput.getString(inputScanner);
+            Boolean valid = false;
             if (newPassword.equals(confirmPassword)) {
                 if (user.getPassword().equals(oldPassword)) {
-                    if (oldPassword.equals(user.getPassword())) {
-                        if (userDao.setPassword(user, newPassword)) {
-                            changePassword = false;
-                            LOGGER.log(Level.INFO, Constants.SUCCESS_PASSWORD_CHANGE_MSG);
-                        } else {
-                            message = Constants.FAIL_CHANGE_PASSWORD_MSG + Constants.TRY_AGAIN_MSG;
-                            LOGGER.log(Level.WARNING, message);
-                        }
-                    }
+                    valid = true;
                 } else {
                     message = Constants.OLD_PASSWORD_NOT_MATCH_MSG + Constants.TRY_AGAIN_MSG;
                     LOGGER.log(Level.WARNING, message);
@@ -289,10 +283,12 @@ public class EmployeeHelper {
                 LOGGER.log(Level.WARNING, message);
             }
 
-            if (changePassword) {
-                String edit = UserInput.getString(inputScanner);
-                if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                    changePassword = false;
+            if(valid){
+                if (userDao.setPassword(user, newPassword)) {
+                    doChange = false;
+                    LOGGER.log(Level.INFO, Constants.SUCCESS_PASSWORD_CHANGE_MSG);
+                } else {
+                    doChange = conformRetry(inputScanner, Constants.FAIL_CHANGE_PASSWORD_MSG);
                 }
             }
         }
@@ -312,7 +308,7 @@ public class EmployeeHelper {
         UserDao userDao = new UserDao();
         Boolean scanUserId = true;
         while (scanUserId) {
-            message = "\n >>" + Constants.TYPE_USER_ID_LABEL;
+            message = Constants.TYPE_USER_ID_LABEL;
             LOGGER.log(Level.INFO, message);
             userId = UserInput.getIntegerNumber(inputScanner, -1, -1);
             user = userDao.findById(userId);
@@ -337,37 +333,37 @@ public class EmployeeHelper {
     public static UserEmployee addNewEmployee(Scanner inputScanner) {
         User user = new User();
         Employee employee = new Employee();
-        String message = "\n >>" + Constants.TYPE_USER_NAME_LABEL;
+        String message = Constants.TYPE_USER_NAME_LABEL;
         LOGGER.log(Level.INFO, message);
         String userName = UserInput.getString(inputScanner);
         user.setUserName(userName);
 
-        message = "\n >>" + Constants.TYPE_PASSWORD_LABEL;
+        message = Constants.TYPE_PASSWORD_LABEL;
         LOGGER.log(Level.INFO, message);
         String password = UserInput.getString(inputScanner);
         user.setPassword(password);
 
-        message = "\n >>" + Constants.TYPE_FULL_NAME_LABEL;
+        message = Constants.TYPE_FULL_NAME_LABEL;
         LOGGER.log(Level.INFO, message);
         String fullName = UserInput.getAlphabeticWords(inputScanner);
         employee.setFullName(fullName);
 
-        message = "\n >>" + Constants.TYPE_EMAIL_LABEL;
+        message = Constants.TYPE_EMAIL_LABEL;
         LOGGER.log(Level.INFO, message);
         String email = UserInput.getEmail(inputScanner);
         user.setEmail(email);
 
-        message = "\n >> " + Constants.TYPE_ADDRESS_LABEL;
+        message = Constants.TYPE_ADDRESS_LABEL;
         LOGGER.log(Level.INFO, message);
         String address = UserInput.getAlphabeticWords(inputScanner);
         employee.setAddress(address);
 
-        message = "\n >>" + Constants.TYPE_DEPARTMENT_LABEL;
+        message = Constants.TYPE_DEPARTMENT_LABEL;
         LOGGER.log(Level.INFO, message);
         String department = UserInput.getAlphabeticWords(inputScanner);
         employee.setDepartment(department);
 
-        message = "\n >>" + Constants.TYPE_ROLE_LABEL;
+        message = Constants.TYPE_ROLE_LABEL;
         LOGGER.log(Level.INFO, message);
         String role = UserInput.getUserRole(inputScanner);
         employee.setRole(role);

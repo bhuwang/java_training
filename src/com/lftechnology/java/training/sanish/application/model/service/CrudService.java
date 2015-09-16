@@ -2,7 +2,6 @@ package com.lftechnology.java.training.sanish.application.model.service;
 
 import com.lftechnology.java.training.sanish.application.model.Model;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 /**

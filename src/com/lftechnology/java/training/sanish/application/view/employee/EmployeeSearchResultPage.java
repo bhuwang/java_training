@@ -28,7 +28,7 @@ public class EmployeeSearchResultPage {
     public static void renderPage(List<UserEmployee> userEmployeeList) {
         String pageContent = OutputFormatter.getFormattedPageTitle(Constants.EMPLOYEE_SEARCH_PAGE);
         pageContent += "\n Search User list \n";
-        if (userEmployeeList.size() > 0) {
+        if (!userEmployeeList.isEmpty()) {
             pageContent += "\n " +
                     OutputFormatter.getStringForListCol(Constants.USER_ID, 10) +
                     OutputFormatter.getStringForListCol(Constants.USER_NAME, 30) +

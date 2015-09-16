@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public class Employee implements Model<Employee> {
+public class Employee implements Model {
     private static final Logger LOGGER = Logger.getLogger(Employee.class.getName());
     private int employeeId;
     private int userId;
@@ -123,8 +123,14 @@ public class Employee implements Model<Employee> {
             return true;
         } else {
             Employee employeeModel = new Employee();
-            return (employeeId == employeeModel.employeeId || userId == employeeModel.userId);
+            return employeeId == employeeModel.employeeId || userId == employeeModel.userId;
         }
+    }
+
+    @Override public int hashCode() {
+        int result = employeeId;
+        result = 31 * result + userId;
+        return result;
     }
 
     @Override public void setResultSetAttributes(ResultSet rs) {

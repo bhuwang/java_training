@@ -35,12 +35,8 @@ public class UserInput {
                 scanner.next();
             } else {
                 intNum = scanner.nextInt();
-                if (min != -1 && max != -1) {
-                    if (intNum < min || intNum > max) {
-                        LOGGER.log(Level.WARNING, Constants.ENTER_NUMBER_RANGE_MSG + "({0}-{1}) : ", new Object[] { min, max });
-                    } else {
-                        checkNextInput = false;
-                    }
+                if ((min != -1 && max != -1) && (intNum < min || intNum > max)) {
+                    LOGGER.log(Level.WARNING, Constants.ENTER_NUMBER_RANGE_MSG + "({0}-{1}) : ", new Object[] { min, max });
                 } else {
                     checkNextInput = false;
                 }
@@ -90,7 +86,8 @@ public class UserInput {
     public static String getEmail(Scanner scanner) {
         String email = "";
         String emailPattern = "[a-z][a-z_/+1-9]+@[a-z]+[.a-z]+";
-        while (true) {
+        boolean checkNextInput = true;
+        while (checkNextInput) {
             if (!scanner.hasNext()) {
                 scanner.next();
             } else {
@@ -100,7 +97,7 @@ public class UserInput {
                 } else if (!email.matches(emailPattern)) {
                     LOGGER.log(Level.WARNING, Constants.INVALID_EMAIL_MSG);
                 } else {
-                    break;
+                    checkNextInput = false;
                 }
             }
         }
@@ -116,9 +113,10 @@ public class UserInput {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static String getUserRole(Scanner scanner) {
-        String role;
+        String role = Constants.USER_ROLE;
         int intNum = 1;
-        while (true) {
+        boolean checkNextInput = true;
+        while (checkNextInput) {
             if (!scanner.hasNextInt()) {
                 LOGGER.log(Level.WARNING, Constants.INVALID_MSG);
                 scanner.next();
@@ -126,10 +124,10 @@ public class UserInput {
                 intNum = scanner.nextInt();
                 if (intNum == 1) {
                     role = Constants.USER_ROLE;
-                    break;
+                    checkNextInput = false;
                 } else if (intNum == 2) {
                     role = Constants.ADMIN_ROLE;
-                    break;
+                    checkNextInput = false;
                 } else {
                     LOGGER.log(Level.WARNING, Constants.INVALID_ROLE_NUM_MSG);
                 }

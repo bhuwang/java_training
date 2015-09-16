@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
  */
-public class User implements Model<User> {
+public class User implements Model {
     private static final Logger LOGGER = Logger.getLogger(User.class.getName());
     private int userId;
     private String userName;
@@ -114,8 +114,12 @@ public class User implements Model<User> {
             return true;
         } else {
             User userModel = (User) o;
-            return (userId == userModel.userId || userName == userModel.userName);
+            return userId == userModel.userId || userName == userModel.userName;
         }
+    }
+
+    @Override public int hashCode() {
+        return userId;
     }
 
     @Override public void setResultSetAttributes(ResultSet rs) {
