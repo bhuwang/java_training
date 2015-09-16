@@ -37,15 +37,6 @@ public interface Model <M extends Model>{
     public <V> void setAttribute(String key, V value);
 
     /**
-     * Check other model equal with current model
-     *
-     * @param model {@link Model}
-     * @return {@link Boolean}
-     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
-     */
-    public boolean equals(M model);
-
-    /**
      * Set properties of model with supplied result set
      *
      * @param rs       {@link ResultSet}

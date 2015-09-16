@@ -116,17 +116,14 @@ public class Employee implements Model<Employee> {
         }
     }
 
-    @Override public boolean equals(Employee employeeModel) {
-        if (employeeModel == null || getClass() != employeeModel.getClass()) {
+    @Override public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
-        } else if (this == employeeModel) {
+        } else if (this == o) {
             return true;
         } else {
-            if (employeeId == employeeModel.employeeId || userId == employeeModel.userId) {
-                return true;
-            } else {
-                return false;
-            }
+            Employee employeeModel = new Employee();
+            return (employeeId == employeeModel.employeeId || userId == employeeModel.userId);
         }
     }
 

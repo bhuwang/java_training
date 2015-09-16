@@ -25,11 +25,11 @@ public class LoginController {
      *
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
-    public static void LoginPage() {
+    public static void loginPage() {
         try (Scanner inputScanner = new Scanner(System.in)) {
             int loginAttempt = 0;
             boolean isLogin = UserLogin.isLogin();
-            while (isLogin != true) {
+            while (!isLogin) {
                 LoginPage.renderPage(loginAttempt);
                 isLogin = UserLogin.loginUser(inputScanner);
                 loginAttempt++;
@@ -55,6 +55,6 @@ public class LoginController {
             UserLogin.setCurrentUser(null);
         }
 
-        LoginPage();
+        loginPage();
     }
 }

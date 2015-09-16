@@ -28,7 +28,7 @@ public class EmployeeListingPage {
     public static void renderPage(List<UserEmployee> userEmployeeList) {
         String pageContent = OutputFormatter.getFormattedPageTitle("Employee Listing Page");
         pageContent += "\n Active User list \n";
-        if (userEmployeeList.size() > 0) {
+        if (!userEmployeeList.isEmpty()) {
             pageContent += "\n " +
                     OutputFormatter.getStringForListCol(Constants.USER_ID, 10) +
                     OutputFormatter.getStringForListCol(Constants.USER_NAME, 30) +

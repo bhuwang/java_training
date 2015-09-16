@@ -106,17 +106,15 @@ public class User implements Model<User> {
         }
     }
 
-    @Override public boolean equals(User userModel) {
-        if (userModel == null || getClass() != userModel.getClass()) {
+
+    @Override public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
-        } else if (this == userModel) {
+        } else if (this == o) {
             return true;
         } else {
-            if (userId == userModel.userId || userName == userModel.userName) {
-                return true;
-            } else {
-                return false;
-            }
+            User userModel = (User) o;
+            return (userId == userModel.userId || userName == userModel.userName);
         }
     }
 

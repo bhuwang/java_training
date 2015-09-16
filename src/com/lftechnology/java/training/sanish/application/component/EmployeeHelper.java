@@ -39,27 +39,37 @@ public class EmployeeHelper {
         if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String userName;
-            String SetStatement;
+            String setStatement;
+            Boolean doChange = true;
             String whereCondition = "userId=?";
             UserDao userDao = new UserDao();
-            while (updateRow == 0) {
+            while (doChange) {
                 message = "\n >> " + Constants.TYPE_USER_NAME_LABEL;
                 LOGGER.log(Level.INFO, message);
                 userName = UserInput.getString(inputScanner);
-                SetStatement = "userName=?, modifiedAt=?";
+                setStatement = "userName=?, modifiedAt=?";
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
                 Date date = new Date();
-                updateRow = userDao.update(whereCondition, SetStatement, userName, dateFormat.format(date), user.getUserId());
+                updateRow = userDao.update(whereCondition, setStatement, userName, dateFormat.format(date), user.getUserId());
                 if (updateRow == 0) {
-                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_USER_NAME_MSG + Constants.TRY_AGAIN_MSG;
-                    LOGGER.log(Level.INFO, message);
-                    edit = UserInput.getString(inputScanner);
-                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                        break;
-                    }
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_USER_NAME_MSG;
+                    doChange = conformRetry(inputScanner, message);
                 }
             }
         }
+    }
+
+    /**
+     * Conform retry operation
+     *
+     * @param inputScanner {@link Scanner}
+     * @param message      {@link String}
+     * @return {@link Boolean}
+     */
+    public static boolean conformRetry(Scanner inputScanner, String message) {
+        LOGGER.log(Level.INFO, message + Constants.TRY_AGAIN_MSG);
+        String edit = UserInput.getString(inputScanner);
+        return (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION));
     }
 
     /**
@@ -76,24 +86,21 @@ public class EmployeeHelper {
         if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String email;
-            String SetStatement;
+            String setStatement;
+            Boolean doChange = true;
             String whereCondition = "userId=?";
             UserDao userDao = new UserDao();
-            while (updateRow == 0) {
+            while (doChange) {
                 message = "\n >>" + Constants.TYPE_EMAIL_LABEL;
                 LOGGER.log(Level.INFO, message);
                 email = UserInput.getString(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
                 Date date = new Date();
-                SetStatement = "email=?, modifiedAt=?";
-                updateRow = userDao.update(whereCondition, SetStatement, email, dateFormat.format(date), user.getUserId());
+                setStatement = "email=?, modifiedAt=?";
+                updateRow = userDao.update(whereCondition, setStatement, email, dateFormat.format(date), user.getUserId());
                 if (updateRow == 0) {
-                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_EMAIL_MSG + Constants.TRY_AGAIN_MSG;
-                    LOGGER.log(Level.INFO, message);
-                    edit = UserInput.getString(inputScanner);
-                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                        break;
-                    }
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_EMAIL_MSG;
+                    doChange = conformRetry(inputScanner, message);
                 }
             }
         }
@@ -113,24 +120,21 @@ public class EmployeeHelper {
         if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String fullName;
-            String SetStatement;
+            String setStatement;
+            Boolean doChange = true;
             String whereCondition = "employeeId=?";
             EmployeeDao employeeDao = new EmployeeDao();
-            while (updateRow == 0) {
+            while (doChange) {
                 message = "\n >>" + Constants.TYPE_FULL_NAME_LABEL;
                 LOGGER.log(Level.INFO, message);
                 fullName = UserInput.getAlphabeticWords(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
                 Date date = new Date();
-                SetStatement = "fullName=?, modifiedAt=?";
-                updateRow = employeeDao.update(whereCondition, SetStatement, fullName, dateFormat.format(date), employee.getEmployeeId());
+                setStatement = "fullName=?, modifiedAt=?";
+                updateRow = employeeDao.update(whereCondition, setStatement, fullName, dateFormat.format(date), employee.getEmployeeId());
                 if (updateRow == 0) {
-                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_FULL_NAME_MSG + Constants.TRY_AGAIN_MSG;
-                    LOGGER.log(Level.INFO, message);
-                    edit = UserInput.getString(inputScanner);
-                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                        break;
-                    }
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_FULL_NAME_MSG;
+                    doChange = conformRetry(inputScanner, message);
                 }
             }
         }
@@ -150,24 +154,21 @@ public class EmployeeHelper {
         if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String address;
-            String SetStatement;
+            String setStatement;
+            Boolean doChange = true;
             String whereCondition = "employeeId=?";
             EmployeeDao employeeDao = new EmployeeDao();
-            while (updateRow == 0) {
+            while (doChange) {
                 message = "\n >>" + Constants.TYPE_ADDRESS_LABEL;
                 LOGGER.log(Level.INFO, message);
                 address = UserInput.getAlphabeticWords(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
                 Date date = new Date();
-                SetStatement = "address=?, modifiedAt=?";
-                updateRow = employeeDao.update(whereCondition, SetStatement, address, dateFormat.format(date), employee.getEmployeeId());
+                setStatement = "address=?, modifiedAt=?";
+                updateRow = employeeDao.update(whereCondition, setStatement, address, dateFormat.format(date), employee.getEmployeeId());
                 if (updateRow == 0) {
-                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ADDRESS_MSG + Constants.TRY_AGAIN_MSG;
-                    LOGGER.log(Level.INFO, message);
-                    edit = UserInput.getString(inputScanner);
-                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                        break;
-                    }
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ADDRESS_MSG;
+                    doChange = conformRetry(inputScanner, message);
                 }
             }
         }
@@ -188,24 +189,21 @@ public class EmployeeHelper {
         if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String department;
-            String SetStatement;
+            String setStatement;
+            Boolean doChange = true;
             String whereCondition = "employeeId=?";
             EmployeeDao employeeDao = new EmployeeDao();
-            while (updateRow == 0) {
+            while (doChange) {
                 message = "\n >>" + Constants.TYPE_DEPARTMENT_LABEL;
                 LOGGER.log(Level.INFO, message);
                 department = UserInput.getAlphabeticWords(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
                 Date date = new Date();
-                SetStatement = "department=?, modifiedAt=?";
-                updateRow = employeeDao.update(whereCondition, SetStatement, department, dateFormat.format(date), employee.getEmployeeId());
+                setStatement = "department=?, modifiedAt=?";
+                updateRow = employeeDao.update(whereCondition, setStatement, department, dateFormat.format(date), employee.getEmployeeId());
                 if (updateRow == 0) {
-                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_DEPARTMENT_MSG + Constants.TRY_AGAIN_MSG;
-                    LOGGER.log(Level.INFO, message);
-                    edit = UserInput.getString(inputScanner);
-                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                        break;
-                    }
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_DEPARTMENT_MSG;
+                    doChange = conformRetry(inputScanner, message);
                 }
             }
         }
@@ -225,33 +223,26 @@ public class EmployeeHelper {
         if (edit.equals(Constants.YES_OPTION) || edit.equals(Constants.FULL_YES_OPTION)) {
             int updateRow = 0;
             String role;
-            String SetStatement;
+            String setStatement;
+            Boolean doChange = true;
             String whereCondition = "employeeId=?";
             EmployeeDao employeeDao = new EmployeeDao();
-            while (updateRow == 0) {
+            while (doChange) {
                 message = "\n >>" + Constants.TYPE_ROLE_LABEL;
                 LOGGER.log(Level.INFO, message);
                 role = UserInput.getString(inputScanner);
                 if (role.equals(Constants.ADMIN_ROLE) || role.equals(Constants.USER_ROLE)) {
                     DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
                     Date date = new Date();
-                    SetStatement = "role=?, modifiedAt=?";
-                    updateRow = employeeDao.update(whereCondition, SetStatement, role, dateFormat.format(date), employee.getEmployeeId());
+                    setStatement = "role=?, modifiedAt=?";
+                    updateRow = employeeDao.update(whereCondition, setStatement, role, dateFormat.format(date), employee.getEmployeeId());
                     if (updateRow == 0) {
-                        message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ROLE_MSG + Constants.TRY_AGAIN_MSG;
-                        LOGGER.log(Level.INFO, message);
-                        edit = UserInput.getString(inputScanner);
-                        if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                            break;
-                        }
+                        message = "\n" + Constants.ERROR_MSG_LABEL + Constants.FAIL_UPDATE_ROLE_MSG;
+                        doChange = conformRetry(inputScanner, message);
                     }
                 } else {
-                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.INVALID_ROLE_MSG + Constants.TRY_AGAIN_MSG;
-                    LOGGER.log(Level.INFO, message);
-                    edit = UserInput.getString(inputScanner);
-                    if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                        break;
-                    }
+                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.INVALID_ROLE_MSG;
+                    doChange = conformRetry(inputScanner, message);
                 }
 
             }
@@ -319,7 +310,8 @@ public class EmployeeHelper {
         int userId;
         String message;
         UserDao userDao = new UserDao();
-        while (true) {
+        Boolean scanUserId = true;
+        while (scanUserId) {
             message = "\n >>" + Constants.TYPE_USER_ID_LABEL;
             LOGGER.log(Level.INFO, message);
             userId = UserInput.getIntegerNumber(inputScanner, -1, -1);
@@ -327,12 +319,8 @@ public class EmployeeHelper {
             if (user != null) {
                 return userId;
             } else {
-                message = Constants.USER_NOT_EXIST_MSG + Constants.TRY_AGAIN_MSG;
-                LOGGER.log(Level.WARNING, message);
-                String edit = UserInput.getString(inputScanner);
-                if (!edit.equals(Constants.YES_OPTION) && !edit.equals(Constants.FULL_YES_OPTION)) {
-                    break;
-                }
+                message = Constants.USER_NOT_EXIST_MSG;
+                scanUserId = conformRetry(inputScanner, message);
             }
         }
 
@@ -412,5 +400,18 @@ public class EmployeeHelper {
         }
 
         return false;
+    }
+
+    public static String terminateUser(Scanner inputScanner, User user) {
+        if (EmployeeHelper.terminateConformation(inputScanner, user)) {
+            UserDao userDao = new UserDao();
+            if (userDao.terminateUser(user)) {
+                return Constants.SUCCESS_TERMINATE_MSG;
+            } else {
+                return Constants.FAIL_TERMINATE_MSG;
+            }
+        } else {
+            return Constants.CANCEL_TERMINATE_MSG;
+        }
     }
 }

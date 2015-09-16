@@ -55,13 +55,10 @@ public class EmployeeController {
                     ownInformationEditPage();
                 } else if (menuSelected == 4) {
                     changePasswordPage();
-                } else if (menuSelected == 5) {
-                    if (employee.getRole().equals(Constants.ADMIN_ROLE)) {
-                        addEmployeePage();
-                    } else {
-                        LoginController.logoutPage();
-                    }
-
+                } else if (menuSelected == 5 && employee.getRole().equals(Constants.ADMIN_ROLE)) {
+                    addEmployeePage();
+                } else if (menuSelected == 5 && employee.getRole().equals(Constants.USER_ROLE)) {
+                    LoginController.logoutPage();
                 } else if (menuSelected == 6) {
                     editEmployeePage();
                 } else if (menuSelected == 7) {
@@ -70,7 +67,7 @@ public class EmployeeController {
                     LoginController.logoutPage();
                 }
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
@@ -109,7 +106,7 @@ public class EmployeeController {
                     LoginController.logoutPage();
                 }
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
@@ -130,7 +127,7 @@ public class EmployeeController {
                 String searchKey = UserInput.getString(inputScanner);
                 employeeSearchResultPage(searchKey);
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
@@ -162,7 +159,7 @@ public class EmployeeController {
                     LoginController.logoutPage();
                 }
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
@@ -209,7 +206,7 @@ public class EmployeeController {
                     LoginController.logoutPage();
                 }
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
@@ -239,7 +236,7 @@ public class EmployeeController {
                     LoginController.logoutPage();
                 }
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
@@ -275,7 +272,7 @@ public class EmployeeController {
                     LoginController.logoutPage();
                 }
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
@@ -326,7 +323,7 @@ public class EmployeeController {
                     LoginController.logoutPage();
                 }
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
@@ -344,20 +341,12 @@ public class EmployeeController {
         try (Scanner inputScanner = new Scanner(System.in)) {
             String message = "";
             if (UserLogin.isLogin()) {
-                UserDao userDao = new UserDao();
                 TerminateEmployeePage.renderPage(false, message);
                 int userId = EmployeeHelper.getUserId(inputScanner);
                 if (userId != -1) {
+                    UserDao userDao = new UserDao();
                     User user = userDao.findById(userId);
-                    if (EmployeeHelper.terminateConformation(inputScanner, user)) {
-                        if (userDao.terminateUser(user)) {
-                            message = Constants.SUCCESS_TERMINATE_MSG;
-                        } else {
-                            message = Constants.FAIL_TERMINATE_MSG;
-                        }
-                    } else {
-                        message = Constants.CANCEL_TERMINATE_MSG;
-                    }
+                    EmployeeHelper.terminateUser(inputScanner, user);
 
                     TerminateEmployeePage.renderPage(true, message);
                 }
@@ -372,7 +361,7 @@ public class EmployeeController {
                     LoginController.logoutPage();
                 }
             } else {
-                LoginController.LoginPage();
+                LoginController.loginPage();
             }
         } catch (NumberFormatException e) {
             LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });

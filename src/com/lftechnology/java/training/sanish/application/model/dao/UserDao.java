@@ -216,7 +216,6 @@ public class UserDao implements UserService {
             if (rs.next()) {
                 employee = new Employee();
                 employee.setResultSetAttributes(rs);
-                ;
             }
 
             rs.close();
@@ -233,7 +232,7 @@ public class UserDao implements UserService {
     @Override public List<UserEmployee> searchEmployee(String searchKey) {
         List<UserEmployee> userEmployeeList = new ArrayList<UserEmployee>();
         try {
-            searchKey += "%";
+            String key = searchKey+"%";
             String query =
                     "SELECT u.userId, u.userName, u.email, u.isTerminated, e.employeeId, e.fullName, e.address, e.department, e.role "
                             + "FROM users AS u LEFT JOIN employees AS e " + "ON (u.userId=e.userId) " + "WHERE e.fullName LIKE ? || "
@@ -241,7 +240,7 @@ public class UserDao implements UserService {
                             + "u.email LIKE ?";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
             for (int i = 1; i <= 6; i++) {
-                preparedStatement.setString(i, searchKey);
+                preparedStatement.setString(i, key);
             }
 
             ResultSet rs = preparedStatement.executeQuery();
