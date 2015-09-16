@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `fullname` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `department` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `modifiedAt` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
 
 
 
