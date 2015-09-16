@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.User;
-import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 import com.lftechnology.java.training.dipak.employeemanagement.service.LoginService;
 import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFactory;
+import com.lftechnology.java.training.dipak.employeemanagement.ui.MainClass;
 
 /**
  * <p>
@@ -46,14 +46,15 @@ public class LoginController {
      * @return employee
      */
     public Employee validateLogin(User u, Scanner sc) {
-
+        LOGGER.info("\n..................Welcome to Employee Management System.........................\n");
         Employee employee = new Employee();
         Console cnsl = null;
         LOGGER.info("\n 1. Login \n 2. Any key to exit\n");
         LOGGER.info("Enter your choice:: ");
         String choice = sc.nextLine();
-        if ("1".equals(choice)) {
-            try {
+        try {
+            if ("1".equals(choice)) {
+
                 cnsl = System.console();
                 String userName = "";
                 String password = "";
@@ -74,12 +75,20 @@ public class LoginController {
 
                 employee = ls.validateLogin(u);
 
-            } catch (Exception e) {
-                LOGGER.log(Level.INFO, "{0}", e);
+                MainClass.isRunApplicationAgain = true;
+
+            } else {
+                MainClass.isRunApplicationAgain = false;
+                LOGGER.info("\n Exiting the application.\n\n");
+
             }
-        } else {
-            LOGGER.info("\n Exiting the application.");
-            employee.setRole(UserType.INVALID);
+
+        } catch (Exception e) {
+            LOGGER.log(Level.INFO, "{0}", e);
+        } finally {
+            if (!MainClass.isRunApplicationAgain) {
+                sc.close();
+            }
         }
 
         return employee;

@@ -10,7 +10,6 @@ import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.EmployeeController;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.LogOutController;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
-import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
 /**
  * <p>
@@ -43,15 +42,15 @@ public class UserPanel {
      * @param sc
      */
     public void displayPanel(Employee emp, Scanner sc) {
-
+        MainClass.isLoggedIn = true;
         EmployeeController ec = new EmployeeController();
         Employee emp2 = new Employee();
         emp2 = DuplicateEmployee.duplicateEmployeeObject(emp, emp2);
-        
-        Employee e2=new Employee();
-        e2=DuplicateEmployee.duplicateEmployeeObject(emp2, e2);
-        
-        for (;;) {
+
+        Employee e2 = new Employee();
+        e2 = DuplicateEmployee.duplicateEmployeeObject(emp2, e2);
+
+        do {
             try {
                 LOGGER.info("Welcome to the user panel...\n");
                 LOGGER.info("1.Search/View users\n");
@@ -77,9 +76,6 @@ public class UserPanel {
             } catch (Exception ex) {
                 LOGGER.log(Level.INFO, "Exception::{0}", ex);
             }
-            if (UserType.INVALID.equals(emp2.getRole())) {
-                return;
-            }
-        }
+        } while (MainClass.isLoggedIn);
     }
 }
