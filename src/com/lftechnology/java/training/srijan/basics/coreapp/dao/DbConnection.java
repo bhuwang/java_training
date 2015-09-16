@@ -1,3 +1,4 @@
+
 package com.lftechnology.java.training.srijan.basics.coreapp.dao;
 
 import java.sql.Connection;
@@ -7,8 +8,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DbConnection {
-	private static final Logger LOGGER = Logger.getLogger(DbConnection.class.getName());
-	public static Connection dbConnection(){
+
+	private static final Logger LOGGER =
+		Logger.getLogger(DbConnection.class.getName());
+
+	private DbConnection() {
+
+	}
+
+	/**
+	 * <p>Connects with database</p>
+	 * 
+	 * @return
+	 * @author srijan
+	 */
+	public static Connection dbConnection() {
+
 		String USER_NAME = "root";
 		String PASS = "liferay";
 		String URL = "jdbc:mysql://localhost:3306/ems";
@@ -16,9 +31,11 @@ public class DbConnection {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(URL, USER_NAME, PASS);
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			LOGGER.log(Level.INFO, "SQLException: {0}", e);
-		} catch (ClassNotFoundException e) {
+		}
+		catch (ClassNotFoundException e) {
 			LOGGER.log(Level.INFO, "ClassNotFoundException: {0}", e);
 		}
 		return connection;

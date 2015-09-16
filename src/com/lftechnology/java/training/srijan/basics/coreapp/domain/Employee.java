@@ -1,7 +1,8 @@
+
 package com.lftechnology.java.training.srijan.basics.coreapp.domain;
 
 public class Employee {
-	
+
 	private int id;
 	private String userName;
 	private String password;
@@ -10,85 +11,103 @@ public class Employee {
 	private String fullName;
 	private String department;
 	private String address;
-	
+
 	public int getId() {
+
 		return id;
 	}
 
 	public void setId(int id) {
+
 		this.id = id;
 	}
 
 	public UserRole getRole() {
+
 		return role;
 	}
 
 	public void setRole(UserRole role) {
+
 		this.role = role;
 	}
 
-	public void setUserName(String userName){
+	public void setUserName(String userName) {
+
 		this.userName = userName;
 	}
-	
-	public void setPassword(String password){
+
+	public void setPassword(String password) {
+
 		this.password = password;
 	}
-	
-	public void setIsTerminated(Boolean isTerminated){
+
+	public void setIsTerminated(Boolean isTerminated) {
+
 		this.isTerminated = isTerminated;
 	}
-	
-	public String getUserName(){
+
+	public String getUserName() {
+
 		return this.userName;
 	}
-	
-	public String getPassword(){
+
+	public String getPassword() {
+
 		return this.password;
 	}
-	
-	public Boolean getIsTerminated(){
+
+	public Boolean getIsTerminated() {
+
 		return this.isTerminated;
 	}
-	
-	public UserRole getUserRole(){
+
+	public UserRole getUserRole() {
+
 		return role;
 	}
-	
-	public void setUserRole(UserRole role){
+
+	public void setUserRole(UserRole role) {
+
 		this.role = role;
 	}
-	
-	public String getFullName(){
+
+	public String getFullName() {
+
 		return fullName;
 	}
-	
-	public void setFullName(String fullName){
+
+	public void setFullName(String fullName) {
+
 		this.fullName = fullName;
 	}
-	
-	public void setDepartment(String department){
+
+	public void setDepartment(String department) {
+
 		this.department = department;
 	}
-	
-	public String getDepartment(){
+
+	public String getDepartment() {
+
 		return department;
 	}
-	
-	public void setAddress(String address){
+
+	public void setAddress(String address) {
+
 		this.address = address;
 	}
-	
-	public String getAddress(){
+
+	public String getAddress() {
+
 		return address;
 	}
 
 	@Override
 	public String toString() {
-		return "id=" + id + ", userName=" + userName + ", Terminated="
-				+ isTerminated + ", role=" + role + ", fullName=" + fullName + ", department=" + department
-				+ ", address=" + address + "\n";
-	}
 
+		return "id=" + id + ", userName=" + userName + ", Terminated=" +
+			isTerminated + ", role=" + role + ", fullName=" + fullName +
+			", department=" + department + ", address=" + address + "\n";
+	}
 
 }
