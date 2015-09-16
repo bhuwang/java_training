@@ -29,7 +29,7 @@ public class AddEmployeePage {
     public static void renderPage(Boolean showMenu, UserEmployee userEmployee, String message) {
         String pageContent = OutputFormatter.getFormattedPageTitle(Constants.ADD_EMPLOYEE_PAGE);
         if (showMenu) {
-            pageContent += "\n" + Constants.MSG_LABEL + message;
+            pageContent += "\n" + Constants.MSG_LABEL + message + "\n";
             pageContent += Constants.DETAIL_LABEL + "\n" + Constants.USER_ID_LABEL + userEmployee.getUser().getUserId() + "\n"
                     + Constants.USER_NAME_LABEL + userEmployee.getUser().getUserName() + "\n" + Constants.USER_FULL_NAME_LABEL
                     + userEmployee.getEmployee().getFullName() + "\n" + Constants.USER_EMAIL_LABEL + userEmployee.getUser().getEmail()

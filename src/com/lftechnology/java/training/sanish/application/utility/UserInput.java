@@ -89,7 +89,7 @@ public class UserInput {
      */
     public static String getEmail(Scanner scanner) {
         String email = "";
-        String emailPattern = "[a-z][a-z_/+1-9]+@[a-z]+(/.[a-z]{2,})+";
+        String emailPattern = "[a-z][a-z_/+1-9]+@[a-z]+[.a-z]+";
         while (true) {
             if (!scanner.hasNext()) {
                 scanner.next();
