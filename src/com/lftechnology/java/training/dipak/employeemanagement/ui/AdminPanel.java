@@ -44,7 +44,6 @@ public class AdminPanel {
      * @throws Throwable
      */
     public void displayPanel(Employee employee1, Scanner sc) {
-        boolean isLoggedIn = true;
         Employee e = new Employee();
         e = DuplicateEmployee.duplicateEmployeeObject(employee1, e);
         Employee e2 = new Employee();
@@ -76,9 +75,6 @@ public class AdminPanel {
                     break;
                 case 5:
                     e = LogOutController.logOut(employee1, sc);
-                    if (UserType.INVALID.equals(e.getRole())) {
-                        isLoggedIn = false;
-                    }
                     break;
 
                 default:
@@ -89,7 +85,7 @@ public class AdminPanel {
                 LOGGER.log(Level.INFO, "{0}", ex);
             }
 
-        } while (isLoggedIn);
+        } while (!UserType.INVALID.equals(e.getRole()));
 
     }
 }
