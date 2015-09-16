@@ -106,14 +106,6 @@ public class EmployeeService implements EmployeeApi {
 
         } catch (SQLException e1) {
             LOGGER.log(Level.INFO, exceptionMessage, e1);
-        } finally {
-            // ch.close();
-            try {
-                rs.close();
-            } catch (SQLException e1) {
-                LOGGER.log(Level.INFO, exceptionMessage, e1);
-            }
-
         }
 
         return null;
