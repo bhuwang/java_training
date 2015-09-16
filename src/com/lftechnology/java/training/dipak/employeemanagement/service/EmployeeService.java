@@ -22,8 +22,19 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class EmployeeService implements EmployeeApi {
-
+    private String exceptionMessage = "Exception::{0}";
     private static final Logger LOGGER = Logger.getLogger(EmployeeService.class.getName());
+
+    static {
+        ConsoleHandler ch = new ConsoleHandler();
+        ch.setLevel(Level.INFO);
+        LOGGER.addHandler(ch);
+        LOGGER.setUseParentHandlers(false);
+
+        LoggerFormatter myFormat = new LoggerFormatter();
+
+        ch.setFormatter(myFormat);
+    }
 
     /**
      * <p>
@@ -76,28 +87,33 @@ public class EmployeeService implements EmployeeApi {
     @Override
     public ResultSet viewEmployee(Employee e) {
 
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.FINEST);
-        LOGGER.addHandler(ch);
-        LOGGER.setUseParentHandlers(false);
-
-        LoggerFormatter myFormat = new LoggerFormatter();
-
-        ch.setFormatter(myFormat);
-
         ResultSet rs = null;
 
         EmployeeDao ed = DaoFactory.getEmployeeDao();
 
         rs = ed.viewEmployee(e);
+
         try {
-            LOGGER.info("eid\t\tusername\t\tfullname\t\tdepartment\t\taddress\t\t\n");
-            while (rs.next()) {
-                LOGGER.log(Level.INFO, "{0}\t\t{1}\t\t{2}\t\t{3}\t\t{4}\t\t\n",
-                        new Object[] { rs.getInt(1), rs.getString(2), rs.getString(5), rs.getString(6), rs.getString(7) });
+            if (rs.next()) {
+                LOGGER.info("\n eid \t\t username \t\t fullname \t\t department \t\t address \t\t\n");
+                do {
+                    LOGGER.log(Level.INFO, "{0} \t\t {1} \t\t {2} \t\t {3} \t\t {4} \t\t\n",
+                            new Object[] { rs.getInt(1), rs.getString(2), rs.getString(5), rs.getString(6), rs.getString(7) });
+                } while (rs.next());
+            } else {
+                LOGGER.info("\nNo records found. \n");
             }
+
         } catch (SQLException e1) {
-            LOGGER.log(Level.INFO, "Exception::{0}", e1);
+            LOGGER.log(Level.INFO, exceptionMessage, e1);
+        } finally {
+            // ch.close();
+            try {
+                rs.close();
+            } catch (SQLException e1) {
+                LOGGER.log(Level.INFO, exceptionMessage, e1);
+            }
+
         }
 
         return null;
@@ -141,7 +157,13 @@ public class EmployeeService implements EmployeeApi {
     public Employee editEmployeeDetails(Employee employee) {
 
         EmployeeDao ed = DaoFactory.getEmployeeDao();
+        String userNameFormat = "[a-zA-z][a-zA-z0-9._@]+";
 
+        if (employee.getUserName().length() != 0 && !(employee.getUserName().matches(userNameFormat))) {
+            LOGGER.info("The username field doesn't match the format. Please re-check and try again.\n");
+            LOGGER.info("No rows edited.\n");
+            return employee;
+        }
         return ed.editEmployeeDetails(employee);
     }
 

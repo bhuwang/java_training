@@ -41,12 +41,16 @@ public class EmployeeController {
         int count = 0;
         boolean isTerminated = false;
         UserType role = null;
+        Console cnsl = null;
+        
         for (;;) {
             try {
+                cnsl = System.console();
                 LOGGER.info("Please enter the employee username::");
                 userName = sc.nextLine();
                 LOGGER.info("Pleasse enter the password for the password::");
-                password = sc.nextLine();
+                char[] pwd = cnsl.readPassword();
+                password = String.valueOf(pwd);
                 LOGGER.info("please enter the fullname::");
                 fullName = sc.nextLine();
                 LOGGER.info("Please enter the department::");

@@ -25,7 +25,7 @@ public class UserPanel {
 
     static {
         ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.FINEST);
+        ch.setLevel(Level.INFO);
         LOGGER.addHandler(ch);
         LOGGER.setUseParentHandlers(false);
 

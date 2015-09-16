@@ -28,7 +28,7 @@ public class MainClass {
 
     static {
         ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.FINEST);
+        ch.setLevel(Level.INFO);
         LOGGER.addHandler(ch);
         LOGGER.setUseParentHandlers(false);
 
@@ -43,9 +43,12 @@ public class MainClass {
         LoginController lc = new LoginController();
 
         for (;;) {
-            LOGGER.info("......Welcome to Employee Management System.....\n");
+            LOGGER.info("\n..................Welcome to Employee Management System.........................\n");
 
             Employee employee = lc.validateLogin(new User(), sc);
+            if (UserType.INVALID.equals(employee.getRole())) {
+                System.exit(0);
+            }
 
             if (employee.getId() == 0) {
                 LOGGER.info("Login Failed. Invalid username or password.\n");
