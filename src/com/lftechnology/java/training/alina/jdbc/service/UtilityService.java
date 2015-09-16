@@ -43,13 +43,9 @@ public class UtilityService {
                 scanner.nextLine();
             } else {
                 fieldValue = scanner.nextLine();
-                if (fieldValue.isEmpty()) {
-                    boolean displayStatus = checkEmptyField(fieldLabel);
-                    if (!displayStatus) {
-                        continue;
-                    }
-                } else {
-                    emptyStatus = false;
+                emptyStatus = checkEmptyField(fieldValue, fieldLabel);
+                if(!emptyStatus){
+                    continue;
                 }
             }
         }
@@ -59,23 +55,26 @@ public class UtilityService {
     /**
      * Checks for empty search contexts
      * 
+     * @param fieldValue
      * @param fieldLabel
-     * @return displatStatus {@link Boolean} checks if displayed value or not
+     * @return {@link Boolean} checks if displayed value or not
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    private static boolean checkEmptyField(String fieldLabel) {
-        boolean displayStatus;
-        if (fieldLabel == Constants.SEARCH_EMPLOYEE_CRITERIA) {
-            EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
-            List<Employee> list = employeeDao.findAll();
-            Collections.sort(list);
-            LOGGER.log(Level.INFO, Constants.EMPLOYEE_NUMBER, new Object[] { list.size(), list });
-            displayStatus = true;
-        } else {
-            LOGGER.log(Level.WARNING, Constants.FIELD_NOT_EMPTY);
-            displayStatus = false;
+    private static boolean checkEmptyField(String fieldValue, String fieldLabel) {
+        boolean empStatus = false;
+        if (fieldValue.isEmpty()) {
+            if (fieldLabel == Constants.SEARCH_EMPLOYEE_CRITERIA) {
+                EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
+                List<Employee> list = employeeDao.findAll();
+                Collections.sort(list);
+                LOGGER.log(Level.INFO, Constants.EMPLOYEE_NUMBER, new Object[] { list.size(), list });
+                empStatus =  false;
+            } else {
+                LOGGER.log(Level.WARNING, Constants.FIELD_NOT_EMPTY);
+                empStatus = true;
+            }
         }
-        return displayStatus;
+        return empStatus;
     }
 
     /**
