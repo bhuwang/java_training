@@ -17,7 +17,7 @@ import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFa
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class EmployeeController {
-    private static Logger LOGGER = Logger.getLogger(EmployeeController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EmployeeController.class.getName());
 
     /**
      * This method takes the input from the view and sets the employee object and calls the addEmployee method in service layer.

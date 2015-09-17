@@ -2,7 +2,6 @@ package com.lftechnology.java.training.dipak.employeemanagement.ui;
 
 import java.io.Console;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -157,19 +156,14 @@ public class EmployeeView {
 
             rs = ec.viewEmployee(empl);
 
-            try {
-                if (rs.next()) {
-                    LOGGER.info("\n eid \t\t username \t\t fullname \t\t department \t\t address \t\t\n");
-                    do {
-                        LOGGER.log(Level.INFO, "{0} \t\t {1} \t\t {2} \t\t {3} \t\t {4} \t\t\n",
-                                new Object[] { rs.getInt(1), rs.getString(2), rs.getString(5), rs.getString(6), rs.getString(7) });
-                    } while (rs.next());
-                } else {
-                    LOGGER.info("\nNo records found. \n");
-                }
-
-            } catch (SQLException e1) {
-                LOGGER.log(Level.INFO, exceptionOccurred, e1);
+            if (rs.next()) {
+                LOGGER.info("\n eid \t\t username \t\t fullname \t\t department \t\t address \t\t\n");
+                do {
+                    LOGGER.log(Level.INFO, "{0} \t\t {1} \t\t {2} \t\t {3} \t\t {4} \t\t\n",
+                            new Object[] { rs.getInt(1), rs.getString(2), rs.getString(5), rs.getString(6), rs.getString(7) });
+                } while (rs.next());
+            } else {
+                LOGGER.info("\nNo records found. \n");
             }
 
         } catch (Exception ex) {
