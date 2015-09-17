@@ -109,25 +109,25 @@ public class UserService {
         switch (option) {
         case 'a':
             UserRoleService.addEmployee(scanner);
-            return;
+            break;
         case 'b':
             UserRoleService.deleteEmployee(scanner);
-            return;
+            break;
         case 'c':
             UserRoleService.terminateEmployee(scanner);
-            return;
+            break;
         case 'd':
             UserRoleService.getEmployeeList();
-            return;
+            break;
         case 'e':
             UserRoleService.searchEmployee(scanner);
-            return;
+            break;
         case 'f':
             UserRoleService.employeeLogout(scanner);
-            return;
+            break;
         default:
             LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
-            return;
+            break;
         }
     }
 
@@ -194,23 +194,23 @@ public class UserService {
         case 'a':
             LOGGER.log(Level.INFO, Constants.VIEW_EMPLOYEE_LIST);
             EmployeeController.getEmployeeList();
-            return;
+            break;
         case 'b':
             LOGGER.log(Level.INFO, Constants.SEARCH_EMPLOYEE);
             EmployeeController.searchExistingEmployee(scanner);
-            return;
+            break;
         case 'c':
             LOGGER.log(Level.INFO, Constants.EDIT_OWN_INFORMATION);
             getEditInfo(scanner, employee);
-            return;
+            break;
         case 'd':
             LOGGER.log(Level.INFO, Constants.USER_LOGOUT_SUCCESS);
             UserDaoImpl userDao = new UserDaoImpl();
             userDao.checkEmployeeLogin(scanner);
-            return;
+            break;
         default:
             LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
-            return;
+            break;
         }
     }
 
@@ -249,22 +249,22 @@ public class UserService {
         switch (choice) {
         case 'a':
             UserRoleService.updateEmployeeName(scanner, employee);
-            return;
+            break;
         case 'b':
             UserRoleService.updateEmployeeDepartment(scanner, employee);
-            return;
+            break;
         case 'c':
             UserRoleService.updateEmployeeAddress(scanner, employee);
-            return;
+            break;
         case 'd':
             UserRoleService.getUserPasswordChangeInfo(scanner, employee);
-            return;
+            break;
         case 'e':
             UserRoleService.backToNormalUser(scanner, employee);
-            return;
+            break;
         default:
             LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
-            return;
+            break;
         }
     }
 
