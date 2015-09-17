@@ -105,19 +105,15 @@ public class Employee extends User implements Comparable<Employee> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Employee other = (Employee) obj;
-        if (fullname == null) {
-            if (other.fullname != null)
-                return false;
-        } else if (!fullname.equals(other.fullname))
-            return false;
-        return true;
+        } else if (getClass() == obj.getClass()) {
+            Employee other = (Employee) obj;
+            if (employeeId == other.employeeId || userId == other.userId) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
