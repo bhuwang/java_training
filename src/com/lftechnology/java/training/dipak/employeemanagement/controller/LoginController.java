@@ -1,18 +1,17 @@
 
 package com.lftechnology.java.training.dipak.employeemanagement.controller;
 
-import java.io.Console;
 import java.util.Scanner;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.User;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 import com.lftechnology.java.training.dipak.employeemanagement.service.LoginService;
 import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFactory;
+import com.lftechnology.java.training.dipak.employeemanagement.ui.AdminPanel;
+import com.lftechnology.java.training.dipak.employeemanagement.ui.UserPanel;
 
 /**
  * <p>
@@ -25,17 +24,6 @@ public class LoginController {
 
     private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
-    static {
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.INFO);
-        LOGGER.addHandler(ch);
-        LOGGER.setUseParentHandlers(false);
-
-        LoggerFormatter myFormat = new LoggerFormatter();
-
-        ch.setFormatter(myFormat);
-    }
-
     /**
      * <p>
      * This method takes up the username and password and calls the validateLogin method in the service layer.
@@ -45,52 +33,27 @@ public class LoginController {
      * @param sc
      * @return employee
      */
-    public Employee validateLogin(User u, Scanner sc) {
-        LOGGER.info("\n..................Welcome to Employee Management System.........................\n");
+    public void validateLogin(User u, Scanner sc) {
         Employee employee = new Employee();
-        Console cnsl = null;
-        LOGGER.info("\n 1. Login \n 2. Any key to exit\n");
-        LOGGER.info("Enter your choice:: ");
-        String choice = sc.nextLine();
-        try {
-            if ("1".equals(choice)) {
+        LoginService ls = ServiceFactory.getLoginService();
 
-                cnsl = System.console();
-                String userName = "";
-                String password = "";
-                LoginService ls = ServiceFactory.getLoginService();
+        employee = ls.validateLogin(u);
 
-                LOGGER.info("Enter username::");
-
-                userName = sc.nextLine();
-
-                u.setUserName(userName);
-
-                LOGGER.info("Enter password::");
-                char[] pwd = cnsl.readPassword();
-
-                password = String.valueOf(pwd);
-
-                u.setPassword(password);
-
-                employee = ls.validateLogin(u);
-
+        if (employee.getId() == 0) {
+            LOGGER.info("\n\t\tLogin Failed. Invalid username or password.\n");
+        } else if (employee.getId() == -1) {
+            LOGGER.info("\n\t\tInvalid username format.");
+        } else {
+            LOGGER.log(Level.INFO, "\n\n\t\tLogin Successsful. Welcome {0}\n", employee.getFullName());
+            if (employee.getRole().equals(UserType.ADMIN)) {
+                AdminPanel ap = new AdminPanel();
+                ap.displayPanel(employee, sc);
             } else {
-                employee.setRole(UserType.INVALID);
-
-                LOGGER.info("\n Exiting the application.\n\n");
-
-            }
-
-        } catch (Exception e) {
-            LOGGER.log(Level.INFO, "{0}", e);
-        } finally {
-            if (UserType.INVALID.equals(employee.getRole())) {
-                sc.close();
+                UserPanel up = new UserPanel();
+                up.displayPanel(employee, sc);
             }
         }
 
-        return employee;
     }
 
 }

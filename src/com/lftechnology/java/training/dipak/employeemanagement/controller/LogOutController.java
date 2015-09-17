@@ -31,8 +31,8 @@ public class LogOutController {
      * @return e
      */
     public static Employee logOut(Employee e, Scanner sc) {
-        LOGGER.info("Are you sure you want to log out?\n");
-        LOGGER.info("yes-->1\t\tno-->2\n");
+        LOGGER.info("\n\t\tAre you sure you want to log out?\n");
+        LOGGER.info("\t\tyes-->1\t\tno-->2\n");
 
         int check = Integer.parseInt(sc.nextLine());
         if (check == 1) {
@@ -44,7 +44,6 @@ public class LogOutController {
             e.setRole(UserType.INVALID);
             e.setFullName("");
             e.setIsTerminated(true);
-            LOGGER.info("Logout Successful...");
         }
 
         return e;

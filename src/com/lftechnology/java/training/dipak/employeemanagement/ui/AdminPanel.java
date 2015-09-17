@@ -7,7 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
-import com.lftechnology.java.training.dipak.employeemanagement.controller.EmployeeController;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.LogOutController;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
@@ -48,44 +47,43 @@ public class AdminPanel {
         e = DuplicateEmployee.duplicateEmployeeObject(employee1, e);
         Employee e2 = new Employee();
         e2 = DuplicateEmployee.duplicateEmployeeObject(e, e2);
-
-        EmployeeController ec = new EmployeeController();
+        EmployeeView ev = new EmployeeView();
         do {
             try {
-                LOGGER.info("Welcome to the admin panel...\n");
-                LOGGER.info("1.Add User");
-                LOGGER.info("2.Remove user");
-                LOGGER.info("3.Search/View user");
-                LOGGER.info("4.Edit your personal info");
-                LOGGER.info("5.Exit");
-                LOGGER.info("Please Enter your choices::");
+                LOGGER.info("\n\t*********************Welcome to the admin panel*******************\n");
+                LOGGER.info("\n1.Add User");
+                LOGGER.info("\n2.Remove user");
+                LOGGER.info("\n3.Search/View user");
+                LOGGER.info("\n4.Edit your personal info");
+                LOGGER.info("\n5.Exit");
+                LOGGER.info("\nPlease Enter your choices::");
                 int choice = Math.abs(Integer.parseInt(sc.nextLine()));
                 switch (choice) {
                 case 1:
-                    ec.addEmployee(employee1, sc);
+                    ev.addEmployee(employee1, sc);
                     break;
                 case 2:
-                    ec.terminateEmployee(employee1, sc);
+                    ev.terminateEmployee(employee1, sc);
                     break;
                 case 3:
-                    ec.viewEmployee(employee1, sc);
+                    ev.viewEmployee(employee1, sc);
                     break;
                 case 4:
-                    e2 = ec.editEmployeeDetails(e, sc);
+                    ev.editEmployeeDetails(e, sc);
                     break;
                 case 5:
                     e = LogOutController.logOut(employee1, sc);
                     break;
 
                 default:
-                    LOGGER.info("Illegal choice. Please re-enter your choice.");
+                    LOGGER.info("\nIllegal choice. Please re-enter your choice.");
                     break;
                 }
             } catch (Exception ex) {
-                LOGGER.log(Level.INFO, "{0}", ex);
+                LOGGER.log(Level.INFO, "\n\t\tException occurred: {0}", ex);
             }
 
         } while (!UserType.INVALID.equals(e.getRole()));
-
+        LOGGER.info("\nLogout Successful.....\n");
     }
 }

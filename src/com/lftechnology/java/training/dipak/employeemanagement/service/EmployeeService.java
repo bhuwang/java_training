@@ -2,7 +2,6 @@
 package com.lftechnology.java.training.dipak.employeemanagement.service;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +11,6 @@ import com.lftechnology.java.training.dipak.employeemanagement.api.EmployeeApi;
 import com.lftechnology.java.training.dipak.employeemanagement.dao.DaoFactory;
 import com.lftechnology.java.training.dipak.employeemanagement.dao.EmployeeDao;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
-import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
 
 /**
  * <p>
@@ -22,7 +20,6 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class EmployeeService implements EmployeeApi {
-    private String exceptionMessage = "Exception::{0}";
     private static final Logger LOGGER = Logger.getLogger(EmployeeService.class.getName());
 
     static {
@@ -38,8 +35,7 @@ public class EmployeeService implements EmployeeApi {
 
     /**
      * <p>
-     * This method checks whether the fields which are not supposed to be empty are empty or not. Returns if they empty with a message else
-     * calls the addEmployee in DAO layer.
+     * This method calls the addEmployee in DAO layer.
      * </p>
      * 
      * @param e
@@ -51,27 +47,7 @@ public class EmployeeService implements EmployeeApi {
         int numberOfUserInserted = 0;
         EmployeeDao ed = DaoFactory.getEmployeeDao();
 
-        if (e.getUserName().length() == 0) {
-            LOGGER.info("The username field can't be empty. Please re-check and try again.");
-            return numberOfUserInserted;
-        } else if (e.getPassword().length() == 0) {
-            LOGGER.info("The password field can't be empty. Please re-check and try again.");
-            return numberOfUserInserted;
-        } else if (e.getRole().equals(UserType.INVALID)) {
-            LOGGER.info("The role field should either be ADMIN or USER. Please re-check and try again.");
-            return numberOfUserInserted;
-        } else if (e.getFullName().length() == 0) {
-            LOGGER.info("The fullname field can't be empty. Please re-check and try again.");
-            return numberOfUserInserted;
-        }
-
         numberOfUserInserted = ed.addEmployee(e);
-
-        if (numberOfUserInserted == 0) {
-            LOGGER.info("Insertion failed. No users were added. Please check and enter the data again.");
-        } else {
-            LOGGER.log(Level.INFO, "Number of users added={0}", numberOfUserInserted);
-        }
 
         return numberOfUserInserted;
     }
@@ -90,25 +66,9 @@ public class EmployeeService implements EmployeeApi {
         ResultSet rs = null;
 
         EmployeeDao ed = DaoFactory.getEmployeeDao();
-
         rs = ed.viewEmployee(e);
 
-        try {
-            if (rs.next()) {
-                LOGGER.info("\n eid \t\t username \t\t fullname \t\t department \t\t address \t\t\n");
-                do {
-                    LOGGER.log(Level.INFO, "{0} \t\t {1} \t\t {2} \t\t {3} \t\t {4} \t\t\n",
-                            new Object[] { rs.getInt(1), rs.getString(2), rs.getString(5), rs.getString(6), rs.getString(7) });
-                } while (rs.next());
-            } else {
-                LOGGER.info("\nNo records found. \n");
-            }
-
-        } catch (SQLException e1) {
-            LOGGER.log(Level.INFO, exceptionMessage, e1);
-        }
-
-        return null;
+        return rs;
     }
 
     /**
@@ -127,12 +87,6 @@ public class EmployeeService implements EmployeeApi {
 
         numberOfTerminatedUsers = ed.terminateEmployee(e);
 
-        if (numberOfTerminatedUsers == 0) {
-            LOGGER.info("No users were deleted. Please check the fullname again.");
-        } else {
-            LOGGER.log(Level.INFO, "Number of users deleted={0}", numberOfTerminatedUsers);
-        }
-
         return numberOfTerminatedUsers;
 
     }
@@ -149,13 +103,7 @@ public class EmployeeService implements EmployeeApi {
     public Employee editEmployeeDetails(Employee employee) {
 
         EmployeeDao ed = DaoFactory.getEmployeeDao();
-        String userNameFormat = "[a-zA-z][a-zA-z0-9._@]+";
 
-        if (employee.getUserName().length() != 0 && !(employee.getUserName().matches(userNameFormat))) {
-            LOGGER.info("The username field doesn't match the format. Please re-check and try again.\n");
-            LOGGER.info("No rows edited.\n");
-            return employee;
-        }
         return ed.editEmployeeDetails(employee);
     }
 

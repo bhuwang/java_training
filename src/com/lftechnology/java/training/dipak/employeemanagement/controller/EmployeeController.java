@@ -1,10 +1,7 @@
 
 package com.lftechnology.java.training.dipak.employeemanagement.controller;
 
-import java.io.Console;
 import java.sql.ResultSet;
-import java.util.Scanner;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
@@ -20,69 +17,31 @@ import com.lftechnology.java.training.dipak.employeemanagement.service.ServiceFa
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class EmployeeController {
-
-    private String exceptionOccurred = "Exception: {0}";
-    private static final Logger LOGGER = Logger.getLogger(EmployeeController.class.getName());
+    private static Logger LOGGER = Logger.getLogger(EmployeeController.class.getName());
 
     /**
-     * This method takes the input from the console and sets the employee object and calls the addEmployee method in service layer.
+     * This method takes the input from the view and sets the employee object and calls the addEmployee method in service layer.
      * 
      * @param e
-     * @param sc
      * @return count
      */
-    public int addEmployee(Employee employee, Scanner sc) {
-
-        String userName = null;
-        String password = null;
-        String fullName = null;
-        String department = null;
-        String address = null;
+    public int addEmployee(Employee employee) {
         int count = 0;
-        boolean isTerminated = false;
-        UserType role = null;
-        Console cnsl = null;
-        
-        for (;;) {
-            try {
-                cnsl = System.console();
-                LOGGER.info("Please enter the employee username::");
-                userName = sc.nextLine();
-                LOGGER.info("Pleasse enter the password for the password::");
-                char[] pwd = cnsl.readPassword();
-                password = String.valueOf(pwd);
-                LOGGER.info("please enter the fullname::");
-                fullName = sc.nextLine();
-                LOGGER.info("Please enter the department::");
-                department = sc.nextLine();
-                LOGGER.info("Please enter the address::");
-                address = sc.nextLine();
-                LOGGER.info("Please enter whether the user is terminated::(true/false)");
-                isTerminated = sc.nextBoolean();
-                LOGGER.info("Please enter the user type::(ADMIN->1/USER->2)");
-                int role2 = sc.nextInt();
-                if (role2 == 1) {
-                    role = UserType.ADMIN;
-                } else if (role2 == 2) {
-                    role = UserType.USER;
-                }
-                break;
-            } catch (Exception ex) {
-                LOGGER.log(Level.INFO, exceptionOccurred, ex);
-                LOGGER.info("Please re-enter the values.");
-            }
-
-        }
-
-        employee.setAddress(address);
-        employee.setDepartment(department);
-        employee.setFullName(fullName);
-        employee.setIsTerminated(isTerminated);
-        employee.setUserName(userName);
-        employee.setPassword(password);
-        employee.setRole(role);
-
         EmployeeService ed = ServiceFactory.getEmployeeService();
+
+        if (employee.getUserName().length() == 0) {
+            LOGGER.info("\n\t\tThe username field can't be empty. Please re-check and try again.\n");
+            return count;
+        } else if (employee.getPassword().length() == 0) {
+            LOGGER.info("\n\t\tThe password field can't be empty. Please re-check and try again.\n");
+            return count;
+        } else if (employee.getRole().equals(UserType.INVALID)) {
+            LOGGER.info("\n\t\tThe role field should either be ADMIN or USER. Please re-check and try again.\n");
+            return count;
+        } else if (employee.getFullName().length() == 0) {
+            LOGGER.info("\n\t\tThe fullname field can't be empty. Please re-check and try again.\n");
+            return count;
+        }
         count = ed.addEmployee(employee);
 
         return count;
@@ -90,130 +49,62 @@ public class EmployeeController {
 
     /**
      * <p>
-     * This method takes the name of the employee to be terminated and call terminateEmployee method in service layer. This method returns
-     * the number of employees terminated.
+     * This method takes the name of the employee to be terminated from the view and call terminateEmployee method in service layer. This
+     * method returns the number of employees terminated.
      * </p>
      * 
      * @param e
-     * @param sc
      * @return count
      */
-    public int terminateEmployee(Employee em, Scanner sc) {
-
-        String fullName = null;
+    public int terminateEmployee(Employee em) {
         int count = 0;
-        try {
-            LOGGER.info("Please enter the employee fullname::");
-            fullName = sc.nextLine();
-            em.setFullName(fullName);
 
-            EmployeeService ed = ServiceFactory.getEmployeeService();
+        EmployeeService ed = ServiceFactory.getEmployeeService();
 
-            ed.terminateEmployee(em);
+        count = ed.terminateEmployee(em);
 
-        } catch (Exception ex) {
-            LOGGER.log(Level.INFO, exceptionOccurred, ex);
-        }
         return count;
     }
 
     /**
      * <p>
-     * This method takes the input for the filters and calls the viewEmployee method.
+     * This method takes the input for the filters from view and calls the viewEmployee method.
      * </p>
      * 
      * @param e
-     * @param sc
-     * @return
+     * @return rs
      */
-    public ResultSet viewEmployee(Employee empl, Scanner sc) {
+    public ResultSet viewEmployee(Employee empl) {
+        ResultSet rs = null;
+        EmployeeService ed = ServiceFactory.getEmployeeService();
 
-        String fullName = null;
-        String department = null;
-        String address = null;
-        try {
-            LOGGER.info("Please enter the employee fullname::");
-            fullName = sc.nextLine();
+        rs = ed.viewEmployee(empl);
 
-            LOGGER.info("Please enter the department::");
-            department = sc.nextLine();
-
-            LOGGER.info("Please enter the address::");
-            address = sc.nextLine();
-
-            empl.setFullName(fullName);
-            empl.setAddress(address);
-            empl.setDepartment(department);
-
-            EmployeeService ed = ServiceFactory.getEmployeeService();
-
-            ed.viewEmployee(empl);
-
-        } catch (Exception ex) {
-            LOGGER.log(Level.INFO, exceptionOccurred, ex);
-        }
-        return null;
+        return rs;
     }
 
     /**
      * <p>
-     * This method takes the input for the fields to be edited and calls editEmployeeDetails in service layer.
+     * This method receives the input from the view layer and checks whether the userName field fulfills the format or not. and calls
+     * editEmployeeDetails in service layer.
      * </p>
      * 
-     * @param e
-     * @param sc
+     * @param emp1
      * @return e
      */
-    public Employee editEmployeeDetails(Employee emp1, Scanner sc) {
-        LOGGER.info("Welcome to the edit mode....");
-        String userName = null;
-        String password = null;
-        String fullName = null;
-        String department = null;
-        String address = null;
-        Console cnsl = null;
-        try {
-            cnsl = System.console();
-            LOGGER.info("Enter new username::");
-            userName = sc.nextLine();
+    public Employee editEmployeeDetails(Employee emp1) {
 
-            LOGGER.info("Enter new password::");
-            char[] pwd = cnsl.readPassword();
-            password = String.valueOf(pwd);
+        EmployeeService es = ServiceFactory.getEmployeeService();
 
-            LOGGER.info("Enter new fullname::");
-            fullName = sc.nextLine();
+        String userNameFormat = "[a-zA-z][a-zA-z0-9._@]+";
 
-            LOGGER.info("Enter new department::");
-            department = sc.nextLine();
-
-            LOGGER.info("Enter new address::");
-            address = sc.nextLine();
-
-            if (!("".equals(userName))) {
-                emp1.setUserName(userName);
-            }
-            if (!("".equals(password))) {
-                emp1.setPassword(password);
-            }
-            if (!("".equals(fullName))) {
-                emp1.setFullName(fullName);
-            }
-            if (!("".equals(department))) {
-                emp1.setDepartment(department);
-            }
-            if (!("".equals(address))) {
-                emp1.setAddress(address);
-            }
-
-            EmployeeService es = ServiceFactory.getEmployeeService();
-
-            return es.editEmployeeDetails(emp1);
-
-        } catch (Exception ex) {
-            LOGGER.log(Level.INFO, exceptionOccurred, ex);
+        if (emp1.getUserName().length() != 0 && !(emp1.getUserName().matches(userNameFormat))) {
+            LOGGER.info("\n\t\tThe username field doesn't match the format. Please re-check and try again.\n");
+            LOGGER.info("\n\tNo rows edited.\n");
+            return emp1;
         }
-        return emp1;
+        return es.editEmployeeDetails(emp1);
+
     }
 
 }
