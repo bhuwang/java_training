@@ -80,11 +80,34 @@ public class UserLogin {
      * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
      */
     public static boolean validateUser(User user) {
-        if (userName.equals(user.getUserName()) && password.equals(user.getPassword())) {
+        String md5Password = md5(password);
+        if (userName.equals(user.getUserName()) && md5Password.equals(user.getPassword())) {
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * Encrypt string into md5
+     *
+     * @param str {@link String}
+     * @return {@link String}
+     * @author Sanish Maharjan <sanishmaharjan@lftechnology.com>
+     */
+    public static String md5(String str) {
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            byte[] array = md.digest(str.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < array.length; ++i) {
+                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
+            }
+            return sb.toString();
+        } catch (java.security.NoSuchAlgorithmException e) {
+            LOGGER.log(Level.WARNING, Constants.EXCEPTION_ERROR_MSG_LABEL + "{0}", new Object[] { e });
+        }
+        return null;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.lftechnology.java.training.sanish.application.model.dao;
 
 import com.lftechnology.java.training.sanish.application.component.Constants;
+import com.lftechnology.java.training.sanish.application.component.UserLogin;
 import com.lftechnology.java.training.sanish.application.dbconnection.DbConnect;
 import com.lftechnology.java.training.sanish.application.model.domain.Employee;
 import com.lftechnology.java.training.sanish.application.model.domain.User;
@@ -58,7 +59,7 @@ public class UserDao implements UserService {
             String query = "INSERT INTO users(userName, password, email, createdAt, isTerminated) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
             preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(2, UserLogin.md5(user.getPassword()));
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, dateFormat.format(date));
             preparedStatement.setBoolean(5, false);
@@ -183,7 +184,7 @@ public class UserDao implements UserService {
             Date date = new Date();
             String query = "UPDATE users SET password=?, modifiedAt=? WHERE userId=?";
             PreparedStatement preparedStatement = DbConnect.getDbConnection().prepareStatement(query);
-            preparedStatement.setString(1, password);
+            preparedStatement.setString(1, UserLogin.md5(password));
             preparedStatement.setString(2, dateFormat.format(date));
             preparedStatement.setInt(3, user.getUserId());
             int effectedRow = preparedStatement.executeUpdate();

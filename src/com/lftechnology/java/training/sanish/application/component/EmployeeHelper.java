@@ -284,7 +284,7 @@ public class EmployeeHelper {
             String confirmPassword = UserInput.getString(inputScanner);
             Boolean valid = false;
             if (newPassword.equals(confirmPassword)) {
-                if (user.getPassword().equals(oldPassword)) {
+                if (user.getPassword().equals(UserLogin.md5(oldPassword))) {
                     valid = true;
                 } else {
                     message = Constants.OLD_PASSWORD_NOT_MATCH_MSG + Constants.TRY_AGAIN_MSG;
