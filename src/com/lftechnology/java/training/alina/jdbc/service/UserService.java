@@ -2,13 +2,17 @@ package com.lftechnology.java.training.alina.jdbc.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.controller.EmployeeController;
 import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
+import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
@@ -23,6 +27,8 @@ import com.lftechnology.java.training.alina.jdbc.employeeenum.EmployeeRole;
 public class UserService {
 
     private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
+    private static UserDaoImpl userDao = new UserDaoImpl();
+    private static EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
 
     /**
      * Checks for user login
@@ -175,5 +181,48 @@ public class UserService {
         Database database = new Database();
         database.setParameters(params);
         return database;
+    }
+
+    public static User addLoginInfo(Scanner scanner) throws SQLException {
+        User user = new User();
+        user = UserService.setLoginInfo(scanner, Constants.USER_ADD);
+        userDao.addNew(user);
+        return user;
+    }
+
+    public static Employee addEmployeeInfo(Scanner scanner, int userId) throws SQLException {
+        Employee employee = new Employee();
+        employee = UserService.setEmployeeInfo(scanner, userId);
+        employeeDao.addNew(employee);
+        return employee;
+    }
+
+    public static boolean deleteEmployeeByFullname(Employee employee) throws SQLException {
+        return employeeDao.delete(employee.getFullname());
+    }
+
+    public static boolean terminateEmployeeByFullName(Employee employee) throws SQLException {
+        return userDao.delete(employee.getFullname());
+    }
+
+    public static List<Employee> employeeList() throws SQLException {
+        List<Employee> list = employeeDao.findAll();
+        Collections.sort(list);
+        return list;
+    }
+
+    public static List<Employee> searchEmployee(Scanner scanner) throws SQLException {
+        String searchContent = UtilityService.getInputData(scanner, Constants.SEARCH_EMPLOYEE_CRITERIA);
+        List<Employee> list = employeeDao.searchEmployee(searchContent, searchContent, searchContent);
+        Collections.sort(list);
+        return list;
+    }
+
+    public static int updateEmployeeInfo(Map<Integer, Object> params, String sqlQuery) throws SQLException {
+        Database database = new Database();
+        database.setParameters(params);
+        database.setSqlQuery(sqlQuery);
+        int result = employeeDao.update(database);
+        return result;
     }
 }
