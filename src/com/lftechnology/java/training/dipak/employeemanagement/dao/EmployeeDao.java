@@ -146,7 +146,6 @@ public class EmployeeDao implements EmployeeApi {
         } catch (SQLException sq) {
             LOGGER.log(Level.SEVERE, exceptionOccurred, sq);
         }
-
         return count;
     }
 

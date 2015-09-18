@@ -62,7 +62,7 @@ public class EmployeeController {
         EmployeeService ed = ServiceFactory.getEmployeeService();
 
         count = ed.terminateEmployee(em);
-
+        
         return count;
     }
 

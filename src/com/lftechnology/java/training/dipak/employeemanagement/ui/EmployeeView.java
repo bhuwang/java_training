@@ -72,7 +72,7 @@ public class EmployeeView {
             }
 
         }
-
+        
         employee.setAddress(address);
         employee.setDepartment(department);
         employee.setFullName(fullName);
@@ -112,7 +112,7 @@ public class EmployeeView {
 
             EmployeeController ec = new EmployeeController();
 
-            ec.terminateEmployee(em);
+            count=ec.terminateEmployee(em);
 
         } catch (Exception ex) {
             LOGGER.log(Level.INFO, exceptionOccurred, ex);
