@@ -1,6 +1,8 @@
 
 package com.lftechnology.java.training.srijan.basics.coreapp.api;
 
+import java.util.List;
+
 import com.lftechnology.java.training.srijan.basics.coreapp.domain.Employee;
 import com.lftechnology.java.training.srijan.basics.coreapp.domain.SearchEmployee;
 
@@ -25,7 +27,7 @@ public interface EmployeeApi {
 	 * 
 	 * @author srijan
 	 */
-	public void updateProfile(Employee changedProfileDetails);
+	public Boolean updateProfile(Employee changedProfileDetails);
 
 	/**
 	 * <p>Terminates user profile</p>
@@ -43,5 +45,13 @@ public interface EmployeeApi {
 	 * @return
 	 * @author srijan
 	 */
-	public Employee search(SearchEmployee searchEmp);
+	public List<Employee> search(SearchEmployee searchEmp);
+	
+	/**
+	 * <p>Checks for duplicate username in database and returns if typed username is valid or not</p>
+	 * @param e
+	 * @return
+	 * @author srijan
+	 */
+	public Boolean checkUsernameValidation(Employee e);
 }

@@ -105,9 +105,10 @@ public class Employee {
 	@Override
 	public String toString() {
 
-		return "id=" + id + ", userName=" + userName + ", Terminated=" +
-			isTerminated + ", role=" + role + ", fullName=" + fullName +
-			", department=" + department + ", address=" + address + "\n";
+		return "id = " + id + ",\nuserName = " + userName + ",\nTerminated = " +
+			isTerminated + ",\nrole = " + role + ",\nfullName = " + fullName +
+			",\ndepartment = " + department + ",\naddress = " + address +
+			"\n\n\n\n";
 	}
 
 }

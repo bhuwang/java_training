@@ -18,35 +18,75 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	private static final Logger LOGGER =
 		Logger.getLogger(EmployeeDaoImpl.class.getName());
-
+	
+	@Override
+	public Boolean checkUsernameValidation(Employee e){
+		ResultSet resultSet = null;
+		Boolean userCheck = false;
+		Connection con = null;
+		con = DbConnection.dbConnection();
+		PreparedStatement prepareStatementCheckSameEmployee = null;
+		try {
+			if (con != null) {
+				String query =
+					"Select * from employeeDetails where username = ?";
+				prepareStatementCheckSameEmployee = con.prepareStatement(query);
+				prepareStatementCheckSameEmployee.setString(1, e.getUserName());
+				resultSet = prepareStatementCheckSameEmployee.executeQuery();
+				while (resultSet.next()) {
+					if (e.getUserName().equals(
+						resultSet.getString("username"))) {
+						userCheck = true;
+					}
+					else {
+						userCheck = false;
+					}
+				}
+			}
+		}
+		catch (Exception ex) {
+			LOGGER.log(Level.INFO, "Exception{0}", ex);
+		}
+		finally {
+			try {
+				resultSet.close();
+				prepareStatementCheckSameEmployee.close();
+				con.close();
+			}
+			catch (SQLException e1) {
+				LOGGER.log(Level.INFO, "SQL Exception{0}", e1);
+			}
+		}
+		return userCheck;
+	}
+	
+	@Override
 	public void addEmployee(Employee e) {
 
 		Connection con = null;
 		con = DbConnection.dbConnection();
 		PreparedStatement prepareStatementInsertEmployeeDetails = null;
 		try {
-			if (con != null) {
-				String queryEmployee =
-					"INSERT INTO employeeDetails (username,fullname,department,address,employee_role,is_terminated,password) VALUES(?,?,?,?,?,?,?)";
-				prepareStatementInsertEmployeeDetails =
-					con.prepareStatement(queryEmployee);
-				prepareStatementInsertEmployeeDetails.setString(
-					1, e.getUserName());
-				prepareStatementInsertEmployeeDetails.setString(
-					2, e.getFullName());
-				prepareStatementInsertEmployeeDetails.setString(
-					3, e.getDepartment());
-				prepareStatementInsertEmployeeDetails.setString(
-					4, e.getAddress());
-				prepareStatementInsertEmployeeDetails.setString(
-					5, e.getUserRole().name());
-				prepareStatementInsertEmployeeDetails.setBoolean(
-					6, e.getIsTerminated());
-				prepareStatementInsertEmployeeDetails.setString(
-					7, e.getPassword());
-				prepareStatementInsertEmployeeDetails.executeUpdate();
+					String queryEmployee =
+						"INSERT INTO employeeDetails (username,fullname,department,address,employee_role,is_terminated,password) VALUES(?,?,?,?,?,?,?)";
+					prepareStatementInsertEmployeeDetails =
+						con.prepareStatement(queryEmployee);
+					prepareStatementInsertEmployeeDetails.setString(
+						1, e.getUserName());
+					prepareStatementInsertEmployeeDetails.setString(
+						2, e.getFullName());
+					prepareStatementInsertEmployeeDetails.setString(
+						3, e.getDepartment());
+					prepareStatementInsertEmployeeDetails.setString(
+						4, e.getAddress());
+					prepareStatementInsertEmployeeDetails.setString(
+						5, e.getUserRole().name());
+					prepareStatementInsertEmployeeDetails.setBoolean(
+						6, e.getIsTerminated());
+					prepareStatementInsertEmployeeDetails.setString(
+						7, e.getPassword());
+					prepareStatementInsertEmployeeDetails.executeUpdate();
 			}
-		}
 		catch (Exception ex) {
 			LOGGER.log(Level.INFO, "Exception{0}", ex);
 		}
@@ -109,7 +149,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 */
 	@Override
 	public UserRole loginValidation(Employee e) {
-
+		UserRole role = UserRole.INVALID;
 		ResultSet resultSet = null;
 		Connection con = null;
 		con = DbConnection.dbConnection();
@@ -124,10 +164,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				prepareStatementLoginCheck.setBoolean(3, false);
 				resultSet = prepareStatementLoginCheck.executeQuery();
 				if (resultSet.next()) {
-					LOGGER.log(Level.INFO, "Login Successful");
-					UserRole role =
+					 role =
 						UserRole.valueOf(resultSet.getString("employee_role"));
-					return role;
 				}
 				else {
 					LOGGER.log(Level.INFO, "Entry not found in Database");
@@ -155,7 +193,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			}
 
 		}
-		return UserRole.INVALID;
+		return role;
 	}
 
 	/**
@@ -256,7 +294,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	 * @return
 	 * @author srijan
 	 */
-	public Employee findUser(String userName) {
+	public Employee findUser(Employee e) {
 
 		System.out.println("profile");
 		Connection con = null;
@@ -269,7 +307,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String query =
 					"Select * from employeeDetails where username = ?";
 				prepareStatementFindUser = con.prepareStatement(query);
-				prepareStatementFindUser.setString(1, userName);
+				prepareStatementFindUser.setString(1, e.getUserName());
+				System.out.println(e.getUserName());
 				resultSet = prepareStatementFindUser.executeQuery();
 				while (resultSet.next()) {
 					user.setId(resultSet.getInt("id"));
@@ -298,8 +337,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public void updateProfile(Employee changedProfileDetails) {
-
+	public Boolean updateProfile(Employee changedProfileDetails) {
+		Boolean updateStatus = false;
 		Connection con = null;
 		ResultSet resultSet = null;
 		con = DbConnection.dbConnection();
@@ -327,6 +366,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					prepareUpdateProfile.setInt(
 						5, changedProfileDetails.getId());
 					prepareUpdateProfile.executeUpdate();
+					updateStatus = true;
 				}
 			}
 		}
@@ -343,16 +383,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				LOGGER.log(Level.INFO, "SQL Exception {0}", ex);
 			}
 		}
+		return updateStatus;
 	}
 
 	@Override
-	public Employee search(SearchEmployee e) {
+	public List<Employee> search(SearchEmployee e) {
 
 		Connection con = null;
 		ResultSet resultSet = null;
 		con = DbConnection.dbConnection();
 		PreparedStatement prepareSearch = null;
-		Employee userSearch = new Employee();
+		List<Employee> employees = new ArrayList<>();
 		try {
 			if (con != null) {
 				String querySearch = "Select * from employeeDetails where " +
@@ -362,13 +403,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				prepareSearch.setBoolean(2, false);
 				resultSet = prepareSearch.executeQuery();
 				while (resultSet.next()) {
-					userSearch.setId(resultSet.getInt("id"));
-					userSearch.setUserName(resultSet.getString("username"));
-					userSearch.setFullName(resultSet.getString("fullName"));
-					userSearch.setDepartment(resultSet.getString("department"));
-					userSearch.setAddress(resultSet.getString("address"));
-					userSearch.setIsTerminated(
+					Employee employee = new Employee();
+					employee.setId(resultSet.getInt("id"));
+					employee.setUserName(resultSet.getString("username"));
+					employee.setFullName(resultSet.getString("fullName"));
+					employee.setDepartment(resultSet.getString("department"));
+					employee.setAddress(resultSet.getString("address"));
+					employee.setIsTerminated(
 						resultSet.getBoolean("is_terminated"));
+					employees.add(employee);
 				}
 			}
 		}
@@ -385,6 +428,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				LOGGER.log(Level.INFO, "SQL Exception {0}", ex);
 			}
 		}
-		return userSearch;
+		return employees;
 	}
 }

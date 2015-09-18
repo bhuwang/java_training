@@ -25,7 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public void addEmployee(Employee e) {
-
 		if (!"".equals(e.getUserName()) && !"".equals(e.getPassword()) &&
 			!"".equals(e.getFullName()) && !"".equals(e.getDepartment())) {
 			EmployeeDaoImpl addEmployeeToDb = DaoFactory.getEmployeeDao();
@@ -34,7 +33,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		else {
 			LOGGER.log(Level.INFO, "please fill up all information");
 		}
-
 	}
 
 	@Override
@@ -45,10 +43,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	public UserRole save(Employee e) {
-
+		UserRole role;
 		if (!"".equals(e.getUserName()) && !"".equals(e.getPassword())) {
 			EmployeeDaoImpl loginValidator = DaoFactory.getEmployeeDao();
-			return loginValidator.loginValidation(e);
+			System.out.println();
+			role =  loginValidator.loginValidation(e);
+			return role;
 		}
 		if ("".equals(e.getUserName())) {
 			LOGGER.log(Level.INFO, "{0}", this.nullUserNameMsg);
@@ -82,23 +82,37 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @return
 	 * @author srijan
 	 */
-	public Employee findUserByUserName(String userName) {
+	public Employee findUserByUserName(Employee e) {
 
 		EmployeeDaoImpl findUserByUserName = DaoFactory.getEmployeeDao();
-		return findUserByUserName.findUser(userName);
+		return findUserByUserName.findUser(e);
 	}
 
-	@Override
-	public void updateProfile(Employee changedProfileDetails) {
-
+	
+	public Boolean updateProfile(Employee changedProfileDetails) {
+		Boolean updateStatus = false;
 		EmployeeDaoImpl update = DaoFactory.getEmployeeDao();
-		update.updateProfile(changedProfileDetails);
+	    updateStatus = update.updateProfile(changedProfileDetails);
+	    return updateStatus;
 	}
 
 	@Override
-	public Employee search(SearchEmployee searchEmp) {
+	public  List<Employee> search(SearchEmployee searchEmp) {
 
 		EmployeeDaoImpl searchUser = DaoFactory.getEmployeeDao();
 		return searchUser.search(searchEmp);
+	}
+	
+	@Override
+	public Boolean checkUsernameValidation(Employee e){
+		Boolean checkUser = false;
+		if(!"".equals(e.getUserName())){
+			EmployeeDaoImpl checkUserValidity = DaoFactory.getEmployeeDao();
+			checkUser =checkUserValidity.checkUsernameValidation(e);
+		}
+		else{
+			checkUser = true;
+		}
+		return checkUser;
 	}
 }
