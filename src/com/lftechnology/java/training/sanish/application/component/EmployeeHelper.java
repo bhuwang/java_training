@@ -240,13 +240,7 @@ public class EmployeeHelper {
             while (doChange) {
                 message = Constants.TYPE_ROLE_LABEL;
                 LOGGER.log(Level.INFO, message);
-                role = UserInput.getString(inputScanner);
-                if (!role.equals(Constants.ADMIN_ROLE) && !role.equals(Constants.USER_ROLE)) {
-                    message = "\n" + Constants.ERROR_MSG_LABEL + Constants.INVALID_ROLE_MSG;
-                    doChange = conformRetry(inputScanner, message);
-                    continue;
-                }
-
+                role = UserInput.getUserRole(inputScanner);
                 DateFormat dateFormat = new SimpleDateFormat(Constants.DB_DATE_FORMAT);
                 Date date = new Date();
                 setStatement = "role=?, modifiedAt=?";
