@@ -42,7 +42,6 @@ public class UserService {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public Boolean checkEmployeeLogin(Scanner scanner, User user) throws SQLException {
-        UserDaoImpl userDao = new UserDaoImpl();
         return userDao.checkEmployeeLogin(scanner, user);
     }
 
@@ -90,7 +89,6 @@ public class UserService {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static boolean checkExistUsername(String username) throws SQLException {
-        UserDaoImpl userDao = new UserDaoImpl();
         boolean checkUserExist = userDao.checkValidUserByUsername(username);
         if (checkUserExist) {
             LOGGER.log(Level.INFO, Constants.USERNAME_ALREADY_EXISTS);
@@ -287,7 +285,6 @@ public class UserService {
         Database database = new Database();
         database.setParameters(params);
         database.setSqlQuery(sqlQuery);
-        int result = employeeDao.update(database);
-        return result;
+        return employeeDao.update(database);
     }
 }
