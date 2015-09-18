@@ -183,6 +183,15 @@ public class UserService {
         return database;
     }
 
+    /**
+     * Adds login info
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @return user {@link User} user details
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static User addLoginInfo(Scanner scanner) throws SQLException {
         User user = new User();
         user = UserService.setLoginInfo(scanner, Constants.USER_ADD);
@@ -190,6 +199,17 @@ public class UserService {
         return user;
     }
 
+    /**
+     * Add employee info
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param userId
+     *            {@link Integer}
+     * @return employee {@link Employee} employee details
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static Employee addEmployeeInfo(Scanner scanner, int userId) throws SQLException {
         Employee employee = new Employee();
         employee = UserService.setEmployeeInfo(scanner, userId);
@@ -197,20 +217,54 @@ public class UserService {
         return employee;
     }
 
+    /**
+     * Deletes employee
+     * 
+     * @param employee
+     *            {@link Employee}
+     * @return {@link Boolean}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static boolean deleteEmployeeByFullname(Employee employee) throws SQLException {
         return employeeDao.delete(employee.getFullname());
     }
 
+    /**
+     * Terminates employee
+     * 
+     * @param employee
+     *            {@link Employee}
+     * @return {@link Boolean}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static boolean terminateEmployeeByFullName(Employee employee) throws SQLException {
         return userDao.delete(employee.getFullname());
     }
 
+    /**
+     * Gets employee list
+     * 
+     * @return list {@link List}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static List<Employee> employeeList() throws SQLException {
         List<Employee> list = employeeDao.findAll();
         Collections.sort(list);
         return list;
     }
 
+    /**
+     * Searches employee
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @return list {@link List} user list
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static List<Employee> searchEmployee(Scanner scanner) throws SQLException {
         String searchContent = UtilityService.getInputData(scanner, Constants.SEARCH_EMPLOYEE_CRITERIA);
         List<Employee> list = employeeDao.searchEmployee(searchContent, searchContent, searchContent);
@@ -218,6 +272,17 @@ public class UserService {
         return list;
     }
 
+    /**
+     * Updates employee info
+     * 
+     * @param params
+     *            {@link Map}
+     * @param sqlQuery
+     *            {@link String}
+     * @return result {@link Integer}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
     public static int updateEmployeeInfo(Map<Integer, Object> params, String sqlQuery) throws SQLException {
         Database database = new Database();
         database.setParameters(params);
