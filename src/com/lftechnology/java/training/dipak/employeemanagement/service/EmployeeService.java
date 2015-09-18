@@ -2,11 +2,6 @@
 package com.lftechnology.java.training.dipak.employeemanagement.service;
 
 import java.sql.ResultSet;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.api.EmployeeApi;
 import com.lftechnology.java.training.dipak.employeemanagement.dao.DaoFactory;
 import com.lftechnology.java.training.dipak.employeemanagement.dao.EmployeeDao;
@@ -20,18 +15,6 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
  * @author Dipak Thapa<dipakthapa@lftechnology.com>
  */
 public class EmployeeService implements EmployeeApi {
-    private static final Logger LOGGER = Logger.getLogger(EmployeeService.class.getName());
-
-    static {
-        ConsoleHandler ch = new ConsoleHandler();
-        ch.setLevel(Level.INFO);
-        LOGGER.addHandler(ch);
-        LOGGER.setUseParentHandlers(false);
-
-        LoggerFormatter myFormat = new LoggerFormatter();
-
-        ch.setFormatter(myFormat);
-    }
 
     /**
      * <p>

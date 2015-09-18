@@ -92,17 +92,17 @@ public class EmployeeDao implements EmployeeApi {
         if (!"".equals(e.getFullName())) {
             sql.append("and fullname like '");
             sql.append(e.getFullName());
-            sql.append("'");
+            sql.append("%'");
         }
         if (!"".equals(e.getAddress())) {
             sql.append(" and address like '");
             sql.append(e.getAddress());
-            sql.append("'");
+            sql.append("%'");
         }
         if (!"".equals(e.getDepartment())) {
             sql.append(" and department like '");
             sql.append(e.getDepartment());
-            sql.append("'");
+            sql.append("%'");
         }
 
         try {

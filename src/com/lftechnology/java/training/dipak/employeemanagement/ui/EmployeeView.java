@@ -2,10 +2,13 @@ package com.lftechnology.java.training.dipak.employeemanagement.ui;
 
 import java.io.Console;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.lftechnology.java.training.dipak.employeemanagement.LoggerFormatter;
 import com.lftechnology.java.training.dipak.employeemanagement.controller.EmployeeController;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.Employee;
 import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
@@ -19,8 +22,20 @@ import com.lftechnology.java.training.dipak.employeemanagement.domain.UserType;
  *
  */
 public class EmployeeView {
+
     private String exceptionOccurred = "\n\t\tException: {0}";
     private static final Logger LOGGER = Logger.getLogger(EmployeeView.class.getName());
+
+    static {
+        ConsoleHandler ch = new ConsoleHandler();
+        ch.setLevel(Level.INFO);
+        LOGGER.addHandler(ch);
+        LOGGER.setUseParentHandlers(false);
+
+        LoggerFormatter myFormat = new LoggerFormatter();
+
+        ch.setFormatter(myFormat);
+    }
 
     /**
      * <p>
@@ -72,7 +87,7 @@ public class EmployeeView {
             }
 
         }
-        
+
         employee.setAddress(address);
         employee.setDepartment(department);
         employee.setFullName(fullName);
@@ -112,7 +127,7 @@ public class EmployeeView {
 
             EmployeeController ec = new EmployeeController();
 
-            count=ec.terminateEmployee(em);
+            count = ec.terminateEmployee(em);
 
         } catch (Exception ex) {
             LOGGER.log(Level.INFO, exceptionOccurred, ex);
@@ -159,7 +174,7 @@ public class EmployeeView {
             if (rs.next()) {
                 LOGGER.info("\n eid \t\t username \t\t fullname \t\t department \t\t address \t\t\n");
                 do {
-                    LOGGER.log(Level.INFO, "{0} \t\t {1} \t\t {2} \t\t {3} \t\t {4} \t\t\n",
+                    LOGGER.log(Level.INFO, "\n{0} \t\t {1} \t\t {2} \t\t {3} \t\t\t {4} \t\t\n",
                             new Object[] { rs.getInt(1), rs.getString(2), rs.getString(5), rs.getString(6), rs.getString(7) });
                 } while (rs.next());
             } else {
@@ -168,6 +183,12 @@ public class EmployeeView {
 
         } catch (Exception ex) {
             LOGGER.log(Level.INFO, exceptionOccurred, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                LOGGER.log(Level.INFO, exceptionOccurred, e);
+            }
         }
     }
 
