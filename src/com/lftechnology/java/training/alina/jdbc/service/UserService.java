@@ -14,6 +14,7 @@ import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.employeeenum.EmployeeRole;
+
 /**
  * UserService consists of all functionalities of user
  * 
@@ -36,8 +37,7 @@ public class UserService {
      */
     public Boolean checkEmployeeLogin(Scanner scanner, User user) throws SQLException {
         UserDaoImpl userDao = new UserDaoImpl();
-        boolean isLogin = userDao.checkEmployeeLogin(scanner, user);
-        return isLogin;
+        return userDao.checkEmployeeLogin(scanner, user);
     }
 
     /**
@@ -138,8 +138,6 @@ public class UserService {
         employee.setModifiedAt(DateTimeService.getCurrentTimeStamp());
         return employee;
     }
-
-    
 
     /**
      * Sets employee data

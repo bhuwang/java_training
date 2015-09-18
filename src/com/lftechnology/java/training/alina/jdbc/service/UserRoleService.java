@@ -81,20 +81,6 @@ public class UserRoleService {
     }
 
     /**
-     * Logout employee
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @throws SQLException
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    // public static void employeeLogout(Scanner scanner) throws SQLException {
-    // LOGGER.log(Level.INFO, Constants.USER_LOGOUT_SUCCESS);
-    // UserDaoImpl userDao = new UserDaoImpl();
-    // userDao.checkEmployeeLogin(scanner);
-    // }
-
-    /**
      * Updates employee name
      * 
      * @param scanner
