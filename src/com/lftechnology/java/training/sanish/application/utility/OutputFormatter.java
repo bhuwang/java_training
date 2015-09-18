@@ -46,7 +46,7 @@ public class OutputFormatter {
         String colValue = value.toString();
         int colValueLength = colValue.length();
         if (colValueLength > colSize) {
-            return colValue.substring(colSize) + "\t";
+            return colValue.substring(0, colSize-3) + "...\t";
         }
         int diffInLength = colSize - colValueLength;
         for (int i = 0; i < diffInLength; i++) {

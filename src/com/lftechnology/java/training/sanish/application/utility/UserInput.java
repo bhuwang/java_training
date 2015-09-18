@@ -77,6 +77,25 @@ public class UserInput {
     }
 
     /**
+     * Scan search key form console
+     * @param scanner
+     */
+    public static String getSearchKey(Scanner scanner) {
+        String inputString = "";
+        boolean checkNextInput = true;
+        while (checkNextInput) {
+            if (!scanner.hasNextLine()) {
+                scanner.nextLine();
+            } else {
+                inputString = scanner.nextLine();
+                checkNextInput = false;
+            }
+        }
+
+        return inputString;
+    }
+
+    /**
      * Scan email form console and return string
      *
      * @param {@link Scanner}

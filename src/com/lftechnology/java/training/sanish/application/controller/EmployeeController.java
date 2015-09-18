@@ -102,7 +102,7 @@ public class EmployeeController {
         try (Scanner inputScanner = new Scanner(System.in)) {
             if (UserLogin.isLogin()) {
                 EmployeeSearchPage.renderPage();
-                String searchKey = UserInput.getString(inputScanner);
+                String searchKey = UserInput.getSearchKey(inputScanner);
                 employeeSearchResultPage(searchKey);
             } else {
                 LoginController.loginPage();
