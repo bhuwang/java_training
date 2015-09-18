@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
@@ -21,7 +20,6 @@ import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
 import com.lftechnology.java.training.alina.jdbc.service.UserService;
-import com.lftechnology.java.training.alina.jdbc.views.LoginView;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,10 +37,7 @@ public class UserDaoImpl implements UserDao {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      * @throws SQLException
      */
-    public boolean checkEmployeeLogin(Scanner scanner) throws SQLException {
-        User user = new User();
-        LoginView.displayLoginHeader();
-        user = UserService.setLoginInfo(scanner, Constants.USER_LOGIN);
+    public boolean checkEmployeeLogin(Scanner scanner, User user) throws SQLException {
         Boolean loginStatus = false;
         Map<Integer, Object> params = new HashMap<Integer, Object>();
         params.put(1, user.getUsername());

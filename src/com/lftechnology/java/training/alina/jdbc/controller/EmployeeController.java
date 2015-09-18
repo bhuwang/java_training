@@ -1,6 +1,7 @@
 package com.lftechnology.java.training.alina.jdbc.controller;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,11 +17,13 @@ import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
-import com.lftechnology.java.training.alina.jdbc.domain.EmployeeRole;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
+import com.lftechnology.java.training.alina.jdbc.employeeenum.EmployeeRole;
+import com.lftechnology.java.training.alina.jdbc.routes.UserRoutes;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
 import com.lftechnology.java.training.alina.jdbc.service.UserService;
 import com.lftechnology.java.training.alina.jdbc.service.UtilityService;
+import com.lftechnology.java.training.alina.jdbc.views.EmployeeEditView;
 
 /**
  * Employee controller consists of functionalities regarding employee add, list, view ,delete
@@ -94,7 +97,7 @@ public class EmployeeController {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void deleteExistingEmployee(Scanner scanner) throws SQLException {
         Employee employee = new Employee();
@@ -113,7 +116,7 @@ public class EmployeeController {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void terminateExistingEmployee(Scanner scanner) throws SQLException {
         Employee employee = new Employee();
@@ -130,7 +133,7 @@ public class EmployeeController {
      * Gets Employee lists soreted by alphabetical order
      * 
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void getEmployeeList() throws SQLException {
         List<Employee> list = employeeDao.findAll();
@@ -148,7 +151,7 @@ public class EmployeeController {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void searchExistingEmployee(Scanner scanner) throws SQLException {
         String searchContent = UtilityService.getInputData(scanner, Constants.SEARCH_EMPLOYEE_CRITERIA);
@@ -171,7 +174,7 @@ public class EmployeeController {
      * @param employeeId
      *            {@link Integer} id of employee
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void updateEmployeeInfo(String keyName, String keyValue, Integer employeeId) throws SQLException {
         Map<Integer, Object> params = new HashMap<>();
@@ -228,6 +231,26 @@ public class EmployeeController {
             }
         } else {
             LOGGER.log(Level.INFO, Constants.PASSWORD_MISSMATCH, new Object[] { userId });
+        }
+    }
+
+    /**
+     * Gets employee edit informations
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param result
+     *            {@link ResultSet}
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    public static void getEditInfo(Scanner scanner, Employee employee) throws SQLException {
+        UserRoutes userRoutes = new UserRoutes();
+        char choice = ' ';
+        while (choice != Constants.EMPLOYEE_EDIT_EXIT) {
+            EmployeeEditView.displayEmployeeEditMenu();
+            choice = UtilityService.getSelectedMenu(scanner, Constants.SELECT_EDIT_OPTION);
+            userRoutes.getEmployeeEditOptions(scanner, choice, employee);
         }
     }
 }

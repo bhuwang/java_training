@@ -9,14 +9,11 @@ import java.util.logging.Logger;
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.controller.EmployeeController;
 import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
+import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
-import com.lftechnology.java.training.alina.jdbc.domain.EmployeeRole;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
-import com.lftechnology.java.training.alina.jdbc.views.AdminView;
-import com.lftechnology.java.training.alina.jdbc.views.EmployeeEditView;
-import com.lftechnology.java.training.alina.jdbc.views.EmployeeView;
-
+import com.lftechnology.java.training.alina.jdbc.employeeenum.EmployeeRole;
 /**
  * UserService consists of all functionalities of user
  * 
@@ -25,6 +22,23 @@ import com.lftechnology.java.training.alina.jdbc.views.EmployeeView;
 public class UserService {
 
     private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
+
+    /**
+     * Checks for user login
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param user
+     *            {@link User}
+     * @return isLogin {@link Boolean} true if login success, false if login fails
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    public Boolean checkEmployeeLogin(Scanner scanner, User user) throws SQLException {
+        UserDaoImpl userDao = new UserDaoImpl();
+        boolean isLogin = userDao.checkEmployeeLogin(scanner, user);
+        return isLogin;
+    }
 
     /**
      * Gets login info
@@ -43,7 +57,7 @@ public class UserService {
         } else {
             do {
                 String username = UtilityService.getInputData(scanner, Constants.ENTER_USERNAME);
-                userExist = LoginController.checkExistUsername(username);
+                userExist = checkExistUsername(username);
                 if (!userExist) {
                     user.setUsername(username);
                 }
@@ -54,6 +68,28 @@ public class UserService {
         user.setCreatedAt(DateTimeService.getCurrentTimeStamp());
         user.setModifiedAt(DateTimeService.getCurrentTimeStamp());
         return user;
+    }
+
+    /**
+     * Checks existence of user by username
+     * 
+     * @param scanner
+     *            {@link Scanner}
+     * @param userExist
+     *            {@link Boolean}
+     * @param username
+     *            {@link String}
+     * @return userExist {@link Boolean} identifies user exists/not
+     * @throws SQLException
+     * @author Alina Shakya <alinashakya@lftechnology.com>
+     */
+    public static boolean checkExistUsername(String username) throws SQLException {
+        UserDaoImpl userDao = new UserDaoImpl();
+        boolean checkUserExist = userDao.checkValidUserByUsername(username);
+        if (checkUserExist) {
+            LOGGER.log(Level.INFO, Constants.USERNAME_ALREADY_EXISTS);
+        }
+        return checkUserExist;
     }
 
     /**
@@ -68,64 +104,9 @@ public class UserService {
      */
     public void getEmployeeRole(Scanner scanner, Employee employee) throws SQLException {
         if (employee.getRole().equals(EmployeeRole.ADMIN.getRole())) {
-            getAdminRole(scanner, employee);
+            LoginController.getAdminRole(scanner, employee);
         } else {
-            getNormalUserRole(scanner, employee);
-        }
-    }
-
-    /**
-     * Gets Admin role functions
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @param result
-     *            {@link ResultSet}
-     * @throws SQLException
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    private void getAdminRole(Scanner scanner, Employee employee) throws SQLException {
-        char choice = ' ';
-        while (choice != Constants.ADMIN_EXIT) {
-            AdminView.displayAdminRoleMenu(employee);
-            choice = UtilityService.getSelectedMenu(scanner, Constants.SELECT_ADMIN_OPTION);
-            getAdminRoleOptions(scanner, choice);
-        }
-    }
-
-    /**
-     * Gets option menu for Admin Role
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @param option
-     *            {@link Character}
-     * @throws SQLException
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    private void getAdminRoleOptions(Scanner scanner, char option) throws SQLException {
-        switch (option) {
-        case 'a':
-            UserRoleService.addEmployee(scanner);
-            break;
-        case 'b':
-            UserRoleService.deleteEmployee(scanner);
-            break;
-        case 'c':
-            UserRoleService.terminateEmployee(scanner);
-            break;
-        case 'd':
-            UserRoleService.getEmployeeList();
-            break;
-        case 'e':
-            UserRoleService.searchEmployee(scanner);
-            break;
-        case 'f':
-            LoginController.logoutPage();
-            break;
-        default:
-            LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
-            break;
+            LoginController.getNormalUserRole(scanner, employee);
         }
     }
 
@@ -158,112 +139,7 @@ public class UserService {
         return employee;
     }
 
-    /**
-     * Gets role of normal user
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @param result
-     *            {@link ResultSet}
-     * @throws SQLException
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    public void getNormalUserRole(Scanner scanner, Employee employee) throws SQLException {
-        char choice = ' ';
-        while (choice != Constants.EMPLOYEE_EXIT) {
-            EmployeeView.displayEmployeeRoleMenu(employee);
-            choice = UtilityService.getSelectedMenu(scanner, Constants.SELECT_NORMAL_USER_ROLE);
-            getEmployeeRoleOptions(scanner, choice, employee);
-        }
-    }
-
-    /**
-     * Gets employee role menu options
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @param choice
-     *            {@link Character}
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException
-     */
-    private void getEmployeeRoleOptions(Scanner scanner, char choice, Employee employee) throws SQLException {
-        switch (choice) {
-        case 'a':
-            LOGGER.log(Level.INFO, Constants.VIEW_EMPLOYEE_LIST);
-            EmployeeController.getEmployeeList();
-            break;
-        case 'b':
-            LOGGER.log(Level.INFO, Constants.SEARCH_EMPLOYEE);
-            EmployeeController.searchExistingEmployee(scanner);
-            break;
-        case 'c':
-            LOGGER.log(Level.INFO, Constants.EDIT_OWN_INFORMATION);
-            getEditInfo(scanner, employee);
-            break;
-        case 'd':
-            LOGGER.log(Level.INFO, Constants.USER_LOGOUT_SUCCESS);
-            LoginController.logoutPage();
-            break;
-        default:
-            LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
-            break;
-        }
-    }
-
-    /**
-     * Gets employee edit informations
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @param result
-     *            {@link ResultSet}
-     * @throws SQLException
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    private void getEditInfo(Scanner scanner, Employee employee) throws SQLException {
-        char choice = ' ';
-        while (choice != Constants.EMPLOYEE_EDIT_EXIT) {
-            EmployeeEditView.displayEmployeeEditMenu();
-            choice = UtilityService.getSelectedMenu(scanner, Constants.SELECT_EDIT_OPTION);
-            getEmployeeEditOptions(scanner, choice, employee);
-        }
-    }
-
-    /**
-     * Gets employee edit options
-     * 
-     * @param scanner
-     *            {@link Scanner}
-     * @param choice
-     *            {@link Character}
-     * @param result
-     *            {@link ResultSet}
-     * @throws SQLException
-     * @author Alina Shakya <alinashakya@lftechnology.com>
-     */
-    private void getEmployeeEditOptions(Scanner scanner, char choice, Employee employee) throws SQLException {
-        switch (choice) {
-        case 'a':
-            UserRoleService.updateEmployeeName(scanner, employee);
-            break;
-        case 'b':
-            UserRoleService.updateEmployeeDepartment(scanner, employee);
-            break;
-        case 'c':
-            UserRoleService.updateEmployeeAddress(scanner, employee);
-            break;
-        case 'd':
-            UserRoleService.getUserPasswordChangeInfo(scanner, employee);
-            break;
-        case 'e':
-            UserRoleService.backToNormalUser(scanner, employee);
-            break;
-        default:
-            LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
-            break;
-        }
-    }
+    
 
     /**
      * Sets employee data

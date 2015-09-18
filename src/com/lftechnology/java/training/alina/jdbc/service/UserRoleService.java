@@ -4,10 +4,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.controller.EmployeeController;
-import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
+import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 
 public class UserRoleService {
@@ -50,7 +49,7 @@ public class UserRoleService {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void terminateEmployee(Scanner scanner) throws SQLException {
         LOGGER.log(Level.INFO, Constants.TERMINATE_EMPLOYEE);
@@ -61,7 +60,7 @@ public class UserRoleService {
      * Gets employee list
      * 
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void getEmployeeList() throws SQLException {
         LOGGER.log(Level.INFO, Constants.VIEW_EMPLOYEE_LIST);
@@ -74,7 +73,7 @@ public class UserRoleService {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void searchEmployee(Scanner scanner) throws SQLException {
         LOGGER.log(Level.INFO, Constants.SEARCH_EMPLOYEE);
@@ -89,11 +88,11 @@ public class UserRoleService {
      * @throws SQLException
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
-    public static void employeeLogout(Scanner scanner) throws SQLException {
-        LOGGER.log(Level.INFO, Constants.USER_LOGOUT_SUCCESS);
-        UserDaoImpl userDao = new UserDaoImpl();
-        userDao.checkEmployeeLogin(scanner);
-    }
+    // public static void employeeLogout(Scanner scanner) throws SQLException {
+    // LOGGER.log(Level.INFO, Constants.USER_LOGOUT_SUCCESS);
+    // UserDaoImpl userDao = new UserDaoImpl();
+    // userDao.checkEmployeeLogin(scanner);
+    // }
 
     /**
      * Updates employee name
@@ -103,7 +102,7 @@ public class UserRoleService {
      * @param employee
      *            {@link Employee}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void updateEmployeeName(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.EDIT_FULLNAME);
@@ -119,7 +118,7 @@ public class UserRoleService {
      * @param employee
      *            {@link Employee}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void updateEmployeeDepartment(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.EDIT_DEPARTMENT);
@@ -135,7 +134,7 @@ public class UserRoleService {
      * @param employee
      *            {@link Employee}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void updateEmployeeAddress(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.EDIT_ADDRESS);
@@ -154,8 +153,7 @@ public class UserRoleService {
      */
     public static void backToNormalUser(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.BACK);
-        UserService userService = new UserService();
-        userService.getNormalUserRole(scanner, employee);
+        LoginController.getNormalUserRole(scanner, employee);
     }
 
     /**
@@ -166,7 +164,7 @@ public class UserRoleService {
      * @param employee
      *            {@link Employee}
      * @author Alina Shakya <alinashakya@lftechnology.com>
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static void getUserPasswordChangeInfo(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.CHANGE_PASSWORD);
