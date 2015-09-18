@@ -37,8 +37,9 @@ public class UserRoleService {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException
      */
-    public static void deleteEmployee(Scanner scanner) {
+    public static void deleteEmployee(Scanner scanner) throws SQLException {
         LOGGER.log(Level.INFO, Constants.DELETE_EMPLOYEE);
         EmployeeController.deleteExistingEmployee(scanner);
     }
@@ -49,8 +50,9 @@ public class UserRoleService {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void terminateEmployee(Scanner scanner) {
+    public static void terminateEmployee(Scanner scanner) throws SQLException {
         LOGGER.log(Level.INFO, Constants.TERMINATE_EMPLOYEE);
         EmployeeController.terminateExistingEmployee(scanner);
     }
@@ -59,8 +61,9 @@ public class UserRoleService {
      * Gets employee list
      * 
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void getEmployeeList() {
+    public static void getEmployeeList() throws SQLException {
         LOGGER.log(Level.INFO, Constants.VIEW_EMPLOYEE_LIST);
         EmployeeController.getEmployeeList();
     }
@@ -71,8 +74,9 @@ public class UserRoleService {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void searchEmployee(Scanner scanner) {
+    public static void searchEmployee(Scanner scanner) throws SQLException {
         LOGGER.log(Level.INFO, Constants.SEARCH_EMPLOYEE);
         EmployeeController.searchExistingEmployee(scanner);
     }
@@ -99,8 +103,9 @@ public class UserRoleService {
      * @param employee
      *            {@link Employee}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void updateEmployeeName(Scanner scanner, Employee employee) {
+    public static void updateEmployeeName(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.EDIT_FULLNAME);
         employee.setFullname(UtilityService.getInputData(scanner, Constants.ENTER_EDIT_FULLNAME));
         EmployeeController.updateEmployeeInfo(Constants.FULLNAME, employee.getFullname(), employee.getEmployeeId());
@@ -114,8 +119,9 @@ public class UserRoleService {
      * @param employee
      *            {@link Employee}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void updateEmployeeDepartment(Scanner scanner, Employee employee) {
+    public static void updateEmployeeDepartment(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.EDIT_DEPARTMENT);
         employee.setDepartment(UtilityService.getInputData(scanner, Constants.ENTER_EDIT_DEPARTMENT));
         EmployeeController.updateEmployeeInfo(Constants.DEPARTMENT, employee.getDepartment(), employee.getEmployeeId());
@@ -129,8 +135,9 @@ public class UserRoleService {
      * @param employee
      *            {@link Employee}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void updateEmployeeAddress(Scanner scanner, Employee employee) {
+    public static void updateEmployeeAddress(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.EDIT_ADDRESS);
         employee.setAddress(UtilityService.getInputData(scanner, Constants.ENTER_EDIT_ADDRESS));
         EmployeeController.updateEmployeeInfo(Constants.ADDRESS, employee.getAddress(), employee.getEmployeeId());
@@ -159,8 +166,9 @@ public class UserRoleService {
      * @param employee
      *            {@link Employee}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void getUserPasswordChangeInfo(Scanner scanner, Employee employee) {
+    public static void getUserPasswordChangeInfo(Scanner scanner, Employee employee) throws SQLException {
         LOGGER.log(Level.INFO, Constants.CHANGE_PASSWORD);
         employee.setPassword(UtilityService.getInputData(scanner, Constants.ENTER_NEW_PASSWORD));
         String newPassword = employee.getPassword();

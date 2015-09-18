@@ -25,7 +25,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     private static final Logger LOGGER = Logger.getLogger(EmployeeDaoImpl.class.getName());
 
     @Override
-    public List<Employee> findByPk(Integer userId) {
+    public List<Employee> findByPk(Integer userId) throws SQLException {
         List<Employee> employeeList = new ArrayList<Employee>();
         Map<Integer, Object> params = new HashMap<Integer, Object>();
         params.put(1, userId);
@@ -44,14 +44,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 employeeList.add(userService.map(result));
             }
             preparedStatement.close();
+            result.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return employeeList;
     }
 
     @Override
-    public List<Employee> findAll() {
+    public List<Employee> findAll() throws SQLException {
         List<Employee> employeeList = new ArrayList<Employee>();
         String sql =
                 "Select * from user as u inner join employee as e on (u.user_id=e.user_id) where (u.is_terminated=? and e.is_deleted=?)";
@@ -66,14 +68,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 employeeList.add(userService.map(result));
             }
             preparedStatement.close();
+            result.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return employeeList;
     }
 
     @Override
-    public Employee addNew(Employee employee) {
+    public Employee addNew(Employee employee) throws SQLException {
         String sql = "Insert into employee (fullname,department,address,role,user_id,created_at) values (?,?,?,?,?,?)";
         try {
             Connection connection = DbFacade.getDbConnection();
@@ -90,14 +94,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 employee.setEmployeeId(rs.getInt(1));
             }
             preparedStatement.close();
+            rs.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return employee;
     }
 
     @Override
-    public Integer update(Database database) {
+    public Integer update(Database database) throws SQLException {
         int resultSet = 0;
         try {
             Connection connection = DbFacade.getDbConnection();
@@ -107,12 +113,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
             preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return resultSet;
     }
 
     @Override
-    public Boolean delete(String username) {
+    public Boolean delete(String username) throws SQLException {
         boolean isDeleted = false;
         String sql = "update employee set is_deleted=?,modified_at=? where (fullname=? and is_deleted=?)";
         try {
@@ -127,12 +134,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
             preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return isDeleted;
     }
 
     @Override
-    public List<Employee> searchEmployee(String... searchContent) {
+    public List<Employee> searchEmployee(String... searchContent) throws SQLException {
         List<Employee> employeeList = new ArrayList<Employee>();
         String sql =
                 "select * from employee e inner join user u on e.user_id=u.user_id where (e.fullname like ? or e.department like ? or e.address like ?) and (u.is_terminated=? or e.is_deleted=?)";
@@ -152,8 +160,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 employeeList.add(userService.map(result));
             }
             preparedStatement.close();
+            result.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return employeeList;
     }

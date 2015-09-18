@@ -78,4 +78,9 @@ public class LoginController {
         }
         return checkUserExist;
     }
+
+    public static void logoutPage() throws SQLException {
+        LoginController login = new LoginController();
+        login.userLogin();
+    }
 }

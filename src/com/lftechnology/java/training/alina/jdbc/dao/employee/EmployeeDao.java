@@ -1,6 +1,8 @@
 package com.lftechnology.java.training.alina.jdbc.dao.employee;
 
+import java.sql.SQLException;
 import java.util.List;
+
 import com.lftechnology.java.training.alina.jdbc.api.CrudService;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 
@@ -19,6 +21,7 @@ public interface EmployeeDao extends CrudService<Employee> {
      *            {@link STRING}
      * @return
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    List<Employee> searchEmployee(String... searchContent);
+    List<Employee> searchEmployee(String... searchContent) throws SQLException;
 }

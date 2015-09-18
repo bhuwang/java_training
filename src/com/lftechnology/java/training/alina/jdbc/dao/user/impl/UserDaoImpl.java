@@ -62,6 +62,7 @@ public class UserDaoImpl implements UserDao {
         } else {
             loginStatus = false;
         }
+        result.close();
         return loginStatus;
     }
 
@@ -87,7 +88,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findByPk(Integer userId) {
+    public List<User> findByPk(Integer userId) throws SQLException {
         List<User> userList = new ArrayList<User>();
         Map<Integer, Object> params = new HashMap<Integer, Object>();
         params.put(1, userId);
@@ -103,14 +104,16 @@ public class UserDaoImpl implements UserDao {
                 userList.add(userService.map(result));
             }
             preparedStatement.close();
+            result.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return userList;
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAll() throws SQLException {
         List<User> userList = new ArrayList<User>();
         User user = new User();
         String sql = "Select * from user";
@@ -125,14 +128,16 @@ public class UserDaoImpl implements UserDao {
                 userList.add(user);
             }
             preparedStatement.close();
+            result.close();
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { e });
+            DbFacade.closeDbConnection();
         }
         return userList;
     }
 
     @Override
-    public User addNew(User user) {
+    public User addNew(User user) throws SQLException {
         String sql = "Insert into user (username,password,is_terminated,created_at) values (?,?,?,?)";
         try {
             Connection connection = DbFacade.getDbConnection();
@@ -147,14 +152,16 @@ public class UserDaoImpl implements UserDao {
                 user.setUserId(rs.getInt(1));
             }
             preparedStatement.close();
+            rs.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return user;
     }
 
     @Override
-    public Boolean delete(String fullname) {
+    public Boolean delete(String fullname) throws SQLException {
         boolean isDeleted = false;
         String sql =
                 "update user u inner join employee e on u.user_id=e.user_id set u.is_terminated=?,u.modified_at=?,e.modified_at=? where (e.fullname=? and u.is_terminated=?)";
@@ -171,6 +178,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
+            DbFacade.closeDbConnection();
         }
         return isDeleted;
     }
@@ -213,6 +221,7 @@ public class UserDaoImpl implements UserDao {
             existUser = false;
         }
         preparedStatement.close();
+        result.close();
         return existUser;
     }
 }

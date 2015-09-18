@@ -6,11 +6,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.controller.EmployeeController;
 import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
-import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.EmployeeRole;
@@ -123,7 +121,7 @@ public class UserService {
             UserRoleService.searchEmployee(scanner);
             break;
         case 'f':
-            UserRoleService.employeeLogout(scanner);
+            LoginController.logoutPage();
             break;
         default:
             LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);
@@ -205,8 +203,7 @@ public class UserService {
             break;
         case 'd':
             LOGGER.log(Level.INFO, Constants.USER_LOGOUT_SUCCESS);
-            UserDaoImpl userDao = new UserDaoImpl();
-            userDao.checkEmployeeLogin(scanner);
+            LoginController.logoutPage();
             break;
         default:
             LOGGER.log(Level.INFO, Constants.INVALID_ENTRY);

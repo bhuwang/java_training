@@ -1,15 +1,10 @@
 package com.lftechnology.java.training.alina.jdbc.service;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
-import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
-import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 
 /**
  * Utility service consists of common functionalities
@@ -44,7 +39,7 @@ public class UtilityService {
             } else {
                 fieldValue = scanner.nextLine();
                 emptyStatus = checkEmptyField(fieldValue, fieldLabel);
-                if(!emptyStatus){
+                if (!emptyStatus) {
                     continue;
                 }
             }
@@ -64,11 +59,7 @@ public class UtilityService {
         boolean empStatus = false;
         if (fieldValue.isEmpty()) {
             if (fieldLabel == Constants.SEARCH_EMPLOYEE_CRITERIA) {
-                EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
-                List<Employee> list = employeeDao.findAll();
-                Collections.sort(list);
-                LOGGER.log(Level.INFO, Constants.EMPLOYEE_NUMBER, new Object[] { list.size(), list });
-                empStatus =  false;
+                empStatus = false;
             } else {
                 LOGGER.log(Level.WARNING, Constants.FIELD_NOT_EMPTY);
                 empStatus = true;

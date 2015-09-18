@@ -94,8 +94,9 @@ public class EmployeeController {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void deleteExistingEmployee(Scanner scanner) {
+    public static void deleteExistingEmployee(Scanner scanner) throws SQLException {
         Employee employee = new Employee();
         employee.setFullname(UtilityService.getInputData(scanner, Constants.ENTER_FULLNAME));
         boolean isDeleted = employeeDao.delete(employee.getFullname());
@@ -112,8 +113,9 @@ public class EmployeeController {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void terminateExistingEmployee(Scanner scanner) {
+    public static void terminateExistingEmployee(Scanner scanner) throws SQLException {
         Employee employee = new Employee();
         employee.setFullname(UtilityService.getInputData(scanner, Constants.ENTER_FULLNAME));
         boolean isDeleted = userDao.delete(employee.getFullname());
@@ -128,8 +130,9 @@ public class EmployeeController {
      * Gets Employee lists soreted by alphabetical order
      * 
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void getEmployeeList() {
+    public static void getEmployeeList() throws SQLException {
         List<Employee> list = employeeDao.findAll();
         Collections.sort(list);
         if (!list.isEmpty()) {
@@ -145,8 +148,9 @@ public class EmployeeController {
      * @param scanner
      *            {@link Scanner}
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void searchExistingEmployee(Scanner scanner) {
+    public static void searchExistingEmployee(Scanner scanner) throws SQLException {
         String searchContent = UtilityService.getInputData(scanner, Constants.SEARCH_EMPLOYEE_CRITERIA);
         List<Employee> list = employeeDao.searchEmployee(searchContent, searchContent, searchContent);
         Collections.sort(list);
@@ -167,8 +171,9 @@ public class EmployeeController {
      * @param employeeId
      *            {@link Integer} id of employee
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException 
      */
-    public static void updateEmployeeInfo(String keyName, String keyValue, Integer employeeId) {
+    public static void updateEmployeeInfo(String keyName, String keyValue, Integer employeeId) throws SQLException {
         Map<Integer, Object> params = new HashMap<>();
         Database database = new Database();
         if (keyName == Constants.FULLNAME) {
@@ -203,8 +208,9 @@ public class EmployeeController {
      * @param userId
      *            {@link Integer} user id
      * @author Alina Shakya <alinashakya@lftechnology.com>
+     * @throws SQLException
      */
-    public static void changeUserPassword(String newPassword, String confirmPassword, int userId) {
+    public static void changeUserPassword(String newPassword, String confirmPassword, int userId) throws SQLException {
         Map<Integer, Object> params = new HashMap<>();
         Database database = new Database();
         String sqlQuery = "update user set password=?,modified_at=? where user_id=?";
