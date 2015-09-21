@@ -1,6 +1,7 @@
 package com.lftechnology.java.training.srijan.basics.generics;
 
 import java.util.logging.Logger;
+
 public class GenericsInheritance {
 	private static Logger LOGGER = Logger.getLogger(GenericsInheritance.class.getName());
 	public static void main(String[] args){
