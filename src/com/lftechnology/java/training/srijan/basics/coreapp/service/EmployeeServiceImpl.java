@@ -24,15 +24,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void addEmployee(Employee e) {
+	public Boolean addEmployee(Employee e) {
+		Boolean addStatus = false;
 		if (!"".equals(e.getUserName()) && !"".equals(e.getPassword()) &&
 			!"".equals(e.getFullName()) && !"".equals(e.getDepartment())) {
 			EmployeeDaoImpl addEmployeeToDb = DaoFactory.getEmployeeDao();
-			addEmployeeToDb.addEmployee(e);
+			addStatus = addEmployeeToDb.addEmployee(e);
 		}
-		else {
-			LOGGER.log(Level.INFO, "please fill up all information");
-		}
+		return addStatus;
 	}
 
 	@Override
@@ -46,7 +45,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		UserRole role;
 		if (!"".equals(e.getUserName()) && !"".equals(e.getPassword())) {
 			EmployeeDaoImpl loginValidator = DaoFactory.getEmployeeDao();
-			System.out.println();
 			role =  loginValidator.loginValidation(e);
 			return role;
 		}
@@ -69,10 +67,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void terminate(int terminateEmployee) {
+	public Boolean terminate(int terminateEmployee) {
 
 		EmployeeDaoImpl terminateStatus = DaoFactory.getEmployeeDao();
-		terminateStatus.terminate(terminateEmployee);
+		return terminateStatus.terminate(terminateEmployee);
 	}
 
 	/**

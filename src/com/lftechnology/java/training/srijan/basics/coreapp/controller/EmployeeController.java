@@ -19,9 +19,9 @@ public class EmployeeController {
 
 	}
 
-	public void addEmployee(Employee e) {
+	public Boolean addEmployee(Employee e) {
 
-		employeeServiceImpl.addEmployee(e);
+		return employeeServiceImpl.addEmployee(e);
 	}
 
 	public List<Employee> viewAllUser(Employee e) {
@@ -35,9 +35,9 @@ public class EmployeeController {
 		return employeeServiceImpl.search(empSearch);
 	}
 
-	public void terminate(int terminateEmployee) {
+	public Boolean terminate(int terminateEmployee) {
 
-		employeeServiceImpl.terminate(terminateEmployee);
+		return employeeServiceImpl.terminate(terminateEmployee);
 	}
 
 	public Employee findUserByUserName(Employee e) {

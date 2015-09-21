@@ -61,8 +61,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 	
 	@Override
-	public void addEmployee(Employee e) {
-
+	public Boolean addEmployee(Employee e) {
+		Boolean addStatus = false;
 		Connection con = null;
 		con = DbConnection.dbConnection();
 		PreparedStatement prepareStatementInsertEmployeeDetails = null;
@@ -86,6 +86,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					prepareStatementInsertEmployeeDetails.setString(
 						7, e.getPassword());
 					prepareStatementInsertEmployeeDetails.executeUpdate();
+					addStatus = true;
 			}
 		catch (Exception ex) {
 			LOGGER.log(Level.INFO, "Exception{0}", ex);
@@ -99,6 +100,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				LOGGER.log(Level.INFO, "SQL Exception{0}", e1);
 			}
 		}
+		return addStatus;
 	}
 
 	@Override
@@ -166,9 +168,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				if (resultSet.next()) {
 					 role =
 						UserRole.valueOf(resultSet.getString("employee_role"));
-				}
-				else {
-					LOGGER.log(Level.INFO, "Entry not found in Database");
 				}
 			}
 			else {
@@ -246,8 +245,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public void terminate(int idToTerminate) {
-
+	public Boolean terminate(int idToTerminate) {
+		
+		Boolean terminateStatus = false;
 		Connection con = null;
 		ResultSet resultSet = null;
 		con = DbConnection.dbConnection();
@@ -268,6 +268,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					prepareUpdate.setBoolean(1, status);
 					prepareUpdate.setInt(2, idToTerminate);
 					prepareUpdate.executeUpdate();
+					terminateStatus = true;
 				}
 			}
 		}
@@ -285,6 +286,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				LOGGER.log(Level.INFO, "SQL Exception {0}", ex);
 			}
 		}
+		return terminateStatus;
 	}
 
 	/**

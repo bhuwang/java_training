@@ -53,6 +53,9 @@ public class LoginView {
 						e.getUserRole());
 					loginStatus = true;
 				}
+				else{
+					LOGGER.log(Level.INFO, "Entry not found in Database");
+				}
 			}
 			while (loginStatus.equals(false));
 			loginControl.determineUserRole(inputScanner, e);

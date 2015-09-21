@@ -10,5 +10,4 @@ public interface EmployeeService extends EmployeeApi {
 
 	public List<Employee> viewAllUser(Employee e);
 
-	void terminate(int terminateEmployee);
 }

@@ -304,9 +304,12 @@ public class EmployeeView {
 	 * @param input
 	 */
 	public void addUser(Scanner input) {
-
+		Boolean addStatus = false;
 		Employee employeeDetails = inputUserInfo(e, input);
-		employeeControl.addEmployee(employeeDetails);
+		addStatus = employeeControl.addEmployee(employeeDetails);
+		if(addStatus.equals(true)){
+			LOGGER.log(Level.INFO, "New Employee Added");
+		}
 	}
 
 	/**
@@ -336,13 +339,17 @@ public class EmployeeView {
 	 * @author srijan
 	 */
 	public void terminateUser(Scanner input) {
-
+		
+		Boolean terminateStatus = false;
 		employees = employeeControl.viewAllUser(e);
 		LOGGER.log(Level.INFO, "Employee Details\n{0}", employees);
 		LOGGER.log(
 			Level.INFO, "Choose id of an Employee you want to terminate");
 		int terminateEmployee = editAndTerminateEmployee(input);
-		employeeControl.terminate(terminateEmployee);
+		terminateStatus = employeeControl.terminate(terminateEmployee);
+		if(terminateStatus.equals(true)){
+			LOGGER.log(Level.INFO, "User Status successfully terminated");
+		}
 	}
 
 	/**
@@ -375,6 +382,12 @@ public class EmployeeView {
 		LOGGER.log(Level.INFO, "{0}", employees);
 	}
 
+	/**
+	 * <p>Shows different option for user access</p>
+	 * @param input
+	 * @param e
+	 * @author srijan
+	 */
 	public void normalAccess(Scanner input, Employee e) {
 
 		Boolean loop = true;

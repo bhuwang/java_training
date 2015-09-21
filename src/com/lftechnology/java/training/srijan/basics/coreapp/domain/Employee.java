@@ -105,10 +105,18 @@ public class Employee {
 	@Override
 	public String toString() {
 
-		return "id = " + id + ",\nuserName = " + userName + ",\nTerminated = " +
-			isTerminated + ",\nrole = " + role + ",\nfullName = " + fullName +
-			",\ndepartment = " + department + ",\naddress = " + address +
-			"\n\n\n\n";
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Employee : \n ").append("ID : ").append(
+			this.id).append("\n").append("User name: ").append(
+				this.userName).append("\n").append("Fullname: ").append(
+					this.fullName).append("\n").append("Department: ").append(
+						this.department).append("\n").append(
+							"Address: ").append(this.address).append(
+								"\n").append("Terminated: ").append(
+									this.isTerminated).append("\n").append(
+											"\n").append("\n").append("\n");
+		return stringBuilder.toString();
+
 	}
 
 }

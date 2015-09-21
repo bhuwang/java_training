@@ -13,7 +13,7 @@ public interface EmployeeApi {
 	 * 
 	 * @author srijan
 	 */
-	public void addEmployee(Employee e);
+	public Boolean addEmployee(Employee e);
 
 	/**
 	 * <p>Finds Employee by their Id</p>
@@ -35,7 +35,7 @@ public interface EmployeeApi {
 	 * @param terminateEmployee
 	 * @author srijan
 	 */
-	public void terminate(int terminateEmployee);
+	public Boolean terminate(int terminateEmployee);
 
 	/**
 	 * <p>Inputs choice of search and value of search from user and finds user

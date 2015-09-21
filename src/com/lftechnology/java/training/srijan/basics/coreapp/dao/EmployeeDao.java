@@ -11,6 +11,4 @@ public interface EmployeeDao extends EmployeeApi {
 	UserRole loginValidation(Employee e);
 
 	List<Employee> viewEmployeeDetails();
-
-	void terminate(int idToTerminate);
 }
