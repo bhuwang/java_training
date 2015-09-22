@@ -5,9 +5,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
-import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
+import com.lftechnology.java.training.alina.jdbc.dao.DbUtils;
 import com.lftechnology.java.training.alina.jdbc.demo.EmployeeManagement;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
@@ -45,7 +44,7 @@ public class LoginController {
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Exception Message : {0}", new Object[] { e });
         } finally {
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
     }
 

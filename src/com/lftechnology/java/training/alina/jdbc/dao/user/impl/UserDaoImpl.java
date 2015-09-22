@@ -12,9 +12,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
+import com.lftechnology.java.training.alina.jdbc.dao.DbUtils;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
 import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
-import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
@@ -47,9 +47,9 @@ public class UserDaoImpl implements UserDao {
         Database database = UserService.setDatabaseParams(params);
         String sql =
                 "SELECT * FROM user u inner join employee e on (u.user_id = e.user_id) where u.username=? and u.password=? and u.is_terminated=? and e.is_deleted=?";
-        Connection connection = DbFacade.getDbConnection();
+        Connection connection = DbUtils.getDbConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
+        preparedStatement = DbUtils.setParameterizedObjects(database, preparedStatement);
         ResultSet result = preparedStatement.executeQuery();
         if (result.next()) {
             loginStatus = true;
@@ -90,9 +90,9 @@ public class UserDaoImpl implements UserDao {
         Database database = UserService.setDatabaseParams(params);
         String sql = "Select * from user where user_id=?) ";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
+            preparedStatement = DbUtils.setParameterizedObjects(database, preparedStatement);
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
                 UserService userService = new UserService();
@@ -102,7 +102,7 @@ public class UserDaoImpl implements UserDao {
             result.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return userList;
     }
@@ -113,7 +113,7 @@ public class UserDaoImpl implements UserDao {
         User user = new User();
         String sql = "Select * from user";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
@@ -126,7 +126,7 @@ public class UserDaoImpl implements UserDao {
             result.close();
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { e });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return userList;
     }
@@ -135,7 +135,7 @@ public class UserDaoImpl implements UserDao {
     public User addNew(User user) throws SQLException {
         String sql = "Insert into user (username,password,is_terminated,created_at) values (?,?,?,?)";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
@@ -150,7 +150,7 @@ public class UserDaoImpl implements UserDao {
             rs.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return user;
     }
@@ -161,7 +161,7 @@ public class UserDaoImpl implements UserDao {
         String sql =
                 "update user u inner join employee e on u.user_id=e.user_id set u.is_terminated=?,u.modified_at=?,e.modified_at=? where (e.fullname=? and u.is_terminated=?)";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setBoolean(1, Constants.TERMINATED);
             preparedStatement.setTimestamp(2, DateTimeService.getCurrentTimeStamp());
@@ -173,7 +173,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return isDeleted;
     }
@@ -204,11 +204,11 @@ public class UserDaoImpl implements UserDao {
         params.put(2, Constants.NOT_TERMINATED);
         params.put(3, Constants.NOT_DELETED);
         Database database = UserService.setDatabaseParams(params);
-        Connection connection = DbFacade.getDbConnection();
+        Connection connection = DbUtils.getDbConnection();
         String sql =
                 "SELECT * FROM user u inner join employee e on (e.user_id = u.user_id) where u.username=? and u.is_terminated=? and e.is_deleted=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
+        preparedStatement = DbUtils.setParameterizedObjects(database, preparedStatement);
         ResultSet result = preparedStatement.executeQuery();
         if (result.next()) {
             existUser = true;

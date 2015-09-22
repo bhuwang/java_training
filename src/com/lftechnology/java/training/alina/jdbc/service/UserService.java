@@ -8,12 +8,12 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
 import com.lftechnology.java.training.alina.jdbc.controller.EmployeeController;
 import com.lftechnology.java.training.alina.jdbc.controller.LoginController;
-import com.lftechnology.java.training.alina.jdbc.dao.employee.impl.EmployeeDaoImpl;
-import com.lftechnology.java.training.alina.jdbc.dao.user.impl.UserDaoImpl;
+import com.lftechnology.java.training.alina.jdbc.dao.DaoFactory;
+import com.lftechnology.java.training.alina.jdbc.dao.employee.EmployeeDao;
+import com.lftechnology.java.training.alina.jdbc.dao.user.UserDao;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
@@ -27,8 +27,8 @@ import com.lftechnology.java.training.alina.jdbc.employeeenum.EmployeeRole;
 public class UserService {
 
     private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
-    private static UserDaoImpl userDao = new UserDaoImpl();
-    private static EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
+    private static UserDao userDao = DaoFactory.getUserDao();
+    private static EmployeeDao employeeDao = DaoFactory.getEmployeeDao();
 
     /**
      * Checks for user login

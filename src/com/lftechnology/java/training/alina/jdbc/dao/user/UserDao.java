@@ -1,6 +1,9 @@
 package com.lftechnology.java.training.alina.jdbc.dao.user;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
+
 import com.lftechnology.java.training.alina.jdbc.api.CrudService;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 
@@ -21,4 +24,8 @@ public interface UserDao extends CrudService<User> {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     List<User> searchUser(String sql, String... searchContent);
+
+    boolean checkEmployeeLogin(Scanner scanner, User user) throws SQLException;
+
+    boolean checkValidUserByUsername(String username) throws SQLException;
 }

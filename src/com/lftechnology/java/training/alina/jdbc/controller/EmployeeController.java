@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
-import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
+import com.lftechnology.java.training.alina.jdbc.dao.DbUtils;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.domain.User;
 import com.lftechnology.java.training.alina.jdbc.employeeenum.EmployeeRole;
@@ -43,7 +43,7 @@ public class EmployeeController {
      * @author Alina Shakya <alinashakya@lftechnology.com>
      */
     public static void addNewEmployee(Scanner scanner) throws SQLException {
-        Connection connection = DbFacade.getDbConnection();
+        Connection connection = DbUtils.getDbConnection();
         connection.setAutoCommit(false);
         User user = UserService.addLoginInfo(scanner);
         if (user.getUserId() != 0) {

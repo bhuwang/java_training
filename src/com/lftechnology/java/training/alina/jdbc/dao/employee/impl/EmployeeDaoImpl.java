@@ -11,10 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.lftechnology.java.training.alina.jdbc.constants.Constants;
+import com.lftechnology.java.training.alina.jdbc.dao.DbUtils;
 import com.lftechnology.java.training.alina.jdbc.dao.employee.EmployeeDao;
-import com.lftechnology.java.training.alina.jdbc.dbutils.DbFacade;
 import com.lftechnology.java.training.alina.jdbc.domain.Database;
 import com.lftechnology.java.training.alina.jdbc.domain.Employee;
 import com.lftechnology.java.training.alina.jdbc.service.DateTimeService;
@@ -35,9 +34,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
         String sql =
                 "Select * from user as u inner join employee as e on (u.user_id=e.user_id) where (u.user_id=? and u.is_terminated=? and e.is_deleted=?) ";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
+            preparedStatement = DbUtils.setParameterizedObjects(database, preparedStatement);
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
                 UserService userService = new UserService();
@@ -47,7 +46,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             result.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return employeeList;
     }
@@ -58,7 +57,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         String sql =
                 "Select * from user as u inner join employee as e on (u.user_id=e.user_id) where (u.is_terminated=? and e.is_deleted=?)";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setBoolean(1, Constants.NOT_TERMINATED);
             preparedStatement.setBoolean(2, Constants.NOT_DELETED);
@@ -71,7 +70,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             result.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return employeeList;
     }
@@ -80,7 +79,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Employee addNew(Employee employee) throws SQLException {
         String sql = "Insert into employee (fullname,department,address,role,user_id,created_at) values (?,?,?,?,?,?)";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, employee.getFullname());
             preparedStatement.setString(2, employee.getDepartment());
@@ -97,7 +96,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             rs.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return employee;
     }
@@ -106,14 +105,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public Integer update(Database database) throws SQLException {
         int resultSet = 0;
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(database.getSqlQuery());
-            preparedStatement = DbFacade.setParameterizedObjects(database, preparedStatement);
+            preparedStatement = DbUtils.setParameterizedObjects(database, preparedStatement);
             resultSet = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return resultSet;
     }
@@ -123,7 +122,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         boolean isDeleted = false;
         String sql = "update employee set is_deleted=?,modified_at=? where (fullname=? and is_deleted=?)";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setBoolean(1, Constants.DELETED);
             preparedStatement.setTimestamp(2, DateTimeService.getCurrentTimeStamp());
@@ -134,7 +133,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             preparedStatement.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return isDeleted;
     }
@@ -145,7 +144,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         String sql =
                 "select * from employee e inner join user u on e.user_id=u.user_id where (e.fullname like ? or e.department like ? or e.address like ?) and (u.is_terminated=? or e.is_deleted=?)";
         try {
-            Connection connection = DbFacade.getDbConnection();
+            Connection connection = DbUtils.getDbConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             for (String content : searchContent) {
                 preparedStatement.setString(1, content + "%");
@@ -163,7 +162,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             result.close();
         } catch (SQLException sqe) {
             LOGGER.log(Level.WARNING, Constants.SQLEXCEPTION_LOG, new Object[] { sqe });
-            DbFacade.closeDbConnection();
+            DbUtils.closeDbConnection();
         }
         return employeeList;
     }
