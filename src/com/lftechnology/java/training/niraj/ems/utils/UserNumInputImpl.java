@@ -2,7 +2,7 @@
  * 
  */
 
-package com.lftechnology.java.training.niraj.utils;
+package com.lftechnology.java.training.niraj.ems.utils;
 
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -20,17 +20,17 @@ public class UserNumInputImpl implements UserNumInput {
     @Override
     public int getInput(Scanner scanner, int min, int max) {
 
-        int listLength;
+        int input;
         LOGGER.log(Level.INFO, "Please select number between {0} and {1}:", new Object[] { min, max });
         while (true) {
-            listLength = getInputInt(scanner);
-            if ((listLength < min) || (listLength > max)) {
+            input = getInputInt(scanner);
+            if ((input < min) || (input > max)) {
                 LOGGER.log(Level.WARNING, "Please provide a number between {0} and {1} : ", new Object[] { min, max });
             } else {
                 break;
             }
         }
-        return listLength;
+        return input;
     }
 
     @Override
@@ -85,6 +85,7 @@ public class UserNumInputImpl implements UserNumInput {
 
         while (!scanner.hasNextInt()) {
             LOGGER.warning("Please select a number : ");
+            scanner.next();
         }
         return scanner.nextInt();
     }
