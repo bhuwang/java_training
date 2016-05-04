@@ -1,0 +1,5 @@
+This is a test file to check whether any given character will be present or not.
+
+A QUICK BROWN FOX JUMPED OVER A LAZY DOG.
+
+ThIs Is A WORld OF JavA.
